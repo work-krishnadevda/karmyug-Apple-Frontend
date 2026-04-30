@@ -1,0 +1,1181 @@
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/views/cases/genrate_MSI.js
+Syntax error: Unexpected token (528:39) (528:39)
+ERROR in ./src/views/cases/genrate_MSI.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/views/cases/genrate_MSI.js: Unexpected token (528:39)
+
+  526 |                     if (filterParams.hasOwnProperty(key)) {
+  527 |                       const value = filterParams[key]
+> 528 |                       if (value != ''&&) searchParams.set(key, value)
+      |                                        ^
+  529 |                       else searchParams.delete(key)
+  530 |                     }
+  531 |                   }
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10987:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOpBaseRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10524:34)
+    at FlowParserMixin.parseExprOpRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10519:21)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10486:27)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10492:21)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10447:17)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11950:16)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.parseHeaderExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12530:22)
+    at FlowParserMixin.parseIfStatement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12627:22)
+    at FlowParserMixin.parseStatementContent (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12290:21)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseStatementListItem (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12241:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12814:61)
+    at FlowParserMixin.parseBlockBody (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12807:10)
+    at FlowParserMixin.parseBlock (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12795:10)
+    at FlowParserMixin.parseStatementContent (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12351:21)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12251:17)
+    at FlowParserMixin.parseIfStatement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12628:28)
+    at FlowParserMixin.parseStatementContent (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12290:21)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseStatementListItem (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12241:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12814:61)
+    at FlowParserMixin.parseBlockBody (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12807:10)
+    at FlowParserMixin.parseBlock (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12795:10)
+    at FlowParserMixin.parseStatementContent (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12351:21)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseStatement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12254:17)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12871:68
+    at FlowParserMixin.withSmartMixTopicForbiddingContext (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11932:14)
+    at FlowParserMixin.parseForIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12871:22)
+    at FlowParserMixin.parseForStatement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:12585:23)
+
+ERROR in [eslint] 
+src/views/cases/genrate_MSI.js
+  Line 528:39:  Parsing error: Unexpected token (528:39)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token (1007:41) (1007:41)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token (1007:41)
+
+  1005 |                     ) : (
+  1006 |                       <>
+> 1007 |                         {(isFE || isSFO||) && <option value="fe done">FE Done</option>}
+       |                                          ^
+  1008 |                         {/* {isSDM && <option value="sdm done">SDM Done</option>} */}
+  1009 |                         {isDM && <option value="dm done">DM Done</option>}
+  1010 |                         {isRC && <option value="rc done">RC Done</option>}
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10987:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOpBaseRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10524:34)
+    at FlowParserMixin.parseExprOpRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10519:21)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10486:27)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10492:21)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10447:17)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1007:41:  Parsing error: Unexpected token (1007:41)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token (1007:41) (1007:41)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token (1007:41)
+
+  1005 |                     ) : (
+  1006 |                       <>
+> 1007 |                         {(isFE || isSFO||) && <option value="fe done">FE Done</option>}
+       |                                          ^
+  1008 |                         {/* {isSDM && <option value="sdm done">SDM Done</option>} */}
+  1009 |                         {isDM && <option value="dm done">DM Done</option>}
+  1010 |                         {isRC && <option value="rc done">RC Done</option>}
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10987:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOpBaseRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10524:34)
+    at FlowParserMixin.parseExprOpRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10519:21)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10486:27)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10492:21)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10447:17)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1007:41:  Parsing error: Unexpected token (1007:41)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token, expected "}" (1014:32) (1014:32)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token, expected "}" (1014:32)
+
+  1012 |                         {isCTO && <option value="cto done">CTO Done</option>} */}
+  1013 |                         {isAC && <option value="cto done">CTO Done</option>}
+> 1014 |                          { label: 'Submitted To Bank', value: 'submit to bank' },
+       |                                 ^
+  1015 |                       </>
+  1016 |                     )}
+  1017 |                   </CFormSelect>
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6691:10)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:77
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5204:16)
+    at FlowParserMixin.parseConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:27)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10424:17)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1014:32:  Parsing error: Unexpected token, expected "}" (1014:32)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token, expected "}" (1014:32) (1014:32)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token, expected "}" (1014:32)
+
+  1012 |                         {isCTO && <option value="cto done">CTO Done</option>} */}
+  1013 |                         {isAC && <option value="cto done">CTO Done</option>}
+> 1014 |                          { label: '', value: 'submit to bank' },
+       |                                 ^
+  1015 |                       </>
+  1016 |                     )}
+  1017 |                   </CFormSelect>
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6691:10)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:77
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5204:16)
+    at FlowParserMixin.parseConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:27)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10424:17)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1014:32:  Parsing error: Unexpected token, expected "}" (1014:32)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token, expected "}" (1014:32) (1014:32)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token, expected "}" (1014:32)
+
+  1012 |                         {isCTO && <option value="cto done">CTO Done</option>} */}
+  1013 |                         {isAC && <option value="cto done">Submitted To Bank</option>}
+> 1014 |                          { label: '', value: 'submit to bank' },
+       |                                 ^
+  1015 |                       </>
+  1016 |                     )}
+  1017 |                   </CFormSelect>
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6691:10)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:77
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5204:16)
+    at FlowParserMixin.parseConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:27)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10424:17)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1014:32:  Parsing error: Unexpected token, expected "}" (1014:32)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token, expected "}" (1014:32) (1014:32)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token, expected "}" (1014:32)
+
+  1012 |                         {isCTO && <option value="cto done">CTO Done</option>} */}
+  1013 |                         {isAC && <option value="submit to bank">Submitted To Bank</option>}
+> 1014 |                          { label: '', value: 'submit to bank' },
+       |                                 ^
+  1015 |                       </>
+  1016 |                     )}
+  1017 |                   </CFormSelect>
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6691:10)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:77
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5204:16)
+    at FlowParserMixin.parseConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:27)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10424:17)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1014:32:  Parsing error: Unexpected token, expected "}" (1014:32)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token, expected "}" (1015:93) (1015:93)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token, expected "}" (1015:93)
+
+  1013 |                         {isCTO && <option value="cto done">CTO Done</option>} */}
+  1014 |                         {isAC ||
+> 1015 |                           isLCTO && <option value="submit to bank">Submitted To Bank</option>)}
+       |                                                                                              ^
+  1016 |                       </>
+  1017 |                     )}
+  1018 |                   </CFormSelect>
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6691:10)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:77
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5204:16)
+    at FlowParserMixin.parseConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5154:27)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10424:17)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 1015:93:  Parsing error: Unexpected token, expected "}" (1015:93)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/custom/MsiFilter.js
+Syntax error: Unexpected token (999:50) (999:50)
+ERROR in ./src/components/custom/MsiFilter.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/server/public_html/real_apple/react/src/components/custom/MsiFilter.js: Unexpected token (999:50)
+
+   997 |                     <option value="">Select Done Only</option>
+   998 |
+>  999 |                     {isAdmin || isCOO || isRA ||  || isSDM ? (
+       |                                                   ^
+  1000 |                       onlyDoneOptions.map((option) => (
+  1001 |                         <option key={option.value} value={option.value}>
+  1002 |                           {option.label}
+    at constructor (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10987:16)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOpBaseRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10524:34)
+    at FlowParserMixin.parseExprOpRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10519:21)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10486:27)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10492:21)
+    at FlowParserMixin.parseExprOp (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10492:21)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10447:17)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5685:18)
+    at FlowParserMixin.parseExpressionBase (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10337:23)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10333:17)
+    at FlowParserMixin.jsxParseExpressionContainer (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6686:31)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6765:36)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElementAt (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6752:32)
+    at FlowParserMixin.jsxParseElement (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6803:17)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6813:19)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10383:21)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:39
+    at FlowParserMixin.tryParse (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:3604:20)
+    at FlowParserMixin.parseMaybeAssign (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5634:18)
+    at /home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:11214:28)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:5727:18)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10867:23)
+    at FlowParserMixin.parseExprAtom (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOpBaseRightExpr (/home/server/public_html/real_apple/react/node_modules/@babel/parser/lib/index.js:10524:34)
+
+ERROR in [eslint] 
+src/components/custom/MsiFilter.js
+  Line 999:50:  Parsing error: Unexpected token (999:50)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+
+> @coreui/coreui-free-react-admin-template@4.5.0 start
+> react-scripts start
+
+(node:1758) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:1758) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled successfully!
+
+You can now view @coreui/coreui-free-react-admin-template in the browser.
+
+  Local:            http://localhost:3008
+  On Your Network:  http://192.168.1.82:3008
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully

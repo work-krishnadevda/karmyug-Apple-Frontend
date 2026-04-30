@@ -1,0 +1,616 @@
+/**
+ * Celebration Popup Card Styles - Premium Design
+ * Birthday (lavender), Work Anniversary (blue/gold), Marriage (pink)
+ */
+
+/* ========== SHARED ========== */
+.celebration-popup-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 480px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: cardEntrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Subtle top highlight for depth */
+.celebration-popup-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 20px 20px 0 0;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.celebration-popup-card-photo-wrap {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 4px rgba(255, 255, 255, 0.5),
+    0 0 0 6px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.celebration-popup-card:hover .celebration-popup-card-photo-wrap {
+  transform: scale(1.03);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.2),
+    0 0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+.celebration-popup-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.celebration-popup-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e8e4f3 0%, #d4cce8 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.celebration-popup-card-name {
+  font-weight: 700;
+  text-align: center;
+  margin: 0.5rem 0 0.25rem;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.celebration-popup-card-designation {
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0.95;
+  margin: 0 0 1rem;
+}
+
+.celebration-popup-card-message {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 0 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* Confetti - snowfall style from top */
+.celebration-popup-confetti {
+  position: absolute;
+  top: -14%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.95;
+  animation: confettiSnowfall 5s linear infinite;
+}
+
+.celebration-popup-confetti:nth-child(odd) {
+  width: 8px;
+  height: 8px;
+}
+
+.celebration-popup-confetti:nth-child(even) {
+  width: 12px;
+  height: 12px;
+}
+
+.celebration-popup-confetti:nth-child(3n) {
+  border-radius: 30%;
+}
+
+@keyframes confettiSnowfall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0) rotate(0deg) scale(0.9);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate3d(-12px, 470px, 0) rotate(360deg) scale(1.05);
+  }
+}
+
+/* ========== BIRTHDAY - Lavender/Purple ========== */
+.celebration-popup-birthday {
+  background: linear-gradient(
+    165deg,
+    #f5f0ff 0%,
+    #e8e0f5 25%,
+    #ddd3ed 50%,
+    #e5ddf5 75%,
+    #eee6fa 100%
+  );
+  border: 2px solid rgba(139, 108, 184, 0.4);
+  padding: 2rem 1.5rem;
+  box-shadow:
+    0 30px 60px -15px rgba(107, 76, 154, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.celebration-popup-birthday .celebration-popup-card-photo-wrap {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.25rem;
+  position: relative;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Bow decoration - enhanced */
+.celebration-popup-birthday .celebration-popup-card-photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 42px;
+  height: 32px;
+  background: linear-gradient(135deg, #7d5ba6 0%, #9b7bc5 50%, #8b6cb8 100%);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  box-shadow:
+    0 4px 12px rgba(107, 76, 154, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+.celebration-popup-birthday .celebration-popup-card-name {
+  font-size: 1.6rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #3d3556;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.celebration-popup-birthday .celebration-popup-card-designation {
+  color: #5a5080;
+  font-weight: 500;
+}
+
+.celebration-popup-birthday .celebration-popup-card-message {
+  color: #4a4068;
+  border-bottom: 2px solid rgba(139, 108, 184, 0.5);
+  padding-bottom: 0.35rem;
+  font-style: italic;
+}
+
+.celebration-popup-birthday .celebration-popup-card-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #4a3f6b;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+/* Bunting - colorful string of flags */
+.celebration-popup-birthday .celebration-popup-bunting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 8px 0 4px;
+  z-index: 1;
+}
+
+.celebration-popup-birthday .celebration-popup-bunting span {
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 24px solid;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: transform 0.2s ease;
+}
+
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(1) {
+  border-bottom-color: #8b6cb8;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(2) {
+  border-bottom-color: #a78bd4;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(3) {
+  border-bottom-color: #9d7fc9;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(4) {
+  border-bottom-color: #b8a0d9;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(5) {
+  border-bottom-color: #8b6cb8;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(6) {
+  border-bottom-color: #a78bd4;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(7) {
+  border-bottom-color: #9d7fc9;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(8) {
+  border-bottom-color: #b8a0d9;
+}
+.celebration-popup-birthday .celebration-popup-bunting span:nth-child(9) {
+  border-bottom-color: #8b6cb8;
+}
+
+.celebration-popup-birthday .celebration-popup-confetti {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #8b6cb8, #a78bd4);
+}
+
+.celebration-popup-birthday .celebration-popup-confetti:nth-child(even) {
+  background: rgba(255, 255, 255, 0.9);
+  width: 6px;
+  height: 6px;
+}
+
+/* Birthday: Balloons with float animation */
+.celebration-popup-balloons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.celebration-balloon {
+  position: absolute;
+  width: 28px;
+  height: 36px;
+  border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+  transform: translate(-50%, -50%);
+  animation: balloonFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+}
+
+.celebration-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid rgba(0, 0, 0, 0.15);
+}
+
+.celebration-balloon-knot {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 2px 2px;
+}
+
+.celebration-balloon-purple {
+  background: linear-gradient(135deg, #9b7bc5 0%, #7d5ba6 50%, #8b6cb8 100%);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.1), inset 2px 2px 6px rgba(255, 255, 255, 0.3);
+}
+
+.celebration-balloon-lavender {
+  background: linear-gradient(135deg, #b8a0d9 0%, #9d7fc9 50%, #a78bd4 100%);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.08), inset 2px 2px 6px rgba(255, 255, 255, 0.4);
+}
+
+.celebration-balloon-pink {
+  background: linear-gradient(135deg, #d4a5c9 0%, #c495b8 50%, #e8b8dc 100%);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.08), inset 2px 2px 6px rgba(255, 255, 255, 0.35);
+}
+
+.celebration-balloon:nth-child(1) { animation-duration: 3.5s; animation-delay: 0s; }
+.celebration-balloon:nth-child(2) { animation-duration: 4s; animation-delay: 0.5s; }
+.celebration-balloon:nth-child(3) { animation-duration: 3.8s; animation-delay: 0.2s; }
+.celebration-balloon:nth-child(4) { animation-duration: 4.2s; animation-delay: 0.7s; }
+.celebration-balloon:nth-child(5) { animation-duration: 3.6s; animation-delay: 0.3s; }
+.celebration-balloon:nth-child(6) { animation-duration: 4.1s; animation-delay: 0.6s; }
+
+@keyframes balloonFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0) rotate(-2deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateY(-6px) translateX(3px) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-2px) translateX(-2px) rotate(-1deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateY(-8px) translateX(2px) rotate(3deg);
+  }
+}
+
+/* ========== WORK ANNIVERSARY - Blue/Gold ========== */
+.celebration-popup-work {
+  background: linear-gradient(
+    165deg,
+    #1a3a5c 0%,
+    #152f4a 30%,
+    #0f2440 50%,
+    #152f4a 70%,
+    #1a3654 100%
+  );
+  border: 2px solid rgba(245, 200, 66, 0.25);
+  padding: 2rem 1.5rem;
+  box-shadow:
+    0 30px 60px -15px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.celebration-popup-work .celebration-popup-card-photo-wrap {
+  width: 160px;
+  height: 128px;
+  margin-bottom: 1.25rem;
+  border-radius: 14px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+}
+
+.celebration-popup-work .celebration-popup-card-photo-wrap .celebration-popup-card-photo,
+.celebration-popup-work .celebration-popup-card-photo-wrap .celebration-popup-card-placeholder {
+  border-radius: 11px;
+}
+
+/* Halo/glow behind photo */
+.celebration-popup-work .celebration-popup-card-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(245, 200, 66, 0.25) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 60%
+  );
+  z-index: -1;
+}
+
+.celebration-popup-work .celebration-popup-card-title {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 2rem;
+  font-weight: normal;
+  color: #f5c842;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(245, 200, 66, 0.5);
+}
+
+.celebration-popup-work .celebration-popup-card-badge {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.celebration-popup-work .celebration-popup-card-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a3a5c;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-shadow: none;
+}
+
+.celebration-popup-work .celebration-popup-card-designation {
+  color: #2a4a6c;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.celebration-popup-work .celebration-popup-card-congrats {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f5c842;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 0 24px rgba(245, 200, 66, 0.6);
+}
+
+.celebration-popup-work .celebration-popup-card-message {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  margin-bottom: 0;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.celebration-popup-work .celebration-popup-confetti {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #f5c842, #ffdb6b);
+}
+
+.celebration-popup-work .celebration-popup-confetti:nth-child(even) {
+  background: rgba(255, 255, 255, 0.6);
+  width: 6px;
+  height: 6px;
+}
+
+/* ========== MARRIAGE ANNIVERSARY - Soft Pink ========== */
+.celebration-popup-marriage {
+  background: linear-gradient(
+    165deg,
+    #fef5f9 0%,
+    #fce8f0 25%,
+    #f9d5e5 50%,
+    #fce8f0 75%,
+    #fef2f7 100%
+  );
+  border: 2px solid rgba(201, 160, 184, 0.5);
+  padding: 2rem 1.5rem;
+  box-shadow:
+    0 30px 60px -15px rgba(220, 150, 180, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.celebration-popup-marriage .celebration-popup-card-photo-wrap {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.25rem;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 8px 24px rgba(124, 74, 90, 0.2),
+    0 0 0 2px rgba(201, 160, 184, 0.3);
+}
+
+.celebration-popup-marriage .celebration-popup-card-title {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 1.75rem;
+  font-weight: normal;
+  color: #7c4a5a;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.celebration-popup-marriage .celebration-popup-card-name {
+  font-size: 1.55rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #6b3d4d;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.celebration-popup-marriage .celebration-popup-card-designation {
+  color: #8b5a6a;
+}
+
+.celebration-popup-marriage .celebration-popup-card-message {
+  color: #6b3d4d;
+  border-bottom: 2px solid rgba(201, 160, 184, 0.6);
+  padding-bottom: 0.35rem;
+  font-style: italic;
+}
+
+.celebration-popup-marriage .celebration-popup-confetti {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #e8a0b8, #f5c6d6);
+}
+
+.celebration-popup-marriage .celebration-popup-confetti:nth-child(even) {
+  background: rgba(255, 255, 255, 0.85);
+  width: 6px;
+  height: 6px;
+}
+
+/* Floral corner - improved */
+.celebration-popup-marriage .celebration-popup-floral {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    #fce4ec 0%,
+    #f9c5d5 40%,
+    #f8b4c8 100%
+  );
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    0 2px 8px rgba(124, 74, 90, 0.15);
+  opacity: 0.75;
+  z-index: 1;
+}
+
+.celebration-popup-marriage .celebration-popup-floral-1 {
+  top: 10px;
+  left: 10px;
+}
+
+.celebration-popup-marriage .celebration-popup-floral-2 {
+  top: 10px;
+  right: 10px;
+}
+
+.celebration-popup-marriage .celebration-popup-floral-3 {
+  bottom: 10px;
+  left: 10px;
+}
+
+.celebration-popup-marriage .celebration-popup-floral-4 {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Loading */
+.celebration-popup-loading {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: celebration-spin 0.8s linear infinite;
+}
+
+@keyframes celebration-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

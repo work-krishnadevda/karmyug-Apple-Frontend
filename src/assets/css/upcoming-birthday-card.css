@@ -1,0 +1,1620 @@
+/* ============================================
+   UPCOMING BIRTHDAY CARD STYLES
+   ============================================ */
+
+/* Grid layout for upcoming birthday cards - 2 rows, 3 columns */
+.upcoming-birthday-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .upcoming-birthday-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .upcoming-birthday-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Horizontal oval card design */
+.upcoming-birthday-card {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 4px solid #000;
+  border-radius: 50px;
+  min-height: 120px;
+  max-height: 120px;
+  gap: 1.5rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.upcoming-birthday-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile image wrapper - circular with scalloped/starburst effect */
+.upcoming-card-image-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #000;
+  background: #ff4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scalloped/starburst effect using pseudo-element */
+.upcoming-card-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(255, 255, 255, 0.1) 10deg,
+      transparent 20deg
+    );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.upcoming-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Placeholder icon when no profile image */
+.upcoming-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  position: relative;
+  z-index: 0;
+}
+
+.upcoming-card-placeholder svg {
+  width: 50px;
+  height: 50px;
+  color: #000;
+  opacity: 0.9;
+}
+
+/* Card content - text on the right */
+.upcoming-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+/* Staff Name - larger, bold */
+.upcoming-card-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Designation - smaller, regular */
+.upcoming-card-designation {
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Date of Birth - smaller, bold */
+.upcoming-card-date {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Small loading spinner for upcoming cards */
+.loading-spinner-small {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   BIRTHDAY TEMPLATE CARD STYLES
+   ============================================ */
+
+/* Template background card - uses template image as background */
+.birthday-template-card {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  aspect-ratio: 500 / 650;
+  background-image: url('../images/birthday-template.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive card sizing */
+@media (max-width: 768px) {
+  .birthday-template-card {
+    max-width: 100%;
+    aspect-ratio: 400 / 520;
+  }
+}
+
+@media (max-width: 480px) {
+  .birthday-template-card {
+    max-width: 100%;
+    aspect-ratio: 350 / 455;
+    border-radius: 15px;
+  }
+}
+
+/* Circular Image - positioned at center, responsive */
+.birthday-template-image {
+  position: absolute;
+  top: 27%;
+  left: 49%;
+  transform: translateX(-50%);
+  width: 161px;
+  height: 161px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+/* Responsive image sizes - device ke hisab se */
+@media (max-width: 992px) {
+  .birthday-template-image {
+    width: 120px;
+    height: 120px;
+    top: 27%;
+  }
+}
+
+@media (max-width: 768px) {
+  .birthday-template-image {
+    width: 110px;
+    height: 110px;
+    top: 27%;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .birthday-template-image {
+    width: 90px;
+    height: 90px;
+    top: 27%;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 360px) {
+  .birthday-template-image {
+    width: 80px;
+    height: 80px;
+    top: 27%;
+    border-width: 2px;
+  }
+}
+
+.birthday-template-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.birthday-template-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #87ceeb 0%,
+    #87ceeb 60%,
+    #90ee90 60%,
+    #90ee90 80%,
+    #228b22 80%,
+    #228b22 100%
+  );
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Cloud in placeholder */
+.birthday-template-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 25px;
+  background: #ffffff;
+  border-radius: 50px;
+  box-shadow:
+    -20px 0 0 -5px #ffffff,
+    20px 0 0 -5px #ffffff,
+    -10px -10px 0 -5px #ffffff,
+    10px -10px 0 -5px #ffffff;
+  opacity: 0.9;
+}
+
+/* Hills in placeholder */
+.birthday-template-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, #90ee90 0%, #228b22 100%);
+  clip-path: polygon(0 60%, 30% 40%, 60% 50%, 100% 35%, 100% 100%, 0 100%);
+}
+
+/* Blue Banner Container - positioned below image */
+.birthday-template-banner {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 420px;
+  /* background: #4472C4; */
+  padding: 1.2rem 2rem;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+/* Name - inside blue banner box */
+.birthday-template-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Role/Designation - inside blue banner box */
+.birthday-template-role {
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  text-align: center;
+  margin: -8.9px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive text and banner - device ke hisab se */
+@media (max-width: 992px) {
+  .birthday-template-banner {
+    width: 88%;
+    padding: 1rem 1.8rem;
+    top: 60%;
+  }
+
+  .birthday-template-name {
+    font-size: 1.4rem;
+  }
+
+  .birthday-template-role {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive adjustments - tablet */
+@media (max-width: 768px) {
+  .birthday-template-banner {
+    width: 90%;
+    padding: 1rem 1.5rem;
+    top: 60%;
+  }
+
+  .birthday-template-name {
+    font-size: 1.3rem;
+  }
+
+  .birthday-template-role {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive adjustments - mobile */
+@media (max-width: 480px) {
+  .birthday-template-banner {
+    width: 92%;
+    padding: 0.9rem 1.2rem;
+    top: 60%;
+  }
+
+  .birthday-template-name {
+    font-size: 1.1rem;
+  }
+
+  .birthday-template-role {
+    font-size: 0.85rem;
+  }
+}
+
+/* Responsive adjustments - small mobile */
+@media (max-width: 360px) {
+  .birthday-template-banner {
+    width: 94%;
+    padding: 0.8rem 1rem;
+    top: 60%;
+  }
+
+  .birthday-template-name {
+    font-size: 1rem;
+  }
+
+  .birthday-template-role {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================
+   WORK ANNIVERSARY CARD - SCRATCH DESIGN
+   ============================================ */
+
+/* Main card container - red gradient background */
+.work-anniversary-card-scratch {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  aspect-ratio: 500 / 650;
+  background: linear-gradient(to bottom, #e63946 0%, #c1121f 50%, #a4161a 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Confetti particles - yellow scattered */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Confetti positions - scattered across card */
+.confetti-1 {
+  top: 10%;
+  left: 15%;
+}
+.confetti-2 {
+  top: 8%;
+  left: 25%;
+}
+.confetti-3 {
+  top: 12%;
+  left: 35%;
+}
+.confetti-4 {
+  top: 6%;
+  left: 45%;
+}
+.confetti-5 {
+  top: 14%;
+  left: 55%;
+}
+.confetti-6 {
+  top: 9%;
+  left: 65%;
+}
+.confetti-7 {
+  top: 11%;
+  left: 75%;
+}
+.confetti-8 {
+  top: 7%;
+  left: 85%;
+}
+.confetti-9 {
+  top: 20%;
+  left: 20%;
+}
+.confetti-10 {
+  top: 18%;
+  left: 40%;
+}
+.confetti-11 {
+  top: 22%;
+  left: 60%;
+}
+.confetti-12 {
+  top: 16%;
+  left: 80%;
+}
+.confetti-13 {
+  top: 30%;
+  left: 10%;
+}
+.confetti-14 {
+  top: 28%;
+  left: 30%;
+}
+.confetti-15 {
+  top: 32%;
+  left: 50%;
+}
+.confetti-16 {
+  top: 26%;
+  left: 70%;
+}
+.confetti-17 {
+  top: 34%;
+  left: 90%;
+}
+.confetti-18 {
+  top: 40%;
+  left: 15%;
+}
+.confetti-19 {
+  top: 38%;
+  left: 35%;
+}
+.confetti-20 {
+  top: 42%;
+  left: 55%;
+}
+.confetti-21 {
+  top: 36%;
+  left: 75%;
+}
+.confetti-22 {
+  top: 50%;
+  left: 25%;
+}
+.confetti-23 {
+  top: 48%;
+  left: 45%;
+}
+.confetti-24 {
+  top: 52%;
+  left: 65%;
+}
+.confetti-25 {
+  top: 60%;
+  left: 20%;
+}
+.confetti-26 {
+  top: 58%;
+  left: 40%;
+}
+.confetti-27 {
+  top: 62%;
+  left: 60%;
+}
+.confetti-28 {
+  top: 70%;
+  left: 30%;
+}
+.confetti-29 {
+  top: 68%;
+  left: 50%;
+}
+.confetti-30 {
+  top: 72%;
+  left: 70%;
+}
+
+/* Golden ribbons - flowing effect */
+.ribbon {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ribbon-1 {
+  top: 5%;
+  left: 0;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ffd700 20%,
+    #ffed4e 50%,
+    #ffd700 80%,
+    transparent 100%
+  );
+  transform: rotate(-25deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon-2 {
+  top: 15%;
+  right: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ffd700 20%,
+    #ffed4e 50%,
+    #ffd700 80%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon-3 {
+  bottom: 20%;
+  left: 10%;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ffd700 20%,
+    #ffed4e 50%,
+    #ffd700 80%,
+    transparent 100%
+  );
+  transform: rotate(15deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Golden trophy graphic on left side */
+.trophy-graphic {
+  position: absolute;
+  bottom: 10%;
+  /* left: 5%; */
+  width: 80px;
+  height: 100px;
+  z-index: 1;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    80% 10%,
+    90% 20%,
+    95% 30%,
+    100% 40%,
+    100% 50%,
+    95% 60%,
+    90% 70%,
+    80% 80%,
+    70% 85%,
+    50% 90%,
+    30% 85%,
+    20% 80%,
+    10% 70%,
+    5% 60%,
+    0% 50%,
+    0% 40%,
+    5% 30%,
+    10% 20%,
+    20% 10%
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+}
+
+.trophy-graphic::before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+/* Circular Image - positioned on right side, vertically centered */
+.work-anniversary-image {
+  position: absolute;
+  top: 35%;
+  right: 0%;
+  transform: translateY(-50%);
+  width: 161px;
+  height: 161px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.work-anniversary-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.work-anniversary-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #87ceeb 0%,
+    #87ceeb 60%,
+    #90ee90 60%,
+    #90ee90 80%,
+    #228b22 80%,
+    #228b22 100%
+  );
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Cloud in placeholder */
+.work-anniversary-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 25px;
+  background: #ffffff;
+  border-radius: 50px;
+  box-shadow:
+    -20px 0 0 -5px #ffffff,
+    20px 0 0 -5px #ffffff,
+    -10px -10px 0 -5px #ffffff,
+    10px -10px 0 -5px #ffffff;
+  opacity: 0.9;
+}
+
+/* Hills in placeholder */
+.work-anniversary-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, #90ee90 0%, #228b22 100%);
+  clip-path: polygon(0 60%, 30% 40%, 60% 50%, 100% 35%, 100% 100%, 0 100%);
+}
+
+/* Name - Libre Baskerville font at top left */
+.work-anniversary-name {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  /* font-family: "Libre Baskerville", serif; */
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-optical-sizing: auto;
+ 
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-align: left;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+   
+}
+
+/* Years Range - below name, left side */
+.work-anniversary-years {
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: left;
+  z-index: 5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  width: 60%;
+}
+
+/* Anniversary Number - below years (8th Anniversary, 11th Anniversary, etc.) */
+.work-anniversary-number {
+  position: absolute;
+  top: 25%;
+  left: 8%;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-align: left;
+  z-index: 5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  width: 60%;
+}
+
+/* Anniversary Text - large bold, left side */
+.work-anniversary-anniversary {
+  position: absolute;
+  top: 40%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  z-index: 5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  width: 60%;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.work-anniversary-anniversary-1 {
+  position: absolute;
+  top: 45%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  z-index: 5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  width: 60%;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Thank You Message - left side - improved styling */
+.work-anniversary-message {
+  position: absolute;
+  top: 55%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: left;
+  z-index: 5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 1px 1px 2px rgba(0, 0, 0, 0.3);
+  width: 60%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* Bright Wishes From */
+.work-anniversary-wishes {
+  position: absolute;
+  bottom: 15%;
+  left: 8%;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 1.3rem;
+  color: #ffffff;
+  z-index: 3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Company Name */
+.work-anniversary-company {
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .work-anniversary-card-scratch {
+    max-width: 100%;
+    aspect-ratio: 400 / 520;
+  }
+
+  .work-anniversary-image {
+    width: 140px;
+    height: 140px;
+    right: 6%;
+  }
+
+  .work-anniversary-name {
+    font-size: 1.9rem;
+    left: 6%;
+    width: 60%;
+  }
+
+  .work-anniversary-years {
+    left: 6%;
+    width: 60%;
+  }
+
+  .work-anniversary-number {
+    font-size: 1.3rem;
+    top: 25%;
+    left: 6%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary {
+    font-size: 1.3rem;
+    left: 6%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary-1 {
+    font-size: 1.6rem;
+    left: 6%;
+    width: 60%;
+  }
+
+  .work-anniversary-message {
+    font-size: 1rem;
+    left: 6%;
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-anniversary-card-scratch {
+    aspect-ratio: 350 / 455;
+  }
+
+  .work-anniversary-image {
+    width: 120px;
+    height: 120px;
+    right: 5%;
+  }
+
+  .work-anniversary-name {
+    font-size: 1.7rem;
+    top: 10%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-years {
+    font-size: 0.9rem;
+    top: 18%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-number {
+    font-size: 1.2rem;
+    top: 23%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary {
+    font-size: 1.2rem;
+    top: 40%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary-1 {
+    font-size: 1.4rem;
+    top: 45%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-message {
+    font-size: 0.95rem;
+    top: 48%;
+    left: 5%;
+    width: 60%;
+  }
+
+  .work-anniversary-wishes {
+    font-size: 1.1rem;
+    bottom: 12%;
+  }
+
+  .work-anniversary-company {
+    font-size: 1.5rem;
+    bottom: 8%;
+  }
+
+  .trophy-graphic {
+    width: 60px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-anniversary-image {
+    width: 100px;
+    height: 100px;
+    right: 4%;
+  }
+
+  .work-anniversary-name {
+    font-size: 1.4rem;
+    top: 8%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-years {
+    font-size: 0.85rem;
+    top: 16%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-number {
+    font-size: 1.1rem;
+    top: 21%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary {
+    font-size: 1rem;
+    top: 40%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary-1 {
+    font-size: 1.2rem;
+    top: 45%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-message {
+    font-size: 0.85rem;
+    top: 46%;
+    left: 4%;
+    width: 60%;
+  }
+
+  .work-anniversary-wishes {
+    font-size: 1rem;
+    bottom: 10%;
+    left: 6%;
+  }
+
+  .work-anniversary-company {
+    font-size: 1.3rem;
+    bottom: 6%;
+    left: 6%;
+  }
+
+  .trophy-graphic {
+    width: 50px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 360px) {
+  .work-anniversary-image {
+    width: 90px;
+    height: 90px;
+    right: 3%;
+  }
+
+  .work-anniversary-name {
+    font-size: 1.2rem;
+    left: 3%;
+    width: 60%;
+  }
+
+  .work-anniversary-number {
+    font-size: 1rem;
+    top: 21%;
+    left: 3%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary {
+    font-size: 0.9rem;
+    top: 40%;
+    left: 3%;
+    width: 60%;
+  }
+
+  .work-anniversary-anniversary-1 {
+    font-size: 1rem;
+    top: 45%;
+    left: 3%;
+    width: 60%;
+  }
+
+  .work-anniversary-message {
+    font-size: 0.8rem;
+    width: 80%;
+  }
+}
+
+/* ============================================
+   MARRIAGE ANNIVERSARY CARD - SCRATCH DESIGN
+   ============================================ */
+
+/* Main card container - dark red background */
+.marriage-anniversary-card-scratch {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  aspect-ratio: 500 / 650;
+  background: linear-gradient(to bottom, #8b0000 0%, #6b0000 50%, #4b0000 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Bokeh lights background effect */
+.bokeh-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  filter: blur(2px);
+}
+
+/* Bokeh positions - scattered across card */
+.bokeh-1 { top: 10%; left: 20%; width: 60px; height: 60px; }
+.bokeh-2 { top: 15%; right: 15%; width: 40px; height: 40px; }
+.bokeh-3 { top: 25%; left: 10%; width: 50px; height: 50px; }
+.bokeh-4 { top: 30%; right: 25%; width: 45px; height: 45px; }
+.bokeh-5 { top: 40%; left: 30%; width: 55px; height: 55px; }
+.bokeh-6 { top: 45%; right: 10%; width: 35px; height: 35px; }
+.bokeh-7 { top: 55%; left: 15%; width: 50px; height: 50px; }
+.bokeh-8 { top: 60%; right: 30%; width: 40px; height: 40px; }
+.bokeh-9 { top: 70%; left: 25%; width: 45px; height: 45px; }
+.bokeh-10 { top: 75%; right: 20%; width: 50px; height: 50px; }
+.bokeh-11 { top: 20%; left: 50%; width: 30px; height: 30px; }
+.bokeh-12 { top: 50%; left: 50%; width: 40px; height: 40px; }
+.bokeh-13 { top: 35%; left: 60%; width: 35px; height: 35px; }
+.bokeh-14 { top: 65%; left: 55%; width: 45px; height: 45px; }
+.bokeh-15 { top: 80%; left: 40%; width: 30px; height: 30px; }
+
+/* Swirling lines */
+.swirl {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.swirl-1 {
+  top: 5%;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+.swirl-2 {
+  top: 50%;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.swirl-3 {
+  bottom: 10%;
+  left: 20%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(60deg);
+}
+
+/* Red heart graphic - lower left, glossy - smaller size */
+.marriage-heart-graphic {
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  width: 70px;
+  height: 63px;
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.8) 0%, rgba(200, 0, 0, 0.9) 100%);
+  clip-path: path('M35,59.5 C14,42 0,28 0,14 C0,7 7,0 14,0 C21,0 28,7 35,14 C42,7 49,0 56,0 C63,0 70,7 70,14 C70,28 56,42 35,59.5 Z');
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  filter: blur(0.5px);
+}
+
+/* Circular Image - upper left */
+.marriage-anniversary-image {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.marriage-anniversary-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.marriage-anniversary-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #87ceeb 0%,
+    #87ceeb 60%,
+    #90ee90 60%,
+    #90ee90 80%,
+    #228b22 80%,
+    #228b22 100%
+  );
+  border-radius: 50%;
+  position: relative;
+}
+
+/* Cloud in placeholder */
+.marriage-anniversary-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 25px;
+  background: #ffffff;
+  border-radius: 50px;
+  box-shadow:
+    -20px 0 0 -5px #ffffff,
+    20px 0 0 -5px #ffffff,
+    -10px -10px 0 -5px #ffffff,
+    10px -10px 0 -5px #ffffff;
+  opacity: 0.9;
+}
+
+/* Hills in placeholder */
+.marriage-anniversary-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, #90ee90 0%, #228b22 100%);
+  clip-path: polygon(0 60%, 30% 40%, 60% 50%, 100% 35%, 100% 100%, 0 100%);
+}
+
+/* Title Container - upper right */
+.marriage-anniversary-title-container {
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  text-align: right;
+  z-index: 3;
+}
+
+/* Anniversary Number - inline with Happy (8th, 11th, etc.) */
+.marriage-anniversary-number {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 2rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Happy - smaller font, same line as number */
+.marriage-anniversary-happy {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Anniversary - larger font, separate line */
+.marriage-anniversary-word {
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+
+/* Congratulations - center left */
+.marriage-anniversary-congrats {
+  position: absolute;
+  top: 45%;
+  left: 8%;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 2.2rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-align: left;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Mr & Mrs Surname - center right */
+.marriage-anniversary-couple {
+  position: absolute;
+  top: 55%;
+  right: 8%;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 2rem;
+  font-weight: normal;
+  color: #ffffff;
+  text-align: right;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  max-width: 50%;
+  word-wrap: break-word;
+}
+
+/* From - bottom left */
+.marriage-anniversary-from {
+  position: absolute;
+  bottom: 15%;
+  left: 8%;
+  font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+  font-size: 1.3rem;
+  color: #ffffff;
+  z-index: 3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Company Name - bottom */
+.marriage-anniversary-company {
+  position: absolute;
+  bottom: 10%;
+  left: 8%;
+  font-family: Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  z-index: 3;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.real-apple-text {
+  color: #ff0000;
+}
+
+.group-text {
+  color: #32cd32;
+}
+
+/* Responsive adjustments for marriage anniversary */
+@media (max-width: 992px) {
+  .marriage-anniversary-card-scratch {
+    max-width: 100%;
+    aspect-ratio: 400 / 520;
+  }
+
+  .marriage-anniversary-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .marriage-anniversary-title-container {
+    top: 9%;
+    right: 7%;
+  }
+
+  .marriage-anniversary-number {
+    font-size: 1.7rem;
+  }
+
+  .marriage-anniversary-happy {
+    font-size: 1.3rem;
+  }
+
+  .marriage-anniversary-word {
+    font-size: 1.9rem;
+  }
+
+  .marriage-anniversary-congrats {
+    font-size: 1.9rem;
+    top: 44%;
+    left: 7%;
+  }
+
+  .marriage-anniversary-couple {
+    font-size: 1.7rem;
+    top: 54%;
+    right: 7%;
+    max-width: 45%;
+  }
+
+  .marriage-anniversary-from {
+    bottom: 14%;
+    left: 7%;
+  }
+
+  .marriage-anniversary-company {
+    font-size: 1.5rem;
+    bottom: 9%;
+    left: 7%;
+  }
+
+  .marriage-heart-graphic {
+    width: 60px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 768px) {
+  .marriage-anniversary-card-scratch {
+    aspect-ratio: 350 / 455;
+  }
+
+  .marriage-anniversary-image {
+    width: 130px;
+    height: 130px;
+    top: 6%;
+    left: 6%;
+  }
+
+  .marriage-anniversary-title-container {
+    top: 8%;
+    right: 6%;
+  }
+
+  .marriage-anniversary-number {
+    font-size: 1.5rem;
+  }
+
+  .marriage-anniversary-happy {
+    font-size: 1.2rem;
+  }
+
+  .marriage-anniversary-word {
+    font-size: 1.6rem;
+  }
+
+  .marriage-anniversary-congrats {
+    font-size: 1.6rem;
+    top: 43%;
+    left: 6%;
+  }
+
+  .marriage-anniversary-couple {
+    font-size: 1.5rem;
+    top: 53%;
+    right: 6%;
+    max-width: 45%;
+  }
+
+  .marriage-anniversary-from {
+    font-size: 1.1rem;
+    bottom: 13%;
+    left: 6%;
+  }
+
+  .marriage-anniversary-company {
+    font-size: 1.3rem;
+    bottom: 8%;
+    left: 6%;
+  }
+
+  .marriage-heart-graphic {
+    width: 55px;
+    height: 49px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marriage-anniversary-image {
+    width: 110px;
+    height: 110px;
+    top: 5%;
+    left: 5%;
+  }
+
+  .marriage-anniversary-title-container {
+    top: 7%;
+    right: 5%;
+  }
+
+  .marriage-anniversary-number {
+    font-size: 1.3rem;
+  }
+
+  .marriage-anniversary-happy {
+    font-size: 1rem;
+  }
+
+  .marriage-anniversary-word {
+    font-size: 1.3rem;
+  }
+
+  .marriage-anniversary-congrats {
+    font-size: 1.4rem;
+    top: 41%;
+    left: 5%;
+  }
+
+  .marriage-anniversary-couple {
+    font-size: 1.3rem;
+    top: 51%;
+    right: 5%;
+    max-width: 50%;
+  }
+
+  .marriage-anniversary-from {
+    font-size: 1rem;
+    bottom: 12%;
+    left: 5%;
+  }
+
+  .marriage-anniversary-company {
+    font-size: 1.1rem;
+    bottom: 7%;
+    left: 5%;
+  }
+
+  .marriage-heart-graphic {
+    width: 50px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 360px) {
+  .marriage-anniversary-image {
+    width: 90px;
+    height: 90px;
+    top: 4%;
+    left: 4%;
+  }
+
+  .marriage-anniversary-title-container {
+    top: 6%;
+    right: 4%;
+  }
+
+  .marriage-anniversary-number {
+    font-size: 1.1rem;
+  }
+
+  .marriage-anniversary-happy {
+    font-size: 0.9rem;
+  }
+
+  .marriage-anniversary-word {
+    font-size: 1.1rem;
+  }
+
+  .marriage-anniversary-congrats {
+    font-size: 1.2rem;
+    top: 39%;
+    left: 4%;
+  }
+
+  .marriage-anniversary-couple {
+    font-size: 1.1rem;
+    top: 49%;
+    right: 4%;
+    max-width: 55%;
+  }
+
+  .marriage-anniversary-from {
+    font-size: 0.9rem;
+    bottom: 11%;
+    left: 4%;
+  }
+
+  .marriage-anniversary-company {
+    font-size: 1rem;
+    bottom: 6%;
+    left: 4%;
+  }
+
+  .marriage-heart-graphic {
+    width: 45px;
+    height: 40px;
+  }
+}

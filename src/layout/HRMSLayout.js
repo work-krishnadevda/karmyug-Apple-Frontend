@@ -1,0 +1,24 @@
+import React from 'react'
+import { AppHeader, AppFooter } from '../components/index'
+import AppSidebar from '../components/AppSidebar'
+import hrmsNav from '../_nav'
+import HRMSContent from 'src/components/hrms/HRMSContent'
+import HRMSHeader from 'src/components/HRMSHeader'
+
+const HRMSLayout = () => {
+  return (
+    <div>
+      <AppSidebar navItems={hrmsNav} />
+      <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+        {/* <HRMSHeader /> */}
+        <AppHeader />
+        <div className="body flex-grow-1">
+          <HRMSContent />
+        </div>
+        <AppFooter />
+      </div>
+    </div>
+  )
+}
+
+export default HRMSLayout

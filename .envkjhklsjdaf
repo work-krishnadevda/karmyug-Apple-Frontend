@@ -1,0 +1,48 @@
+PORT=3040
+CHOKIDAR_USEPOLLING=true
+
+REACT_APP_NODE_URL=https://api.realapple.in
+
+REACT_APP_PYTHON_API_URL=http://localhost:8008
+
+REACT_APP_DEFAULT_CURRENCY=₹
+
+REACT_APP_GENERATE_WITH_AI=true
+
+REACT_APP_DEBUG=true
+
+REACT_APP_COOKIE_PREFIX=gaa
+
+REACT_APP_COOKIE_EXPIRE=30
+
+#FOR roles name(slug)
+REACT_APP_ADMIN=admin
+REACT_APP_COO=chief-operating-officercoo
+REACT_APP_FE=field-engineer-fe
+REACT_APP_SDM=sdm-work-allotter
+REACT_APP_RA=ra-branch-bm
+REACT_APP_DM=draft-maker
+REACT_APP_RC=report-checker-rc
+REACT_APP_LCTO=line-chief-technical-officer-lcto
+REACT_APP_CTO=chief-technical-officer-cto
+REACT_APP_SFO=senior-field-officersfo
+REACT_APP_AC=account
+REACT_APP_HR=hr
+
+# Foduu
+# REACT_APP_GOOGLE_API_KEY=AIzaSyDOR7zsVzvmFlOBuQbCJ7UKn5SyaTi_aVg
+
+# AIzaSyAqbsxRLs1a9QTLrnkaXBA_wYS-TF_XPw0 // new key 
+
+# Real Apple
+REACT_APP_GOOGLE_API_KEY=AIzaSyAqbsxRLs1a9QTLrnkaXBA_wYS-TF_XPw0
+
+
+
+
+
+
+
+
+
+

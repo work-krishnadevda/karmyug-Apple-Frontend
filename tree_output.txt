@@ -1,0 +1,307 @@
+src
+├── App.js
+├── App.test.js
+├── _nav.js
+├── assets
+│   ├── brand
+│   │   ├── logo-negative.js
+│   │   ├── logo.js
+│   │   └── sygnet.js
+│   └── images
+│       ├── No-image1.jpg
+│       ├── angular.jpg
+│       ├── avatars
+│       │   ├── 1.jpg
+│       │   ├── 2.jpg
+│       │   ├── 3.jpg
+│       │   ├── 4.jpg
+│       │   ├── 5.jpg
+│       │   ├── 6.jpg
+│       │   ├── 7.jpg
+│       │   ├── 8.jpg
+│       │   └── 9.jpg
+│       ├── loading
+│       │   └── LoadingGift.gif
+│       ├── noImage.png
+│       ├── react.jpg
+│       ├── trash.png
+│       ├── uploadIcon.png
+│       └── vue.jpg
+├── components
+│   ├── AppBreadcrumb.js
+│   ├── AppContent.js
+│   ├── AppFooter.js
+│   ├── AppHeader.js
+│   ├── AppSidebar.js
+│   ├── AppSidebarNav.js
+│   ├── CustomerContent.js
+│   ├── CustomerSidebar.js
+│   ├── DocsCallout.js
+│   ├── DocsExample.js
+│   ├── DocsLink.js
+│   ├── VemdorContent.js
+│   ├── VendorSidebar.js
+│   ├── custom
+│   │   ├── ContactCounts.js
+│   │   ├── CustomTooltip.js
+│   │   ├── GalleryPreview.js
+│   │   ├── ImagePreview.js
+│   │   ├── ImageReviewByAI.js
+│   │   ├── MetaDetails.js
+│   │   ├── ProductCounts.js
+│   │   ├── SingleSubHeader.js
+│   │   ├── SubHeader.js
+│   │   ├── SubHeaderWithoutDropDown.js
+│   │   ├── fileFilter.js
+│   │   ├── popup
+│   │   │   ├── genrateByAi.js
+│   │   │   ├── makeitprofessional.js
+│   │   │   └── viewMessageModel.js
+│   │   └── variantPreview.js
+│   ├── header
+│   │   ├── AppHeaderDropdown.js
+│   │   └── index.js
+│   ├── index.js
+│   └── mobileappmodals
+│       ├── Banner.js
+│       ├── BelowPriceFilter.js
+│       ├── Blog.js
+│       ├── Categories.js
+│       ├── IconButton.js
+│       ├── Products.js
+│       ├── Search.js
+│       ├── Slider.js
+│       └── Textarea.js
+├── constants
+│   ├── BasicProvider.js
+│   └── variables.js
+├── helpers
+│   ├── HelperFunctions.js
+│   ├── alertHelper.js
+│   ├── authHelper.js
+│   ├── deleteModalHelper.js
+│   ├── dropzoneNestedHelper copy.js
+│   ├── dropzoneNestedHelper.js
+│   ├── formHelpers.js
+│   ├── galleryDropzoneNestedHelper.js
+│   ├── genrateWithAiHelper.js
+│   ├── imageHelper.js
+│   ├── jsTreeHelper.js
+│   ├── paginationCookie.js
+│   ├── submitHelper.js
+│   ├── treeDropDownHelper.js
+│   └── validationHelper.js
+├── index.js
+├── layout
+│   ├── DefaultLayout.js
+│   ├── VendorLayout.js
+│   └── customerLayout.js
+├── reportWebVitals.js
+├── routes.js
+├── scss
+│   ├── _custom.scss
+│   ├── _example.scss
+│   ├── _layout.scss
+│   ├── _variables.scss
+│   └── style.scss
+├── setupTests.js
+├── store.js
+└── views
+    ├── builder
+    │   └── form
+    │       ├── all.js
+    │       ├── create.js
+    │       ├── routes.js
+    │       └── trash.js
+    ├── cms
+    │   ├── blogs
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── comments
+    │   │   ├── all.js
+    │   │   └── routes.js
+    │   ├── contact
+    │   │   ├── all.js
+    │   │   ├── route.js
+    │   │   ├── show.js
+    │   │   └── trash.js
+    │   ├── faq
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── files
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── gallery
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── navigation
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   └── routes.js
+    │   ├── news
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── pages
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   ├── sliders
+    │   │   ├── all.js
+    │   │   ├── create copy.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   └── testimonials
+    │       ├── all.js
+    │       ├── create.js
+    │       ├── routes.js
+    │       └── trash.js
+    ├── configuration
+    │   ├── master
+    │   │   ├── categories
+    │   │   │   ├── category.js
+    │   │   │   └── routes.js
+    │   │   ├── currency
+    │   │   │   ├── create.js
+    │   │   │   └── routes.js
+    │   │   ├── region
+    │   │   │   ├── create.js
+    │   │   │   └── routes.js
+    │   │   ├── status
+    │   │   │   ├── create.js
+    │   │   │   └── routes.js
+    │   │   ├── tags
+    │   │   │   ├── create.js
+    │   │   │   └── routes.js
+    │   │   └── units
+    │   │       ├── create.js
+    │   │       └── routes.js
+    │   ├── routes.js
+    │   ├── settings
+    │   │   ├── other
+    │   │   └── paymentGateway
+    │   │       ├── create.js
+    │   │       └── routes.js
+    │   └── storeSettings.js
+    ├── dashboard
+    │   └── Dashboard.js
+    ├── ecommerce
+    │   ├── coupons
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   └── routes.js
+    │   ├── orders
+    │   │   ├── all.js
+    │   │   ├── create.js
+    │   │   ├── routes.js
+    │   │   └── trash.js
+    │   └── products
+    │       ├── all.js
+    │       ├── bulk-upload.js
+    │       ├── create.js
+    │       ├── imagecell.js
+    │       ├── multi_variant_image.js
+    │       ├── routes.js
+    │       ├── trash.js
+    │       └── variant.js
+    ├── logs
+    │   ├── adminLogs
+    │   │   ├── all.js
+    │   │   └── routes.js
+    │   └── allLogs
+    │       ├── all.js
+    │       └── routes.js
+    ├── matrimoni
+    │   └── Favourite
+    │       ├── all.js
+    │       └── route.js
+    ├── mobileapp
+    │   └── pages
+    │       ├── all.js
+    │       ├── create-old.js
+    │       ├── create.js
+    │       ├── routes.js
+    │       └── trash.js
+    ├── pages
+    │   ├── login
+    │   │   └── Login.js
+    │   ├── page404
+    │   │   └── Page404.js
+    │   ├── page500
+    │   │   └── Page500.js
+    │   └── register
+    │       └── Register.js
+    ├── support
+    │   ├── other
+    │   ├── review
+    │   │   ├── all.js
+    │   │   └── routes.js
+    │   └── support-ticket
+    │       ├── all.js
+    │       ├── routes.js
+    │       └── show.js
+    ├── user
+    │   ├── admin
+    │   │   ├── all.js
+    │   │   ├── changePassword.js
+    │   │   ├── contentRoute.js
+    │   │   ├── create.js
+    │   │   ├── createPermissions.js
+    │   │   ├── createRoles.js
+    │   │   ├── editPermission.js
+    │   │   ├── editRoles.js
+    │   │   ├── emailLog.js
+    │   │   ├── order.js
+    │   │   ├── personalInfo.js
+    │   │   ├── profileOverView.js
+    │   │   ├── routes.js
+    │   │   ├── trash.js
+    │   │   └── wallet.js
+    │   ├── customer
+    │   │   ├── all.js
+    │   │   ├── changePassword.js
+    │   │   ├── contentRoute.js
+    │   │   ├── create.js
+    │   │   ├── customerBlock.js
+    │   │   ├── emailLog.js
+    │   │   ├── order.js
+    │   │   ├── personalInfo.js
+    │   │   ├── profileOverView.js
+    │   │   ├── routes.js
+    │   │   ├── trash.js
+    │   │   └── wallet.js
+    │   ├── permissions
+    │   │   ├── create.js
+    │   │   └── routes.js
+    │   ├── roles
+    │   │   ├── create.js
+    │   │   └── routes.js
+    │   └── vendor
+    │       ├── all.js
+    │       ├── changePassword.js
+    │       ├── contentRoute.js
+    │       ├── create.js
+    │       ├── emailLog.js
+    │       ├── order.js
+    │       ├── personalInfo.js
+    │       ├── profileOverView.js
+    │       ├── routes.js
+    │       ├── trash.js
+    │       └── wallet.js
+    └── widgets
+        ├── Widgets.js
+        ├── WidgetsBrand.js
+        └── WidgetsDropdown.js
+
+68 directories, 236 files

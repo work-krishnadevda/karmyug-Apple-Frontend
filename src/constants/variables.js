@@ -1,0 +1,42 @@
+export const RowsPerPage = [2, 5, 10, 20, 30, 40, 50, 100]
+
+export const statusValue = [
+  { label: 'pending for visit', bgcolor: '#FF6600' },
+  { label: 'pending for draft', bgcolor: '#3399FF' },
+  { label: 'updated by coo', bgcolor: '#F9B115' },
+  { label: 'updated by bm', bgcolor: '#F9B115' },
+  { label: 'updated by sfo', bgcolor: '#ff9b9b' },
+  { label: 'case under query', bgcolor: '#081632' },
+  { label: 'tied-up by fe', bgcolor: '#081632' },
+  { label: 'accepted by fe', bgcolor: '#73b43c' },
+  { label: 'concern by fe', bgcolor: '#73b43c' },
+  { label: 'visit done', bgcolor: '#055713' },
+  { label: 'pending for rc', bgcolor: '#FFD700' },
+  { label: 'pending for lcto', bgcolor: '#FF00FF' },
+  { label: 'submitted to bank', bgcolor: '#71dfa0' },
+  { label: 'pending for cto', bgcolor: '#ff9b9b' },
+  { label: 'pending for accept', bgcolor: '#FFA500' },
+  { label: 'pending for tie-up', bgcolor: '#73b43c' },
+  { label: 'hold by admin', bgcolor: '#FF0000' },
+  { label: 'hold by coo', bgcolor: '#FF0000' },
+  { label: 'hold by bm', bgcolor: '#FF0000' },
+  { label: 'hold by sfo', bgcolor: '#FF0000' },
+  { label: 'hold by bm', bgcolor: '#FF0000' },
+  { label: 'hold by sdm', bgcolor: '#FF0000' },
+  { label: 'hold by dm', bgcolor: '#FF0000' },
+  { label: 'hold by rc', bgcolor: '#FF0000' },
+  { label: 'hold by lcto', bgcolor: '#FF0000' },
+  { label: 'hold by cto', bgcolor: '#FF0000' },
+]
+
+export const holdStatuses = [
+  'hold by admin',
+  'hold by coo',
+  'hold by bm',
+  'hold by sfo',
+  'hold by sdm',
+  'hold by dm',
+  'hold by rc',
+  'hold by lcto',
+  'hold by cto',
+]

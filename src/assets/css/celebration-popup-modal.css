@@ -1,0 +1,41 @@
+/**
+ * Celebration Popup Modal - No white area, only card on dark backdrop
+ */
+
+.celebration-popup-modal .modal-dialog {
+  max-width: 420px !important;
+  width: auto !important;
+  margin: 0.5rem auto !important;
+  padding: 0 !important;
+}
+
+.celebration-popup-modal .modal-content {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.celebration-popup-modal .modal-body,
+.celebration-popup-modal .modal-header,
+.celebration-popup-modal .modal-footer {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.celebration-popup-modal .modal-content > * {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+.celebration-popup-modal .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.65) !important;
+}
+
+.celebration-popup-modal.show .modal-backdrop {
+  opacity: 1;
+}
