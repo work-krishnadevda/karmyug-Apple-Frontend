@@ -409,10 +409,10 @@ const AppHeader = ({ employeeDatas, formData }) => {
 
   return (
     <>
-      <CHeader position="sticky">
+      <CHeader position="sticky" className='app-header'>
         <CContainer fluid>
           <CHeaderToggler
-            className="ps-1"
+            className="ps-1 meni-icon"
             onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
           >
             <CIcon icon={cilMenu} size="lg" />
@@ -448,7 +448,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
             decoded.role[0].name === SFO) && (
             <CButton
               onClick={() => navigate('/case/all/concern')}
-              className="concorn mx-2 position-relative"
+              className="header-btns mx-2 position-relative"
             >
               CONCERN
               {concernTotal !== null && concernTotal !== undefined && (
@@ -462,7 +462,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
           {decoded.role[0].name === process.env.REACT_APP_FE && (
             <CButton
               onClick={() => navigate('/case/all/concern')}
-              className="concorn mx-2 position-relative"
+              className="header-btns"
             >
               CONCERN
               {concernUpdatedTotal !== null && concernUpdatedTotal !== undefined && (
@@ -481,7 +481,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
             decoded.role[0].name == CTO) && (
             <CButton
               onClick={() => setVisibleQuickLinkModel(!visibleQuickLinkModel)}
-              className="concorn mx-2 position-relative"
+              className="header-btns"
             >
               Quick Links
             </CButton>
@@ -490,7 +490,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
           {/* Force Pin Button */}
           <CButton
             color="success"
-            className="concorn1 mx-2 position-relative"
+            className="header-btns mx-2"
             onClick={() => setVisibleForcePinModal(true)}
           >
             ADD FORCE PIN
@@ -534,7 +534,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
                   fontSize: '12px',
                   lineHeight: '1',
                   marginTop: '2px',
-                  color: '#90979bff',
+                  color: '#fff',
                   fontWeight: 'bold',
                 }}
               >
@@ -548,16 +548,16 @@ const AppHeader = ({ employeeDatas, formData }) => {
                   className="badge bg-success rounded-circle online-dot"
                   style={{ width: '12px', height: '12px' }}
                 ></span>
-                <small className="ms-1 text-success fw-bold">Online</small>
+                <small className="header-toggle-btn">Online</small>
               </div>
             )}
             {showToggle && (
               <div className="ms-2">
                 <CButton
                   size="sm"
-                  color="outline-secondary"
+                  color=""
                   onClick={handleToggleOn}
-                  className="toggle-btn"
+                  className="header-toggle-btn"
                 >
                   Go Online
                 </CButton>

@@ -130,17 +130,21 @@ const MasterFilter = ({ userData }) => {
 
     return (
         <CHeaderNav className="d-none d-md-flex me-auto header_main_search">
-            <div style={{ position: 'relative', width: '100%' }}>
+            <div className="header-search-shell" style={{ position: 'relative', width: '100%' }}>
                 <input
                     {...getInputProps({
                         placeholder: 'Master search for report..',
+                        className: 'white-placeholder header-search-input', // Keeps the white placeholder class from the previous step
                         onFocus: () => setInputFocused(true),
                         onBlur: () => setTimeout(() => setInputFocused(false), 200),
                         style: {
                             width: '100%',
                             padding: '8px',
                             borderRadius: '4px',
-                            border: '1px solid #ccc',
+                            border: 'none',
+                            outline: 'none',
+                            background: 'transparent',
+                            color: 'white'
                         },
                     })}
                 />

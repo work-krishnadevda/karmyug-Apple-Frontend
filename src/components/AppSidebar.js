@@ -9,7 +9,7 @@ import { AppSidebarNav } from './AppSidebarNav'
 
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
-import logo from 'src/assets/images/logo/Apple-2-logo.png'
+import logo from 'src/assets/images/logo/karmyug-apple.png'
 import navigation from '../_nav'
 
 const AppSidebar = ({ navItems }) => {
@@ -25,23 +25,23 @@ const AppSidebar = ({ navItems }) => {
       onVisibleChange={(visible) => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
-    >
-      <CSidebarBrand className="d-none d-md-flex justify-content-start px-4" to="/">
+      className='app-sidebar'>
+      <CSidebarBrand className="d-none app-sidebar d-md-flex justify-content-start px-4" to="/">
         {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
-        <h4 className="mb-0">
-          <CImage src={logo} width={50} height={50}></CImage>
+        <h4 className="mb-0 flex gap-2">
+          <CImage src={logo} width={40} height={50}></CImage>
           {/* <CImage src={logo} width={'100%'}></CImage> */}
-          <span className="yellow">Real</span> Apple
+          <span className="yellow mt-3 text-red-800">Karmyug</span>
         </h4>
       </CSidebarBrand>
-      <CSidebarNav>
+      <CSidebarNav className='sidebar-links'>
         <SimpleBar>
           <AppSidebarNav items={navItems || navigation} />
         </SimpleBar>
       </CSidebarNav>
       <CSidebarToggler
-        className="d-none d-lg-flex"
+        className="d-none app-sidebar d-lg-flex"
         onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
       />
     </CSidebar>

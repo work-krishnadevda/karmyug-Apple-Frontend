@@ -3,6 +3,7 @@ import { CRow, CCol, CWidgetStatsF, CFormLabel, CButton, CToastClose, CSpinner }
 import CIcon from '@coreui/icons-react'
 import {
   cilBank,
+  cilCalendar,
   cilSearch,
 } from '@coreui/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -113,47 +114,45 @@ const LCTOWidget = ({ counts }) => {
         )
       }
       <CRow className="mt-4">
-        <CCol xs={5} sm={5} md={4} lg={4} className="pe-1 pe-lg-2 py-1">
-          <DatePicker
-            selected={date_from}
-            onChange={(date) => {
-              effectRef.current = false
-              setDateFrom(date || new Date())
-            }}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            maxDate={date_to} // Optional: Prevent selecting a start date after the end date
-            placeholderText="Select start date"
-          />
-        </CCol>
-        <CCol xs={5} sm={5} md={4} lg={4} className="pe-1 pe-lg-2 ps-0 py-1">
-          <DatePicker
-            selected={date_to}
-            onChange={(date) => {
-              effectRef.current = false
-              setDateTo(date || new Date())
-            }}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            minDate={date_from} // Optional: Prevent selecting an end date before the start date
-            placeholderText="Select end date"
-          />
-        </CCol>
-        <CCol
-          xs={2}
-          sm={5}
-          md={4}
-          lg={2}
-          className="pe-md-0 py-1 ps-lg-2 ps-0 d-flex justify-content-center align-items-center"
-        >
-          <CButton className="submit_btn w-100 d-lg-block d-none" onClick={handleSearch}>
-            Search
-          </CButton>
-          <CButton className="submit_btn w-100 d-lg-none d-block" onClick={handleSearch}>
-            <CIcon icon={cilSearch} />
-          </CButton>
+        <CCol xs={12}>
+          <div className="dashboard-filter-bar">
+            <div className="dashboard-filter-field">
+              <DatePicker
+                selected={date_from}
+                onChange={(date) => {
+                  effectRef.current = false
+                  setDateFrom(date || new Date())
+                }}
+                dateFormat="yyyy-MM-dd"
+                className="form-control dashboard-filter-input"
+                size="sm"
+                maxDate={date_to}
+                placeholderText="Select start date"
+              />
+              <CIcon className="dashboard-filter-icon" icon={cilCalendar} />
+            </div>
+
+            <div className="dashboard-filter-field">
+              <DatePicker
+                selected={date_to}
+                onChange={(date) => {
+                  effectRef.current = false
+                  setDateTo(date || new Date())
+                }}
+                dateFormat="yyyy-MM-dd"
+                className="form-control dashboard-filter-input"
+                size="sm"
+                minDate={date_from}
+                placeholderText="Select end date"
+              />
+              <CIcon className="dashboard-filter-icon" icon={cilCalendar} />
+            </div>
+
+            <CButton className="submit_btn dashboard-filter-button" onClick={handleSearch}>
+              <span className="d-none d-sm-inline">Search</span>
+              <CIcon className="d-sm-none" icon={cilSearch} />
+            </CButton>
+          </div>
         </CCol>
       </CRow>
 

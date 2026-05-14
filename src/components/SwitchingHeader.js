@@ -1,71 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { CButtonGroup, CButton, CBadge } from '@coreui/react'
+import { CButton } from '@coreui/react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import BasicProvider from 'src/constants/BasicProvider'
 
-const SwitchingHeader = () => {
+const SwitchingHeader = ({ className = '' }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const [selectedButton, setSelectedButton] = useState('')
-  const [pendingCount, setPendingCount] = useState(0)
-  const [canSeeApprovals, setCanSeeApprovals] = useState(false)
-
-  const admin = useSelector((state) => state.userData)
-  const employeeData = useSelector((state) => state.employeeData)
 
   useEffect(() => {
-    if (location.pathname === '/dashboard') {
-      setSelectedButton('technical')
-    } else if (location.pathname.startsWith('/hrms')) {
+    if (location.pathname.startsWith('/hrms')) {
       setSelectedButton('management')
+    } else {
+      setSelectedButton('technical')
     }
-    // Note: pending-approvals is not a switching button, it's a separate action button
   }, [location.pathname])
-
-  function getCookie(name) {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    if (parts.length === 2) return parts.pop().split(';').shift()
-    return null
-  }
-
-  const id = getCookie('primery_user_id')
-  useEffect(() => {
-    if (!admin) return
-
-    const userRoles = admin?.role?.map((r) => r.name.toLowerCase()) || []
-    const isHrOrAdmin = userRoles.includes('hr') || userRoles.includes('admin')
-
-    let isLeaveAuthority = false
-    if (employeeData) {
-      const userName = admin?.name?.toLowerCase()
-      const authorityOne = employeeData?.leave_authority_one?.toLowerCase()
-      const authorityTwo = employeeData?.leave_authority_two?.toLowerCase()
-      if (userName && (userName === authorityOne || userName === authorityTwo)) {
-        isLeaveAuthority = true
-      }
-    }
-
-    setCanSeeApprovals(isHrOrAdmin || isLeaveAuthority)
-  }, [admin, employeeData])
-
-  const fetchPendingLeaves = async () => {
-    if (!canSeeApprovals) return
-    try {
-      const response = await new BasicProvider(`leaves/pending-authority/user/${id}`).getRequest()
-
-      console.log(response)
-      if (response.status === 'success') {
-        setPendingCount(response.data.length)
-      }
-    } catch (error) {
-      console.error('Failed to fetch pending leaves:', error)
-    }
-  }
-  // useEffect(() => {
-
-  // }, [canSeeApprovals])
 
   const handleTechnicalClick = () => {
     setSelectedButton('technical')
@@ -77,73 +25,31 @@ const SwitchingHeader = () => {
     navigate('/hrms')
   }
 
-  const handleApprovalsClick = () => {
-    // Don't set selectedButton as this is not a switching button
-    fetchPendingLeaves()
-    navigate('/hrms/staff/pendingLeaveApprove')
-  }
-
   return (
-    <div className="d-flex justify-content-between bg-light p-3 bg-white shadow-lg rounded">
-      <CButtonGroup role="group" aria-label="Basic radio toggle button group">
+    <div className={`switching-header-bar ${className}`.trim()}>
+      <div
+        role="group"
+        aria-label="Basic radio toggle button group"
+        className="switching-header-bar__group"
+      >
         <CButton
-          color={selectedButton === 'technical' ? 'primary' : 'outline-primary'}
-          variant={selectedButton === 'technical' ? 'solid' : 'outline'}
           onClick={handleTechnicalClick}
-          style={{
-            backgroundColor: selectedButton === 'technical' ? '#0d6efd' : 'transparent',
-            color: selectedButton === 'technical' ? 'white' : '#0d6efd',
-            borderColor: '#0d6efd',
-            fontWeight: selectedButton === 'technical' ? 'bold' : 'normal',
-          }}
+          className={`switching-header-bar__button ${
+            selectedButton === 'technical' ? 'is-active' : ''
+          }`}
         >
           Technical
         </CButton>
 
         <CButton
-          color={selectedButton === 'management' ? 'primary' : 'outline-primary'}
-          variant={selectedButton === 'management' ? 'solid' : 'outline'}
           onClick={handleManagementClick}
-          style={{
-            backgroundColor: selectedButton === 'management' ? '#0d6efd' : 'transparent',
-            color: selectedButton === 'management' ? 'white' : '#0d6efd',
-            borderColor: '#0d6efd',
-            fontWeight: selectedButton === 'management' ? 'bold' : 'normal',
-          }}
+          className={`switching-header-bar__button ${
+            selectedButton === 'management' ? 'is-active' : ''
+          }`}
         >
           HRMS
         </CButton>
-      </CButtonGroup>
-
-      {/* {canSeeApprovals && (
-        <CButton
-          color="outline-primary"
-          variant="outline"
-          onClick={handleApprovalsClick}
-          style={{
-            position: 'relative',
-            backgroundColor: 'transparent',
-            color: '#0d6efd',
-            borderColor: '#0d6efd',
-            fontWeight: 'normal',
-          }}
-        >
-          Pending Approvals
-          {pendingCount > 0 && (
-            <CBadge
-              color="danger"
-              style={{
-                position: 'absolute',
-                top: '-5px',
-                right: '-10px',
-                borderRadius: '50%',
-              }}
-            >
-              {pendingCount}
-            </CBadge>
-          )}
-        </CButton>
-      )} */}
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../../assets/images/logo/Apple-logo.png'
+import logo from '../../../assets/images/logo/karmyug-apple.png'
 
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
@@ -94,7 +94,7 @@ const Login = () => {
 
 
   return (
-    <div className="bg-theme-color min-vh-100 d-flex flex-row align-items-center" style={{ background: "url('real-apple.avif')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
+    <div className="min-vh-100 d-flex flex-row align-items-center " style={{ background: "url('login-bg-image.jpg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover', }}>
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={5}>
@@ -112,14 +112,16 @@ const Login = () => {
                       AuthHelpers.login(values, navigate, dispatch).finally(() => {
                         setSubmitting(false)
                       })
-                    }}
-                  >
+                    }}>
                     {({ isSubmitting }) => (
                       <Form className="admin-login-page">
                         <div className="text-center">
-                          <img src={logo} alt="logo" className="w-75" />
+                          <div className='login-logo'>
+                            <img src={logo} alt="logo" width={60} />
+                            <span className="login-logo-text">Karmyug</span>
+                          </div>
                           <p className="text-medium-emphasis mb-3" style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
-                            Welcome Back! <span role="img" aria-label="key">🔑</span>Please Sign In
+                            Welcome Back! <span role="img" aria-label="key"></span>Please Sign In
                           </p>
                         </div>
 
@@ -128,7 +130,7 @@ const Login = () => {
 
                         <CRow className="mb-2">
                           <CFormLabel htmlFor="exampleInputEmail1" className="label-text">
-                            Email<span className="text-danger">*</span>
+                            Email
                           </CFormLabel>
                           <CInputGroup>
 
@@ -148,7 +150,7 @@ const Login = () => {
                         </CRow>
                         <CRow className="mb-4">
                           <CFormLabel htmlFor="exampleInputEmail1" className="label-text">
-                            Password<span className="text-danger">*</span>
+                            Password
                           </CFormLabel>
                           <CInputGroup className='from_pass'>
                             <Field
@@ -176,7 +178,7 @@ const Login = () => {
                         </CRow>
 
                         <CRow>
-                          <CCol xs={12} className="m-auto ">
+                          <CCol xs={12} className="m-auto">
                             <CButton className="px-4 sign-up" type="submit" disabled={isSubmitting}>
                               {isSubmitting ? (
                                 <div class="spinner-border" role="status"></div>

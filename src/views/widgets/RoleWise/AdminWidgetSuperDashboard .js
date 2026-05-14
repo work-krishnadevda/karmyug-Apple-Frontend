@@ -3,7 +3,7 @@ import { CRow, CCol, CWidgetStatsF, CFormLabel, CButton, CToastClose } from '@co
 import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
-import { cilArrowBottom, cilArrowTop, cilBank, cilOptions } from '@coreui/icons'
+import { cilArrowBottom, cilArrowTop, cilBank, cilCalendar, cilOptions } from '@coreui/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { cilUser, cilSettings, cilMoon, cilBell } from '@coreui/icons'
 import DatePicker from 'react-datepicker'
@@ -75,35 +75,40 @@ const AdminWidgetSuperDashboard = () => {
 
   return (
     <>
-      <CRow className='mt-4'>
-        <CCol xs={6} sm={5} md={4} lg={4} className="pe-md-0 py-1">
-          <DatePicker
-            selected={date_from}
-            onChange={(date) => setDateFrom(date || today)}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            maxDate={date_to}
-            placeholderText="Select start date"
-          />
-        </CCol>
-        <CCol xs={6} sm={5} md={4} lg={4} className="pe-md-0 py-1">
-          <DatePicker
-            selected={date_to}
-            onChange={(date) => setDateTo(date || today)}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            minDate={date_from}
-            placeholderText="Select end date"
-          />
-        </CCol>
-        <CCol xs={6} sm={5} md={4} lg={2} className="pe-md-0 py-1 d-flex justify-content-center align-items-center">
-          <CButton className="submit_btn w-100" onClick={handleSearch}>
-            Search
-          </CButton>
-        </CCol>
+      <CRow className="mt-4 dashboard-toolbar dashboard-toolbar--standalone">
+        <CCol xs={12} className="py-1">
+          <div className="dashboard-toolbar__filters">
+            <div className="dashboard-toolbar__field">
+              <DatePicker
+                selected={date_from}
+                onChange={(date) => setDateFrom(date || new Date())}
+                dateFormat="yyyy-MM-dd"
+                className="form-control full dashboard-toolbar__input"
+                size="sm"
+                maxDate={date_to}
+                placeholderText="Select start date"
+              />
+              <CIcon className="dashboard-toolbar__icon" icon={cilCalendar} />
+            </div>
 
+            <div className="dashboard-toolbar__field">
+              <DatePicker
+                selected={date_to}
+                onChange={(date) => setDateTo(date || new Date())}
+                dateFormat="yyyy-MM-dd"
+                className="form-control full dashboard-toolbar__input"
+                size="sm"
+                minDate={date_from}
+                placeholderText="Select end date"
+              />
+              <CIcon className="dashboard-toolbar__icon" icon={cilCalendar} />
+            </div>
+
+            <CButton className="submit_btn dashboard-toolbar__search" onClick={handleSearch}>
+              Search
+            </CButton>
+          </div>
+        </CCol>
       </CRow>
 
       <CRow className="cust_side_box mt-4">

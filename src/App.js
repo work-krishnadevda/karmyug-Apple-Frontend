@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './scss/style.scss'
+import './global.css'
 import Cookies from 'js-cookie'
 import { jwtDecode } from 'jwt-decode'
 import PropTypes from 'prop-types'

@@ -79,6 +79,7 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 import { CChartBar, CChartLine, CChartDoughnut } from '@coreui/react-chartjs'
 import avtart from '../../assets/images/avtar.jpg'
+import SwitchingHeader from 'src/components/SwitchingHeader'
 const HRMSDashboard = () => {
   const navigate = useNavigate()
   const userData = useSelector((state) => state.userData)
@@ -335,6 +336,10 @@ const HRMSDashboard = () => {
   return (
     <div className="hrms-dashboard" style={{ paddingTop: '20px' }}>
       <CContainer fluid>
+        <div className="dashboard-toolbar__switcher mb-3">
+          <SwitchingHeader />
+        </div>
+
         {/* Header */}
         <div className="dashboard-header mb-4 pt-4">
           <CRow className="align-items-center">

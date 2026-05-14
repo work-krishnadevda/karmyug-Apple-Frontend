@@ -18,6 +18,7 @@ import {
   cilAlignCenter,
   cilApple,
   cilBank,
+  cilCalendar,
   cilMap,
   cilNoteAdd,
   cilPenAlt,
@@ -35,6 +36,7 @@ import BasicProvider from 'src/constants/BasicProvider'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
+import SwitchingHeader from 'src/components/SwitchingHeader'
 
 let ADMIN = process.env.REACT_APP_ADMIN
 let COO = process.env.REACT_APP_COO
@@ -67,6 +69,36 @@ const AdminWidget = () => {
 
 
   const [loadingCounts, setLoadingCounts] = useState(false)
+  const [showAllCards, setShowAllCards] = useState(false)
+  const dashboardCardsRef = useRef(null)
+  const cardsScrollTimeoutRef = useRef(null)
+  const isCondensedDashboardRole =
+    loggedinUserRole.name === ADMIN || loggedinUserRole.name === COO
+
+  const getDashboardCardProps = ({ primary = false, order, allCases = false } = {}) => {
+    const className = ['dashboard-card-shell']
+    let style
+
+    if (isCondensedDashboardRole) {
+      if (allCases) {
+        className.push('dashboard-card-all-cases')
+      }
+
+      if (primary) {
+        className.push('dashboard-card-primary')
+        style = { order: allCases ? 0 : order ?? 1 }
+      } else {
+        className.push('dashboard-card-extra')
+        if (showAllCards) className.push('is-open')
+        style = {
+          order: allCases ? 0 : 100 + (order ?? 0),
+          '--dashboard-card-delay': `${Math.max((order ?? 1) - 1, 0) * 45}ms`,
+        }
+      }
+    }
+
+    return { className: className.join(' '), style }
+  }
 
   const updatePageQueryParams = (params) => {
     const searchParams = new URLSearchParams(location.search)
@@ -190,6 +222,39 @@ const AdminWidget = () => {
     }
   }, [date_from, date_to, loggedinUserRole, fetchBrokers])
 
+  useEffect(() => {
+    return () => {
+      if (cardsScrollTimeoutRef.current) {
+        clearTimeout(cardsScrollTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const handleDashboardCardsToggle = () => {
+    if (cardsScrollTimeoutRef.current) {
+      clearTimeout(cardsScrollTimeoutRef.current)
+    }
+
+    if (showAllCards) {
+      setShowAllCards(false)
+      cardsScrollTimeoutRef.current = setTimeout(() => {
+        dashboardCardsRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }, 180)
+      return
+    }
+
+    setShowAllCards(true)
+    requestAnimationFrame(() => {
+      dashboardCardsRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    })
+  }
+
   return (
     <>
       {loadingCounts && (
@@ -201,57 +266,65 @@ const AdminWidget = () => {
         </div>
       )}
 
-      <CRow className="mt-4 align-items-center">
-        <CCol xs={5} sm={5} md={4} lg={4} className="pe-1 pe-lg-2 py-1">
-          <DatePicker
-            selected={date_from}
-            onChange={(date) => {
-              effectRef.current = false
-              setDateFrom(date || today)
-            }}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            maxDate={date_to} // Optional: Prevent selecting a start date after the end date
-            placeholderText="Select start date"
-          />
+      <CRow className="align-items-center dashboard-toolbar">
+        <CCol xs={12} lg={5} className="py-1">
+          <div className="dashboard-toolbar__switcher">
+            <SwitchingHeader />
+          </div>
         </CCol>
-        <CCol xs={5} sm={5} md={4} lg={4} className="pe-1 pe-lg-2 ps-0 py-1">
-          <DatePicker
-            selected={date_to}
-            onChange={(date) => {
-              effectRef.current = false
-              setDateTo(date || today)
-            }}
-            dateFormat="yyyy-MM-dd"
-            className="form-control full py-2"
-            size="sm"
-            minDate={date_from}
-            maxDate={new Date()}
-            placeholderText="Select end date"
-          />
-        </CCol>
-        <CCol
-          xs={2}
-          sm={5}
-          md={4}
-          lg={2}
-          className="pe-md-0 py-1 ps-lg-2 ps-0 d-flex justify-content-center align-items-center"
-        >
-          <CButton className="submit_btn w-100 d-lg-block d-none" onClick={handleSearch}>
-            Search
-          </CButton>
-          <CButton className="submit_btn w-100 d-lg-none d-block" onClick={handleSearch}>
-            <CIcon icon={cilSearch} />
-          </CButton>
+        <CCol xs={12} lg={7} className="py-1">
+          <div className="dashboard-toolbar__filters">
+            <div className="dashboard-toolbar__field">
+              <DatePicker
+                selected={date_from}
+                onChange={(date) => {
+                  effectRef.current = false
+                  setDateFrom(date || new Date())
+                }}
+                dateFormat="yyyy-MM-dd"
+                className="form-control full dashboard-toolbar__input"
+                size="sm"
+                maxDate={date_to}
+                placeholderText="Select start date"
+              />
+              <CIcon className="dashboard-toolbar__icon" icon={cilCalendar} />
+            </div>
+
+            <div className="dashboard-toolbar__field">
+              <DatePicker
+                selected={date_to}
+                onChange={(date) => {
+                  effectRef.current = false
+                  setDateTo(date || new Date())
+                }}
+                dateFormat="yyyy-MM-dd"
+                className="form-control full dashboard-toolbar__input"
+                size="sm"
+                minDate={date_from}
+                maxDate={new Date()}
+                placeholderText="Select end date"
+              />
+              <CIcon className="dashboard-toolbar__icon" icon={cilCalendar} />
+            </div>
+
+            <CButton className="submit_btn dashboard-toolbar__search" onClick={handleSearch}>
+              <span className="d-none d-sm-inline">Search</span>
+              <CIcon className="d-sm-none" icon={cilSearch} />
+            </CButton>
+          </div>
         </CCol>
       </CRow>
 
-      <CRow className="cust_side_box mt-4">
+      <CRow
+        ref={dashboardCardsRef}
+        className={`cust_side_box mt-4 dashboard-cards-grid${
+          isCondensedDashboardRole ? ' dashboard-cards-grid--condensed' : ''
+        }${showAllCards ? ' is-expanded' : ''}`}
+      >
         {loggedinUserRole.name != HR && loggedinUserRole.name != BROKER && (
           <>
             {loggedinUserRole.name === AC ? (
-              <CCol sm={6} md={3}>
+              <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 1, allCases: true })}>
                 <CWidgetStatsF
                   className="mb-3 overview_dashboard All-case"
                   icon={<CIcon width={24} icon={cil3d} size="xl" />}
@@ -270,7 +343,7 @@ const AdminWidget = () => {
                 />
               </CCol>
             ) : (
-              <CCol sm={6} md={3}>
+              <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 1, allCases: true })}>
                 <CWidgetStatsF
                   className="mb-3 overview_dashboard All-case"
                   icon={<CIcon width={24} icon={cil3d} size="xl" />}
@@ -295,7 +368,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === RA ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 2 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -316,7 +389,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === FE && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 3 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -341,7 +414,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === FE ||
           loggedinUserRole.name === RA ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 3 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -362,7 +435,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === FE || loggedinUserRole.name === COO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 1 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -387,7 +460,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === FE ||
           loggedinUserRole.name === RA ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 2 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -408,7 +481,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === RA || loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 2 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -433,7 +506,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === RA ||
           loggedinUserRole.name === FE ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 4 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -454,7 +527,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 3 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -478,7 +551,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === DM ||
           loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 5 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -499,7 +572,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === SDM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 5 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -520,7 +593,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === SDM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -542,7 +615,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === RA && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -562,7 +635,7 @@ const AdminWidget = () => {
           </CCol>
         )}
         {(loggedinUserRole.name === ADMIN || loggedinUserRole.name === COO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 4 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -583,7 +656,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === DM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 10 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -606,7 +679,7 @@ const AdminWidget = () => {
         {(loggedinUserRole.name === ADMIN ||
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === RC) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 13 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -627,7 +700,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === RA || loggedinUserRole.name === SDM) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 14 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -648,7 +721,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === RC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 15 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -668,7 +741,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === RC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 16 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -688,7 +761,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === SDM || loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 17 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -708,7 +781,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === ADMIN || loggedinUserRole.name === COO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 7 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -731,7 +804,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === SDM ||
           loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 3 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -752,7 +825,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === ADMIN || loggedinUserRole.name === COO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 4 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -773,7 +846,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === SDM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 7 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -794,7 +867,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === SDM || loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -815,7 +888,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === RC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -836,7 +909,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === RC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 10 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -857,7 +930,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === LCTO && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -878,7 +951,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === LCTO && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -900,7 +973,7 @@ const AdminWidget = () => {
 
         {loggedinUserRole.name === LCTO ||
           (loggedinUserRole.name === CTO && (
-            <CCol sm={6} md={3}>
+            <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 6 })}>
               <CWidgetStatsF
                 onClick={() => {
                   navigate(
@@ -921,7 +994,7 @@ const AdminWidget = () => {
           ))}
 
         {loggedinUserRole.name === LCTO && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 6 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -942,7 +1015,7 @@ const AdminWidget = () => {
         )}
 
         {(loggedinUserRole.name === ADMIN || loggedinUserRole.name === COO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 7 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -968,7 +1041,7 @@ const AdminWidget = () => {
           loggedinUserRole.name !== BROKER &&
           loggedinUserRole.name !== SDM &&
           loggedinUserRole.name !== SFO && (
-            <CCol sm={6} md={3}>
+            <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 6 })}>
               <CWidgetStatsF
                 onClick={() => {
                   navigate(
@@ -989,7 +1062,7 @@ const AdminWidget = () => {
           )}
 
         {loggedinUserRole.name === SDM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 6 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1013,7 +1086,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === FE ||
           loggedinUserRole.name === RA ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 7 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1039,7 +1112,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === CTO ||
           loggedinUserRole.name === DM ||
           loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 10 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1062,7 +1135,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === SDM ||
           loggedinUserRole.name === SFO) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 10 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1083,7 +1156,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1104,7 +1177,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1125,7 +1198,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1146,7 +1219,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 10 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1167,7 +1240,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 15 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1188,7 +1261,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 16 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1209,7 +1282,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 17 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1230,7 +1303,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 18 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1251,7 +1324,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === AC && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 13 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1272,7 +1345,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === ADMIN && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 14 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1298,7 +1371,7 @@ const AdminWidget = () => {
           loggedinUserRole.name === LCTO ||
           loggedinUserRole.name === CTO ||
           loggedinUserRole.name === RA) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ order: 9 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1319,7 +1392,7 @@ const AdminWidget = () => {
         )}
 
         {loggedinUserRole.name === SDM && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1494,7 +1567,7 @@ const AdminWidget = () => {
         {(loggedinUserRole.name === ADMIN ||
           loggedinUserRole.name === COO ||
           loggedinUserRole.name === SDM) && (
-          <CCol sm={6} md={3}>
+          <CCol sm={6} md={3} {...getDashboardCardProps({ primary: true, order: 8 })}>
             <CWidgetStatsF
               onClick={() => {
                 navigate(
@@ -1879,6 +1952,18 @@ const AdminWidget = () => {
           </CCol>
         )}
       </CRow>
+      {isCondensedDashboardRole && (
+        <div className="dashboard-cards-toggle-wrap">
+          <button
+            type="button"
+            className="dashboard-cards-toggle"
+            aria-expanded={showAllCards}
+            onClick={handleDashboardCardsToggle}
+          >
+            {showAllCards ? 'Close' : 'See all'}
+          </button>
+        </div>
+      )}
     </>
   )
 }
