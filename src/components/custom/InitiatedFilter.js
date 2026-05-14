@@ -189,7 +189,7 @@ const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onRe
 
 
   return (
-    <div>
+    <div className="case-filter-theme app-filter-theme">
       <div className="datatable bg-white mb-2 p-3 pb-0">
         <CForm>
           <CRow>
@@ -208,6 +208,7 @@ const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onRe
               <CFormLabel>Finance Name</CFormLabel>
               <AsyncSelect
                 name="finance_name"
+                classNamePrefix="case-filter-select"
                 className="mb-lg-2 mb-2"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('banks/search', inputValue, callback)

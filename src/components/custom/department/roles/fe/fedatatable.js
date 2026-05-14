@@ -13,7 +13,7 @@ import {
 } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable, { rowClassNames } from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { json, useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -23,7 +23,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import { faBan, faEye, faFlag, faMessage } from '@fortawesome/free-solid-svg-icons'
@@ -40,6 +39,7 @@ import OfflineVisitDone from 'src/components/custom/popup/offlineVisitDone'
 import { fa42Group } from '@fortawesome/free-brands-svg-icons'
 import { faHandshakeSlash } from '@fortawesome/free-solid-svg-icons'
 import ConcernReason from 'src/components/custom/popup/concern_reason'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 export default function FeDataTable() {
   const navigate = useNavigate()
@@ -671,10 +671,7 @@ export default function FeDataTable() {
             />
           </div>
         ) : (
-          <div className="text-center">
-            <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-            <p>Loading..</p>
-          </div>
+          <AppTableSkeleton />
         )}
       </>
 
@@ -756,3 +753,6 @@ export default function FeDataTable() {
     </>
   )
 }
+
+
+

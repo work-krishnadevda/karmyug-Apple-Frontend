@@ -5,13 +5,11 @@ import {
   CTooltip,
   CSpinner,
   CFormCheck,
-  CCard,
-  CCardHeader,
-  CCardBody,
 } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState, useRef } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -21,7 +19,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -40,6 +37,7 @@ import { downloadFinalReportZip } from 'src/constants/common'
 import CIcon from '@coreui/icons-react'
 import { cilCloudDownload } from '@coreui/icons'
 import CaseFilter from 'src/components/custom/CaseFilter'
+import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
 
 export default function Account() {
   const navigate = useNavigate()
@@ -768,82 +766,73 @@ export default function Account() {
       <CContainer fluid>
         <>
           {isFilter && (
-            <CCard className="mb-2">
-              <CCardHeader>Filter</CCardHeader>
-              <CCardBody>
-                <CaseFilter
-                  rowPerPage={rowPerPage}
-                  filterData={filteredData}
-                  setFilterData={setFilteredData}
-                  rabranchData
-                  setRAbranchData
-                  financenameData
-                  setFinancenameData
-                  onReset={() => {
-                    handleFilterReset()
-                  }}
-                  onFilter={(filterParams) => {
-                    const searchParams = new URLSearchParams(location.search)
-                    for (const key in filterParams) {
-                      if (filterParams.hasOwnProperty(key)) {
-                        const value = filterParams[key]
-                        if (value != '') searchParams.set(key, value)
-                      }
+            <CaseSectionCard variant="filter" title="Filter Cases">
+              <CaseFilter
+                rowPerPage={rowPerPage}
+                filterData={filteredData}
+                setFilterData={setFilteredData}
+                rabranchData
+                setRAbranchData
+                financenameData
+                setFinancenameData
+                onReset={() => {
+                  handleFilterReset()
+                }}
+                onFilter={(filterParams) => {
+                  const searchParams = new URLSearchParams(location.search)
+                  for (const key in filterParams) {
+                    if (filterParams.hasOwnProperty(key)) {
+                      const value = filterParams[key]
+                      if (value != '') searchParams.set(key, value)
                     }
-                    searchParams.set('filter', 'true')
-                    navigate({ search: searchParams.toString() })
-                  }}
-                />
-              </CCardBody>
-            </CCard>
-          )}
-          <CCard>
-            <CCardHeader>
-              <div className="d-flex justify-content-between align-items-center">
-                <span>Case Details Table</span>
-                <span>
-                  <CButton onClick={() => setIsFilter(!isFilter)} className="add_new">
-                    {!isFilter ? 'Open Filter' : 'Close Filter'}
-                  </CButton>
-                </span>
-              </div>
-            </CCardHeader>
-          </CCard>
-          {!isLoading ? (
-            <div className="datatable">
-              <DataTable
-                responsive="true"
-                columns={columns}
-                data={data}
-                paginationServer
-                paginationTotalRows={totalCount}
-                paginationDefaultPage={defaultPage}
-                onChangePage={(page) => {
-                  currentPage = page
-                  setDefaultPage(parseInt(page))
-                  updatePageQueryParam('page', currentPage)
+                  }
+                  searchParams.set('filter', 'true')
+                  navigate({ search: searchParams.toString() })
                 }}
-                pagination
-                selectableRowsHighlight
-                highlightOnHover
-                paginationRowsPerPageOptions={RowsPerPage}
-                paginationPerPage={rowPerPage}
-                onChangeRowsPerPage={(value) => {
-                  count = value
-                  setRowPerPage(value)
-                  updatePageQueryParam('count', value)
-                  setSelectedRowForModule('cases', value)
-                }}
-                onSelectedRowsChange={(state) => handleRowChange(state)}
-                clearSelectedRows={toggleCleared}
               />
-            </div>
-          ) : (
-            <div className="text-center">
-              <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-              <p>Loading..</p>
-            </div>
+            </CaseSectionCard>
           )}
+          <CaseSectionCard
+            title={`Case Details: ${formatSlug(slug)}`}
+            action={
+              <CButton onClick={() => setIsFilter(!isFilter)} className="case-table-shell__filter-btn">
+                {!isFilter ? 'Open Filter' : 'Close Filter'}
+              </CButton>
+            }
+          >
+            {!isLoading ? (
+              <div className="datatable">
+                <DataTable
+                  responsive="true"
+                  columns={columns}
+                  data={data}
+                  paginationServer
+                  paginationTotalRows={totalCount}
+                  paginationDefaultPage={defaultPage}
+                  onChangePage={(page) => {
+                    currentPage = page
+                    setDefaultPage(parseInt(page))
+                    updatePageQueryParam('page', currentPage)
+                  }}
+                  pagination
+                  selectableRowsHighlight
+                  highlightOnHover
+                  paginationRowsPerPageOptions={RowsPerPage}
+                  paginationPerPage={rowPerPage}
+                  onChangeRowsPerPage={(value) => {
+                    count = value
+                    setRowPerPage(value)
+                    updatePageQueryParam('count', value)
+                    setSelectedRowForModule('cases', value)
+                  }}
+                  onSelectedRowsChange={(state) => handleRowChange(state)}
+                  clearSelectedRows={toggleCleared}
+                />
+              </div>
+            ) : (
+              <AppTableSkeleton />
+            )}
+          </CaseSectionCard>
         </>
       </CContainer>
 
@@ -904,3 +893,4 @@ export default function Account() {
     </>
   )
 }
+

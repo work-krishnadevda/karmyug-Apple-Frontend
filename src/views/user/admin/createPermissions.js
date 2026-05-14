@@ -22,14 +22,14 @@ import {
   CFormTextarea,
   CRow,
 } from '@coreui/react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import BasicProvider from 'src/constants/BasicProvider'
 import { RowsPerPage } from 'src/constants/variables'
 import { setAlertTimeout } from 'src/helpers/alertHelper'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
 import handleSubmitHelper from 'src/helpers/submitHelper'
-import { ShimmerTable } from 'react-shimmer-effects'
 import { useEffectFormData } from 'src/helpers/formHelpers'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import moment from 'moment'
@@ -417,10 +417,7 @@ export default function CreateUnit() {
                     />
                   </div>
                 ) : (
-                  <div className="text-center">
-                    <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-                    <p>Loading..</p>
-                  </div>
+                  <AppTableSkeleton />
 
                 )}
               </div>
@@ -442,3 +439,4 @@ export default function CreateUnit() {
     </>
   )
 }
+

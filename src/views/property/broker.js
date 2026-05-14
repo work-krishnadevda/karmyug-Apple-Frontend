@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import moment from 'moment'
 import * as XLSX from 'xlsx'
 import { saveAs } from 'file-saver'
@@ -401,10 +402,7 @@ const Broker = () => {
 
         <CCardBody>
           {loading ? (
-            <div className="text-center">
-              <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-              <p>Loading..</p>
-            </div>
+            <AppTableSkeleton />
           ) : (
             <DataTable
               // title="Brokers"
@@ -593,3 +591,4 @@ const Broker = () => {
 }
 
 export default Broker
+

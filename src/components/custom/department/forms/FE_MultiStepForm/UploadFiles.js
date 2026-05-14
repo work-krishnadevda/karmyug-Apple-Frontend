@@ -13,7 +13,7 @@ import {
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RowsPerPage } from 'src/constants/variables'
@@ -1149,3 +1149,4 @@ const UploadFiles = ({
 }
 
 export default UploadFiles
+

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CCard, CCardBody, CCardHeader, CCol, CContainer, CForm, CRow } from '@coreui/react'
@@ -93,3 +93,4 @@ export default function emailLog() {
     </>
   )
 }
+

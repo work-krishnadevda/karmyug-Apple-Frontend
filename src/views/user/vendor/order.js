@@ -1,7 +1,7 @@
 import { CCol } from '@coreui/react'
 import moment from 'moment'
 import { useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useParams } from 'react-router-dom'
 import BasicProvider from 'src/constants/BasicProvider'
 import { RowsPerPage } from 'src/constants/variables'
@@ -82,3 +82,4 @@ export default function orders() {
     </div>
   )
 }
+

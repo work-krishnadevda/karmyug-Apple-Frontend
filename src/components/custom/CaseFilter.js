@@ -5,7 +5,6 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CRow,
 } from '@coreui/react'
 import { useEffect, useState } from 'react'
@@ -14,6 +13,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import AsyncSelect from 'react-select/async'
+import Select from 'react-select'
 import { useSelector } from 'react-redux'
 import { checkRole } from 'src/constants/common'
 
@@ -163,6 +163,16 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
   const financeOptions = getOptionList(financenameData)
   const groupOptions = getOptionList(groupData)
   const userOptions = getOptionList(userData)
+  const orderOptions = [
+    { value: '', label: 'Select' },
+    { value: 'ascending', label: 'Ascending' },
+    { value: 'descending', label: 'Descending' },
+  ]
+  const visitDoneTypeOptions = [
+    { value: '', label: 'All' },
+    { value: 'offline', label: 'offline' },
+    { value: 'online', label: 'online' },
+  ]
 
   const handleFilter = async () => {
     initialvalue.count = rowPerPage
@@ -233,7 +243,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
   }
 
   return (
-    <div>
+    <div className="case-filter-theme app-filter-theme">
       <div className="datatable bg-white mb-2 p-3 pb-0">
         <CForm>
           <CRow>
@@ -255,6 +265,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
               <AsyncSelect
                 name="finance_name"
                 className="mb-lg-2 mb-2"
+                classNamePrefix="case-filter-select"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('banks/search', inputValue, callback)
                 }
@@ -279,6 +290,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
               <AsyncSelect
                 name="ra_branch"
                 className="mb-2 mb-lg-0"
+                classNamePrefix="case-filter-select"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('ra_branch/search', inputValue, callback)
                 }
@@ -305,6 +317,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                     <CFormLabel>Select Group</CFormLabel>
                     <AsyncSelect
                       name="group_id"
+                      classNamePrefix="case-filter-select"
                       loadOptions={(inputValue, callback) =>
                         loadOptions(
                           `cms/categories/search?page=1&count=10&search=${inputValue}`,
@@ -332,6 +345,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                     <CFormLabel>Select User</CFormLabel>
                     <AsyncSelect
                       name="user_id"
+                      classNamePrefix="case-filter-select"
                       loadOptions={(inputValue, callback) => loadOptionsUser(inputValue, callback)}
                       defaultOptions={userOptions}
                       getOptionLabel={(option) => (
@@ -458,21 +472,18 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
 
             <CCol xs={12} lg={2} className=" ps-0  pe-0 ps-md-2">
               <CFormLabel>By Order</CFormLabel>
-              <CFormSelect
-                aria-label="Default select example"
+              <Select
                 name="order"
-                value={initialvalue.order}
-                onChange={(event) =>
+                classNamePrefix="case-filter-select"
+                options={orderOptions}
+                value={orderOptions.find((option) => option.value === initialvalue.order)}
+                onChange={(selectedOption) =>
                   setInitialvalue({
                     ...initialvalue,
-                    order: event.target.value,
+                    order: selectedOption?.value || '',
                   })
                 }
-              >
-                <option value="">Select</option>
-                <option value="ascending">Ascending</option>
-                <option value="descending">Descending</option>
-              </CFormSelect>
+              />
             </CCol>
 
             <CCol xs={12} lg={2} className="mt-4 d-flex align-items-center">
@@ -497,6 +508,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
               <AsyncSelect
                 name="user_id"
                 className="mb-sm-2 mb-2"
+                classNamePrefix="case-filter-select"
                 isMulti
                 loadOptions={(inputValue) => {
                   return new Promise((resolve) => {
@@ -522,20 +534,20 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
             </CCol>
             <CCol xs={12} lg={4} className="px-2 pe-0 pe-lg-2 ps-0">
               <CFormLabel>By visit Done type</CFormLabel>
-              <CFormSelect
+              <Select
                 name="visit_type_by_fe"
-                value={initialvalue?.visit_type_by_fe || ''}
-                onChange={(e) => {
+                classNamePrefix="case-filter-select"
+                options={visitDoneTypeOptions}
+                value={visitDoneTypeOptions.find(
+                  (option) => option.value === (initialvalue?.visit_type_by_fe || ''),
+                )}
+                onChange={(selectedOption) => {
                   setInitialvalue((prevValue) => ({
                     ...prevValue,
-                    visit_type_by_fe: e.target.value,
+                    visit_type_by_fe: selectedOption?.value || '',
                   }))
                 }}
-              >
-                <option value={''}>All</option>
-                <option value={'offline'}>offline</option>
-                <option value={'online'}>online</option>
-              </CFormSelect>
+              />
             </CCol>
 
             <CCol xs={6} lg={4}>

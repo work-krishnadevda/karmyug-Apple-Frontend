@@ -3,7 +3,7 @@ import CIcon from '@coreui/icons-react'
 import { CContainer } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -353,3 +353,4 @@ export default function BlockCustomer() {
     </>
   )
 }
+

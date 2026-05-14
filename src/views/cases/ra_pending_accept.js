@@ -22,7 +22,8 @@ import {
 } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RowsPerPage } from 'src/constants/variables'
@@ -31,7 +32,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import { MessageShow } from 'src/components/custom/popup/viewMessageModel'
@@ -321,10 +321,7 @@ export default function RA_PendingCase() {
               />
             </div>
           ) : (
-            <div className="text-center">
-              <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-              <p>Loading..</p>
-            </div>
+            <AppTableSkeleton />
           )}
         </>
 
@@ -413,3 +410,4 @@ export default function RA_PendingCase() {
     </>
   )
 }
+

@@ -23,7 +23,7 @@ import {
   CSpinner,
 } from '@coreui/react'
 
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import BasicProvider from 'src/constants/BasicProvider'
 
@@ -33,7 +33,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { useEffectFormData } from 'src/helpers/formHelpers'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import { setAlertTimeout } from 'src/helpers/alertHelper'
-import { ShimmerTable } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import AsyncSelect from 'react-select/async'
 import moment from 'moment'
@@ -526,3 +525,4 @@ export default function Createtemplates() {
     </>
   )
 }
+

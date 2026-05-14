@@ -1,5 +1,5 @@
 import { cilPencil, cilSpreadsheet, cilTrash } from '@coreui/icons'
-import { CContainer, CCard, CCardHeader, CCardBody, CButton } from '@coreui/react'
+import { CContainer, CButton } from '@coreui/react'
 
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,18 +9,10 @@ import HelperFunction from '../../helpers/HelperFunctions'
 import { handleSelectedRowChange } from 'src/helpers/paginationCookie'
 import BasicProvider from 'src/constants/BasicProvider'
 import CaseFilter from 'src/components/custom/CaseFilter'
-import CooDataTable from 'src/components/custom/department/roles/coo/coodatatable'
 import { checkRole } from 'src/constants/common'
-import FeDataTable from 'src/components/custom/department/roles/fe/fedatatable'
-import SdmDataTable from 'src/components/custom/department/roles/sdm/sdmdatatable'
-import RA_DataTable from 'src/components/custom/department/roles/ra/RA_DataTable'
-import DM_DataTable from 'src/components/custom/department/roles/dm/DM_DataTable'
-import RC_DataTable from 'src/components/custom/department/roles/rc/RC_DataTable'
-import LCTO_DataTable from 'src/components/custom/department/roles/lcto/LCTO_DataTable'
-import CTO_DataTable from 'src/components/custom/department/roles/cto/CTO_DataTable'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
-import AdminDataTable from 'src/components/custom/department/roles/admin/admin_datatable'
-import SFO_DataTable from 'src/components/custom/department/roles/sfo/SFO_DataTable'
+import RoleCaseDataTables from 'src/components/custom/table/RoleCaseDataTables'
+import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
 import { useSearchParams } from 'react-router-dom'
 
 var subHeaderItems = [
@@ -276,61 +268,59 @@ export default function Blogs() {
 
       <CContainer fluid>
         {isFilter && (
-          <CCard className="mb-2">
-            <CCardHeader>Filter</CCardHeader>
-            <CCardBody>
-              <CaseFilter
-                rowPerPage={rowPerPage}
-                filterData={filteredData}
-                setFilterData={setFilteredData}
-                rabranchData
-                setRAbranchData
-                financenameData
-                setFinancenameData
-                onReset={() => {
-                  handleFilterReset()
-                }}
-                onFilter={(filterParams) => {
-                  const searchParams = new URLSearchParams(location.search)
-                  for (const key in filterParams) {
-                    if (filterParams.hasOwnProperty(key)) {
-                      const value = filterParams[key]
-                      if (value != '') searchParams.set(key, value)
-                    }
+          <CaseSectionCard variant="filter" title="Filter Cases">
+            <CaseFilter
+              rowPerPage={rowPerPage}
+              filterData={filteredData}
+              setFilterData={setFilteredData}
+              rabranchData
+              setRAbranchData
+              financenameData
+              setFinancenameData
+              onReset={() => {
+                handleFilterReset()
+              }}
+              onFilter={(filterParams) => {
+                const searchParams = new URLSearchParams(location.search)
+                for (const key in filterParams) {
+                  if (filterParams.hasOwnProperty(key)) {
+                    const value = filterParams[key]
+                    if (value != '') searchParams.set(key, value)
                   }
-                  searchParams.set('filter', 'true')
-                  navigate({ search: searchParams.toString() })
-                }}
-              />
-            </CCardBody>
-          </CCard>
+                }
+                searchParams.set('filter', 'true')
+                navigate({ search: searchParams.toString() })
+              }}
+            />
+          </CaseSectionCard>
         )}
-        <CCard className="mb-2">
-          <CCardHeader>
-            <div className="d-flex justify-content-between align-items-center">
-              <span>Case Details Table</span>
-              <span>
-                <CButton color="warning" onClick={() => setIsFilter(!isFilter)} className="concorn">
-                  {!isFilter ? 'Open Filter' : 'Close Filter'}
-                </CButton>
-              </span>
-            </div>
-          </CCardHeader>
-
-          <CCardBody>
-            {isCOO && <CooDataTable />}
-            {isFE && <FeDataTable />}
-            {isSDM && <SdmDataTable />}
-            {isRA && <RA_DataTable />}
-            {isDM && <DM_DataTable />}
-            {isRC && <RC_DataTable />}
-            {isLCTO && <LCTO_DataTable />}
-            {isCTO && <CTO_DataTable />}
-            {isAdmin && <AdminDataTable />}
-            {isSFO && <SFO_DataTable />}
-          </CCardBody>
-        </CCard>
+        <CaseSectionCard
+          title="All Cases"
+          action={
+            <CButton
+              color="warning"
+              onClick={() => setIsFilter(!isFilter)}
+              className="concorn case-table-shell__filter-btn"
+            >
+              {!isFilter ? 'Open Filter' : 'Close Filter'}
+            </CButton>
+          }
+        >
+          <RoleCaseDataTables
+            isAdmin={isAdmin}
+            isCOO={isCOO}
+            isFE={isFE}
+            isSDM={isSDM}
+            isRA={isRA}
+            isDM={isDM}
+            isRC={isRC}
+            isLCTO={isLCTO}
+            isCTO={isCTO}
+            isSFO={isSFO}
+          />
+        </CaseSectionCard>
       </CContainer>
     </>
   )
 }
+

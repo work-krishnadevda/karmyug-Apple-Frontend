@@ -662,7 +662,7 @@ const MsiFilter = ({
   const allChecked = Object.values(selected).every(Boolean)
 
   return (
-    <div>
+    <div className="case-filter-theme app-filter-theme">
       <div className="datatable bg-white mb-2 p-3 pb-0">
         <CForm>
           <CRow>
@@ -682,6 +682,7 @@ const MsiFilter = ({
               <CFormLabel>Finance Name</CFormLabel>
               <AsyncSelect
                 name="finance_name"
+                classNamePrefix="case-filter-select"
                 className="mb-sm-2 mb-2"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('banks/search', inputValue, callback)
@@ -706,6 +707,7 @@ const MsiFilter = ({
               <CFormLabel>RA Branch</CFormLabel>
               <AsyncSelect
                 name="ra_branch"
+                classNamePrefix="case-filter-select"
                 className="mb-sm-2 mb-2"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('ra_branch/search', inputValue, callback)
@@ -732,6 +734,7 @@ const MsiFilter = ({
                   <CFormLabel>Select Group</CFormLabel>
                   <AsyncSelect
                     name="group_id"
+                classNamePrefix="case-filter-select"
                     className="mb-sm-2 mb-2"
                     loadOptions={(inputValue, callback) =>
                       loadOptions(
@@ -760,6 +763,7 @@ const MsiFilter = ({
                   <CFormLabel>Select User</CFormLabel>
                   <AsyncSelect
                     name="user_id"
+                classNamePrefix="case-filter-select"
                     loadOptions={(inputValue, callback) => loadOptionsUser(inputValue, callback)}
                     defaultOptions={userOptions}
                     getOptionLabel={(option) => (
@@ -888,6 +892,7 @@ const MsiFilter = ({
               <CFormLabel>By Status(Pending)</CFormLabel>
               <AsyncSelect
                 name="user_id"
+                classNamePrefix="case-filter-select"
                 className="mb-sm-2 mb-2"
                 isMulti
                 loadOptions={(inputValue) => {
@@ -913,6 +918,7 @@ const MsiFilter = ({
               <CFormLabel>By Status(Done)</CFormLabel>
               <AsyncSelect
                 name="user_id"
+                classNamePrefix="case-filter-select"
                 className="mb-sm-2 mb-2"
                 isMulti
                 loadOptions={(inputValue) => {

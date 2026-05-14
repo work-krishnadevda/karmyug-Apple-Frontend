@@ -1,15 +1,16 @@
 import { cilPencil, cilSpreadsheet, cilTrash } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import { CContainer, CSpinner } from '@coreui/react'
+import { CContainer } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
 import { RowsPerPage } from 'src/constants/variables'
 
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
+import { ShimmerTitle } from 'react-shimmer-effects'
 import BasicProvider from 'src/constants/BasicProvider'
 import { DeleteModal } from 'src/helpers/deleteModalHelper'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
@@ -256,10 +257,7 @@ export default function AllCase() {
             clearSelectedRows={toggleCleared}
           />
         ) : (
-          <div className="text-center">
-            <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-            <p>Loading..</p>
-          </div>
+          <AppTableSkeleton />
         )}
 
         <DeleteModal
@@ -276,3 +274,4 @@ export default function AllCase() {
     </>
   )
 }
+

@@ -3,13 +3,14 @@ import CIcon from '@coreui/icons-react'
 import { CContainer } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
 import { RowsPerPage } from 'src/constants/variables'
 
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
+import { ShimmerTitle } from 'react-shimmer-effects'
 import BasicProvider from 'src/constants/BasicProvider'
 import { DeleteModal } from 'src/helpers/deleteModalHelper'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
@@ -232,7 +233,7 @@ export default function Pages() {
         <div className="datatable">
           {isLoading ? (
             <div className='custom-table-shimmer'>
-              <ShimmerTable row={10} />
+              <AppTableSkeleton />
             </div>
           ) : (
             <DataTable
@@ -278,3 +279,4 @@ export default function Pages() {
     </>
   )
 }
+

@@ -31,7 +31,7 @@ const PropertyFilter = ({ filterData, setFilterData, onFilter, onReset }) => {
   }
 
   return (
-    <div className="datatable bg-white mb-2 p-3 pb-2">
+    <div className="case-filter-theme app-filter-theme datatable bg-white mb-2 p-3 pb-2">
       <CForm onSubmit={handleSubmit}>
         <CRow>
           <CCol xs={12} md={3}>

@@ -81,7 +81,7 @@ const LoginActivityFilter = ({ rowPerPage, filterData, setFilterData, onFilter, 
   }
 
   return (
-    <div>
+    <div className="case-filter-theme app-filter-theme">
       <div className="datatable bg-white mb-2 p-3 pb-0">
         <CForm>
           <CRow>
@@ -90,6 +90,7 @@ const LoginActivityFilter = ({ rowPerPage, filterData, setFilterData, onFilter, 
               <CFormLabel>Select User</CFormLabel>
               <AsyncSelect
                 name="user_id"
+                classNamePrefix="case-filter-select"
                 loadOptions={(inputValue, callback) =>
                   loadOptions('admins/search', inputValue, callback)
                 }

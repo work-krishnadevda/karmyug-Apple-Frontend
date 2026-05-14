@@ -12,10 +12,17 @@ import {
 } from '@coreui/icons'
 
 import CIcon from '@coreui/icons-react'
-import { CContainer, CBadge, CButton, CTooltip, CSpinner } from '@coreui/react'
+import {
+  CContainer,
+  CBadge,
+  CButton,
+  CTooltip,
+  CSpinner,
+  CDropdownItem,
+} from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -25,7 +32,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -42,6 +48,8 @@ import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { downloadExcelCsvReport, downloadFinalReportZip } from 'src/constants/common'
 import { CopyConformModal } from 'src/helpers/copyConformModalHelper'
 import { toast } from 'react-toastify'
+import AppActionDropdown from 'src/components/custom/table/AppActionDropdown'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 export default function CooDataTable() {
   const navigate = useNavigate()
@@ -85,6 +93,7 @@ export default function CooDataTable() {
 
   const [caseId, setCaseId] = useState('')
   const [currentstatus, setcurrentStatus] = useState('')
+  const [openActionRowId, setOpenActionRowId] = useState(null)
 
   const [hoveredRows, setHoveredRows] = useState({})
   const [zipLoading, setZipLoading] = useState(false)
@@ -204,20 +213,6 @@ export default function CooDataTable() {
     }
   }
 
-  const handleMouseEnter = (rowId, type) => {
-    setHoveredRows((prevState) => ({
-      ...prevState,
-      [rowId]: type,
-    }))
-  }
-
-  const handleMouseLeave = (rowId) => {
-    setHoveredRows((prevState) => ({
-      ...prevState,
-      [rowId]: null,
-    }))
-  }
-
   const handleFlagToggle = async (caseId, currentFlagged) => {
     try {
       await new BasicProvider(`cases/flag/${caseId}`, dispatch).patchRequest({
@@ -232,6 +227,132 @@ export default function CooDataTable() {
       toast.error('Failed to update flag')
       fetchData()
     }
+  }
+
+  const handleMouseEnter = (rowId, type) => {
+    setHoveredRows((prevState) => ({
+      ...prevState,
+      [rowId]: type,
+    }))
+  }
+
+  const handleMouseLeave = (rowId) => {
+    setHoveredRows((prevState) => ({
+      ...prevState,
+      [rowId]: null,
+    }))
+  }
+
+  const renderActionMenu = (row) => {
+    const isOnHold = holdStatuses.includes(row.status)
+    return (
+      <AppActionDropdown
+        visible={openActionRowId === row._id}
+        onVisibleChange={(nextVisible) => setOpenActionRowId(nextVisible ? row._id : null)}
+        statusLabel={isOnHold ? 'Hold' : 'Live'}
+        statusTone={isOnHold ? 'hold' : 'live'}
+        ariaLabel={`Open actions for ${row?.applicant_name || 'case'}`}
+      >
+          {row.status === 'concern by fe' && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setHoldVisible(!holdVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faEye} className="case-action-menu__icon" />
+              View Concern
+            </CDropdownItem>
+          )}
+
+          {row && row.fe_note && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setViewFeNoteVisible(!viewFeNoteVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faEye} className="case-action-menu__icon" />
+              View FE Note
+            </CDropdownItem>
+          )}
+
+          {row && row.hold_message && isOnHold && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setHoldReasonVisible(true)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faBan} className="case-action-menu__icon case-action-menu__icon--danger" />
+              Hold Reason
+            </CDropdownItem>
+          )}
+
+          {row && row.unhold_message && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setUnholdReasonVisible(true)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faCreativeCommonsBy} className="case-action-menu__icon" />
+              Unhold Reason
+            </CDropdownItem>
+          )}
+
+          <CDropdownItem onClick={() => navigate(`/case/${row._id}/edit`)} className="case-action-menu__item">
+            <CIcon icon={cilPencil} className="case-action-menu__icon" />
+            Edit
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={() => {
+              setShowCopyModal(true)
+              setuserId([row._id])
+            }}
+            className="case-action-menu__item"
+          >
+            <CIcon icon={cilCopy} className="case-action-menu__icon" />
+            Duplicate
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={() => {
+              downloadExcelCsvReport(row)
+            }}
+            className="case-action-menu__item"
+          >
+            <CIcon icon={cilDataTransferDown} className="case-action-menu__icon" />
+            Export
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={() => {
+              setVisible(true)
+              setuserId([row._id])
+            }}
+            className="case-action-menu__item case-action-menu__item--danger"
+          >
+            <CIcon icon={cilTrash} className="case-action-menu__icon" />
+            Delete
+          </CDropdownItem>
+
+          {row.status === 'submitted to bank' && (
+            <CDropdownItem
+              onClick={() => downloadFinalReportZip(row, setZipLoading, dispatch)}
+              className="case-action-menu__item"
+            >
+              <CIcon icon={cilCloudDownload} className="case-action-menu__icon" />
+              Final Report
+            </CDropdownItem>
+          )}
+      </AppActionDropdown>
+    )
   }
 
   const columns = [
@@ -391,145 +512,53 @@ export default function CooDataTable() {
     },
     {
       name: 'Actions',
-      cell: (row) => (
-        <div className="action-btn me-3">
-          {row.status === 'concern by fe' && (
-            <div
-              onClick={() => {
-                setCaseId(row._id)
-                setHoldVisible(!holdVisible)
-              }}
-              className="edit-btn pointer_cursor"
-            >
-              <FontAwesomeIcon icon={faEye} />
-            </div>
-          )}
-          {row && row.fe_note && (
-            <CustomTooltip content={'View FE Note'}>
-              <div
+      cell: (row) => {
+        const isOnHold = holdStatuses.includes(row.status)
+        return (
+          <div className="action-btn me-3 case-action-cell">
+            {!hoveredRows[row._id] && isOnHold && (
+              <div className="holded-btn case-action-status-chip" onMouseEnter={() => handleMouseEnter(row._id, 'holded')}>
+                Hold
+              </div>
+            )}
+            {!hoveredRows[row._id] && !isOnHold && (
+              <div className="live-btn case-action-status-chip" onMouseEnter={() => handleMouseEnter(row._id, 'live')}>
+                <div className="live_point"></div>
+                Live
+              </div>
+            )}
+            {hoveredRows[row._id] === 'live' && (
+              <CButton
                 onClick={() => {
                   setCaseId(row._id)
-                  setViewFeNoteVisible(!viewFeNoteVisible)
+                  setVisibleHoldModel(true)
                 }}
-                className="edit-btn pointer_cursor px-2"
+                variant="outline"
+                size="sm"
+                color="danger"
+                onMouseLeave={() => handleMouseLeave(row._id)}
               >
-                <FontAwesomeIcon icon={faEye} />
-              </div>
-            </CustomTooltip>
-          )}
-
-          {!hoveredRows[row._id] && holdStatuses.includes(row.status) && (
-            <div className="holded-btn" onMouseEnter={() => handleMouseEnter(row._id, 'holded')}>
-              Hold
-            </div>
-          )}
-          {!hoveredRows[row._id] && !holdStatuses.includes(row.status) && (
-            <div className="live-btn" onMouseEnter={() => handleMouseEnter(row._id, 'live')}>
-              <div className="live_point"></div>
-              Live
-            </div>
-          )}
-          {hoveredRows[row._id] === 'live' && (
-            <CButton
-              onClick={() => {
-                setCaseId(row._id)
-                setVisibleHoldModel(true)
-              }}
-              variant="outline"
-              size="sm"
-              color="danger"
-              onMouseLeave={() => handleMouseLeave(row._id)}
-            >
-              Hold
-            </CButton>
-          )}
-
-          {hoveredRows[row._id] === 'holded' && holdStatuses.includes(row.status) && (
-            <CButton
-              onClick={() => {
-                setCaseId(row._id)
-                setUnHoldVisible(true)
-              }}
-              variant="ghost"
-              size="sm"
-              color="success"
-              onMouseLeave={() => handleMouseLeave(row._id)}
-            >
-              Unhold
-            </CButton>
-          )}
-
-          {row && row.hold_message && holdStatuses.includes(row.status) && (
-            <CustomTooltip content={'Hold Reason'}>
-              <div
+                Hold
+              </CButton>
+            )}
+            {hoveredRows[row._id] === 'holded' && isOnHold && (
+              <CButton
                 onClick={() => {
                   setCaseId(row._id)
-                  setHoldReasonVisible(!holdReasonVisible)
+                  setUnHoldVisible(true)
                 }}
-                className="delet-btn pointer_cursor px-2"
+                variant="ghost"
+                size="sm"
+                color="success"
+                onMouseLeave={() => handleMouseLeave(row._id)}
               >
-                <FontAwesomeIcon icon={faBan} />
-              </div>
-            </CustomTooltip>
-          )}
-          {row && row.unhold_message && (
-            <CustomTooltip content={'Unhold Reason'}>
-              <div
-                onClick={() => {
-                  setCaseId(row._id)
-                  setUnholdReasonVisible(!unholdReasonVisible)
-                }}
-                className="delet-btn pointer_cursor px-2"
-              >
-                <FontAwesomeIcon icon={faCreativeCommonsBy} />
-              </div>
-            </CustomTooltip>
-          )}
-          <div
-            className="edit-btn pointer_cursor"
-            onClick={() => navigate(`/case/${row._id}/edit`)}
-          >
-            <CIcon icon={cilPencil} />
+                Unhold
+              </CButton>
+            )}
+            {renderActionMenu(row)}
           </div>
-          <div
-            className="edit-btn pointer_cursor"
-            // onClick={() => copyOfCase(row._id)}
-            onClick={() => {
-              setShowCopyModal(true)
-              setuserId([row._id])
-            }}
-          >
-            <CIcon icon={cilCopy} />
-          </div>
-          <div
-            className="edit-btn pointer_cursor"
-            onClick={() => {
-              downloadExcelCsvReport(row)
-            }}
-          >
-            <CIcon icon={cilDataTransferDown} />
-          </div>
-          <div
-            className="delet-btn pointer_cursor"
-            onClick={() => {
-              setVisible(true)
-              setuserId([row._id])
-            }}
-          >
-            <CIcon icon={cilTrash} />
-          </div>
-
-          {row.status === 'submitted to bank' && (
-            <div className="download-btn edit-btn">
-              <CIcon
-                className="pointer_cursor"
-                icon={cilCloudDownload}
-                onClick={() => downloadFinalReportZip(row, setZipLoading, dispatch)}
-              />
-            </div>
-          )}
-        </div>
-      ),
+        )
+      },
 
       width: '300px',
       ignoreRowClick: true,
@@ -722,10 +751,7 @@ export default function CooDataTable() {
             />
           </div>
         ) : (
-          <div className="text-center">
-            <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-            <p>Loading..</p>
-          </div>
+          <AppTableSkeleton />
         )}
       </>
 
@@ -799,3 +825,5 @@ export default function CooDataTable() {
     </>
   )
 }
+
+

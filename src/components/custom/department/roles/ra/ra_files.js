@@ -20,7 +20,8 @@ import {
 } from '@coreui/react'
 import moment from 'moment'
 import React, { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -30,7 +31,7 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
+import { ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
@@ -445,10 +446,7 @@ export default function RAShowFiles() {
             {show && (
               <CCardBody>
                 {isLoading ? (
-                  <div className="text-center">
-                    <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-                    <p>Loading..</p>
-                  </div>
+                  <AppTableSkeleton />
                 ) : (
                   <div className="datatable">
                     <div className="mb-2">
@@ -542,3 +540,4 @@ export default function RAShowFiles() {
     </>
   )
 }
+

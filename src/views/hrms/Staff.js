@@ -38,12 +38,12 @@ import {
   cilTrash,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import moment from 'moment'
 import BasicProvider from 'src/constants/BasicProvider'
 import { fetchCompanies } from 'src/helpers/companyHelper'
 import { handleSelectedRowChange } from 'src/helpers/paginationCookie'
-import { ShimmerTable } from 'react-shimmer-effects'
 import usePermissions from '../../hooks/usePermissions'
 import * as XLSX from 'xlsx-js-style'
 import ExcelJS from 'exceljs'
@@ -1504,7 +1504,7 @@ const handleDeleteEmployee = async () => {
           <CCardBody className="p-0">
             {isLoading ? (
               <div className="p-4">
-                <ShimmerTable row={5} col={7} />
+                <AppTableSkeleton />
               </div>
             ) : (
               <>
@@ -2069,3 +2069,4 @@ const handleDeleteEmployee = async () => {
 }
 
 export default Staff
+

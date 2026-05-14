@@ -147,7 +147,7 @@ src
     │   │   ├── create.js
     │   │   └── routes.js
     │   ├── news
-    │   │   ├── all.js
+    │   │   ├── 
     │   │   ├── create.js
     │   │   ├── routes.js
     │   │   └── trash.js

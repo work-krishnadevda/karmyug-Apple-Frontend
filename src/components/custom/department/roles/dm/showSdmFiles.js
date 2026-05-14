@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { CCard, CCardHeader, CCol, CRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import {
@@ -12,7 +12,7 @@ import {
 } from '@coreui/icons'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import moment from 'moment'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
+import { ShimmerTitle } from 'react-shimmer-effects'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useParams } from 'react-router-dom'
 
@@ -376,3 +376,4 @@ const ShowSdmFiles = () => {
 }
 
 export default ShowSdmFiles
+

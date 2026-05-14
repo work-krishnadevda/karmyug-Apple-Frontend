@@ -19,12 +19,12 @@ import {
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RowsPerPage } from 'src/constants/variables'
 
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
+import { ShimmerTitle } from 'react-shimmer-effects'
 import BasicProvider from 'src/constants/BasicProvider'
 import { DeleteModal } from 'src/helpers/deleteModalHelper'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
@@ -743,3 +743,4 @@ const Files = ({ initialValues, setInitialValues, showCaseData, activeTab, fetch
 }
 
 export default Files
+

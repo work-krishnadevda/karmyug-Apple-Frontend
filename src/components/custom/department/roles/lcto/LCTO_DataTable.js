@@ -3,7 +3,7 @@ import CIcon from '@coreui/icons-react'
 import { CBadge, CSpinner, CButton, CTooltip } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { holdStatuses, RowsPerPage, statusValue } from 'src/constants/variables'
@@ -26,6 +26,7 @@ import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { downloadFinalReportZip } from 'src/constants/common'
 import { toast } from 'react-toastify'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 export default function LCTO_DataTable() {
   const navigate = useNavigate()
@@ -636,10 +637,7 @@ export default function LCTO_DataTable() {
               />
             </div>
           ) : (
-            <div className="text-center">
-              <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-              <p>Loading..</p>
-            </div>
+            <AppTableSkeleton />
           )}
         </>
 
@@ -707,3 +705,5 @@ export default function LCTO_DataTable() {
 
   )
 }
+
+

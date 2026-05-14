@@ -22,14 +22,14 @@ import {
   CFormTextarea,
   CRow,
 } from '@coreui/react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import BasicProvider from 'src/constants/BasicProvider'
 import { RowsPerPage } from 'src/constants/variables'
 import { setAlertTimeout } from 'src/helpers/alertHelper'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
 import handleSubmitHelper from 'src/helpers/submitHelper'
-import { ShimmerTable } from 'react-shimmer-effects'
 import { useEffectFormData } from 'src/helpers/formHelpers'
 
 const validationRules = {
@@ -385,7 +385,7 @@ export default function CreateUnit() {
               <div className="datatable">
                 {isLoading ? (
                   <div className="custom-table-shimmer">
-                    <ShimmerTable row={10} />
+                    <AppTableSkeleton />
                   </div>
                 ) : (
                   <div className="datatable">
@@ -434,3 +434,4 @@ export default function CreateUnit() {
     </>
   )
 }
+

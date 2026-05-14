@@ -60,7 +60,7 @@ const FileFilter = (props) => {
   
   return (
     <>
-      <CCard>
+      <CCard className="case-filter-theme app-filter-theme case-filter-shell">
         <CCardHeader>AI Filter</CCardHeader>
         <CCardBody>
           <CForm>

@@ -11,7 +11,7 @@ import CIcon from '@coreui/icons-react'
 import { CContainer, CBadge, CButton, CTooltip } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -21,7 +21,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -404,3 +403,4 @@ export default function CooConcernDataTable() {
 
 
 }
+

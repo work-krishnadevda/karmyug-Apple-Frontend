@@ -1,6 +1,6 @@
 import { cilCloudDownload, cilPencil, cilSpreadsheet, cilTrash } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import { CContainer, CBadge, CCard, CCardHeader, CCardBody, CButton, CSpinner, CTooltip } from '@coreui/react'
+import { CContainer, CBadge, CButton, CTooltip } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,10 +9,12 @@ import HelperFunction from '../../helpers/HelperFunctions'
 import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/paginationCookie'
 import BasicProvider from 'src/constants/BasicProvider'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useSearchParams } from 'react-router-dom'
 import { holdStatuses, RowsPerPage, statusValue } from 'src/constants/variables'
 import InitiatedFilter from 'src/components/custom/InitiatedFilter'
+import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
 import Hold from 'src/components/custom/popup/hold'
 import View_Reason from 'src/components/custom/popup/View_Reason'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
@@ -612,83 +614,74 @@ export default function Initiated() {
         <>
             <SingleSubHeader moduleName={'Initiated'} />
             <CContainer fluid>
-                <CCard className="mb-2">
-                    <CCardBody>
-                        <InitiatedFilter
-                            rowPerPage={rowPerPage}
-                            filterData={filteredData}
-                            setFilterData={setFilteredData}
-                            rabranchData
-                            setRAbranchData
-                            financenameData
-                            setFinancenameData
-                            onReset={() => {
-                                handleFilterReset()
-                            }}
-
-                            onFilter={(filterParams) => {
-                                const searchParams = new URLSearchParams(location.search)
-                                for (const key in filterParams) {
-                                    if (filterParams.hasOwnProperty(key)) {
-                                        const value = filterParams[key]
-                                        if (value != '') searchParams.set(key, value)
-                                    }
+                <CaseSectionCard variant="filter" title="Filter Cases">
+                    <InitiatedFilter
+                        rowPerPage={rowPerPage}
+                        filterData={filteredData}
+                        setFilterData={setFilteredData}
+                        rabranchData
+                        setRAbranchData
+                        financenameData
+                        setFinancenameData
+                        onReset={() => {
+                            handleFilterReset()
+                        }}
+                        onFilter={(filterParams) => {
+                            const searchParams = new URLSearchParams(location.search)
+                            for (const key in filterParams) {
+                                if (filterParams.hasOwnProperty(key)) {
+                                    const value = filterParams[key]
+                                    if (value != '') searchParams.set(key, value)
                                 }
-                                searchParams.set('filter', 'true');
-                                navigate({ search: searchParams.toString() })
-                            }}
+                            }
+                            searchParams.set('filter', 'true')
+                            navigate({ search: searchParams.toString() })
+                        }}
+                    />
+                </CaseSectionCard>
 
-                        />
-                    </CCardBody>
-                </CCard>
-
-
-                {!isLoading ? (
-                    <div className="datatable">
-                        <DataTable
-                            responsive="true"
-                            columns={columns}
-                            data={data}
-                            conditionalRowStyles={[
-                                {
-                                    when: (row) => !!row.flagged,
-                                    style: {
-                                        backgroundColor: 'rgba(255, 193, 7, 0.25)',
+                <CaseSectionCard title="Initiated Cases">
+                    {!isLoading ? (
+                        <div className="datatable">
+                            <DataTable
+                                responsive="true"
+                                columns={columns}
+                                data={data}
+                                conditionalRowStyles={[
+                                    {
+                                        when: (row) => !!row.flagged,
+                                        style: {
+                                            backgroundColor: 'rgba(255, 193, 7, 0.25)',
+                                        },
                                     },
-                                },
-                            ]}
-                            paginationServer
-                            paginationTotalRows={totalCount}
-                            paginationDefaultPage={defaultPage}
-                            onChangePage={(page) => {
-                                currentPage = page
-                                setDefaultPage(parseInt(page))
-                                updatePageQueryParam('page', currentPage)
-                            }}
-
-                            pagination
-                            // selectableRows
-                            selectableRowsHighlight
-                            highlightOnHover
-                            paginationRowsPerPageOptions={RowsPerPage}
-                            paginationPerPage={rowPerPage}
-                            onChangeRowsPerPage={(value) => {
-                                count = value
-                                setRowPerPage(value)
-                                updatePageQueryParam('count', value)
-                                setSelectedRowForModule('cases', value)
-                            }}
-
-                            onSelectedRowsChange={(state) => handleRowChange(state)}
-                            clearSelectedRows={toggleCleared}
-                        />
-                    </div>
-                ) : (
-                    <div className="text-center">
-                        <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-                        <p>Loading..</p>
-                    </div>
-                )}
+                                ]}
+                                paginationServer
+                                paginationTotalRows={totalCount}
+                                paginationDefaultPage={defaultPage}
+                                onChangePage={(page) => {
+                                    currentPage = page
+                                    setDefaultPage(parseInt(page))
+                                    updatePageQueryParam('page', currentPage)
+                                }}
+                                pagination
+                                selectableRowsHighlight
+                                highlightOnHover
+                                paginationRowsPerPageOptions={RowsPerPage}
+                                paginationPerPage={rowPerPage}
+                                onChangeRowsPerPage={(value) => {
+                                    count = value
+                                    setRowPerPage(value)
+                                    updatePageQueryParam('count', value)
+                                    setSelectedRowForModule('cases', value)
+                                }}
+                                onSelectedRowsChange={(state) => handleRowChange(state)}
+                                clearSelectedRows={toggleCleared}
+                            />
+                        </div>
+                    ) : (
+                        <AppTableSkeleton />
+                    )}
+                </CaseSectionCard>
 
             </CContainer>
 
@@ -739,3 +732,4 @@ export default function Initiated() {
         </>
     )
 }
+

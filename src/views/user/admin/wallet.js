@@ -1,7 +1,7 @@
 import { CButton, CCol, CContainer, CForm, CRow } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RowsPerPage } from 'src/constants/variables'
@@ -95,3 +95,4 @@ export default function wallet() {
               </CCol>
   )
 }
+

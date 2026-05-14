@@ -229,7 +229,7 @@ const BulkUpload = () => {
                 </CCol>
 
                 <CCol md={4} className="d-flex justify-content-end align-items-center">
-                  <CButton type="submit" disabled={isLoading}>
+                  <CButton type="submit" disabled={isLoading} style={{backgroundColor:"#045248"}}>
                     {isLoading ? (
                       <>
                         <CSpinner size="sm" className="me-2" />

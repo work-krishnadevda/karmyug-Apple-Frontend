@@ -1,15 +1,12 @@
 import {
   CContainer,
   CBadge,
-  CCard,
-  CCardHeader,
-  CCardBody,
-  CSpinner,
   CTooltip,
 } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RowsPerPage, statusValue } from 'src/constants/variables'
@@ -25,6 +22,7 @@ import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
+import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
 
 export default function Genrate_MSI() {
   const navigate = useNavigate()
@@ -504,86 +502,70 @@ export default function Genrate_MSI() {
       <SingleSubHeader moduleName={'Generate MIS'} />
       <CContainer fluid>
         {true && (
-          <CCard className="mb-2">
-            <CCardHeader>Filter Fields</CCardHeader>
-            <CCardBody>
-              <MsiFilter
-                rowPerPage={rowPerPage}
-                filterData={filteredData}
-                setFilterData={setFilteredData}
-                rabranchData
-                setRAbranchData
-                financenameData
-                setFinancenameData
-                isLoading={isLoadingWholeData}
-                onReset={() => {
-                  handleFilterReset()
-                }}
-                onFilter={(filterParams) => {
-                  const searchParams = new URLSearchParams(location.search)
-                  for (const key in filterParams) {
-                    if (filterParams.hasOwnProperty(key)) {
-                      const value = filterParams[key]
-                      if (value != '' && value != '0') searchParams.set(key, value)
-                      else searchParams.delete(key)
-                    }
+          <CaseSectionCard variant="filter" title="Filter Cases">
+            <MsiFilter
+              rowPerPage={rowPerPage}
+              filterData={filteredData}
+              setFilterData={setFilteredData}
+              rabranchData
+              setRAbranchData
+              financenameData
+              setFinancenameData
+              isLoading={isLoadingWholeData}
+              onReset={() => {
+                handleFilterReset()
+              }}
+              onFilter={(filterParams) => {
+                const searchParams = new URLSearchParams(location.search)
+                for (const key in filterParams) {
+                  if (filterParams.hasOwnProperty(key)) {
+                    const value = filterParams[key]
+                    if (value != '' && value != '0') searchParams.set(key, value)
+                    else searchParams.delete(key)
                   }
-                  searchParams.set('filter', 'true')
-                  navigate({ search: searchParams.toString() })
-                  // fetchWholeData()
-                }}
-                data={wholeData}
-              />
-            </CCardBody>
-          </CCard>
+                }
+                searchParams.set('filter', 'true')
+                navigate({ search: searchParams.toString() })
+              }}
+              data={wholeData}
+            />
+          </CaseSectionCard>
         )}
 
-        <CCard className="mb-2">
-          <CCardHeader>
-            <div className="d-flex justify-content-between align-items-center">
-              <span>Case Details</span>
+        <CaseSectionCard title="Case Details">
+          {!isLoading ? (
+            <div className="datatable">
+              <DataTable
+                responsive="true"
+                columns={columns}
+                data={data}
+                paginationServer
+                paginationTotalRows={totalCount}
+                paginationDefaultPage={defaultPage}
+                onChangePage={(page) => {
+                  currentPage = page
+                  setDefaultPage(parseInt(page))
+                  updatePageQueryParam('page', currentPage)
+                }}
+                pagination
+                selectableRowsHighlight
+                highlightOnHover
+                paginationRowsPerPageOptions={RowsPerPage}
+                paginationPerPage={rowPerPage}
+                onChangeRowsPerPage={(value) => {
+                  count = value
+                  setRowPerPage(value)
+                  updatePageQueryParam('count', value)
+                  setSelectedRowForModule('cases', value)
+                }}
+                onSelectedRowsChange={(state) => handleRowChange(state)}
+                clearSelectedRows={toggleCleared}
+              />
             </div>
-          </CCardHeader>
-
-          <CCardBody>
-            {!isLoading ? (
-              <div className="datatable">
-                <DataTable
-                  responsive="true"
-                  columns={columns}
-                  data={data}
-                  paginationServer
-                  paginationTotalRows={totalCount}
-                  paginationDefaultPage={defaultPage}
-                  onChangePage={(page) => {
-                    currentPage = page
-                    setDefaultPage(parseInt(page))
-                    updatePageQueryParam('page', currentPage)
-                  }}
-                  pagination
-                  // selectableRows
-                  selectableRowsHighlight
-                  highlightOnHover
-                  paginationRowsPerPageOptions={RowsPerPage}
-                  paginationPerPage={rowPerPage}
-                  onChangeRowsPerPage={(value) => {
-                    count = value
-                    setRowPerPage(value)
-                    updatePageQueryParam('count', value)
-                    setSelectedRowForModule('cases', value)
-                  }}
-                  onSelectedRowsChange={(state) => handleRowChange(state)}
-                  clearSelectedRows={toggleCleared}
-                />
-              </div>
-            ) : (
-              <div className="text-center">
-                <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-                <p>Loading..</p>
-              </div>
-            )}
-          </CCardBody>
-        </CCard>
+          ) : (
+            <AppTableSkeleton />
+          )}
+        </CaseSectionCard>
       </CContainer>
 
       <CommonMessageShowModel
@@ -595,3 +577,4 @@ export default function Genrate_MSI() {
     </>
   )
 }
+

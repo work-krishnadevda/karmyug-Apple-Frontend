@@ -1,9 +1,9 @@
 import { cilCloudDownload, cilCopy, cilDataTransferDown, cilPencil, cilTrash } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import { CContainer, CBadge, CButton, CTooltip, CSpinner } from '@coreui/react'
+import { CContainer, CBadge, CTooltip, CSpinner, CDropdownItem } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import DataTable from 'react-data-table-component'
+import DataTable from 'src/components/custom/table/AppDataTable'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import SubHeader from 'src/components/custom/SubHeader'
@@ -13,7 +13,6 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import { DeleteModal, handleConfirmDelete } from 'src/helpers/deleteModalHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import noImage from 'src/assets/images/noImage.png'
-import { ShimmerTable, ShimmerTitle } from 'react-shimmer-effects'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import HelperFunction from 'src/helpers/HelperFunctions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,6 +31,8 @@ import { downloadExcelCsvReport, downloadFinalReportZip } from 'src/constants/co
 import { faHurricane } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { CopyConformModal } from 'src/helpers/copyConformModalHelper'
+import AppActionDropdown from 'src/components/custom/table/AppActionDropdown'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 export default function AdminDataTable() {
   const navigate = useNavigate()
   const [rowPerPage, setRowPerPage] = useState(null)
@@ -78,8 +79,7 @@ export default function AdminDataTable() {
 
   const [caseId, setCaseId] = useState('')
   const [commonMessageShowModel, setCommonMessageShowModel] = useState(false)
-
-  const [hoveredRows, setHoveredRows] = useState({})
+  const [openActionRowId, setOpenActionRowId] = useState(null)
 
   const [zipLoading, setZipLoading] = useState(false)
 
@@ -193,18 +193,151 @@ export default function AdminDataTable() {
     }
   }
 
-  const handleMouseEnter = (rowId, type) => {
-    setHoveredRows((prevState) => ({
-      ...prevState,
-      [rowId]: type,
-    }))
-  }
+  const renderActionMenu = (row) => {
+    const isOnHold = holdStatuses.includes(row.status)
 
-  const handleMouseLeave = (rowId) => {
-    setHoveredRows((prevState) => ({
-      ...prevState,
-      [rowId]: null,
-    }))
+    return (
+      <AppActionDropdown
+        visible={openActionRowId === row._id}
+        onVisibleChange={(nextVisible) => setOpenActionRowId(nextVisible ? row._id : null)}
+        statusLabel={isOnHold ? 'Hold' : 'Live'}
+        statusTone={isOnHold ? 'hold' : 'live'}
+        ariaLabel={`Open actions for ${row?.applicant_name || 'case'}`}
+      >
+          <CDropdownItem
+            onClick={() => {
+              setCaseId(row._id)
+              if (isOnHold) {
+                setUnHoldVisible(true)
+              } else {
+                setVisibleHoldModel(true)
+              }
+            }}
+            className="case-action-menu__item"
+          >
+            <span
+              className={`case-action-menu__state ${
+                isOnHold ? 'case-action-menu__state--hold' : 'case-action-menu__state--live'
+              }`}
+            >
+              {isOnHold ? 'Unhold' : 'Hold'}
+            </span>
+            {isOnHold ? 'Move back to live' : 'Send to hold'}
+          </CDropdownItem>
+
+          {row.status === 'concern by fe' && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setHoldVisible(!holdVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faEye} className="case-action-menu__icon" />
+              View Concern
+            </CDropdownItem>
+          )}
+
+          {row && row.fe_note && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setViewFeNoteVisible(!viewFeNoteVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faEye} className="case-action-menu__icon" />
+              View FE Note
+            </CDropdownItem>
+          )}
+
+          {row && row.hold_message && isOnHold && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setHoldReasonVisible(!holdReasonVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faBan} className="case-action-menu__icon case-action-menu__icon--danger" />
+              Hold Reason
+            </CDropdownItem>
+          )}
+
+          {row && row.unhold_message && (
+            <CDropdownItem
+              onClick={() => {
+                setCaseId(row._id)
+                setUnholdReasonVisible(!unholdReasonVisible)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faCreativeCommonsBy} className="case-action-menu__icon" />
+              Unhold Reason
+            </CDropdownItem>
+          )}
+
+          <CDropdownItem onClick={() => navigate(`/case/${row._id}/edit`)} className="case-action-menu__item">
+            <CIcon icon={cilPencil} className="case-action-menu__icon" />
+            Edit
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={(e) => {
+              e.stopPropagation()
+              setShowCopyModal(true)
+              setuserId([row._id])
+            }}
+            className="case-action-menu__item"
+          >
+            <CIcon icon={cilCopy} className="case-action-menu__icon" />
+            Copy Case
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={() => {
+              downloadExcelCsvReport(row)
+            }}
+            className="case-action-menu__item"
+          >
+            <CIcon icon={cilDataTransferDown} className="case-action-menu__icon" />
+            Download csv File
+          </CDropdownItem>
+
+          <CDropdownItem
+            onClick={() => {
+              setVisible(true)
+              setuserId([row._id])
+            }}
+            className="case-action-menu__item case-action-menu__item--danger"
+          >
+            <CIcon icon={cilTrash} className="case-action-menu__icon" />
+            Delete Case
+          </CDropdownItem>
+
+          {row.status === 'submitted to bank' && (
+            <CDropdownItem
+              onClick={() => downloadFinalReportZip(row, setZipLoading, dispatch)}
+              className="case-action-menu__item"
+            >
+              <CIcon icon={cilCloudDownload} className="case-action-menu__icon" />
+              Download Final Zip
+            </CDropdownItem>
+          )}
+
+          {caseInfoVisiblityStatus.includes(row?.status) && row?.all_status['visit_done'] && (
+            <CDropdownItem
+              onClick={() => {
+                navigate(`/case/${row._id}/show-case-details/by/${loggedinUserRole?.name}`)
+              }}
+              className="case-action-menu__item"
+            >
+              <FontAwesomeIcon icon={faCircleInfo} className="case-action-menu__icon" />
+              Show Case Info
+            </CDropdownItem>
+          )}
+      </AppActionDropdown>
+    )
   }
 
   let caseInfoVisiblityStatus = [
@@ -383,176 +516,18 @@ export default function AdminDataTable() {
     {
       name: 'Actions',
       cell: (row) => (
-        <div className="action-btn me-3">
-          {row.status === 'concern by fe' && (
-            <div
-              onClick={() => {
-                setCaseId(row._id)
-                setHoldVisible(!holdVisible)
-              }}
-              className="edit-btn pointer_cursor"
-            >
-              <FontAwesomeIcon icon={faEye} />
-            </div>
-          )}
-
-          {row && row.fe_note && (
-            <CustomTooltip content={'View FE Note'}>
-              <div
-                onClick={() => {
-                  setCaseId(row._id)
-                  setViewFeNoteVisible(!viewFeNoteVisible)
-                }}
-                className="edit-btn pointer_cursor px-2"
-              >
-                <FontAwesomeIcon icon={faEye} />
-              </div>
-            </CustomTooltip>
-          )}
-
-          {!hoveredRows[row._id] && holdStatuses.includes(row.status) && (
-            <div className="holded-btn" onMouseEnter={() => handleMouseEnter(row._id, 'holded')}>
-              Hold
-            </div>
-          )}
-
-          {!hoveredRows[row._id] && !holdStatuses.includes(row.status) && (
-            <div className="live-btn" onMouseEnter={() => handleMouseEnter(row._id, 'live')}>
-              <div className="live_point"></div>
-              Live
-            </div>
-          )}
-
-          {hoveredRows[row._id] === 'live' && (
-            <CButton
-              onClick={() => {
-                setCaseId(row._id)
-                setVisibleHoldModel(!visibleHoldModel)
-              }}
-              variant="outline"
-              size="sm"
-              color="danger"
-              onMouseLeave={() => handleMouseLeave(row._id)}
-            >
-              Hold
-            </CButton>
-          )}
-
-          {hoveredRows[row._id] === 'holded' && holdStatuses.includes(row.status) && (
-            <CButton
-              onClick={() => {
-                setCaseId(row._id)
-                setUnHoldVisible(true)
-              }}
-              variant="ghost"
-              size="sm"
-              color="success"
-              onMouseLeave={() => handleMouseLeave(row._id)}
-            >
-              Unhold
-            </CButton>
-          )}
-          {row && row.hold_message && holdStatuses.includes(row.status) && (
-            <CustomTooltip content={'Hold Reason'}>
-              <div
-                onClick={() => {
-                  setCaseId(row._id)
-                  setHoldReasonVisible(!holdReasonVisible)
-                }}
-                className="delet-btn pointer_cursor px-2"
-              >
-                <FontAwesomeIcon icon={faBan} />
-              </div>
-            </CustomTooltip>
-          )}
-
-          {row && row.unhold_message && (
-            <CustomTooltip content={'Unhold Reason'}>
-              <div
-                onClick={() => {
-                  setCaseId(row._id)
-                  setUnholdReasonVisible(!unholdReasonVisible)
-                }}
-                className="delet-btn pointer_cursor px-2"
-              >
-                <FontAwesomeIcon icon={faCreativeCommonsBy} />
-              </div>
-            </CustomTooltip>
-          )}
-
-          <CustomTooltip content="Edit">
-            <div
-              className="edit-btn pointer_cursor"
-              onClick={() => navigate(`/case/${row._id}/edit`)}
-            >
-              <CIcon icon={cilPencil} />
-            </div>
-          </CustomTooltip>
-
-          <CustomTooltip content="Download csv File">
-            <div
-              className="edit-btn pointer_cursor"
-              onClick={() => {
-                downloadExcelCsvReport(row)
-              }}
-            >
-              <CIcon
-                icon={cilDataTransferDown}
-              // onClick={() => {
-              //   downloadExcelCsvReport(row)
-              // }}
-              />            </div>
-          </CustomTooltip>
-
-          <CustomTooltip content="Copy Case">
-            <div
-              className="edit-btn pointer_cursor"
-              onClick={(e) => {
-                e.stopPropagation()
-                setShowCopyModal(true)
-                setuserId([row._id])
-              }}
-            >
-              <CIcon icon={cilCopy} />
-            </div>
-          </CustomTooltip>
-
-          <CustomTooltip content="Delete Case">
-            <div
-              className="delet-btn pointer_cursor"
-              onClick={() => {
-                setVisible(true)
-                setuserId([row._id])
-              }}
-            >
-              <CIcon icon={cilTrash} />
-            </div>
-          </CustomTooltip>
-
-          {row.status === 'submitted to bank' && (
-            <CustomTooltip content="Download Final Zip">
-              <div className="download-btn edit-btn">
-                <CIcon
-                  className="pointer_cursor"
-                  icon={cilCloudDownload}
-                  onClick={() => downloadFinalReportZip(row, setZipLoading, dispatch)}
-                />
-              </div>
-            </CustomTooltip>
-          )}
-
-          {caseInfoVisiblityStatus.includes(row?.status) && row?.all_status['visit_done'] && (
-            <CustomTooltip content="Show Case Info">
-              <div
-                onClick={() => {
-                  navigate(`/case/${row._id}/show-case-details/by/${loggedinUserRole?.name}`)
-                }}
-                className="edit-btn pointer_cursor"
-              >
-                <FontAwesomeIcon icon={faCircleInfo} />
-              </div>
-            </CustomTooltip>
-          )}
+        <div className="action-btn me-3 case-action-cell">
+          <div
+            className={`case-action-status-chip ${
+              holdStatuses.includes(row.status)
+                ? 'case-action-status-chip--hold'
+                : 'case-action-status-chip--live'
+            }`}
+          >
+            <span className="case-action-status-chip__dot" />
+            {holdStatuses.includes(row.status) ? 'Hold' : 'Live'}
+          </div>
+          {renderActionMenu(row)}
         </div>
       ),
 
@@ -731,10 +706,7 @@ export default function AdminDataTable() {
             )}
           </>
         ) : (
-          <div className="text-center">
-            <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-            <p>Loading..</p>
-          </div>
+          <AppTableSkeleton />
         )}
       </>
 
@@ -806,3 +778,5 @@ export default function AdminDataTable() {
     </>
   )
 }
+
+
