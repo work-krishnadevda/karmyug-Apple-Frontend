@@ -6,7 +6,6 @@ import {
   CFormLabel,
   CButton,
   CToastClose,
-  CSpinner,
 } from '@coreui/react'
 import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
@@ -52,6 +51,41 @@ let AC = process.env.REACT_APP_AC
 let BROKER = process.env.REACT_APP_BROKER
 let HR = process.env.REACT_APP_HR
 
+const DashboardSummarySkeleton = ({ condensed = false }) => {
+  const totalCards = condensed ? 8 : 4
+
+  return (
+    <CRow
+      className={`cust_side_box mt-4 dashboard-summary-skeleton-grid dashboard-cards-grid${
+        condensed ? ' dashboard-cards-grid--condensed is-expanded' : ''
+      }`}
+      aria-busy="true"
+      aria-label="Loading dashboard summary"
+    >
+      {Array.from({ length: totalCards }).map((_, index) => (
+        <CCol
+          sm={6}
+          md={3}
+          key={`dashboard-summary-skeleton-${index}`}
+          className={`dashboard-card-shell${condensed ? ' dashboard-card-primary' : ''}`}
+        >
+          <div className="card overview_dashboard dashboard-summary-skeleton">
+            <div className="card-body">
+              <div className="dashboard-summary-skeleton__icon-wrap">
+                <div className="dashboard-summary-skeleton__icon" />
+              </div>
+              <div className="dashboard-summary-skeleton__content">
+                <span className="dashboard-summary-skeleton__line dashboard-summary-skeleton__line--title" />
+                <span className="dashboard-summary-skeleton__line dashboard-summary-skeleton__line--value" />
+              </div>
+            </div>
+          </div>
+        </CCol>
+      ))}
+    </CRow>
+  )
+}
+
 const AdminWidget = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -65,10 +99,7 @@ const AdminWidget = () => {
   const effectRef = useRef(false)
 
   const loggedinUserRole = useSelector((state) => state?.userRole)
-  const isAdminOrHR = loggedinUserRole?.name === ADMIN || loggedinUserRole?.name === HR
-
-
-  const [loadingCounts, setLoadingCounts] = useState(false)
+  const [loadingCounts, setLoadingCounts] = useState(true)
   const [showAllCards, setShowAllCards] = useState(false)
   const dashboardCardsRef = useRef(null)
   const cardsScrollTimeoutRef = useRef(null)
@@ -257,15 +288,6 @@ const AdminWidget = () => {
 
   return (
     <>
-      {loadingCounts && (
-        <div className="spinner_outerbox" style={{ zIndex: 9998 }}>
-          <div className="text-center">
-            <CSpinner color="white" size="lg" style={{ width: '2rem', height: '2rem' }} />
-            <p className="text-white">Loading Counts...</p>
-          </div>
-        </div>
-      )}
-
       <CRow className="align-items-center dashboard-toolbar">
         <CCol xs={12} lg={5} className="py-1">
           <div className="dashboard-toolbar__switcher">
@@ -315,6 +337,9 @@ const AdminWidget = () => {
         </CCol>
       </CRow>
 
+      {loadingCounts ? (
+        <DashboardSummarySkeleton condensed={isCondensedDashboardRole} />
+      ) : (
       <CRow
         ref={dashboardCardsRef}
         className={`cust_side_box mt-4 dashboard-cards-grid${
@@ -1952,7 +1977,8 @@ const AdminWidget = () => {
           </CCol>
         )}
       </CRow>
-      {isCondensedDashboardRole && (
+      )}
+      {!loadingCounts && isCondensedDashboardRole && (
         <div className="dashboard-cards-toggle-wrap">
           <button
             type="button"

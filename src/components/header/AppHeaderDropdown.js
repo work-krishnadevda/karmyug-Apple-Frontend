@@ -435,7 +435,7 @@ const AppHeaderDropdown = ({
             />
           )}
         </CDropdownToggle>
-        <CDropdownMenu className="pt-0" placement="bottom-end">
+        <CDropdownMenu className="pt-0 app-header-profile-menu" placement="bottom-end">
           {primeryAdmin && primeryAdmin?.role && primeryAdmin?.role?.length > 0 && (
             <CDropdownItem
               onClick={() => handleSwitchRole(primeryAdmin)}

@@ -1,0 +1,252 @@
+diff --git a/src/views/charts/ChartBase.js b/src/views/charts/ChartBase.js
+--- a/src/views/charts/ChartBase.js
++++ b/src/views/charts/ChartBase.js
+@@
+-import React from 'react'
+-import { CChartPie, CChartDoughnut } from '@coreui/react-chartjs'
+-import 'chart.js/auto'
+-
+-const ChartBase = ({ type, data, options }) => {
+-  const ChartComponent = type === 'pie' ? CChartPie : CChartDoughnut
+-
+-  const themedOptions = {
+-    maintainAspectRatio: false,
+-    responsive: true,
+-    layout: {
+-      padding: {
+-        top: 8,
+-        right: 8,
+-        bottom: 8,
+-        left: 8,
+-        ...(options?.layout?.padding || {}),
+-      },
+-    },
+-    plugins: {
+-      legend: {
+-        position: 'bottom',
+-        align: 'center',
+-        labels: {
+-          color: '#24423d',
+-          usePointStyle: true,
+-          pointStyle: 'circle',
+-          boxWidth: 10,
+-          boxHeight: 10,
+-          padding: 16,
+-          font: {
+-            size: 12,
+-            weight: '600',
+-          },
+-          ...(options?.plugins?.legend?.labels || {}),
+-        },
+-        ...(options?.plugins?.legend || {}),
+-      },
+-      tooltip: {
+-        backgroundColor: 'rgba(6, 60, 54, 0.95)',
+-        titleColor: '#ffffff',
+-        bodyColor: '#ebfffb',
+-        borderColor: 'rgba(72, 181, 157, 0.32)',
+-        borderWidth: 1,
+-        padding: 12,
+-        displayColors: true,
+-        usePointStyle: true,
+-        cornerRadius: 12,
+-        ...(options?.plugins?.tooltip || {}),
+-      },
+-      ...(options?.plugins || {}),
+-    },
+-    elements: {
+-      arc: {
+-        borderWidth: 3,
+-        borderColor: '#f9fdfc',
+-        hoverBorderWidth: 3,
+-        hoverBorderColor: '#ffffff',
+-        borderRadius: type === 'pie' ? 10 : 14,
+-        spacing: 3,
+-        ...(options?.elements?.arc || {}),
+-      },
+-      ...(options?.elements || {}),
+-    },
+-    ...options,
+-  }
+-
+-  return <ChartComponent data={data} options={themedOptions} />
+-}
+-
+-export default ChartBase
++import React from 'react';
++import { CChartPie, CChartDoughnut } from '@coreui/react-chartjs';
++import 'chart.js/auto';
++
++const ChartBase = ({ type, data, options }) => {
++  const ChartComponent = type === 'pie' ? CChartPie : CChartDoughnut;
++  return <ChartComponent data={data} options={options} />;
++};
++
++export default ChartBase;
+diff --git a/src/views/charts/PieChart.js b/src/views/charts/PieChart.js
+--- a/src/views/charts/PieChart.js
++++ b/src/views/charts/PieChart.js
+@@
+-import React from 'react'
+-import ChartBase from './ChartBase'
+-
+-const themePalette = [
+-  '#066054',
+-  '#1a8b7d',
+-  '#46b5a0',
+-  '#f3b24f',
+-  '#f07a5a',
+-  '#8dc6cf',
+-  '#d95f7a',
+-  '#5a8dee',
+-]
+-
+-const applyThemePalette = (datasets = []) =>
+-  datasets.map((dataset) => {
+-    const pointCount = Array.isArray(dataset?.data) ? dataset.data.length : themePalette.length
+-    const palette = Array.from(
+-      { length: pointCount },
+-      (_, index) => themePalette[index % themePalette.length],
+-    )
+-
+-    return {
+-      ...dataset,
+-      backgroundColor: palette,
+-      hoverBackgroundColor: palette,
+-      hoverOffset: dataset?.hoverOffset ?? 10,
+-    }
+-  })
+-
+-const PieChart = ({ data, options }) => {
+-  const themedData = {
+-    ...data,
+-    datasets: applyThemePalette(data?.datasets),
+-  }
+-
+-  return (
+-    <div className="app-themed-pie-chart">
+-      <div className="app-themed-pie-chart__canvas">
+-        <ChartBase type="pie" data={themedData} options={options} />
+-      </div>
+-    </div>
+-  )
+-}
+-
+-export default PieChart
++import React from 'react';
++import ChartBase from './ChartBase'; // Import the base chart component
++
++const PieChart = ({ data, options }) => (
++
++<div  style={{
++      width: "250px",
++      height: "250px",
++      // backgroundColor: "#EEEEEE",
++      // borderRadius: "10px", /* Adjust the radius as needed */
++    }}>
++<ChartBase type="pie" data={data} options={options} />
++</div>
++);
++
++export default PieChart;
+diff --git a/src/views/dashboard/Dashboard.js b/src/views/dashboard/Dashboard.js
+--- a/src/views/dashboard/Dashboard.js
++++ b/src/views/dashboard/Dashboard.js
+@@
+   const options = {
+     plugins: {
+       legend: {
+-        position: 'bottom',
+-        labels: {
+-          usePointStyle: true,
+-          boxWidth: 10,
+-          boxHeight: 10,
+-          padding: 16,
+-          color: '#24423d',
+-          font: {
+-            size: 12,
+-            weight: '600',
+-          },
+-        },
+-      },
+-      tooltip: {
+-        backgroundColor: 'rgba(6, 60, 54, 0.95)',
+-        titleColor: '#ffffff',
+-        bodyColor: '#ebfffb',
+-        borderColor: 'rgba(72, 181, 157, 0.32)',
+-        borderWidth: 1,
+-        padding: 12,
+-        usePointStyle: true,
+-        cornerRadius: 12,
++        position: 'right',
+       },
+     },
+     layout: {
+       padding: {
+-        left: 8,
+-        right: 8,
+-        top: 8,
+-        bottom: 8,
++        left: 0,
++        right: 0,
++        top: 0,
++        bottom: 0,
+       },
+     },
+diff --git a/src/scss/_custom.scss b/src/scss/_custom.scss
+--- a/src/scss/_custom.scss
++++ b/src/scss/_custom.scss
+@@
+ .cases_analytics_draft-maker .chart-wrapper,
+ .cases_analytics_field-engineer-fe .chart-wrapper {
+   width: 350px;
+   height: 350px;
+   margin-top: -18%;
+   margin-left: -20%;
+ }
+-
+-.app-themed-pie-chart {
+-  width: min(100%, 340px);
+-  margin: 0 auto;
+-  padding: 14px;
+-  border: 1px solid rgba(6, 96, 84, 0.1);
+-  border-radius: 28px;
+-  background:
+-    radial-gradient(circle at top, rgba(70, 181, 160, 0.12), transparent 54%),
+-    linear-gradient(180deg, #fcfffe 0%, #f3faf8 100%);
+-  box-shadow:
+-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+-    0 18px 36px rgba(8, 62, 55, 0.08);
+-}
+-
+-.app-themed-pie-chart__canvas {
+-  position: relative;
+-  min-height: 290px;
+-  padding: 8px;
+-  border-radius: 22px;
+-  background: rgba(255, 255, 255, 0.72);
+-  backdrop-filter: blur(6px);
+-}
+-
+-.app-themed-pie-chart__canvas::before {
+-  content: '';
+-  position: absolute;
+-  inset: 12% 22% 40%;
+-  border-radius: 999px;
+-  background: radial-gradient(circle, rgba(6, 96, 84, 0.14), transparent 72%);
+-  pointer-events: none;
+-}
+-
+-.app-themed-pie-chart canvas {
+-  position: relative;
+-  z-index: 1;
+-}
+-
+-.app-themed-pie-chart ul,
+-.app-themed-pie-chart li {
+-  color: #24423d;
+-}
+ 
+ // Dashboard Gradiants
+ .gradient1 {
+   background: linear-gradient(135deg, #1f4b46 0%, #2e6d64 100%);

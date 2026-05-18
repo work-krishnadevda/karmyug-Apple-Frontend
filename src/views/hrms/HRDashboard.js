@@ -133,26 +133,26 @@ const HRDashboard = () => {
             </div>
 
             {/* Quick Actions Grid */}
-            <CRow className="g-4">
+            <CRow className="g-2 g-md-3 hr-quick-actions-row justify-content-center">
               {quickActions.map((action, index) => (
-                <CCol lg={6} key={index}>
+                <CCol xs={12} sm={6} xl={5} key={index} className="d-flex">
                   <CCard className="hr-feature-card h-100 shadow-sm">
                     <CCardHeader className="hr-card-header">
-                      <div className="d-flex align-items-center">
+                      <div className="d-flex align-items-center hr-feature-card__header">
                         <div className={`feature-icon bg-${action.color}`}>
                           <CIcon icon={action.icon} className="text-white" size="xl" />
                         </div>
-                        <div className="ms-3">
-                          <h5 className="mb-1 fw-bold">{action.title}</h5>
-                          <p className="mb-0 text-muted">{action.description}</p>
+                        <div className="ms-3 hr-feature-card__content">
+                          <h5 className="mb-1 fw-bold hr-feature-card__title">{action.title}</h5>
+                          <p className="mb-0 text-muted hr-feature-card__description">{action.description}</p>
                         </div>
                       </div>
                     </CCardHeader>
                     
                     <CCardBody className="p-4">
                       <div className="features-list mb-4">
-                        <h6 className="fw-semibold mb-3 text-primary">Key Features:</h6>
-                        <ul className="feature-list">
+                        <h6 className="fw-semibold mb-3 text-primary hr-feature-card__label">Key Features:</h6>
+                        <ul className="feature-list hr-feature-card__list">
                           {action.features.map((feature, featureIndex) => (
                             <li key={featureIndex} className="feature-item">
                               <CIcon icon={cilArrowRight} className="text-success me-2" size="sm" />
@@ -277,16 +277,17 @@ const HRDashboard = () => {
 
         .hr-feature-card {
           border: none;
-          border-radius: 16px;
+          border-radius: 14px;
           background: white;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
           overflow: hidden;
           transition: all 0.3s ease;
+          max-width: 100%;
         }
 
         .hr-feature-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
         .hr-card {
@@ -300,13 +301,43 @@ const HRDashboard = () => {
         .hr-card-header {
           background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
           border-bottom: 2px solid #e5e7eb;
-          padding: 20px 24px;
+          padding: 16px 18px;
+        }
+
+        .hr-feature-card__header {
+          gap: 12px;
+          align-items: flex-start !important;
+        }
+
+        .hr-feature-card__content {
+          min-width: 0;
+          flex: 1;
+          overflow: visible;
+        }
+
+        .hr-feature-card__title {
+          font-size: 1.05rem;
+          line-height: 1.3;
+          white-space: normal;
+          overflow: visible;
+          text-overflow: unset;
+          word-break: break-word;
+        }
+
+        .hr-feature-card__description {
+          font-size: 0.9rem;
+          line-height: 1.45;
+          white-space: normal;
+          overflow: visible;
+          text-overflow: unset;
+          word-break: break-word;
         }
 
         .feature-icon {
-          width: 60px;
-          height: 60px;
-          border-radius: 12px;
+          width: 52px;
+          height: 52px;
+          min-width: 52px;
+          border-radius: 10px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -319,21 +350,38 @@ const HRDashboard = () => {
           margin: 0;
         }
 
+        .hr-feature-card__label {
+          font-size: 0.9rem;
+        }
+
+        .hr-feature-card__list {
+          display: grid;
+          gap: 6px;
+          overflow: visible;
+        }
+
         .feature-item {
-          padding: 6px 0;
+          padding: 2px 0;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           color: #4b5563;
-          font-size: 14px;
+          font-size: 0.88rem;
+          line-height: 1.4;
+          white-space: normal;
+          overflow: visible;
+          text-overflow: unset;
+          word-break: break-word;
         }
 
         .action-btn {
-          border-radius: 10px;
+          border-radius: 12px;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           transition: all 0.2s ease;
-          padding: 12px 24px;
+          padding: 10px 16px;
+          font-size: 0.9rem;
+          min-height: 42px;
         }
 
         .action-btn:hover {
@@ -356,25 +404,145 @@ const HRDashboard = () => {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
+        @media (max-width: 1199px) {
+          .hr-feature-card__title {
+            font-size: 1rem;
+          }
+
+          .hr-feature-card__description,
+          .feature-item,
+          .action-btn {
+            font-size: 0.88rem;
+          }
+        }
+
+        @media (max-width: 991px) {
+          .hr-card-header {
+            padding: 14px 16px;
+          }
+
+          .hr-feature-card .card-body {
+            padding: 16px !important;
+          }
+
+          .hr-feature-card__title {
+            font-size: 0.98rem;
+          }
+
+          .hr-feature-card__description {
+            font-size: 0.86rem;
+          }
+
+          .hr-feature-card__label {
+            font-size: 0.88rem;
+          }
+
+          .feature-item {
+            font-size: 0.84rem;
+          }
+        }
+
         @media (max-width: 768px) {
           .hr-sidebar {
             position: fixed;
             z-index: 1040;
           }
+
+          .hr-header {
+            padding: 26px 0 18px;
+          }
+
+          .hr-quick-actions-row {
+            --cui-gutter-x: 0.85rem;
+          }
+
+          .hr-card-header {
+            padding: 13px 14px;
+          }
+
+          .hr-feature-card .card-body {
+            padding: 14px !important;
+          }
+
+          .hr-feature-card__header {
+            gap: 10px;
+          }
+
+          .hr-feature-card__title {
+            font-size: 0.94rem;
+          }
+
+          .hr-feature-card__description {
+            font-size: 0.84rem;
+            line-height: 1.4;
+          }
           
           .action-btn {
-            font-size: 14px;
-            padding: 10px 20px;
+            font-size: 0.82rem;
+            padding: 9px 14px;
           }
           
           .feature-icon {
-            width: 50px;
-            height: 50px;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
           }
           
           .stat-icon {
             width: 60px;
             height: 60px;
+          }
+
+          .feature-item {
+            font-size: 0.8rem;
+            line-height: 1.35;
+          }
+        }
+
+        @media (max-width: 575px) {
+          .hr-feature-card {
+            border-radius: 12px;
+          }
+
+          .hr-card-header {
+            padding: 12px 13px;
+          }
+
+          .hr-feature-card .card-body {
+            padding: 12px !important;
+          }
+
+          .hr-feature-card__header {
+            gap: 8px;
+          }
+
+          .hr-feature-card__title {
+            font-size: 0.9rem;
+          }
+
+          .hr-feature-card__description {
+            font-size: 0.8rem;
+          }
+
+          .hr-feature-card__label {
+            font-size: 0.84rem;
+          }
+
+          .feature-item {
+            font-size: 0.78rem;
+          }
+
+          .action-btn {
+            font-size: 0.78rem;
+            padding: 8px 12px;
+            letter-spacing: 0.04em;
+            min-height: 38px;
+          }
+
+          .feature-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
           }
         }
       `}</style>

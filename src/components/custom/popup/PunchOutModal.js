@@ -65,8 +65,14 @@ const PunchOutModal = ({ visible, onYes, onNo, userData, punchInTime, todayDoneS
     const mins = diffMins % 60
     return `${hours}h ${mins}m`
   }
-  const { webcamRef, image, capture, WebcamComponent, setImage } = useCamera()
+  const { webcamRef, image, capture, WebcamComponent, setImage, requestCameraAccess } = useCamera()
   const { location, error } = useLocation(process.env.REACT_APP_GOOGLE_API_KEY)
+
+  useEffect(() => {
+    if (visible) {
+      requestCameraAccess()
+    }
+  }, [visible, requestCameraAccess])
 
   const canPunchOut = image && (!isTodayDoneEnabled || (todayDraftDone !== '' && todayDraftDone >= 0))
   return (

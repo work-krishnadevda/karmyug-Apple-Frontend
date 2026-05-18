@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCanPunchIn, selectPunchInDisabledReason, checkPunchInAvailability } from 'src/store'
@@ -11,7 +9,6 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
-  CImage,
   CSpinner,
 } from '@coreui/react'
 import { useCamera } from 'src/hooks/useCamera'
@@ -20,7 +17,7 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { toast } from 'react-toastify'
 import BasicProvider from 'src/constants/BasicProvider'
 const PunchInModal = ({ visible, onYes, onNo, userData, isPunchingIn = false }) => {
-  const { webcamRef, image, capture, WebcamComponent, setImage } = useCamera()
+  const { webcamRef, image, capture, WebcamComponent, setImage, cameraError, requestCameraAccess } = useCamera()
   const { location, error } = useLocation(process.env.REACT_APP_GOOGLE_API_KEY)
   const [currentPage, setCurrentPage] = useState(1)
   const [statusFilter, setStatusFilter] = useState('')
@@ -160,8 +157,11 @@ const punchInDisabledReason = useSelector(selectPunchInDisabledReason)
   useEffect(() => {
     if (!visible) {
       setIsButtonLoading(false)
+      return
     }
-  }, [visible])
+
+    requestCameraAccess()
+  }, [visible, requestCameraAccess])
 
   // Cleanup debounce timer on unmount
   useEffect(() => {
@@ -175,94 +175,83 @@ const punchInDisabledReason = useSelector(selectPunchInDisabledReason)
 
   return (
     <CModal alignment="center" visible={visible} backdrop="static" className="punch-in-modal">
-      <CModalHeader
-        closeButton={false}
-        style={{
-          background: 'linear-gradient(135deg, #1e7e34, #28a745)',
-          color: 'white',
-          border: 'none',
-        }}
-      >
-        <CModalTitle style={{ color: 'white', fontWeight: 'bold' }}>
-          Punch In Confirmation
-        </CModalTitle>
+      <CModalHeader closeButton={false} className="punch-in-modal__header">
+        <CModalTitle className="punch-in-modal__title">Punch In Confirmation</CModalTitle>
       </CModalHeader>
 
-      <CModalBody className="text-center" style={{ padding: '1rem' }}>
-        {/* Profile Info */}
-        <div className="mb-3">
+      <CModalBody className="punch-in-modal__body text-center">
+        <div className="punch-in-modal__profile">
           <h5 className="mb-1">{userData?.name || 'Employee Name'}</h5>
-          <p className="text-muted small mb-0">
+          <p className="mb-0">
             {userData?.role?.[0]?.display_name || userData?.role?.[0]?.name || 'Role'}
           </p>
         </div>
 
-     
-        {/* Camera Frame */}
-        <div className="mb-3">
-          <h6 className="mb-1 small">Live Camera Capture</h6>
-          {image ? (
-            <img
-              src={image}
-              alt="Captured"
-              width={200}
-              height={140}
-              style={{ borderRadius: '6px' }}
-            />
-          ) : (
-            <WebcamComponent />
-          )}
-          <div className="mt-1">
+        <div className="punch-in-modal__panel">
+          <h6 className="mb-3 punch-in-modal__section-title">Live Camera Capture</h6>
+
+          <div className="punch-in-modal__camera-frame">
+            {image ? (
+              <img src={image} alt="Captured" className="punch-in-modal__captured-image" />
+            ) : cameraError ? (
+              <div className="punch-in-modal__camera-error">
+                <p className="mb-0">{cameraError}</p>
+              </div>
+            ) : (
+              <div className="punch-in-modal__webcam-wrap">
+                <WebcamComponent />
+              </div>
+            )}
+          </div>
+
+          <div className="punch-in-modal__camera-actions">
             {!image ? (
-              <CButton size="sm" color="success" onClick={capture}>
+              <CButton size="sm" className="punch-in-modal__mini-btn punch-in-modal__mini-btn--primary" onClick={capture}>
                 Capture
               </CButton>
             ) : (
-              <CButton size="sm" color="warning" onClick={() => window.location.reload()}>
+              <CButton
+                size="sm"
+                className="punch-in-modal__mini-btn punch-in-modal__mini-btn--secondary"
+                onClick={() => window.location.reload()}
+              >
                 Retake
               </CButton>
             )}
           </div>
         </div>
 
-        {/* Location Info */}
-        <div className="mb-2">
-          <h6 className="mb-1 small">Current Location</h6>
-          {error && <p className="text-danger small mb-0">{error}</p>}
-          {!location && !error && <CSpinner size="sm" />}
-          {location && <p className="text-success small mb-0">{location.address}</p>}
+        <div className="punch-in-modal__panel punch-in-modal__panel--soft">
+          <h6 className="mb-3 punch-in-modal__section-title">Current Location</h6>
+
+          <div className="punch-in-modal__location-box">
+            {error && <p className="punch-in-modal__location-error mb-0">{error}</p>}
+            {!location && !error && (
+              <div className="punch-in-modal__location-loading">
+                <CSpinner size="sm" />
+                <span>Fetching your current location...</span>
+              </div>
+            )}
+            {location && <p className="punch-in-modal__location-success mb-0">{location.address}</p>}
+          </div>
         </div>
 
-        {/* Confirmation */}
-        <div className="alert alert-success py-2">
-          <h6 className="mb-0 small">Ready to start your workday?</h6>
+        <div className="punch-in-modal__status-note">
+          <h6 className="mb-0">Ready to start your workday?</h6>
         </div>
       </CModalBody>
-   {/* Leave Alert */}
-   {onLeaveToday && (
-          <div className="alert alert-danger py-2 mb-3" style={{ backgroundColor: '#f8d7da', borderColor: '#f5c6cb', color: '#721c24' }}>
-            <h6 className="mb-0 small" style={{ color: '#721c24', fontWeight: 'bold' }}>
+
+      {onLeaveToday && (
+        <div className="punch-in-modal__leave-alert">
+          <h6 className="mb-0">
               Today you are on Leave, please contact HR and admin for punch in
-            </h6>
-          </div>
-        )}
+          </h6>
+        </div>
+      )}
 
-      <CModalFooter className="justify-content-center">
-        {/* <CButton
-          color="success"
-          className="me-3 px-4"
-          disabled={onLeaveToday || !image || !location}
-          onClick={() => {
-            onYes({ image, location })
-            setTimeout(() => setImage(null), 2000)
-          }}
-        >
-          {onLeaveToday ? 'On Leave Today' : 'Yes, Punch In'}
-        </CButton> */}
-
+      <CModalFooter className="punch-in-modal__footer">
         <CButton
-          color="success"
-          className="me-3 px-4"
+          className="punch-in-modal__action-btn punch-in-modal__action-btn--primary"
           disabled={
             isPunchingIn ||
             isButtonLoading ||
@@ -283,7 +272,7 @@ const punchInDisabledReason = useSelector(selectPunchInDisabledReason)
           )}
         </CButton>
 
-        <CButton color="secondary" className="px-4" onClick={onNo}>
+        <CButton className="punch-in-modal__action-btn punch-in-modal__action-btn--ghost" onClick={onNo}>
           No, Later
         </CButton>
       </CModalFooter>

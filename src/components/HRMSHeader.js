@@ -297,7 +297,7 @@ const HRMSHeader = () => {
   }
 
   return (
-    <CHeader position="sticky" className="mb-4">
+    <CHeader position="sticky" className="mb-4 app-header">
       <CContainer fluid>
         {/* Left: Hamburger */}
         <CHeaderToggler

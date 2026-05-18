@@ -35,6 +35,26 @@ let AC = process.env.REACT_APP_AC
 let BROKER = process.env.REACT_APP_BROKER
 let HR = process.env.REACT_APP_HR
 
+const DashboardPieSkeleton = ({ className = '', showFilters = false }) => (
+  <div className={`dashboard-pie-skeleton ${className}`.trim()} aria-hidden="true">
+    {showFilters && (
+      <div className="dashboard-pie-skeleton__filters">
+        <span className="dashboard-pie-skeleton__field" />
+        <span className="dashboard-pie-skeleton__field" />
+      </div>
+    )}
+    <div className="dashboard-pie-skeleton__content">
+      <div className="dashboard-pie-skeleton__chart" />
+      <div className="dashboard-pie-skeleton__legend">
+        <span className="dashboard-pie-skeleton__legend-line dashboard-pie-skeleton__legend-line--lg" />
+        <span className="dashboard-pie-skeleton__legend-line" />
+        <span className="dashboard-pie-skeleton__legend-line" />
+        <span className="dashboard-pie-skeleton__legend-line dashboard-pie-skeleton__legend-line--sm" />
+      </div>
+    </div>
+  </div>
+)
+
 const Dashboard = () => {
   let dispatch = useDispatch()
   let navigate = useNavigate()
@@ -48,6 +68,9 @@ const Dashboard = () => {
   const [casecountgraphical2, setcasecountgraphical2] = useState([])
   const [casecountgraphical3, setcasecountgraphical3] = useState([])
   const [defaultSelectedValue, setDefaultSelectedValue] = useState(null)
+  const [isDashboardLoading, setIsDashboardLoading] = useState(true)
+  const [isSubmissionLoading, setIsSubmissionLoading] = useState(true)
+  const [isBarChartLoading, setIsBarChartLoading] = useState(false)
 
   const effectRef1 = useRef(false)
   const effectRef2 = useRef(false)
@@ -77,6 +100,7 @@ const Dashboard = () => {
     const roleId = initialValues.role ? initialValues.role.value : ''
 
     try {
+      setIsBarChartLoading(true)
       let url = `cms/dashboard/Cases-by-chart?startDate=${formatted_Start_Date}&endDate=${formatted_End_Date}`
 
       if (roleId) {
@@ -88,6 +112,8 @@ const Dashboard = () => {
       setcasecountChart(response.data)
     } catch (error) {
       console.error('Error fetching chart data:', error)
+    } finally {
+      setIsBarChartLoading(false)
     }
   }
 
@@ -144,6 +170,7 @@ const Dashboard = () => {
 
   const fetchDashboardCountData = async () => {
     try {
+      setIsDashboardLoading(true)
       const response1 = await new BasicProvider(
         `cms/dashboard/cases-graph1/counts`,
         dispatch,
@@ -160,6 +187,8 @@ const Dashboard = () => {
       setcasecountgraphical2(response4.data)
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsDashboardLoading(false)
     }
   }
 
@@ -173,6 +202,7 @@ const Dashboard = () => {
     )}-${String(endDate.getDate()).padStart(2, '0')}`
 
     try {
+      setIsSubmissionLoading(true)
       let url = `cms/dashboard/date-wise-cases/counts?date_from=${formatted_Start_Date}&date_to=${formatted_End_Date}&data=true&isadmin=true`
 
       const response = await new BasicProvider(url).getRequest()
@@ -180,6 +210,8 @@ const Dashboard = () => {
       // console.log('response.data')
     } catch (error) {
       console.error('Error fetching data:', error)
+    } finally {
+      setIsSubmissionLoading(false)
     }
   }
 
@@ -280,20 +312,42 @@ const Dashboard = () => {
   }, [casesCounts, casecountgraphical2, casecountgraphical3])
 
   const options = {
+    maintainAspectRatio: true,
+    aspectRatio: 1,
     plugins: {
       legend: {
         position: 'right',
+        labels: {
+          usePointStyle: true,
+          boxWidth: 8,
+          boxHeight: 8,
+          padding: 12,
+          color: '#24423d',
+          font: {
+            size: 11,
+            weight: '600',
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: 'rgba(6, 60, 54, 0.95)',
+        titleColor: '#ffffff',
+        bodyColor: '#ebfffb',
+        borderColor: 'rgba(72, 181, 157, 0.32)',
+        borderWidth: 1,
+        padding: 12,
+        usePointStyle: true,
+        cornerRadius: 12,
       },
     },
     layout: {
       padding: {
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
+        left: 8,
+        right: 8,
+        top: 8,
+        bottom: 8,
       },
     },
-    maintainAspectRatio: false,
     responsive: true,
   }
 
@@ -330,21 +384,35 @@ const Dashboard = () => {
           <CRow className="my-3">
             {loggedinUserRole.name !== AC && (
               <CCol sm={6} md={4}>
-                <CCard>
+                <CCard className="dashboard-pie-card dashboard-pie-card--records h-100">
                   <CCardHeader className="dashboard-graph-heading"> Cases Records </CCardHeader>
-                  <CCardBody className="d-flex justify-content-center align-items-center">
-                    <PieChart
-                      data={{
-                        labels: ['All Cases', 'Submitted to bank'],
-                        datasets: [
-                          {
-                            data: allCasesAnalyticChartData,
-                            backgroundColor: ['#3399FF', '#73b43c'],
-                            hoverOffset: 4,
+                  <CCardBody className="dashboard-pie-card__body d-flex justify-content-center align-items-center">
+                    {isDashboardLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--records" />
+                    ) : (
+                      <PieChart
+                        className="app-themed-pie-chart--records"
+                        options={{
+                          radius: '78%',
+                          plugins: {
+                            legend: {
+                              position: 'bottom',
+                              align: 'center',
+                            },
                           },
-                        ],
-                      }}
-                    />
+                        }}
+                        data={{
+                          labels: ['All Cases', 'Submitted to bank'],
+                          datasets: [
+                            {
+                              data: allCasesAnalyticChartData,
+                              backgroundColor: ['#3399FF', '#73b43c'],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    )}
                   </CCardBody>
                 </CCard>
               </CCol>
@@ -355,42 +423,50 @@ const Dashboard = () => {
               loggedinUserRole.name !== AC &&
               loggedinUserRole.name !== LCTO && (
                 <CCol sm={6} md={8}>
-                  <CCard className="mt-4 mt-sm-0 mt-md-0 ">
+                  <CCard className="dashboard-pie-card dashboard-pie-card--analytics h-100 mt-4 mt-sm-0 mt-md-0 ">
                     <CCardHeader className="dashboard-graph-heading">
                       Cases Analytics Graph
                     </CCardHeader>
                     <CCardBody
-                      className={`d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
+                      className={`dashboard-pie-card__body d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
                     >
-                      <PieChart
-                        options={options}
-                        data={{
-                          labels: [
-                            'pending for DM',
-                            'pending for Visit',
-                            'pending for Accept',
-                            'pending for CTO',
-                            'pending for LCTO',
-                            'pendingTieUp',
-                            'Hold',
-                          ],
-                          datasets: [
-                            {
-                              data: allcasecountgraphical2,
-                              backgroundColor: [
-                                '#3399FF',
-                                '#eb85c1',
-                                '#F9B115',
-                                '#92C7CF',
-                                '#f7365e',
-                                '#A020F0',
-                                '#FF0000',
-                              ],
-                              hoverOffset: 12,
-                            },
-                          ],
-                        }}
-                      />
+                      {isDashboardLoading ? (
+                        <DashboardPieSkeleton className="dashboard-pie-skeleton--analytics" />
+                      ) : (
+                        <PieChart
+                          className="app-themed-pie-chart--analytics"
+                          options={{
+                            ...options,
+                            radius: '72%',
+                          }}
+                          data={{
+                            labels: [
+                              'pending for DM',
+                              'pending for Visit',
+                              'pending for Accept',
+                              'pending for CTO',
+                              'pending for LCTO',
+                              'pendingTieUp',
+                              'Hold',
+                            ],
+                            datasets: [
+                              {
+                                data: allcasecountgraphical2,
+                                backgroundColor: [
+                                  '#3399FF',
+                                  '#eb85c1',
+                                  '#F9B115',
+                                  '#92C7CF',
+                                  '#f7365e',
+                                  '#A020F0',
+                                  '#FF0000',
+                                ],
+                                hoverOffset: 12,
+                              },
+                            ],
+                          }}
+                        />
+                      )}
                     </CCardBody>
                   </CCard>
                 </CCol>
@@ -404,10 +480,10 @@ const Dashboard = () => {
               loggedinUserRole.name !== AC &&
               loggedinUserRole.name !== LCTO && (
                 <CCol sm={6} md={12}>
-                  <CCard className="mt-4 ml-2">
+                  <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                     <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
                     <CCardBody
-                      className={`d-flex flex-column align-items-center justify-content-center cases_analytics_${loggedinUserRole.name}`}
+                      className={`dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics_${loggedinUserRole.name}`}
                     >
                       <CRow>
                         <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
@@ -441,8 +517,14 @@ const Dashboard = () => {
                         </CCol>
                       </CRow>
 
-                      {allcasecountgraphical3.some((count) => count > 0) ? (
+                      {isSubmissionLoading ? (
+                        <DashboardPieSkeleton
+                          className="dashboard-pie-skeleton--submission"
+                          showFilters={false}
+                        />
+                      ) : allcasecountgraphical3.some((count) => count > 0) ? (
                         <PieChart
+                          className="app-themed-pie-chart--submission"
                           options={options}
                           data={{
                             labels: ['Visit Done', 'Draft Done', 'RC Done', 'Submitted to bank'],
@@ -467,78 +549,93 @@ const Dashboard = () => {
 
             {loggedinUserRole.name === DM && (
               <CCol sm={6} md={8}>
-                <CCard className="mt-4 mt-sm-0 mt-md-0">
+                <CCard className="dashboard-pie-card dashboard-pie-card--analytics h-100 mt-4 mt-sm-0 mt-md-0">
                   <CCardHeader className="dashboard-graph-heading">
                     Cases Analytics Graph
                   </CCardHeader>
                   <CCardBody
-                    className={`d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
+                    className={`dashboard-pie-card__body d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
                   >
-                    <PieChart
-                      options={options}
-                      data={{
-                        labels: ['Draft pending', 'Hold'],
-                        datasets: [
-                          {
-                            data: allcasecountgraphicalDM2,
-                            backgroundColor: ['#92C7CF', ' #CCD3CA'],
-                            hoverOffset: 4,
-                          },
-                        ],
-                      }}
-                    />
+                    {isDashboardLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--analytics" />
+                    ) : (
+                      <PieChart
+                        className="app-themed-pie-chart--analytics"
+                        options={options}
+                        data={{
+                          labels: ['Draft pending', 'Hold'],
+                          datasets: [
+                            {
+                              data: allcasecountgraphicalDM2,
+                              backgroundColor: ['#92C7CF', ' #CCD3CA'],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    )}
                   </CCardBody>
                 </CCard>
               </CCol>
             )}
             {loggedinUserRole.name === CTO && (
               <CCol sm={6} md={8}>
-                <CCard className="mt-4 mt-sm-0 mt-md-0">
+                <CCard className="dashboard-pie-card dashboard-pie-card--analytics h-100 mt-4 mt-sm-0 mt-md-0">
                   <CCardHeader className="dashboard-graph-heading">
                     Cases Analytics Graph
                   </CCardHeader>
                   <CCardBody
-                    className={`d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
+                    className={`dashboard-pie-card__body d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
                   >
-                    <PieChart
-                      options={options}
-                      data={{
-                        labels: ['Draft Pending', 'Vsit Pending', ' RC Pending', 'Pending LCTO'],
-                        datasets: [
-                          {
-                            data: allcasecountgraphicalCTO2,
-                            backgroundColor: ['#92C7CF', ' #CCD3CA', '#92C7CF', ' #73b43c'],
-                            hoverOffset: 4,
-                          },
-                        ],
-                      }}
-                    />
+                    {isDashboardLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--analytics" />
+                    ) : (
+                      <PieChart
+                        className="app-themed-pie-chart--analytics"
+                        options={options}
+                        data={{
+                          labels: ['Draft Pending', 'Vsit Pending', ' RC Pending', 'Pending LCTO'],
+                          datasets: [
+                            {
+                              data: allcasecountgraphicalCTO2,
+                              backgroundColor: ['#92C7CF', ' #CCD3CA', '#92C7CF', ' #73b43c'],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    )}
                   </CCardBody>
                 </CCard>
               </CCol>
             )}
             {loggedinUserRole.name === LCTO && (
               <CCol sm={6} md={8}>
-                <CCard className="mt-4 mt-sm-0 mt-md-0">
+                <CCard className="dashboard-pie-card dashboard-pie-card--analytics h-100 mt-4 mt-sm-0 mt-md-0">
                   <CCardHeader className="dashboard-graph-heading">
                     Cases Analytics Graph
                   </CCardHeader>
                   <CCardBody
-                    className={`d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
+                    className={`dashboard-pie-card__body d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
                   >
-                    <PieChart
-                      options={options}
-                      data={{
-                        labels: ['Draft Pending', 'Vsit Pending', ' RC Pending', 'Pending LCTO'],
-                        datasets: [
-                          {
-                            data: allcasecountgraphicalLCTO2,
-                            backgroundColor: ['#92C7CF', ' #CCD3CA', '#92C7CF', ' #73b43c'],
-                            hoverOffset: 4,
-                          },
-                        ],
-                      }}
-                    />
+                    {isDashboardLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--analytics" />
+                    ) : (
+                      <PieChart
+                        className="app-themed-pie-chart--analytics"
+                        options={options}
+                        data={{
+                          labels: ['Draft Pending', 'Vsit Pending', ' RC Pending', 'Pending LCTO'],
+                          datasets: [
+                            {
+                              data: allcasecountgraphicalLCTO2,
+                              backgroundColor: ['#92C7CF', ' #CCD3CA', '#92C7CF', ' #73b43c'],
+                              hoverOffset: 4,
+                            },
+                          ],
+                        }}
+                      />
+                    )}
                   </CCardBody>
                 </CCard>
               </CCol>
@@ -546,26 +643,31 @@ const Dashboard = () => {
 
             {loggedinUserRole.name === FE && (
               <CCol sm={6} md={8}>
-                <CCard className="mt-4 mt-sm-0 mt-md-0">
+                <CCard className="dashboard-pie-card dashboard-pie-card--analytics h-100 mt-4 mt-sm-0 mt-md-0">
                   <CCardHeader className="dashboard-graph-heading">
                     Cases Analytics Graph
                   </CCardHeader>
                   <CCardBody
-                    className={`d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
+                    className={`dashboard-pie-card__body d-flex justify-content-center align-items-center cases_analytics_${loggedinUserRole.name}`}
                   >
-                    <PieChart
-                      options={options}
-                      data={{
-                        labels: ['Pending for Accept', 'Pending for Tie-Up', 'Pending for Visit'],
-                        datasets: [
-                          {
-                            data: allcasecountgraphicalFE2,
-                            backgroundColor: ['#f7365c', '#92C7CF', ' #eb85c1'],
-                            hoverOffset: 12,
-                          },
-                        ],
-                      }}
-                    />
+                    {isDashboardLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--analytics" />
+                    ) : (
+                      <PieChart
+                        className="app-themed-pie-chart--analytics"
+                        options={options}
+                        data={{
+                          labels: ['Pending for Accept', 'Pending for Tie-Up', 'Pending for Visit'],
+                          datasets: [
+                            {
+                              data: allcasecountgraphicalFE2,
+                              backgroundColor: ['#f7365c', '#92C7CF', ' #eb85c1'],
+                              hoverOffset: 12,
+                            },
+                          ],
+                        }}
+                      />
+                    )}
                   </CCardBody>
                 </CCard>
               </CCol>
@@ -573,9 +675,9 @@ const Dashboard = () => {
 
             {loggedinUserRole.name == FE && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -606,8 +708,11 @@ const Dashboard = () => {
                         />
                       </CCol>
                     </CRow>
-                    {allcasecountgraphicalFE3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalFE3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['visit Done', 'Draft Done', 'Submitted to bank'],
@@ -632,9 +737,9 @@ const Dashboard = () => {
 
             {loggedinUserRole.name == DM && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -666,8 +771,11 @@ const Dashboard = () => {
                       </CCol>
                     </CRow>
 
-                    {allcasecountgraphicalDM3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalDM3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['submiited(UT)', 'submitted(OT)', 'Draft Done'],
@@ -692,9 +800,9 @@ const Dashboard = () => {
 
             {loggedinUserRole.name == SDM && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -726,8 +834,11 @@ const Dashboard = () => {
                       </CCol>
                     </CRow>
 
-                    {allcasecountgraphicalSDM3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalSDM3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['submiited(UT)', 'submitted(OT)', 'RCdone', 'Draft Done'],
@@ -752,9 +863,9 @@ const Dashboard = () => {
 
             {loggedinUserRole.name == RC && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -785,8 +896,11 @@ const Dashboard = () => {
                         />
                       </CCol>
                     </CRow>
-                    {allcasecountgraphicalRC3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalRC3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['submiited(UT)', 'submitted(OT)', 'Draft Done'],
@@ -810,9 +924,9 @@ const Dashboard = () => {
             )}
             {loggedinUserRole.name == CTO && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -843,8 +957,11 @@ const Dashboard = () => {
                         />
                       </CCol>
                     </CRow>
-                    {allcasecountgraphicalCTO3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalCTO3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['submiited(UT)', 'submitted(OT)', 'Draft Done', 'Visit Done'],
@@ -868,9 +985,9 @@ const Dashboard = () => {
             )}
             {loggedinUserRole.name == LCTO && (
               <CCol sm={6} md={12}>
-                <CCard className="mt-4 ml-2">
+                <CCard className="dashboard-pie-card dashboard-pie-card--submission mt-4 ml-2">
                   <CCardHeader className="dashboard-graph-heading"> Submission Graph</CCardHeader>
-                  <CCardBody className="d-flex flex-column align-items-center justify-content-center cases_analytics">
+                  <CCardBody className="dashboard-pie-card__body d-flex flex-column align-items-center justify-content-center cases_analytics">
                     <CRow>
                       <CCol xs={6} sm={5} md={4} lg={5} className="pe-md-0 py-1">
                         <DatePicker
@@ -901,8 +1018,11 @@ const Dashboard = () => {
                         />
                       </CCol>
                     </CRow>
-                    {allcasecountgraphicalLCTO3.some((count) => count > 0) ? (
+                    {isSubmissionLoading ? (
+                      <DashboardPieSkeleton className="dashboard-pie-skeleton--submission" />
+                    ) : allcasecountgraphicalLCTO3.some((count) => count > 0) ? (
                       <PieChart
+                        className="app-themed-pie-chart--submission"
                         options={options}
                         data={{
                           labels: ['submiited(UT)', 'submitted(OT)', 'Draft Done'],
@@ -983,67 +1103,80 @@ const Dashboard = () => {
                   </CRow>
 
                   <CRow>
-                    <CChart
-                      type="bar"
-                      data={{
-                        labels:
-                          casescountcharts.length > 0 &&
-                          casescountcharts.map((item) => item.branchName),
-                        datasets: [
-                          {
-                            label: 'Total Case',
-                            data:
-                              casescountcharts.length > 0 &&
-                              casescountcharts.map((item) => item.totalCount),
-                            backgroundColor: ['#39f'],
-                          },
-                          {
-                            label:
-                              casescountcharts.length > 0
-                                ? casescountcharts[0].status === 'Submitted to Bank'
-                                  ? 'Submitted to Bank'
-                                  : 'Visit Done'
-                                : '',
-                            data:
-                              casescountcharts.length > 0 &&
-                              casescountcharts.map((item) =>
-                                item.status === 'Submitted to Bank'
-                                  ? item.submittedToBank
-                                  : item.visitDoneCount,
-                              ),
-                            backgroundColor: ['#73b43c'],
-                          },
-                        ],
-                      }}
-                      labels="months"
-                      options={{
-                        plugins: {
-                          legend: {
-                            labels: {
-                              color: getStyle('--cui-body-color'),
+                    {isDashboardLoading || isBarChartLoading ? (
+                      <div className="dashboard-bar-skeleton" aria-hidden="true">
+                        <div className="dashboard-bar-skeleton__chart">
+                          <span className="dashboard-bar-skeleton__bar" />
+                          <span className="dashboard-bar-skeleton__bar dashboard-bar-skeleton__bar--tall" />
+                          <span className="dashboard-bar-skeleton__bar dashboard-bar-skeleton__bar--mid" />
+                          <span className="dashboard-bar-skeleton__bar dashboard-bar-skeleton__bar--short" />
+                          <span className="dashboard-bar-skeleton__bar dashboard-bar-skeleton__bar--mid" />
+                          <span className="dashboard-bar-skeleton__bar dashboard-bar-skeleton__bar--tall" />
+                        </div>
+                      </div>
+                    ) : (
+                      <CChart
+                        type="bar"
+                        data={{
+                          labels:
+                            casescountcharts.length > 0 &&
+                            casescountcharts.map((item) => item.branchName),
+                          datasets: [
+                            {
+                              label: 'Total Case',
+                              data:
+                                casescountcharts.length > 0 &&
+                                casescountcharts.map((item) => item.totalCount),
+                              backgroundColor: ['#39f'],
+                            },
+                            {
+                              label:
+                                casescountcharts.length > 0
+                                  ? casescountcharts[0].status === 'Submitted to Bank'
+                                    ? 'Submitted to Bank'
+                                    : 'Visit Done'
+                                  : '',
+                              data:
+                                casescountcharts.length > 0 &&
+                                casescountcharts.map((item) =>
+                                  item.status === 'Submitted to Bank'
+                                    ? item.submittedToBank
+                                    : item.visitDoneCount,
+                                ),
+                              backgroundColor: ['#73b43c'],
+                            },
+                          ],
+                        }}
+                        labels="months"
+                        options={{
+                          plugins: {
+                            legend: {
+                              labels: {
+                                color: getStyle('--cui-body-color'),
+                              },
                             },
                           },
-                        },
-                        scales: {
-                          x: {
-                            grid: {
-                              color: getStyle('--cui-border-color-translucent'),
+                          scales: {
+                            x: {
+                              grid: {
+                                color: getStyle('--cui-border-color-translucent'),
+                              },
+                              ticks: {
+                                color: getStyle('--cui-body-color'),
+                              },
                             },
-                            ticks: {
-                              color: getStyle('--cui-body-color'),
+                            y: {
+                              grid: {
+                                color: getStyle('--cui-border-color-translucent'),
+                              },
+                              ticks: {
+                                color: getStyle('--cui-body-color'),
+                              },
                             },
                           },
-                          y: {
-                            grid: {
-                              color: getStyle('--cui-border-color-translucent'),
-                            },
-                            ticks: {
-                              color: getStyle('--cui-body-color'),
-                            },
-                          },
-                        },
-                      }}
-                    />
+                        }}
+                      />
+                    )}
                   </CRow>
                 </CCardBody>
               </CCard>

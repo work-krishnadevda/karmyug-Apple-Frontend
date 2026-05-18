@@ -501,7 +501,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
           {/* Here i want to set bell icon for or notification icon for announcement  */}
           <CHeaderNav className="me-3">
             <CButton
-              className="position-relative rounded-circle d-flex align-items-center justify-content-center"
+              className="position-relative rounded-circle d-flex align-items-center justify-content-center header-icon-btn"
               color="light"
               style={{ width: '45px', height: '45px', padding: 0, top: '4px' }}
               onClick={() => navigate('/announcement')}
