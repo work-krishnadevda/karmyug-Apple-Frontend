@@ -3,6 +3,10 @@
 
 $enable-ltr: true;
 $enable-rtl: true;
+$font-family-sans-serif: 'DM Sans', sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-font-family: $font-family-sans-serif;
+$input-btn-font-family: $font-family-sans-serif;
 
 // Import CoreUI for React components library
 @import '@coreui/coreui/scss/coreui';
@@ -70,8 +74,25 @@ $enable-rtl: true;
   --primaryColor: #0a1857;
   --secondaryColor: white;
   --greenColor: #73b43c;
+  --cui-font-sans-serif: 'DM Sans', sans-serif;
   // --primaryColor: #081632;
   // --secondaryColor: #c9341e;
+}
+
+html,
+body,
+#root,
+.app,
+.wrapper {
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 // If you want to add custom CSS you can put it here.
