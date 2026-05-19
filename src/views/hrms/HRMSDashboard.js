@@ -397,80 +397,69 @@ const HRMSDashboard = () => {
             {/* Stats Cards */}
             <CRow className="g-4 mb-4">
               <CCol sm={6} lg={3}>
-                <CCard className="stat-card border-0 shadow-sm">
+                <CCard className="overview_dashboard hrms-overview-card hrms-overview-card--staff border-0 shadow-sm">
                   <CCardBody className="p-4">
-                    <div className="d-flex align-items-center">
-                      <div className="stat-icon bg-primary">
-                        <CIcon icon={cilPeople} className="text-white" size="xl" />
-                      </div>
-                      <div className="ms-3">
-                        <h3 className="mb-1 fw-bold text-primary">{stats.activeStaff}</h3>
-                        <p className="mb-0 text-muted small">Total Staff</p>
-                        <small className="text-success">
-                          <CIcon icon={cilArrowTop} className="me-1" />+{stats.newHires} this month
-                        </small>
-                      </div>
+                    <div className="stat-icon">
+                      <CIcon icon={cilPeople} className="text-white" size="xl" />
+                    </div>
+                    <div className="hrms-overview-card__content">
+                      <p className="text-medium-emphasis">Total Staff</p>
+                      <h3 className="fs-6 mb-0">{stats.activeStaff}</h3>
+                      <small className="hrms-overview-card__meta hrms-overview-card__meta--positive">
+                        <CIcon icon={cilArrowTop} className="me-1" />+{stats.newHires} this month
+                      </small>
                     </div>
                   </CCardBody>
                 </CCard>
               </CCol>
 
               <CCol sm={6} lg={3}>
-                <CCard className="stat-card border-0 shadow-sm">
+                <CCard className="overview_dashboard hrms-overview-card hrms-overview-card--present border-0 shadow-sm">
                   <CCardBody className="p-4">
-                    <div className="d-flex align-items-center">
-                      <div className="stat-icon bg-success">
-                        <CIcon icon={cilCheckCircle} className="text-white" size="xl" />
-                      </div>
-                      <div className="ms-3">
-                        <h3 className="mb-1 fw-bold text-success"> 
-                          {stats.presentToday}
-                        </h3>
-
-                        <p className="mb-0 text-muted small">Present Today</p>
-                        <small className="text-muted">
-                          {stats.activeStaff > 0
-                            ? Math.round((stats.presentToday / stats.activeStaff) * 100)
-                            : 0}
-                          % attendance
-                        </small>
-                      </div>
+                    <div className="stat-icon">
+                      <CIcon icon={cilCheckCircle} className="text-white" size="xl" />
+                    </div>
+                    <div className="hrms-overview-card__content">
+                      <p className="text-medium-emphasis">Present Today</p>
+                      <h3 className="fs-6 mb-0">{stats.presentToday}</h3>
+                      <small className="hrms-overview-card__meta">
+                        {stats.activeStaff > 0
+                          ? Math.round((stats.presentToday / stats.activeStaff) * 100)
+                          : 0}
+                        % attendance
+                      </small>
                     </div>
                   </CCardBody>
                 </CCard>
               </CCol>
 
               <CCol sm={6} lg={3}>
-                <CCard className="stat-card border-0 shadow-sm">
+                <CCard className="overview_dashboard hrms-overview-card hrms-overview-card--leave border-0 shadow-sm">
                   <CCardBody className="p-4">
-                    <div className="d-flex align-items-center">
-                      <div className="stat-icon bg-warning">
-                        <CIcon icon={cilCalendarCheck} className="text-white" size="xl" />
-                      </div>
-                      <div className="ms-3">
-                        <h3 className="mb-1 fw-bold text-warning">{leaveData.pending || 0}</h3>
-                        <p className="mb-0 text-muted small">Pending Leaves</p>
-                        <small className="text-muted">
-                          {leaveData.approved || 0} approved this month
-                        </small>
-                      </div>
+                    <div className="stat-icon">
+                      <CIcon icon={cilCalendarCheck} className="text-white" size="xl" />
+                    </div>
+                    <div className="hrms-overview-card__content">
+                      <p className="text-medium-emphasis">Pending Leaves</p>
+                      <h3 className="fs-6 mb-0">{leaveData.pending || 0}</h3>
+                      <small className="hrms-overview-card__meta">
+                        {leaveData.approved || 0} approved this month
+                      </small>
                     </div>
                   </CCardBody>
                 </CCard>
               </CCol>
 
               <CCol sm={6} lg={3}>
-                <CCard className="stat-card border-0 shadow-sm">
+                <CCard className="overview_dashboard hrms-overview-card hrms-overview-card--announcement border-0 shadow-sm">
                   <CCardBody className="p-4">
-                    <div className="d-flex align-items-center">
-                      <div className="stat-icon bg-info">
-                        <CIcon icon={cilBell} className="text-white" size="xl" />
-                      </div>
-                      <div className="ms-3">
-                        <h3 className="mb-1 fw-bold text-info">{announcements.length}</h3>
-                        <p className="mb-0 text-muted small">Announcements</p>
-                        <small className="text-muted">Latest updates</small>
-                      </div>
+                    <div className="stat-icon">
+                      <CIcon icon={cilBell} className="text-white" size="xl" />
+                    </div>
+                    <div className="hrms-overview-card__content">
+                      <p className="text-medium-emphasis">Announcements</p>
+                      <h3 className="fs-6 mb-0">{announcements.length}</h3>
+                      <small className="hrms-overview-card__meta">Latest updates</small>
                     </div>
                   </CCardBody>
                 </CCard>
@@ -824,24 +813,65 @@ const HRMSDashboard = () => {
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .stat-card {
-          border-radius: 12px;
-          transition: all 0.3s ease;
+        .hrms-overview-card {
+          --widget-shadow: rgba(17, 42, 58, 0.16);
         }
 
-        .stat-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        .hrms-overview-card--staff {
+          --widget-accent: #4638d7;
+          --widget-accent-end: #6657f0;
+          --widget-shadow: rgba(70, 56, 215, 0.18);
         }
 
-        .stat-icon {
-          width: 60px;
-          height: 60px;
-          border-radius: 12px;
+        .hrms-overview-card--present {
+          --widget-accent: #16a34a;
+          --widget-accent-end: #2cc36b;
+          --widget-shadow: rgba(22, 163, 74, 0.2);
+        }
+
+        .hrms-overview-card--leave {
+          --widget-accent: #f59e0b;
+          --widget-accent-end: #ffba2f;
+          --widget-shadow: rgba(245, 158, 11, 0.2);
+        }
+
+        .hrms-overview-card--announcement {
+          --widget-accent: #2383f6;
+          --widget-accent-end: #46a1ff;
+          --widget-shadow: rgba(35, 131, 246, 0.18);
+        }
+
+        .hrms-overview-card .card-body {
+          min-height: 118px;
+        }
+
+        .hrms-overview-card .text-medium-emphasis {
+          min-height: auto !important;
+          font-size: 0.78rem !important;
+          letter-spacing: 0.08em;
+        }
+
+        .hrms-overview-card .fs-6 {
+          font-size: 2.15rem !important;
+        }
+
+        .hrms-overview-card__content {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          flex-direction: column;
+          gap: 6px;
+          width: 100%;
+          min-width: 0;
+        }
+
+        .hrms-overview-card__meta {
+          color: #5d6b7d;
+          font-size: 0.9rem;
+          font-weight: 600;
+          line-height: 1.45;
+        }
+
+        .hrms-overview-card__meta--positive {
+          color: #16a34a;
         }
 
         .activity-item {
@@ -887,9 +917,12 @@ const HRMSDashboard = () => {
             padding: 1rem;
           }
 
-          .stat-icon {
-            width: 50px;
-            height: 50px;
+          .hrms-overview-card .card-body {
+            min-height: 110px;
+          }
+
+          .hrms-overview-card .fs-6 {
+            font-size: 1.9rem !important;
           }
         }
       `}</style>

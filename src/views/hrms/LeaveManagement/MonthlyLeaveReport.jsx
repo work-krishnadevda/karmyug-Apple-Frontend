@@ -13,6 +13,7 @@ import {
   CButton,
   CSpinner,
 } from '@coreui/react'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -94,7 +95,7 @@ const MonthlyLeaveReport = () => {
         </div>
 
         {loading ? (
-          <div className="text-center p-4"><CSpinner /></div>
+          <AppTableSkeleton ariaLabel="Loading monthly leave report" rows={7} />
         ) : (
           <CTable hover responsive>
             <CTableHead>

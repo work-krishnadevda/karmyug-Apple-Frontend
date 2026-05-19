@@ -15,6 +15,7 @@ import {
   cilUser
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 // Custom hooks
 import useEmployeeData from '../../hooks/useEmployeeData'
@@ -205,12 +206,8 @@ const HRMSProfileImproved = () => {
   // Loading state
   if (loading) {
     return (
-      <CContainer
-        fluid
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '400px' }}
-      >
-        <CSpinner />
+      <CContainer fluid className="py-4">
+        <AppContentSkeleton ariaLabel="Loading improved HRMS profile" variant="detail" rows={8} />
       </CContainer>
     )
   }

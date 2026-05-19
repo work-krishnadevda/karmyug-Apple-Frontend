@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react'
-import { CContainer, CRow, CCol, CAlert, CSpinner, CFormLabel, CButton, CCard, CCardBody, CCardHeader } from '@coreui/react'
+import { CContainer, CRow, CCol, CAlert, CFormLabel, CButton, CCard, CCardBody, CCardHeader } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import { cilPeople, cilCalendar, cilFilter, cilCloudDownload, cilReload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import moment from 'moment'
@@ -140,11 +141,12 @@ const MusterRollReport = () => {
 
   if (loading && data.length === 0) {
     return (
-      <CContainer fluid className="d-flex justify-content-center align-items-center" style={{ minHeight: '400px' }}>
-        <div className="text-center">
-          <CSpinner size="lg" />
-          <div className="mt-3">Loading muster roll data...</div>
-        </div>
+      <CContainer fluid className="py-4">
+        <AppContentSkeleton
+          ariaLabel="Loading muster roll report"
+          cards={3}
+          rows={6}
+        />
       </CContainer>
     )
   }
@@ -333,4 +335,3 @@ const MusterRollReport = () => {
 }
 
 export default MusterRollReport
-

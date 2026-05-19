@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 
@@ -55,18 +56,14 @@ const PdfPreview = ({ pageNumber, numPages, setNumPages, pdfURL }) => {
     <>
       <div>
         {loading && (
-          <div style={{ padding: '20px', textAlign: 'center' }}>
-            Loading PDF...
-          </div>
+          <AppContentSkeleton variant="detail" rows={3} ariaLabel="Loading PDF preview" />
         )}
         <Document 
           file={fullPdfURL} 
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={onDocumentLoadError}
           loading={
-            <div style={{ padding: '20px', textAlign: 'center' }}>
-              Loading PDF...
-            </div>
+            <AppContentSkeleton variant="detail" rows={3} ariaLabel="Loading PDF preview" />
           }
         >
           {numPages > 0 && (

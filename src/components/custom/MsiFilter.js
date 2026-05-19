@@ -23,6 +23,14 @@ import { checkRole } from 'src/constants/common'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
 
+const selectMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
+const selectMenuStyles = {
+  menuPortal: (provided) => ({
+    ...provided,
+    zIndex: 30000,
+  }),
+}
+
 const MsiFilter = ({
   rowPerPage,
   filterData,
@@ -691,6 +699,9 @@ const MsiFilter = ({
                 defaultOptions={financeOptions}
                 getOptionLabel={(option) => option.label}
                 getOptionValue={(option) => option.value}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 value={
                   financeOptions &&
                   financeOptions.find((option) => option.value === initialvalue?.finance_name)
@@ -716,6 +727,9 @@ const MsiFilter = ({
                 defaultOptions={rabranchOptions}
                 getOptionLabel={(option) => option.label}
                 getOptionValue={(option) => option.value}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 value={
                   rabranchOptions &&
                   rabranchOptions.find((option) => option.value === initialvalue.ra_branch)
@@ -747,6 +761,9 @@ const MsiFilter = ({
                     defaultOptions={groupOptions}
                     getOptionLabel={(option) => option.label}
                     getOptionValue={(option) => option.value}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={selectMenuStyles}
                     value={
                       groupOptions &&
                       groupOptions.find((option) => option.value === initialvalue?.group_id)
@@ -776,6 +793,8 @@ const MsiFilter = ({
                       </div>
                     )}
                     getOptionValue={(option) => option.value}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
                     value={
                       userOptions &&
                       userOptions.find((option) => option.value === initialvalue?.user_id)
@@ -787,6 +806,7 @@ const MsiFilter = ({
                       }))
                     }}
                     styles={{
+                      ...selectMenuStyles,
                       option: (provided, state) => ({
                         ...provided,
                         display: 'flex',
@@ -912,6 +932,9 @@ const MsiFilter = ({
                 onChange={handleStatusChangePending}
                 defaultOptions={statusPending}
                 isClearable
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
               />
             </CCol>
 
@@ -938,6 +961,9 @@ const MsiFilter = ({
                 onChange={handleStatusChangeDone}
                 defaultOptions={statusDone}
                 isClearable
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
               />
             </CCol>
 

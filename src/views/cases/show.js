@@ -16,7 +16,6 @@ import {
   CCol,
   CContainer,
   CRow,
-  CSpinner,
 } from '@coreui/react'
 import moment from 'moment'
 import { useCallback, useEffect, useState } from 'react'
@@ -26,6 +25,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import BasicProvider from 'src/constants/BasicProvider'
 
 import CommonCaseDetails from 'src/components/custom/department/commoncasedetails'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 import ShowPdfReview from 'src/components/showPdfReview'
 
@@ -222,12 +222,13 @@ export default function Casedetail() {
               </CCardHeader>
 
               {isLoading && isLoading ? (
-                <div className=" spinner_outerbox">
-                  <div className="text-center">
-                    {/* <CSpinner color="secondary" className="spinner" /> */}
-                    <CSpinner size="lg" style={{ width: '3rem', height: '3rem' }} />
-                  </div>
-                </div>
+                <CCardBody>
+                  <AppContentSkeleton
+                    variant="detail"
+                    rows={6}
+                    ariaLabel="Loading case details"
+                  />
+                </CCardBody>
               ) : (
                 <CCardBody>
                   <CRow>
@@ -251,4 +252,3 @@ export default function Casedetail() {
     </>
   )
 }
-

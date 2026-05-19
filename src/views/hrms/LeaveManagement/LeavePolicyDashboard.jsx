@@ -27,6 +27,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { cilPlus, cilPencil, cilTrash, cilCheckCircle, cilCloudDownload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { toast } from 'react-toastify'
@@ -744,9 +745,7 @@ const LeavePolicyDashboard = () => {
         </CCardHeader>
         <CCardBody>
           {loading ? (
-            <div className="text-center my-5">
-              <CSpinner color="primary" />
-            </div>
+            <AppTableSkeleton ariaLabel="Loading leave policies" rows={7} />
           ) : policies?.length === 0 ? (
             <CAlert color="info">No policies found.</CAlert>
           ) : (

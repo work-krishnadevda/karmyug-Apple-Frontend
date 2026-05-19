@@ -1,6 +1,8 @@
 import React, { forwardRef, useMemo } from 'react'
 import Select from 'react-select'
 
+const defaultMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
+
 const baseStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -127,6 +129,7 @@ const AppFormSelect = forwardRef(
       normalizedOptions.find((option) => option.value === '') || null
 
     const mergedStyles = styles ? { ...baseStyles, ...styles } : baseStyles
+    const resolvedMenuPortalTarget = menuPortalTarget ?? defaultMenuPortalTarget
 
     return (
       <>
@@ -154,10 +157,8 @@ const AppFormSelect = forwardRef(
           placeholder={placeholder || placeholderOption?.label || 'Select'}
           className={`app-form-select ${invalid ? 'is-invalid' : ''} ${className}`.trim()}
           classNamePrefix="app-form-select"
-          menuPortalTarget={
-            menuPortalTarget || (typeof document !== 'undefined' ? document.body : null)
-          }
-          menuPosition={menuPortalTarget ? 'fixed' : 'absolute'}
+          menuPortalTarget={resolvedMenuPortalTarget}
+          menuPosition={resolvedMenuPortalTarget ? 'fixed' : 'absolute'}
           styles={mergedStyles}
           aria-label={ariaLabel}
           {...rest}

@@ -9,6 +9,13 @@ import 'react-datepicker/dist/react-datepicker.css'
 import AsyncSelect from 'react-select/async'
 import { useSelector } from 'react-redux'
 
+const selectMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
+const selectMenuStyles = {
+  menuPortal: (provided) => ({
+    ...provided,
+    zIndex: 30000,
+  }),
+}
 
 const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }) => {
   const [initialvalue, setInitialvalue] = useState({
@@ -218,6 +225,9 @@ const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onRe
                 defaultOptions={financeOptions}
                 getOptionLabel={(option) => option.label}
                 getOptionValue={(option) => option.value}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 value={
                   financeOptions &&
                   financeOptions.find((option) => option.value === initialvalue?.finance_name)

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { CRow, CCol, CWidgetStatsF, CFormLabel, CButton, CToastClose, CSpinner } from '@coreui/react'
+import { CRow, CCol, CWidgetStatsF, CFormLabel, CButton, CToastClose } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
   cilBank,
@@ -11,6 +11,7 @@ import { cilUser, cilSettings, cilMoon, cilBell } from '@coreui/icons'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import BasicProvider from 'src/constants/BasicProvider'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 
 const getDatesFromSearch = (search) => {
@@ -105,15 +106,14 @@ const LCTOWidget = ({ counts }) => {
     <>
       {
         loadingCounts && (
-          <div className="spinner_outerbox" style={{ zIndex: 9998 }}>
-            <div className="text-center">
-              <CSpinner color='white' size="lg" style={{ width: '2rem', height: '2rem' }} />
-              <p className='text-white'>Loading Counts...</p>
-            </div>
-          </div>
+          <AppContentSkeleton
+            variant="cards"
+            cards={4}
+            ariaLabel="Loading dashboard counts"
+          />
         )
       }
-      <CRow className="mt-4">
+      {!loadingCounts && <CRow className="mt-4">
         <CCol xs={12}>
           <div className="dashboard-filter-bar">
             <div className="dashboard-filter-field">
@@ -154,7 +154,7 @@ const LCTOWidget = ({ counts }) => {
             </CButton>
           </div>
         </CCol>
-      </CRow>
+      </CRow>}
 
       <CRow className="cust_side_box mt-4">
         <CCol sm={6} md={3}>

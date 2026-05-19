@@ -16,6 +16,7 @@ import {
   CRow,
   CCol,
 } from '@coreui/react'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { toast } from 'react-toastify'
 import BasicProvider from 'src/constants/BasicProvider'
 import { cilSearch } from '@coreui/icons'
@@ -159,10 +160,7 @@ const PendingPunches = () => {
 
         {/* Table */}
         {loading ? (
-          <div className="text-center p-4">
-            <CSpinner />
-            <p className="mt-2">Loading pending punches...</p>
-          </div>
+          <AppTableSkeleton ariaLabel="Loading pending punches" rows={7} />
         ) : filteredStaff.length === 0 ? (
           <div className="text-center p-4">
             <CBadge color="success" className="p-3">

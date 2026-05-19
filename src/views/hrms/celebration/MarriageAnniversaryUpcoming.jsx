@@ -4,6 +4,7 @@ import { CelebrationCard } from './CelebrationCard'
 import BasicProvider from 'src/constants/BasicProvider'
 import { toast } from 'react-toastify'
 import moment from 'moment'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
  
 
@@ -105,12 +106,11 @@ const MarriageAnniversaryUpcoming = () => {
 
   if (loading) {
     return (
-      <div className="p-4 flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="loading-spinner mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading upcoming marriage anniversaries...</p>
-        </div>
-      </div>
+      <AppContentSkeleton
+        variant="cards"
+        cards={4}
+        ariaLabel="Loading upcoming marriage anniversaries"
+      />
     )
   }
 

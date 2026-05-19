@@ -22,6 +22,7 @@ import CIcon from '@coreui/icons-react'
 import { cilBell, cilPlus, cilPencil, cilTrash } from '@coreui/icons'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useSelector } from 'react-redux'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import 'src/assets/css/announcements.css'
 
 let ADMIN = process.env.REACT_APP_ADMIN
@@ -190,10 +191,11 @@ const AnnouncementWidget = () => {
             </CCardHeader>
             <CCardBody>
               {loading ? (
-                <div className="text-center">
-                  <CSpinner />
-                  <p>Loading announcements...</p>
-                </div>
+                <AppContentSkeleton
+                  variant="list"
+                  rows={4}
+                  ariaLabel="Loading announcements"
+                />
               ) : announcements.length === 0 ? (
                 <div className="text-center text-muted">
                   <CIcon icon={cilBell} size="3xl" className="mb-3" />

@@ -18,6 +18,7 @@ import {
   CModalFooter,
   CModalTitle,
 } from '@coreui/react'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import CIcon from '@coreui/icons-react'
 import { cilSearch, cilZoom } from '@coreui/icons'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -127,16 +128,7 @@ const UserPenaltyList = () => {
           </CTableHead>
 
           <CTableBody>
-            {loading && (
-              <CTableRow>
-                <CTableDataCell colSpan={6} className="text-center py-4">
-                  <div className="d-flex justify-content-center align-items-center gap-2">
-                    <div className="spinner-border text-primary" />
-                    <span>Loading penalty records...</span>
-                  </div>
-                </CTableDataCell>
-              </CTableRow>
-            )}
+            {loading && null}
 
             {!loading && filteredList.length === 0 && (
               <CTableRow>
@@ -188,6 +180,7 @@ const UserPenaltyList = () => {
               ))}
           </CTableBody>
         </CTable>
+        {loading && <AppTableSkeleton ariaLabel="Loading user penalty records" rows={6} />}
       </CCardBody>
 
       {/* 👁 View Modal */}

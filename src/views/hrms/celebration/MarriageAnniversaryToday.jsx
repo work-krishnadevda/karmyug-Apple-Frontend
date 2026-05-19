@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { CelebrationCard } from './CelebrationCard'
 import BasicProvider from 'src/constants/BasicProvider'
 import { toast } from 'react-toastify'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import 'src/assets/css/upcoming-birthday-card.css'
 
  
@@ -61,12 +62,11 @@ const MarriageAnniversaryToday = () => {
 
   if (loading) {
     return (
-      <div className="p-4 flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="loading-spinner mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading marriage anniversaries...</p>
-        </div>
-      </div>
+      <AppContentSkeleton
+        variant="cards"
+        cards={3}
+        ariaLabel="Loading marriage anniversaries"
+      />
     )
   }
 

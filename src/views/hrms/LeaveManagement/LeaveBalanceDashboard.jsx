@@ -26,6 +26,8 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import CIcon from '@coreui/icons-react'
 import { cilPlus } from '@coreui/icons'
 import { toast } from 'react-toastify'
@@ -237,9 +239,11 @@ const LeaveBalanceDashboard = () => {
 
           {/* Leave Balance Section */}
           {loadingBalance ? (
-            <div className="text-center my-4">
-              <CSpinner color="primary" />
-            </div>
+            <AppContentSkeleton
+              variant="cards"
+              cards={3}
+              ariaLabel="Loading leave balance details"
+            />
           ) : leaveBalance ? (
             <CRow className="g-3 mt-3">
               <CCol md={4}>
@@ -292,7 +296,7 @@ const LeaveBalanceDashboard = () => {
             <>
               <h5 className="mt-4">Leave Ledger</h5>
               {loadingLedger ? (
-                <CSpinner color="primary" />
+                <AppTableSkeleton ariaLabel="Loading leave balance ledger" rows={6} />
               ) : ledger.length === 0 ? (
                 <CAlert color="info">No transactions found.</CAlert>
               ) : (

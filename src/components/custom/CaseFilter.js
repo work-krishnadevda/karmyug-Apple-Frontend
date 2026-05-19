@@ -17,6 +17,14 @@ import Select from 'react-select'
 import { useSelector } from 'react-redux'
 import { checkRole } from 'src/constants/common'
 
+const selectMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
+const selectMenuStyles = {
+  menuPortal: (provided) => ({
+    ...provided,
+    zIndex: 30000,
+  }),
+}
+
 const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }) => {
   const admin = useSelector((state) => state.userData)
 
@@ -272,6 +280,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                 defaultOptions={financeOptions}
                 getOptionLabel={(option) => option.label}
                 getOptionValue={(option) => option.value}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 value={
                   financeOptions &&
                   financeOptions.find((option) => option.value === initialvalue?.finance_name)
@@ -297,6 +308,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                 defaultOptions={rabranchOptions}
                 getOptionLabel={(option) => option.label}
                 getOptionValue={(option) => option.value}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 value={
                   rabranchOptions &&
                   rabranchOptions.find((option) => option.value === initialvalue.ra_branch)
@@ -328,6 +342,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                       defaultOptions={groupOptions}
                       getOptionLabel={(option) => option.label}
                       getOptionValue={(option) => option.value}
+                      menuPortalTarget={selectMenuPortalTarget}
+                      menuPosition="fixed"
+                      styles={selectMenuStyles}
                       value={
                         groupOptions &&
                         groupOptions.find((option) => option.value === initialvalue?.group_id)
@@ -357,6 +374,8 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                         </div>
                       )}
                       getOptionValue={(option) => option.value}
+                      menuPortalTarget={selectMenuPortalTarget}
+                      menuPosition="fixed"
                       value={
                         userOptions &&
                         userOptions.find((option) => option.value === initialvalue?.user_id)
@@ -368,6 +387,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                         }))
                       }}
                       styles={{
+                        ...selectMenuStyles,
                         option: (provided, state) => ({
                           ...provided,
                           display: 'flex',
@@ -477,6 +497,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                 classNamePrefix="case-filter-select"
                 options={orderOptions}
                 value={orderOptions.find((option) => option.value === initialvalue.order)}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 onChange={(selectedOption) =>
                   setInitialvalue({
                     ...initialvalue,
@@ -530,6 +553,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                 }}
                 defaultOptions={status}
                 isClearable
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
               />
             </CCol>
             <CCol xs={12} lg={4} className="px-2 pe-0 pe-lg-2 ps-0">
@@ -541,6 +567,9 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                 value={visitDoneTypeOptions.find(
                   (option) => option.value === (initialvalue?.visit_type_by_fe || ''),
                 )}
+                menuPortalTarget={selectMenuPortalTarget}
+                menuPosition="fixed"
+                styles={selectMenuStyles}
                 onChange={(selectedOption) => {
                   setInitialvalue((prevValue) => ({
                     ...prevValue,

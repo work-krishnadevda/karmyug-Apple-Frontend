@@ -34,6 +34,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import {
   cilPeople,
   cilClock,
@@ -94,9 +95,8 @@ const EmployeeDashboard = () => {
   // Early return if userData is not available - BEFORE all hooks
   if (!userData) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
-        <span className="ms-3">Loading user data...</span>
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading employee dashboard" cards={4} rows={5} />
       </div>
     )
   }
@@ -418,8 +418,8 @@ const EmployeeDashboard = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading employee dashboard" cards={4} rows={5} />
       </div>
     )
   }

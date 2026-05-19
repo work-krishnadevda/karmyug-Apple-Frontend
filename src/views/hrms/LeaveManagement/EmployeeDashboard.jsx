@@ -31,6 +31,8 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { cilCalendar, cilPlus, cilMagnifyingGlass } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -614,7 +616,13 @@ useEffect(() => {
       {/* Leave Balance */}
       <CRow className="mb-4 g-3">
         {loadingBalance ? (
-          <CSpinner color="primary" />
+          <CCol xs={12}>
+            <AppContentSkeleton
+              variant="cards"
+              cards={3}
+              ariaLabel="Loading leave balance"
+            />
+          </CCol>
         ) : leaveBalance ? (
           <>
             {(() => {
@@ -761,9 +769,7 @@ useEffect(() => {
         </CCardHeader> */}
         <CCardBody>
           {loading ? (
-            <div className="text-center my-5">
-              <CSpinner color="primary" />
-            </div>
+            <AppTableSkeleton ariaLabel="Loading leave requests" rows={7} />
           ) : leaveRequests.length === 0 ? (
             <CAlert color="info">No leave requests found.</CAlert>
           ) : (
@@ -1220,9 +1226,7 @@ useEffect(() => {
         </CCardHeader>
         <CCardBody>
           {ledgerLoading ? (
-            <div className="text-center my-5">
-              <CSpinner color="primary" />
-            </div>
+            <AppTableSkeleton ariaLabel="Loading leave ledger" rows={6} />
           ) : ledgerData.length === 0 ? (
             <CAlert color="info">No ledger records found.</CAlert>
           ) : (

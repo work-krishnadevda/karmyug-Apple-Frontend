@@ -27,6 +27,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import {
   cilPlus,
   cilPencil,
@@ -1639,12 +1640,8 @@ const MyProfile = () => {
 
   if (loading) {
     return (
-      <CContainer
-        fluid
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '400px' }}
-      >
-        <CSpinner />
+      <CContainer fluid className="py-4">
+        <AppContentSkeleton ariaLabel="Loading my profile" variant="detail" rows={8} />
       </CContainer>
     )
   }

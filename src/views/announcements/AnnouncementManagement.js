@@ -24,6 +24,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faStar, faArrowUp, faCheck, faListCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -1406,9 +1407,11 @@ const AnnouncementManagement = () => {
 
               {/* Announcements List */}
               {loading ? (
-                <div className="text-center">
-                  <CSpinner />
-                </div>
+                <AppContentSkeleton
+                  variant="cards"
+                  cards={3}
+                  ariaLabel="Loading announcement management content"
+                />
               ) : (
                 <>
                   {isAdminOrHR && filteredAnnouncements.length === 0 && (

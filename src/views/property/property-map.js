@@ -28,6 +28,7 @@ import BasicProvider from 'src/constants/BasicProvider'
 import Markericon from 'src/assets/images/bluemarker.png'
 import RedMarkericon from 'src/assets/images/redMarkerIcons.png'
 import yellowMarkericon from 'src/assets/images/yellowMarker.png'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import blackMarkericon from 'src/assets/images/blackMarker.png'
 import moment from 'moment'
 import { Marker } from '@react-google-maps/api'
@@ -262,13 +263,8 @@ const Map = () => {
 
   if (!isLoaded) {
     return (
-      <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
-        <div className="text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <h6 className="text-primary">Loading, please wait...</h6>
-        </div>
+      <div className="container-fluid py-4">
+        <AppContentSkeleton variant="map" ariaLabel="Loading property map" />
       </div>
     )
   }

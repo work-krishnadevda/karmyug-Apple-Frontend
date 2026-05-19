@@ -19,12 +19,12 @@ import {
   CFormTextarea,
   CInputGroup,
   CRow,
-  CSpinner,
 } from '@coreui/react'
 
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import BasicProvider from 'src/constants/BasicProvider'
 
@@ -467,10 +467,7 @@ export default function Createtemplates() {
                 <CCardBody>
                   <div className="datatable">
                     {isLoading ? (
-                      <div className="text-center">
-                        <CSpinner size="sm" style={{ width: '3rem', height: '3rem' }} />
-                        <p>Loading..</p>
-                      </div>
+                      <AppTableSkeleton ariaLabel="Loading templates table" rows={7} />
                     ) : (
                       <div className="datatable">
                         <DataTable
@@ -526,4 +523,3 @@ export default function Createtemplates() {
     </>
   )
 }
-

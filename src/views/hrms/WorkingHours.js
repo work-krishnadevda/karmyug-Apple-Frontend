@@ -22,6 +22,7 @@ import { cilClock, cilCalendar, cilChartLine, cilArrowTop } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 const WorkingHours = () => {
   const dispatch = useDispatch()
@@ -78,8 +79,8 @@ const WorkingHours = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading working hours" cards={3} rows={5} />
       </div>
     )
   }

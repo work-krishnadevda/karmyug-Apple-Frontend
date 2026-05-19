@@ -26,6 +26,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import {
   cilPlus,
   cilPencil,
@@ -900,8 +901,8 @@ const HRMSProfile = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading HRMS profile" variant="detail" rows={8} />
       </div>
     )
   }
@@ -1327,12 +1328,8 @@ const HRMSProfile = () => {
 
   if (loading) {
     return (
-      <CContainer
-        fluid
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '400px' }}
-      >
-        <CSpinner />
+      <CContainer fluid className="py-4">
+        <AppContentSkeleton ariaLabel="Loading HRMS profile" variant="detail" rows={8} />
       </CContainer>
     )
   }

@@ -239,6 +239,7 @@ import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import { checkRole } from 'src/constants/common'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import { label } from 'yet-another-react-lightbox'
 import { useLocation } from 'src/hooks/useLocation'
 
@@ -563,8 +564,8 @@ const Attendance = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading attendance records" cards={3} rows={6} />
       </div>
     )
   } 

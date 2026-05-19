@@ -25,6 +25,7 @@ import {
   CFormTextarea,
   CAlert,
 } from '@coreui/react'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCalendar, cilPlus, cilMagnifyingGlass } from '@coreui/icons'
@@ -126,8 +127,8 @@ const LeaveManagement = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="container py-4">
+        <AppContentSkeleton ariaLabel="Loading leave management" cards={3} rows={6} />
       </div>
     )
   }

@@ -24,6 +24,7 @@ import {
 } from '@coreui/react'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import './HRLeaveDashboard.css'
@@ -645,9 +646,7 @@ const HRLeaveDashboard = () => {
       </CCardBody>
       <CCardBody>
         {loading ? (
-          <div className="text-center p-4">
-            <CSpinner />
-          </div>
+          <AppTableSkeleton ariaLabel="Loading HR leave dashboard" rows={8} />
         ) : (
           <>
             <CTable hover responsive>

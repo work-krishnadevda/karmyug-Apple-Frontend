@@ -23,6 +23,7 @@ import {
   CFormLabel,
   CInputGroup,
 } from '@coreui/react'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
 import { toast } from 'react-toastify'
@@ -867,9 +868,7 @@ const AdminUnapprovedAttendance = () => {
           // Today Leaves Table
           <>
             {loadingTodayLeaves ? (
-              <div className="text-center p-4">
-                <CSpinner />
-              </div>
+              <AppTableSkeleton ariaLabel="Loading today leaves" rows={6} />
             ) : todayLeaves.length === 0 ? (
               <div className="text-center p-4">
                 <p>No employees on leave today</p>
@@ -949,9 +948,7 @@ const AdminUnapprovedAttendance = () => {
           // Attendance Table
           <>
             {loading ? (
-              <div className="text-center p-4">
-                <CSpinner />
-              </div>
+              <AppTableSkeleton ariaLabel="Loading unapproved attendance" rows={8} />
             ) : (
               <>
                 <CTable hover responsive key={`attendance-table-${refreshTrigger}`}>

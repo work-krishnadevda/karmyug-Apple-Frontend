@@ -19,6 +19,7 @@ import {
 } from '@coreui/react'
 import { toast } from 'react-toastify'
 import BasicProvider from 'src/constants/BasicProvider'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import AdminPayRoll from './AdminPayRoll'
 const AdminAttendanceSettings = () => {
   const [settings, setSettings] = useState({
@@ -76,7 +77,7 @@ const AdminAttendanceSettings = () => {
         </CCardHeader>
         <CCardBody>
           {loading ? (
-            <CSpinner />
+            <AppContentSkeleton ariaLabel="Loading attendance settings" variant="detail" rows={4} />
           ) : (
             <CForm className="row g-3">
               <CCol md={4}>

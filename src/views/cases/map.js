@@ -28,6 +28,7 @@ import { Marker } from '@react-google-maps/api'
 import CIcon from '@coreui/icons-react'
 import { cilAlbum, cilMap, cilPencil, cilSearch, cilSettings } from '@coreui/icons'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import ForcePinAttachmentImage from 'src/components/property/ForcePinAttachmentImage'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -283,13 +284,8 @@ const Map = () => {
 
   if (!isLoaded) {
     return (
-      <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
-        <div className="text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <h6 className="text-primary">Loading, please wait...</h6>
-        </div>
+      <div className="container-fluid py-4">
+        <AppContentSkeleton variant="map" ariaLabel="Loading case map" />
       </div>
     )
   }

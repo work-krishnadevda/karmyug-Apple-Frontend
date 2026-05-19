@@ -63,6 +63,51 @@ export default function AppContentSkeleton({
     )
   }
 
+  if (variant === 'detail') {
+    return (
+      <div
+        className={`app-content-skeleton app-content-skeleton--detail ${className}`.trim()}
+        aria-busy="true"
+        aria-label={ariaLabel}
+      >
+        <div className="app-content-skeleton__detail-hero">
+          <SkeletonLine width="34%" className="is-title" />
+          <SkeletonLine width="48%" />
+        </div>
+
+        <div className="app-content-skeleton__detail-card">
+          <div className="app-content-skeleton__detail-grid">
+            {createArray(rows).map((_, index) => (
+              <div className="app-content-skeleton__detail-field" key={`detail-${index}`}>
+                <SkeletonLine width="36%" className="is-short" />
+                <SkeletonLine width={index % 2 === 0 ? '88%' : '72%'} />
+                <SkeletonLine width="54%" className="is-short" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (variant === 'map') {
+    return (
+      <div
+        className={`app-content-skeleton app-content-skeleton--map ${className}`.trim()}
+        aria-busy="true"
+        aria-label={ariaLabel}
+      >
+        <div className="app-content-skeleton__map-canvas" />
+        <div className="app-content-skeleton__map-panel">
+          <SkeletonLine width="46%" className="is-title" />
+          <SkeletonLine width="82%" />
+          <SkeletonLine width="68%" />
+          <SkeletonLine width="58%" className="is-short" />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div
       className={`app-content-skeleton app-content-skeleton--page ${className}`.trim()}

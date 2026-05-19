@@ -18,6 +18,7 @@ import {
   CBadge ,
   CModalTitle,
 } from '@coreui/react'
+import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 
 import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
@@ -262,16 +263,7 @@ const AddOnList = () => {
           </CTableHead>
 
           <CTableBody>
-            {loading ? (
-              <CTableRow>
-                <CTableDataCell colSpan={6} className="text-center py-4">
-                  <div className="d-flex justify-content-center align-items-center gap-2">
-                    <div className="spinner-border text-primary" role="status" />
-                    <span>Loading add-on records...</span>
-                  </div>
-                </CTableDataCell>
-              </CTableRow>
-            ) : filteredList.length === 0 ? (
+            {loading ? null : filteredList.length === 0 ? (
               <CTableRow>
                 <CTableDataCell colSpan={6} className="text-center">
                   No add-on records found
@@ -348,6 +340,7 @@ const AddOnList = () => {
             )}
           </CTableBody>
         </CTable>
+        {loading && <AppTableSkeleton ariaLabel="Loading add-on records" rows={6} />}
       </CCardBody>
 
       {/* VIEW MODAL */}
