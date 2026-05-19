@@ -14,11 +14,12 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CInputGroup,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
@@ -314,7 +315,7 @@ export default function CreateStatus() {
                     <CFormLabel>
                       Select Color<span className="text-danger">*</span>
                     </CFormLabel>
-                    <CFormSelect
+                    <AppFormSelect
                       aria-label="Default select example"
                       value={initialValues.color ?? ''}
                       onChange={handleOnChange}
@@ -327,7 +328,7 @@ export default function CreateStatus() {
                       <option value="info">Info</option>
                       <option value="danger">Danger</option>
                       <option value="warning">Warning</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </div>
 
                   {!isEditMode && (

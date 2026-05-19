@@ -17,9 +17,10 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
-  CFormSelect,
   CFormLabel,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
 import { cilMenu, cilPencil, cilSpreadsheet, cilTrash } from '@coreui/icons'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'

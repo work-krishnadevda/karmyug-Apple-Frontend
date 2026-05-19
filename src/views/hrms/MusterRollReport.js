@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react'
-import { CContainer, CRow, CCol, CAlert, CSpinner, CFormSelect, CFormLabel, CButton, CCard, CCardBody, CCardHeader } from '@coreui/react'
+import { CContainer, CRow, CCol, CAlert, CSpinner, CFormLabel, CButton, CCard, CCardBody, CCardHeader } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPeople, cilCalendar, cilFilter, cilCloudDownload, cilReload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import moment from 'moment'
@@ -266,7 +268,7 @@ const MusterRollReport = () => {
 
                 <CCol md={3}>
                   <CFormLabel>RA Location</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={filters.raLocation}
                     onChange={(e) => setFilters(prev => ({ ...prev, raLocation: e.target.value }))}
                     disabled={loading}
@@ -274,12 +276,12 @@ const MusterRollReport = () => {
                     {raLocations.map((loc) => (
                       <option key={loc} value={loc}>{loc === 'all' ? 'All' : loc}</option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </CCol>
 
                 <CCol md={3}>
                   <CFormLabel>Role</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={filters.role}
                     onChange={(e) => setFilters(prev => ({ ...prev, role: e.target.value }))}
                     disabled={loading}
@@ -287,7 +289,7 @@ const MusterRollReport = () => {
                     {roles.map((r) => (
                       <option key={r} value={r}>{r === 'all' ? 'All' : r}</option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </CCol>
 
                 <CCol md={2} className="d-flex align-items-end gap-2">

@@ -17,7 +17,6 @@ import {
   CBadge,
   CSpinner,
   CFormInput,
-  CFormSelect,
   CPagination,
   CPaginationItem,
   CCard,
@@ -37,6 +36,8 @@ import {
   CAlert,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import {
   cilCalendar,
   cilFilter,
@@ -1207,7 +1208,7 @@ const Attendance = () => {
                 <CRow>
                   <CCol md={3}>
                     <label className="form-label fw-semibold">Month</label>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filters.month}
                       onChange={(e) => setFilters({ ...filters, month: parseInt(e.target.value) })}
                     >
@@ -1223,11 +1224,11 @@ const Attendance = () => {
                       <option value={10}>October</option>
                       <option value={11}>November</option>
                       <option value={12}>December</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   <CCol md={3}>
                     <label className="form-label fw-semibold">Year</label>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filters.year}
                       onChange={(e) => setFilters({ ...filters, year: parseInt(e.target.value) })}
                     >
@@ -1239,12 +1240,12 @@ const Attendance = () => {
                           </option>
                         )
                       })}
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   {/* here i want to add status filter like present absent halfday weekoff as like  */}
                   <CCol md={3}>
                     <label className="form-label fw-semibold">Status</label>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filters.status}
                       onChange={(e) => setFilters({ ...filters, status: e.target.value })}
                     >
@@ -1256,7 +1257,7 @@ const Attendance = () => {
                             {b.label}
                           </option>
                         ))}
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
 
                   <CCol md={3} className="d-flex align-items-end">
@@ -1977,7 +1978,7 @@ const Attendance = () => {
                     const dateIsHoliday = selectedAttendance?.date ? isHoliday(selectedAttendance.date) : false
                     return (
                       <>
-                        <CFormSelect
+                        <AppFormSelect
                           value={editForm.status}
                           onChange={(e) => handleEditFormChange('status', e.target.value)}
                           disabled={dateIsHoliday}
@@ -2028,7 +2029,7 @@ const Attendance = () => {
                         </>
                       )
                     })()}
-                  </CFormSelect>
+                  </AppFormSelect>
                   {dateIsHoliday && (
                     <small className="text-danger d-block mt-1">
                       Today is a holiday. You cannot change attendance status on holidays. Time updates are allowed.
@@ -2523,14 +2524,14 @@ const Attendance = () => {
                 <CFormLabel>
                   Leave Type <span className="text-danger">*</span>
                 </CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={correctionForm.leaveType}
                   onChange={(e) => handleCorrectionFormChange('leaveType', e.target.value)}
                 >
                   <option value="CL">CL - Casual Leave</option>
                   <option value="UL">UL - Unpaid Leave</option>
                   <option value="Emergency">Emergency</option>
-                </CFormSelect>
+                </AppFormSelect>
                 {/* Show available balance count */}
                 {correctionForm.leaveType === 'CL' && (
                   <small className="text-info d-block mt-1">
@@ -2550,14 +2551,14 @@ const Attendance = () => {
             <CRow className="mb-3">
               <CCol>
                 <CFormLabel>Balance Action</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={correctionForm.balanceAction}
                   disabled
                   readOnly
                   className="bg-light"
                 >
                   <option value="deduct">Credit(+) - Deduct Balance (Always)</option>
-                </CFormSelect>
+                </AppFormSelect>
                 <small className="text-muted">
                   Leave balance will always be deducted (minus)
                 </small>

@@ -7,7 +7,6 @@ import {
   CForm,
   CFormLabel,
   CFormInput,
-  CFormSelect,
   CFormTextarea,
   CButton,
   CTable,
@@ -30,6 +29,8 @@ import {
   CListGroup,
   CListGroupItem,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCalendar, cilPlus, cilMagnifyingGlass } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -718,7 +719,7 @@ useEffect(() => {
             >
               <CCardBody className="filter-container">
                 <div className="filter-grid sticky-filters d-flex flex-wrap gap-2">
-                  <CFormSelect
+                  <AppFormSelect
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
                   >
@@ -726,15 +727,15 @@ useEffect(() => {
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
-                  </CFormSelect>
+                  </AppFormSelect>
 
-                  <CFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+                  <AppFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
                     <option value="">All Types</option>
                     <option value="CL">Casual Leave</option>
                     <option value="UL">Unpaid Leave</option>
                     <option value="Penalty">Penalty Leave</option>
                     <option value="Emergency">Emergency Leave</option>
-                  </CFormSelect>
+                  </AppFormSelect>
 
                   <CFormInput
                     type="date"
@@ -1113,7 +1114,7 @@ useEffect(() => {
                   <CRow className="mt-3">
                     <CCol md={6}>
                       <CFormLabel>Leave Type *</CFormLabel>
-                      <CFormSelect
+                      <AppFormSelect
                         value={leaveForm.leaveType}
                         onChange={(e) => setLeaveForm({ ...leaveForm, leaveType: e.target.value })}
                       >
@@ -1128,7 +1129,7 @@ useEffect(() => {
                         {isTodaySelected && emergencyLeaveEnabled && (
                           <option value="Emergency">Emergency Leave</option>
                         )}
-                      </CFormSelect>
+                      </AppFormSelect>
                     </CCol>
                     <CCol md={6}>
                       <CFormLabel>Days</CFormLabel>

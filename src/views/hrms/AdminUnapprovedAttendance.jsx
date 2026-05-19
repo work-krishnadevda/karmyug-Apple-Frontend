@@ -12,7 +12,6 @@ import {
   CButton,
   CBadge,
   CFormInput,
-  CFormSelect,
   CModal,
   CModalHeader,
   CModalTitle,
@@ -24,6 +23,8 @@ import {
   CFormLabel,
   CInputGroup,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { toast } from 'react-toastify'
 import BasicProvider from 'src/constants/BasicProvider'
 import { cilSearch } from '@coreui/icons'
@@ -763,22 +764,22 @@ const AdminUnapprovedAttendance = () => {
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Status Filter</CFormLabel>
-                <CFormSelect value={leaveStatusFilter} onChange={(e) => setLeaveStatusFilter(e.target.value)}>
+                <AppFormSelect value={leaveStatusFilter} onChange={(e) => setLeaveStatusFilter(e.target.value)}>
                   <option value="">All Status</option>
                   <option value="Approved">Approved</option>
                   <option value="Pending">Pending</option>
                   <option value="Rejected">Rejected</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Leave Type Filter</CFormLabel>
-                <CFormSelect value={leaveTypeFilter} onChange={(e) => setLeaveTypeFilter(e.target.value)}>
+                <AppFormSelect value={leaveTypeFilter} onChange={(e) => setLeaveTypeFilter(e.target.value)}>
                   <option value="">All Types</option>
                   <option value="CL">Casual Leave (CL)</option>
                   <option value="UL">Unpaid Leave (UL)</option>
                   <option value="Emergency">Emergency Leave</option>
                   <option value="Penalty">Penalty Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </>
           ) : (
@@ -799,7 +800,7 @@ const AdminUnapprovedAttendance = () => {
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Status Filter</CFormLabel>
-                <CFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                <AppFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
                   <option value="">All Status</option>
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
@@ -811,7 +812,7 @@ const AdminUnapprovedAttendance = () => {
                   <option value="WeeklyHalfDay">Weekly Half Day</option>
                   <option value="NotMarked">Not Marked</option>
                   <option value="Holiday">Holiday</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol xs={12} md={4}>
                 <CFormLabel>Select Date</CFormLabel>
@@ -826,13 +827,13 @@ const AdminUnapprovedAttendance = () => {
               </CCol>
               <CCol md={4}>
                 <CFormLabel>RA Location Filter</CFormLabel>
-                <CFormSelect value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
+                <AppFormSelect value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
                   {locations.map((loc) => (
                     <option key={loc.value} value={loc.value}>
                       {loc.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </>
           )}
@@ -1136,7 +1137,7 @@ const AdminUnapprovedAttendance = () => {
                 {/* <div className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-3">
                   <div className="d-flex align-items-center gap-2">
                     <span>Rows per page:</span>
-                    <CFormSelect
+                    <AppFormSelect
                       size="sm"
                       value={limit}
                       onChange={(e) => {
@@ -1149,7 +1150,7 @@ const AdminUnapprovedAttendance = () => {
                       <option value={20}>20</option>
                       <option value={50}>50</option>
                       <option value={100}>100</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </div>
                   <div className="d-flex align-items-center gap-3">
                     <CButton
@@ -1497,7 +1498,7 @@ const AdminUnapprovedAttendance = () => {
           <CRow className="mb-3">
             <CCol>
               <label>Status</label>
-              <CFormSelect
+              <AppFormSelect
                 value={editModal.form.status}
                 onChange={(e) =>
                   setEditModal((prev) => ({
@@ -1534,7 +1535,7 @@ const AdminUnapprovedAttendance = () => {
                     </option>
                   ))
                 })()}
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
           </CRow>
 

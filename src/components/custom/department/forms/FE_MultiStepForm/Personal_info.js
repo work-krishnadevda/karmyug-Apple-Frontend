@@ -5,11 +5,12 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CInputGroup,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useRef, useState } from 'react'
 import Select from 'react-select'
 import { MultiImageHelper } from 'src/helpers/imageHelper'
@@ -250,7 +251,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Relation (Person Meet At Site)</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="person_meet_at_site_relation"
                 value={initialValues.person_meet_at_site_relation}
@@ -279,7 +280,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="neighbour">Neighbour</option>
                 <option value="tenant">Tenant</option>
 
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
           <CCol md={4}>
@@ -288,7 +289,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 Type of property<span className="text-danger ">*</span>
               </CFormLabel>
 
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="type_of_property"
                 value={initialValues.type_of_property}
@@ -299,7 +300,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="commercial">Commercial</option>
                 <option value="industrial">Industrial</option>
                 <option value="mixed">Mixed</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
           <CCol md={4}>
@@ -308,7 +309,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 Current use of property<span className="text-danger ">*</span>
               </CFormLabel>
 
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="current_use_property"
                 value={initialValues.current_use_property}
@@ -323,13 +324,13 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="under construction">Under Construction</option>
 
 
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Local Address Verification</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="address_verification"
                 value={initialValues.address_verification ?? ''}
@@ -342,7 +343,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="electricity bill">Electricity Bill</option>
                 <option value="voter id">Voter ID</option>
                 <option value="name plate">Name Plate</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
           <CCol md={4}>
@@ -555,7 +556,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Occupant</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="occupant"
                 value={initialValues.occupant ?? ''}
@@ -566,7 +567,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="vacant">Vacant</option>
                 <option value="Occupied">Occupied</option>
                 <option value="tenant">Tenant</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 
@@ -574,7 +575,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
             <CCol md={4}>
               <div className="py-2">
                 <CFormLabel>If Self Occupied</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="self_occupied"
                   value={initialValues.self_occupied ?? ''}
@@ -585,7 +586,7 @@ const PersonalInfo = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                   <option value="self">Self</option>
                   <option value="seller">Seller</option>
                   <option value="buyer">Buyer</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           )}

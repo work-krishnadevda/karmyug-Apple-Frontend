@@ -1,5 +1,7 @@
 import React from 'react'
-import { CFormInput, CFormLabel, CFormSelect, CFormTextarea, CInputGroup, CInputGroupText } from '@coreui/react'
+import { CFormInput, CFormLabel, CFormTextarea, CInputGroup, CInputGroupText } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import PropTypes from 'prop-types'
 
 const FormField = ({
@@ -35,14 +37,14 @@ const FormField = ({
     switch (type) {
       case 'select':
         return (
-          <CFormSelect {...commonProps}>
+          <AppFormSelect {...commonProps}>
             <option value="">Select {label}</option>
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
         )
 
       case 'textarea':

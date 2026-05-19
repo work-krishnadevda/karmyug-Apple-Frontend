@@ -8,10 +8,11 @@ import {
   CButton,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormCheck,
   CFormTextarea,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPencil, cilSave, cilX, cilBriefcase } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import AsyncSelect from 'react-select/async'
@@ -200,7 +201,7 @@ const EmploymentInfo = ({
             <CRow>
               {/* <CCol md={6}>
                 <CFormLabel>Department</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.department || ''}
                   onChange={(e) => handleInputChange('employment', 'department', e.target.value)}
                   disabled={!editMode.employment}
@@ -208,7 +209,7 @@ const EmploymentInfo = ({
                   <option value="">Select Department</option>
                   <option value="technical">Technical</option>
                   <option value="management">Management</option>
-                </CFormSelect>
+                </AppFormSelect>
                 {getFieldError && getFieldError('employment', 'department') && (
                   <div className="text-danger small mt-1">
                     {getFieldError('employment', 'department')}
@@ -525,7 +526,7 @@ const EmploymentInfo = ({
             <CRow className="mt-3">
               <CCol md={6}>
                 <CFormLabel>Employee Type</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.employeeType || ''}
                   onChange={(e) => handleInputChange('employment', 'employeeType', e.target.value)}
                   disabled={!editMode.employment}
@@ -536,11 +537,11 @@ const EmploymentInfo = ({
                   <option value="temporary">Temporary</option>
                   <option value="intern">Intern</option>
                   <option value="consultant">Consultant</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               {/* <CCol md={6}>
                 <CFormLabel>Status</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.status || ''}
                   onChange={(e) => handleInputChange('employment', 'status', e.target.value)}
                   disabled={!editMode.employment}
@@ -550,7 +551,7 @@ const EmploymentInfo = ({
                   <option value="inactive">Inactive</option>
                   <option value="terminated">Terminated</option>
                   <option value="on-leave">On Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol> */}
         
             </CRow>
@@ -606,7 +607,7 @@ const EmploymentInfo = ({
             <CRow className="mt-3">
               {/* <CCol md={4}>
                 <CFormLabel>RA Branch</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.raBranch || ''}
                   onChange={(e) => handleInputChange('employment', 'raBranch', e.target.value)}
                   disabled={!editMode.employment || isLoadingData}
@@ -617,7 +618,7 @@ const EmploymentInfo = ({
                       {location.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
                 <small className="text-muted">
                   {formData?.employment?.raBranch
                     ? locations.find((loc) => loc.value === formData.employment.raBranch)?.label ||
@@ -627,7 +628,7 @@ const EmploymentInfo = ({
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Group</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.group || ''}
                   onChange={(e) => handleInputChange('employment', 'group', e.target.value)}
                   disabled={!editMode.employment || isLoadingData}
@@ -638,7 +639,7 @@ const EmploymentInfo = ({
                       {group.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
                 <small className="text-muted">
                   {formData?.employment?.group
                     ? groups.find((group) => group.value === formData.employment.group)?.label ||
@@ -659,7 +660,7 @@ const EmploymentInfo = ({
               </CCol> */}
               {/* <CCol md={6}>
                 <CFormLabel>RA Location</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={resolvedRaLocationValue}
                   onChange={(e) => handleInputChange('employment', 'raLocation', e.target.value)}
                   disabled={!editMode.employment}
@@ -670,11 +671,11 @@ const EmploymentInfo = ({
                       {location.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol> */}
               <CCol md={6}>
                 <CFormLabel>RA Location</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={
                     formData?.employment?.raLocation?.value ||
                     (typeof formData?.employment?.raLocation === 'string'
@@ -706,7 +707,7 @@ const EmploymentInfo = ({
                       {location.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
 
               <CCol md={6}>
@@ -806,7 +807,7 @@ const EmploymentInfo = ({
             <CRow className="mt-3">
               <CCol md={6}>
                 <CFormLabel>Work Type</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.workType || ''}
                   onChange={(e) => handleInputChange('employment', 'workType', e.target.value)}
                   disabled={!editMode.employment}
@@ -816,11 +817,11 @@ const EmploymentInfo = ({
                   <option value="part-time">Part Time</option>
                   <option value="remote">Remote</option>
                   <option value="hybrid">Hybrid</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={6}>
                 <CFormLabel>Shift</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.shift || ''}
                   onChange={(e) => handleInputChange('employment', 'shift', e.target.value)}
                   disabled={!editMode.employment}
@@ -829,7 +830,7 @@ const EmploymentInfo = ({
                   <option value="day">Day Shift</option>
                   <option value="night">Night Shift</option>
                   <option value="rotating">Rotating Shift</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </CRow>
 
@@ -910,7 +911,7 @@ const EmploymentInfo = ({
               <CRow className="mt-3">
                 <CCol md={6}>
                   <CFormLabel>RA Branch</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={
                       Array.isArray(formData?.profile?.raBranch)
                         ? formData.profile.raBranch[0] || ''
@@ -928,7 +929,7 @@ const EmploymentInfo = ({
                         {location.label}
                       </option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                   <small className="text-muted">Required for SDM role</small>
                 </CCol>
 

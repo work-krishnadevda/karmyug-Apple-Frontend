@@ -17,10 +17,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormSwitch,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
@@ -321,7 +322,7 @@ export default function CreateUnit() {
                   <CFormLabel className="my-1">
                     Select Type<span className="text-danger">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="type"
                     value={initialValues.type ?? ''}
@@ -395,7 +396,7 @@ export default function CreateUnit() {
                       </CCol>
 
                       <CCol md={4}>
-                        <CFormSelect
+                        <AppFormSelect
                           name="conversion_unit"
                           value={initialValues.conversion_unit}
                           selected={initialValues.conversion_unit}

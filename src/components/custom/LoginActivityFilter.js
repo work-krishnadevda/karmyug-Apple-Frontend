@@ -1,4 +1,6 @@
-import { CButton, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CRow } from '@coreui/react'
+import { CButton, CCol, CForm, CFormInput, CFormLabel, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useEffect, useState } from 'react'
 import BasicProvider from 'src/constants/BasicProvider'
 import DatePicker from 'react-datepicker'

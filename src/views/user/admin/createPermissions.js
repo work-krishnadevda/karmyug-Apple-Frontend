@@ -17,11 +17,12 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormSwitch,
   CFormTextarea,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
@@ -296,7 +297,7 @@ export default function CreateUnit() {
                   <CFormLabel className="my-1">
                     Select Type<span className="text-danger">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="type"
                     value={initialValues.type ?? ''}

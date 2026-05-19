@@ -2,7 +2,6 @@ import {
   CButton,
   CCol,
   CFormLabel,
-  CFormSelect,
   CRow,
   CTable,
   CTableBody,
@@ -16,6 +15,8 @@ import {
   CForm,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -735,7 +736,7 @@ const FLoorsAndDiamentions = ({
         <CCol md={6}>
           <div className="py-2">
             <CFormLabel>Property Type (Perent)</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               custom
               name="location_type"
               value={initialValues.location_type}
@@ -748,7 +749,7 @@ const FLoorsAndDiamentions = ({
                   {capitalizeFirstLetter(option)}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </div>
         </CCol>
 
@@ -756,7 +757,7 @@ const FLoorsAndDiamentions = ({
           <CCol md={6}>
             <div className="py-2">
               <CFormLabel>Sub Type Property :</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="sub_location_type"
                 value={initialValues.sub_location_type}
@@ -769,7 +770,7 @@ const FLoorsAndDiamentions = ({
                     {option}
                   </option>
                 ))}
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
         )}
@@ -937,7 +938,7 @@ const FLoorsAndDiamentions = ({
                   No. of wing/Building<span className="text-danger ">*</span>
                 </CFormLabel>
 
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="no_of_wing_or_building"
                   value={initialValues.no_of_wing_or_building}
@@ -948,14 +949,14 @@ const FLoorsAndDiamentions = ({
                       {num}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
             {/* <CCol md={6}>
               <div className="py-2">
                 <CFormLabel>Unit/ Flat Situated on wing</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="flat_situated_on_wing"
                   value={initialValues?.flat_situated_on_wing}
@@ -968,14 +969,14 @@ const FLoorsAndDiamentions = ({
                       </option>
                     ),
                   )}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol> */}
 
             <CCol md={6}>
               <div className="py-2">
                 <CFormLabel>Unit/ Flat Situated on wing</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="flat_situated_on_wing"
                   value={initialValues.flat_situated_on_wing}
@@ -988,7 +989,7 @@ const FLoorsAndDiamentions = ({
                       </option>
                     ),
                   )}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1068,7 +1069,7 @@ const FLoorsAndDiamentions = ({
             <CCol md={6}>
               <div className="py-2">
                 <CFormLabel>No. of Unit/ Flat are available on visited floor</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="other_flats_on_visited_floor"
                   value={initialValues.other_flats_on_visited_floor}
@@ -1079,7 +1080,7 @@ const FLoorsAndDiamentions = ({
                       {num}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1260,7 +1261,7 @@ const FLoorsAndDiamentions = ({
                   Lift<span className="text-danger ">*</span>
                 </CFormLabel>
 
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="lift"
                   value={initialValues.lift}
@@ -1269,7 +1270,7 @@ const FLoorsAndDiamentions = ({
                   <option>Select Lift</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1382,7 +1383,7 @@ const FLoorsAndDiamentions = ({
                     No. of Lifts<span className="text-danger ">*</span>
                   </CFormLabel>
 
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     type="number"
                     name="no_of_lifts"
@@ -1394,7 +1395,7 @@ const FLoorsAndDiamentions = ({
                         {num}
                       </option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             )}
@@ -1493,7 +1494,7 @@ const FLoorsAndDiamentions = ({
                   Shape Type<span className="text-danger ">*</span>
                 </CFormLabel>
 
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="shape_type"
                   className="mb-sm-0 mb-2"
@@ -1505,7 +1506,7 @@ const FLoorsAndDiamentions = ({
                   <option>Select Shape Type</option>
                   <option value="regular shape">Regular Shape</option>
                   <option value="irregular shape">Irregular Shape</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1586,7 +1587,7 @@ const FLoorsAndDiamentions = ({
                   No. Of Floors<span className="text-danger ">*</span>
                 </CFormLabel>
 
-                <CFormSelect
+                <AppFormSelect
                   custom
                   type="number"
                   name="no_of_floors"
@@ -1598,7 +1599,7 @@ const FLoorsAndDiamentions = ({
                       {num === 0 ? 'Ground' : `G+${num}`}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1689,7 +1690,7 @@ const FLoorsAndDiamentions = ({
                     No. of Basement<span className="text-danger ">*</span>
                   </CFormLabel>
 
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     type="number"
                     name="no_of_basement"
@@ -1701,7 +1702,7 @@ const FLoorsAndDiamentions = ({
                         {num}
                       </option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             )}
@@ -1862,7 +1863,7 @@ const FLoorsAndDiamentions = ({
                   Lift<span className="text-danger ">*</span>
                 </CFormLabel>
 
-                <CFormSelect
+                <AppFormSelect
                   custom
                   name="lift"
                   value={initialValues.lift}
@@ -1871,7 +1872,7 @@ const FLoorsAndDiamentions = ({
                   <option>Select Lift</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
 
@@ -1882,7 +1883,7 @@ const FLoorsAndDiamentions = ({
                     No. of Lifts<span className="text-danger ">*</span>
                   </CFormLabel>
 
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     type="number"
                     name="no_of_lifts"
@@ -1894,7 +1895,7 @@ const FLoorsAndDiamentions = ({
                         {num}
                       </option>
                     ))}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             )}

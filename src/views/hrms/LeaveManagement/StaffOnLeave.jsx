@@ -10,13 +10,14 @@ import {
   CTableBody,
   CTableDataCell,
   CButton,
-  CFormSelect,
   CFormInput,
   CBadge,
   CPagination,
   CPaginationItem,
   CSpinner,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import './HRLeaveDashboard.css'
@@ -204,13 +205,13 @@ const HRLeaveDashboard = () => {
       </CCardHeader>
       <CCardBody className={`filter-container ${showFilters ? 'expanded' : 'collapsed'}`}>
         <div className="filter-grid sticky-filters">
-          <CFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+          <AppFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
             <option value="">All Types</option>
             <option value="CL">Casual Leave</option>
             <option value="UL">Unpaid Leave</option>
             <option value="Emergency">Emergency Leave</option>
             <option value="Penalty">Penalty Leave</option>
-          </CFormSelect>
+          </AppFormSelect>
 
           <CFormInput
             placeholder="Search employee..."
@@ -218,14 +219,14 @@ const HRLeaveDashboard = () => {
             onChange={(e) => setSearchFilter(e.target.value)}
           />
 
-          <CFormSelect value={raBranchFilter} onChange={(e) => setRaBranchFilter(e.target.value)}>
+          <AppFormSelect value={raBranchFilter} onChange={(e) => setRaBranchFilter(e.target.value)}>
             <option value="">All RA Branch</option>
             {raBranchOptions.map((branch) => (
               <option key={branch} value={branch}>
                 {branch}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
 
           <CFormInput
             type="date"

@@ -17,10 +17,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormSwitch,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'

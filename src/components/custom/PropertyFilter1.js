@@ -1,4 +1,6 @@
-import { CButton, CCol, CForm, CFormLabel, CFormSelect, CRow } from '@coreui/react'
+import { CButton, CCol, CForm, CFormLabel, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useState } from 'react'
@@ -54,7 +56,7 @@ const PropertyFilter1 = ({
           </CCol>
           <CCol xs={12} md={3}>
             <CFormLabel>Is Verified</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={localFilter.isVerify || ''}
               onChange={(e) => handleChange('isVerify', e.target.value)}
             >
@@ -63,7 +65,7 @@ const PropertyFilter1 = ({
                   {opt.label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </CCol>
           <CCol xs={12} md={3}>
             <CFormLabel>From Date</CFormLabel>
@@ -90,7 +92,7 @@ const PropertyFilter1 = ({
           </CCol>
           {/* <CCol xs={12} md={3}>
             <CFormLabel>Property Type</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={localFilter.propertyType || ''}
               onChange={(e) => handleChange('propertyType', e.target.value)}
             >
@@ -99,7 +101,7 @@ const PropertyFilter1 = ({
                   {type.label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </CCol> */}
 
           {pinType !== 'broker' && (
@@ -107,7 +109,7 @@ const PropertyFilter1 = ({
               <CFormLabel>
                 Property Type<span className="text-danger">*</span>
               </CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 name="propertyType"
                 value={localFilter.propertyType || ''}
                 onChange={(e) => handleChange('propertyType', e.target.value)}
@@ -120,7 +122,7 @@ const PropertyFilter1 = ({
                 <option value="industrial">Industrial</option>
                 <option value="land">Land</option>
                 <option value="other">Other</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
           )}
 

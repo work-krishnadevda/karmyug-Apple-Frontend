@@ -20,7 +20,6 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CNav,
   CNavItem,
@@ -31,6 +30,8 @@ import {
   CTabPane,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useDispatch, useSelector } from 'react-redux'
 import MainDetailsCase from 'src/components/custom/department/roles/sdm/MainDetailsCase'
 import PersonalInfoSDM from 'src/components/custom/department/roles/sdm/PersonalInfoSDM'
@@ -1843,7 +1844,7 @@ const commonUpdate = () => {
                                       Submit Type <span className="text-danger ">*</span>
                                     </CFormLabel>
 
-                                    <CFormSelect
+                                    <AppFormSelect
                                       custom
                                       name="submit_type"
                                       className="mb-sm-0 mb-2"
@@ -1859,7 +1860,7 @@ const commonUpdate = () => {
                                       <option value="">Select Shape Type</option>
                                       <option value="online">Online</option>
                                       <option value="offline">Offline</option>
-                                    </CFormSelect>
+                                    </AppFormSelect>
                                   </div>
                                 </CCol>
 
@@ -1961,7 +1962,7 @@ const commonUpdate = () => {
                                       Submit Type <span className="text-danger ">*</span>
                                     </CFormLabel>
 
-                                    <CFormSelect
+                                    <AppFormSelect
                                       custom
                                       name="submit_type"
                                       className="mb-sm-0 mb-2"
@@ -1977,7 +1978,7 @@ const commonUpdate = () => {
                                       <option value="">Select Shape Type</option>
                                       <option value="online">Online</option>
                                       <option value="offline">Offline</option>
-                                    </CFormSelect>
+                                    </AppFormSelect>
                                   </div>
                                 </CCol>
 
@@ -2184,7 +2185,7 @@ const commonUpdate = () => {
                                             Submit Type <span className="text-danger ">*</span>
                                           </CFormLabel>
 
-                                          <CFormSelect
+                                          <AppFormSelect
                                             custom
                                             name="submit_type"
                                             className="mb-sm-0 mb-2"
@@ -2200,7 +2201,7 @@ const commonUpdate = () => {
                                             <option value="">Select Shape Type</option>
                                             <option value="online">Online</option>
                                             <option value="offline">Offline</option>
-                                          </CFormSelect>
+                                          </AppFormSelect>
                                         </div>
                                       </CCol>
 
@@ -2305,7 +2306,7 @@ const commonUpdate = () => {
                                             Submit Type <span className="text-danger ">*</span>
                                           </CFormLabel>
 
-                                          <CFormSelect
+                                          <AppFormSelect
                                             custom
                                             name="submit_type"
                                             className="mb-sm-0 mb-2"
@@ -2321,7 +2322,7 @@ const commonUpdate = () => {
                                             <option value="">Select Shape Type</option>
                                             <option value="online">Online</option>
                                             <option value="offline">Offline</option>
-                                          </CFormSelect>
+                                          </AppFormSelect>
                                         </div>
                                       </CCol>
 
@@ -2526,7 +2527,7 @@ const commonUpdate = () => {
                                           <CFormLabel>
                                             Submit Type <span className="text-danger ">*</span>
                                           </CFormLabel>
-                                          <CFormSelect
+                                          <AppFormSelect
                                             custom
                                             name="submit_type"
                                             className="mb-sm-0 mb-2"
@@ -2542,7 +2543,7 @@ const commonUpdate = () => {
                                             <option value="">Select Shape Type</option>
                                             <option value="online">Online</option>
                                             <option value="offline">Offline</option>
-                                          </CFormSelect>
+                                          </AppFormSelect>
                                         </div>
                                       </CCol>
 
@@ -2641,7 +2642,7 @@ const commonUpdate = () => {
                                           <CFormLabel>
                                             Submit Type <span className="text-danger ">*</span>
                                           </CFormLabel>
-                                          <CFormSelect
+                                          <AppFormSelect
                                             custom
                                             name="submit_type"
                                             className="mb-sm-0 mb-2"
@@ -2657,7 +2658,7 @@ const commonUpdate = () => {
                                             <option value="">Select Shape Type</option>
                                             <option value="online">Online</option>
                                             <option value="offline">Offline</option>
-                                          </CFormSelect>
+                                          </AppFormSelect>
                                         </div>
                                       </CCol>
 

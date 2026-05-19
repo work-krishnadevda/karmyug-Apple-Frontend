@@ -9,10 +9,11 @@ import {
   CRow,
   CCol,
   CSpinner,
-  CFormSelect,
   CFormInput,
   CFormCheck
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPlus, cilArrowLeft, cilPencil, cilCreditCard } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useWelcomeLetterGenerator } from '../../components/WelcomeLetterGenerator'
@@ -1397,7 +1398,7 @@ const ProfileHeader = ({
               <label style={{ fontWeight: 600, marginBottom: '10px', display: 'block' }}>
                 Select Year
               </label>
-              <CFormSelect
+              <AppFormSelect
                 value={selectedYear}
                 onChange={(e) => {
                   setSelectedYear(parseInt(e.target.value))
@@ -1413,7 +1414,7 @@ const ProfileHeader = ({
                     {year}
                   </option>
                 ))}
-              </CFormSelect>
+              </AppFormSelect>
             </div>
 
             {/* Month Grid */}

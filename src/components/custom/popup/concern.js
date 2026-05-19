@@ -7,8 +7,9 @@ import {
   CModalHeader,
   CModalTitle,
   CFormTextarea,
-  CFormSelect,
-} from '@coreui/react'
+  } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useNavigate } from 'react-router-dom'
 import BasicProvider from 'src/constants/BasicProvider'
 
@@ -107,7 +108,7 @@ const Concern = (props) => {
         </CModalHeader>
 
         <CModalBody>
-          <CFormSelect
+          <AppFormSelect
             aria-label="Default select example"
             options={options}
             onChange={handleSelectChange}

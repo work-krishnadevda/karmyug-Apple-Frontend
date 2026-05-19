@@ -9,13 +9,14 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CHeader,
   CInputGroup,
   CRow,
   CSpinner,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
@@ -609,7 +610,7 @@ const Files = ({ initialValues, setInitialValues, showCaseData, activeTab, fetch
 
         if (isImage && isFeVisible) {
           return (
-            <CFormSelect
+            <AppFormSelect
               size="sm"
               name="position"
               aria-label="Default select example"
@@ -622,11 +623,11 @@ const Files = ({ initialValues, setInitialValues, showCaseData, activeTab, fetch
                   {index + 1}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           )
         } else if (isImage && isDmVisible) {
           return (
-            <CFormSelect
+            <AppFormSelect
               size="sm"
               name="position"
               aria-label="Default select example"
@@ -639,7 +640,7 @@ const Files = ({ initialValues, setInitialValues, showCaseData, activeTab, fetch
                   {index + 1}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           )
         } else {
           return '-'

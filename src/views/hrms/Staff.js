@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useWelcomeLetterGenerator } from '../../components/WelcomeLetterGenerator'
@@ -13,7 +15,6 @@ import {
   CButton,
   CRow,
   CBadge,
-  CFormSelect,
   CSpinner,
   CAlert,
   CFormInput,
@@ -1446,7 +1447,7 @@ const handleDeleteEmployee = async () => {
                 {/* Role Filter */}
                 <CCol md={4}>
                   <CFormLabel className="fw-semibold text-dark mb-2">Filter by Role</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={filterRole}
                     onChange={(e) => setFilterRole(e.target.value)}
                     onClick={handleRoleDropdownClick}
@@ -1465,13 +1466,13 @@ const handleDeleteEmployee = async () => {
                         Loading roles...
                       </option>
                     )}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </CCol>
 
                 {/* Status Filter */}
                 <CCol md={4}>
                   <CFormLabel className="fw-semibold text-dark mb-2">Filter by Status</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
                     className="form-control-modern select-dropdown"
@@ -1479,7 +1480,7 @@ const handleDeleteEmployee = async () => {
                     <option value="">All Status</option>
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </CCol>
               </CRow>
             </CCardBody>

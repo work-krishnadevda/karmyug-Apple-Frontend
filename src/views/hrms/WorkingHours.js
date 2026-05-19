@@ -14,9 +14,10 @@ import {
   CBadge,
   CSpinner,
   CProgress,
-  CFormSelect,
   CWidgetStatsF,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilClock, cilCalendar, cilChartLine, cilArrowTop } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useDispatch } from 'react-redux'
@@ -89,7 +90,7 @@ const WorkingHours = () => {
         <CCol xs={12}>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2>Working Hours Analysis</h2>
-            <CFormSelect
+            <AppFormSelect
               value={selectedPeriod}
               onChange={(e) => setSelectedPeriod(e.target.value)}
               style={{ width: '200px' }}
@@ -98,7 +99,7 @@ const WorkingHours = () => {
               <option value="month">This Month</option>
               <option value="quarter">This Quarter</option>
               <option value="year">This Year</option>
-            </CFormSelect>
+            </AppFormSelect>
           </div>
         </CCol>
       </CRow>

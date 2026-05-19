@@ -8,10 +8,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CInputGroup,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useEffect, useRef, useState } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
@@ -550,21 +551,21 @@ export default function CreateCustomer() {
                         <CFormLabel>
                           Country:<span className="text-danger">*</span>
                         </CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           id="country"
                           value={selectedCountry}
                           onChange={handleCountryChange}
                         >
                           <option value="">Select Country</option>
                           {getCountryOption()}
-                        </CFormSelect>
+                        </AppFormSelect>
                       </div>
                     </CCol>
                     <CCol md={6}>
                       <CFormLabel>
                         State:<span className="text-danger">*</span>
                       </CFormLabel>
-                      <CFormSelect
+                      <AppFormSelect
                         id="county"
                         value={selectedCounty}
                         onChange={handleCountyChange}
@@ -572,7 +573,7 @@ export default function CreateCustomer() {
                       >
                         <option value="">Select County</option>
                         {getCountyOption()}
-                      </CFormSelect>
+                      </AppFormSelect>
                     </CCol>
                   </CRow>
                   <CRow>
@@ -580,7 +581,7 @@ export default function CreateCustomer() {
                       <CFormLabel>
                         City:<span className="text-danger">*</span>
                       </CFormLabel>
-                      <CFormSelect
+                      <AppFormSelect
                         id="city"
                         value={selectedCity}
                         onChange={handleCityChange}
@@ -588,7 +589,7 @@ export default function CreateCustomer() {
                       >
                         <option value="">Select City</option>
                         {getCityOptions()}
-                      </CFormSelect>
+                      </AppFormSelect>
                     </CCol>
 
                     <CCol md={6}>

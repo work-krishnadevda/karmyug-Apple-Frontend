@@ -7,7 +7,6 @@ import {
   CForm,
   CFormLabel,
   CFormInput,
-  CFormSelect,
   CButton,
   CTable,
   CTableHead,
@@ -26,6 +25,8 @@ import {
   CRow,
   CWidgetStatsF,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCalendar, cilPeople, cilChart, cilFilter, cilCloudDownload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -512,7 +513,7 @@ const AdminDashboard = () => {
             <CRow>
               <CCol md={3}>
                 <CFormLabel>Department</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={filters.department}
                   onChange={(e) => setFilters({ ...filters, department: e.target.value })}
                 >
@@ -522,22 +523,22 @@ const AdminDashboard = () => {
                   <option value="Finance">Finance</option>
                   <option value="Marketing">Marketing</option>
                   <option value="Operations">Operations</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={3}>
                 <CFormLabel>Leave Type</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={filters.leaveType}
                   onChange={(e) => setFilters({ ...filters, leaveType: e.target.value })}
                 >
                   <option value="all">All Types</option>
                   <option value="CL">Casual Leave</option>
                   <option value="UL">Unpaid Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={3}>
                 <CFormLabel>Status</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={filters.status}
                   onChange={(e) => setFilters({ ...filters, status: e.target.value })}
                 >
@@ -545,11 +546,11 @@ const AdminDashboard = () => {
                   <option value="pending">Pending</option>
                   <option value="approved">Approved</option>
                   <option value="rejected">Rejected</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
                              <CCol md={3}>
                  <CFormLabel>Date Range</CFormLabel>
-                 <CFormSelect
+                 <AppFormSelect
                    value={filters.dateRange}
                    onChange={(e) => setFilters({ ...filters, dateRange: e.target.value })}
                  >
@@ -557,7 +558,7 @@ const AdminDashboard = () => {
                    <option value="this_month">This Month</option>
                    <option value="last_month">Last Month</option>
                    <option value="this_quarter">This Quarter</option>
-                 </CFormSelect>
+                 </AppFormSelect>
                </CCol>
                <CCol md={3}>
                  <CFormLabel>Check Date (Who is on Leave)</CFormLabel>

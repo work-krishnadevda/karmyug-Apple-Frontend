@@ -18,12 +18,13 @@ import {
   CCardBody,
   CFormTextarea,
   CContainer,
-  CFormSelect,
   CForm,
   CModal,
   CModalBody,
   CModalFooter,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider'
 import trash from 'src/assets/images/trash.png'
 import handleSubmitHelper from 'src/helpers/submitHelper'
@@ -297,7 +298,7 @@ export default function Createregions() {
                   <CFormLabel>
                     Type<span className="text-danger">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="type"
                     value={selectedType}
@@ -317,7 +318,7 @@ export default function Createregions() {
                   <CFormLabel>
                     Parent
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="parent"
                     aria-label="Default select example"

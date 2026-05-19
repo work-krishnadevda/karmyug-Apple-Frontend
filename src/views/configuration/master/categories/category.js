@@ -10,7 +10,6 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormSwitch,
   CFormTextarea,
   CModal,
@@ -18,6 +17,8 @@ import {
   CModalFooter,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import $ from 'jquery'
 import 'jstree'
 import 'jstree/dist/themes/default/style.css'
@@ -321,7 +322,7 @@ export default function CreateCategories() {
                   <CFormLabel>
                     Type<span className="text-danger">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="type"
                     onChange={async (event) => {
@@ -367,7 +368,7 @@ export default function CreateCategories() {
                     </div>
                   )}
                   <CFormLabel>Parent</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="parent"
                     aria-label="Default select example"

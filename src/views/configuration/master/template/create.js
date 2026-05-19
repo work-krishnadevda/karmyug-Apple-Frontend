@@ -16,13 +16,14 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CInputGroup,
   CRow,
   CSpinner,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -366,7 +367,7 @@ export default function Createtemplates() {
                       Type<span className="text-danger">*</span>
                     </CFormLabel>
                     <CInputGroup className="has-validation">
-                      <CFormSelect
+                      <AppFormSelect
                         size="sm"
                         className="mb-3"
                         aria-label="Small select example"
@@ -378,7 +379,7 @@ export default function Createtemplates() {
                         <option>Select Type</option>
                         <option value="simple">Simple</option>
                         <option value="hold">Hold</option>
-                      </CFormSelect>
+                      </AppFormSelect>
                     </CInputGroup>
                   </div>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { CelebrationCard } from './CelebrationCard'
 import BasicProvider from 'src/constants/BasicProvider'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import { toast } from 'react-toastify'
 import moment from 'moment'
 
@@ -103,11 +104,8 @@ const WorkAnniversaryUpcoming = () => {
 
   if (loading) {
     return (
-      <div className="p-4 flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="loading-spinner mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading upcoming work anniversaries...</p>
-        </div>
+      <div className="p-4">
+        <AppContentSkeleton variant="cards" cards={4} ariaLabel="Loading upcoming work anniversaries" />
       </div>
     )
   }

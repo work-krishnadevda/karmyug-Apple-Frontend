@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { CCard, CCardBody, CCardHeader, CButton, CFormSelect, CFormLabel, CCol, CRow, CAlert, CSpinner } from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CButton, CFormLabel, CCol, CRow, CAlert, CSpinner } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCloudDownload, cilFile, cilCheck } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
@@ -67,7 +69,7 @@ const ExportPanel = ({
         <CRow className="g-3">
           <CCol md={6}>
             <CFormLabel>Export Format</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={selectedFormat}
               onChange={(e) => setSelectedFormat(e.target.value)}
               disabled={disabled || loading}
@@ -77,7 +79,7 @@ const ExportPanel = ({
                   {label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
             <div className="form-text">
               {getExportDescription(selectedFormat)}
             </div>

@@ -1,4 +1,6 @@
-import { CButton, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CRow } from '@coreui/react'
+import { CButton, CCol, CForm, CFormInput, CFormLabel, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useEffect, useState } from 'react'
 import BasicProvider from 'src/constants/BasicProvider'
 import DatePicker from 'react-datepicker'
@@ -231,7 +233,7 @@ const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onRe
 
             <CCol xs={12} lg={4} className=" ps-0  pe-0 ps-md-2">
               <CFormLabel>By Status</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 aria-label="Default select example"
                 name="status"
                 value={initialvalue.status}
@@ -253,7 +255,7 @@ const InitiatedFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onRe
                 <option value="submitted to bank">Total case submitted to Bank</option>
                 <option value="hold by">Total cases On Hold</option>
                 <option value="concern by fe">Concern By FE</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
 
 

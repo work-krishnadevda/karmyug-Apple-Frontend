@@ -15,9 +15,10 @@ import {
   CFormLabel,
   CInputGroup,
   CRow,
-  CFormSelect,
   CSpinner,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useEffectFormData } from 'src/helpers/formHelpers'
@@ -683,7 +684,7 @@ const Create = () => {
                     <CCol md={4}>
                       <div>
                         <CFormLabel>Select Role</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           aria-label=""
                           options={[
                             'Select Role for Fields',
@@ -704,7 +705,7 @@ const Create = () => {
                     <CCol md={6}>
                       <div>
                         <CFormLabel>Empanelled with RA/GA/LLP/SST</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           name="empannelled_with"
                           value={initialValues?.empannelled_with || ''}
                           onChange={handleOnChange}
@@ -714,7 +715,7 @@ const Create = () => {
                               {company.label}
                             </option>
                           ))}
-                        </CFormSelect>
+                        </AppFormSelect>
                       </div>
                     </CCol>
 

@@ -1,4 +1,6 @@
-import { CButton, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CRow } from '@coreui/react'
+import { CButton, CCol, CForm, CFormInput, CFormLabel, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -67,7 +69,7 @@ const DistanceFrom = ({ currentStep, setCurrentStep, initialValues, setInitialVa
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Road Type</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="road_type"
                 value={initialValues.road_type}
@@ -78,7 +80,7 @@ const DistanceFrom = ({ currentStep, setCurrentStep, initialValues, setInitialVa
                 <option value="rcc">RCC</option>
                 <option value="mud">MUD</option>
                 <option value="bitumin">BITUMIN</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
           <CCol md={4}>

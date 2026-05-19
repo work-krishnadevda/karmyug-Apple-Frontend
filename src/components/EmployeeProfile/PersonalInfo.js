@@ -8,9 +8,10 @@ import {
   CButton,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPencil, cilSave, cilX, cilEnvelopeClosed, cilInfo } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import moment from 'moment'
@@ -75,7 +76,7 @@ const PersonalInfo = ({
               </CCol> */}
               {/* <CCol md={6}>
                 <CFormLabel>Gender</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.gender || ''}
                   onChange={(e) => handleInputChange('personal', 'gender', e.target.value)}
                   disabled={!editMode.personal}
@@ -84,11 +85,11 @@ const PersonalInfo = ({
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol> */}
               <CCol md={6}>
                 <CFormLabel>Staff Type</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.employment?.employeeType || ''}
                   onChange={(e) => handleInputChange('employment', 'employeeType', e.target.value)}
                   disabled={!editMode.personal}
@@ -99,11 +100,11 @@ const PersonalInfo = ({
                   <option value="temporary">Temporary</option>
                   <option value="intern">Intern</option>
                   <option value="consultant">Consultant</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={6}>
                 <CFormLabel>Department</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.profile?.department || ''}
                   onChange={(e) => handleInputChange('profile', 'department', e.target.value)}
                   disabled={!editMode.personal}
@@ -111,7 +112,7 @@ const PersonalInfo = ({
                   <option value="">Select Department</option>
                   <option value="technical">Technical</option>
                   <option value="management">Management</option>
-                </CFormSelect>
+                </AppFormSelect>
                 {getFieldError && getFieldError('profile', 'department') && (
                   <div className="text-danger small mt-1">
                     {getFieldError('profile', 'department')}
@@ -137,7 +138,7 @@ const PersonalInfo = ({
 
               <CCol md={6}>
                 <CFormLabel>Marital Status</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.maritalStatus || ''}
                   onChange={(e) => handleInputChange('personal', 'maritalStatus', e.target.value)}
                   disabled={!editMode.personal}
@@ -147,7 +148,7 @@ const PersonalInfo = ({
                   <option value="married">Married</option>
                   <option value="divorced">Divorced</option>
                   <option value="widowed">Widowed</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </CRow>
 
@@ -163,7 +164,7 @@ const PersonalInfo = ({
               </CCol>
               <CCol md={6}>
                 <CFormLabel>Physically Challenged</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.physicallyChallenged || ''}
                   onChange={(e) =>
                     handleInputChange('personal', 'physicallyChallenged', e.target.value)
@@ -173,7 +174,7 @@ const PersonalInfo = ({
                   <option value="">Select Option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </CFormSelect>
+                </AppFormSelect>
 
                 {/* Conditional input for physically challenged reason */}
                 {formData?.personal?.physicallyChallenged === 'yes' && (
@@ -264,7 +265,7 @@ const PersonalInfo = ({
             {/* <CRow className="mt-3">
               <CCol md={6}>
                 <CFormLabel>Physically Challenged</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.physicallyChallenged || ''}
                   onChange={(e) =>
                     handleInputChange('personal', 'physicallyChallenged', e.target.value)
@@ -274,7 +275,7 @@ const PersonalInfo = ({
                   <option value="">Select Option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </CRow> */}
 
@@ -579,7 +580,7 @@ const PersonalInfo = ({
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 1 - Relation</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.emergencyContact1Relation || ''}
                   onChange={(e) =>
                     handleInputChange('personal', 'emergencyContact1Relation', e.target.value)
@@ -593,7 +594,7 @@ const PersonalInfo = ({
                   <option value="sibling">Sibling</option>
                   <option value="friend">Friend</option>
                   <option value="other">Other</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 1 - Phone</CFormLabel>
@@ -629,7 +630,7 @@ const PersonalInfo = ({
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 2 - Relation</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.emergencyContact2Relation || ''}
                   onChange={(e) =>
                     handleInputChange('personal', 'emergencyContact2Relation', e.target.value)
@@ -643,7 +644,7 @@ const PersonalInfo = ({
                   <option value="sibling">Sibling</option>
                   <option value="friend">Friend</option>
                   <option value="other">Other</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 2 - Phone</CFormLabel>
@@ -679,7 +680,7 @@ const PersonalInfo = ({
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 3 - Relation</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData?.personal?.emergencyContact3Relation || ''}
                   onChange={(e) =>
                     handleInputChange('personal', 'emergencyContact3Relation', e.target.value)
@@ -693,7 +694,7 @@ const PersonalInfo = ({
                   <option value="sibling">Sibling</option>
                   <option value="friend">Friend</option>
                   <option value="other">Other</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={4}>
                 <CFormLabel>Emergency Contact 3 - Phone</CFormLabel>

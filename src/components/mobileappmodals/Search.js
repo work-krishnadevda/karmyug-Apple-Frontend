@@ -1,4 +1,6 @@
-import { CButton, CForm, CFormLabel, CFormSelect, CModal, CModalBody, CModalHeader, CModalTitle,CModalFooter, CFormInput } from '@coreui/react'
+import { CButton, CForm, CFormLabel, CModal, CModalBody, CModalHeader, CModalTitle,CModalFooter, CFormInput } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import BasicProvider from 'src/constants/BasicProvider'
 

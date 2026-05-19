@@ -6,7 +6,6 @@ import {
   CCardBody,
   CRow,
   CCol,
-  CFormSelect,
   CButton,
   CModal,
   CModalHeader,
@@ -17,6 +16,8 @@ import {
   CFormLabel,
   CCardTitle,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { toast } from 'react-toastify'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
@@ -2471,24 +2472,24 @@ const exportSalarySheet = async (data, monthArg, yearArg) => {
             <CRow className="g-3 align-items-end mb-3">
               <CCol md={3}>
                 <CFormLabel>Month</CFormLabel>
-                <CFormSelect value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                <AppFormSelect value={month} onChange={(e) => setMonth(Number(e.target.value))}>
                   {[...Array(12)].map((_, i) => (
                     <option key={i + 1} value={i + 1}>
                       {new Date(0, i).toLocaleString('default', { month: 'long' })}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
 
               <CCol md={3}>
                 <CFormLabel>Year</CFormLabel>
-                <CFormSelect value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                <AppFormSelect value={year} onChange={(e) => setYear(Number(e.target.value))}>
                   {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i).map((y) => (
                     <option key={y} value={y}>
                       {y}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
 
             </CRow>

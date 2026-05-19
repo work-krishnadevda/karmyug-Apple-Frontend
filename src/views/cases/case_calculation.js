@@ -12,9 +12,10 @@ import {
     CForm,
     CFormInput,
     CFormLabel,
-    CFormSelect,
     CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import CIcon from '@coreui/icons-react'
@@ -202,7 +203,7 @@ const Calculation = () => {
                                     <CCol md={2}>
                                         <div>
                                             <CFormLabel>Calc.</CFormLabel>
-                                            <CFormSelect
+                                            <AppFormSelect
                                                 value={field.calc}
                                                 onChange={(e) => handleFieldChange(index, 'calc', e.target.value)}
                                             >
@@ -212,7 +213,7 @@ const Calculation = () => {
                                                 <option value="*">✖️</option>
                                                 <option value="/">➗</option>
                                                 <option value="%">°/•</option>
-                                            </CFormSelect>
+                                            </AppFormSelect>
                                         </div>
                                     </CCol>
 

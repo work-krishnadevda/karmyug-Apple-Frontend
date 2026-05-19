@@ -23,9 +23,10 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CAlert,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCalendar, cilPlus, cilMagnifyingGlass } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useDispatch } from 'react-redux'
@@ -266,7 +267,7 @@ const LeaveManagement = () => {
             <CRow>
               <CCol md={6}>
                 <CFormLabel>Leave Type</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={leaveForm.leaveType}
                   onChange={(e) => setLeaveForm({ ...leaveForm, leaveType: e.target.value })}
                   required
@@ -278,7 +279,7 @@ const LeaveManagement = () => {
                   <option value="personal">Personal Leave</option>
                   <option value="maternity">Maternity Leave</option>
                   <option value="paternity">Paternity Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
               <CCol md={6}>
                 <CFormLabel>Reason</CFormLabel>

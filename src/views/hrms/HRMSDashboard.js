@@ -24,7 +24,6 @@ import {
   CModalFooter,
   CForm,
   CFormInput,
-  CFormSelect,
   CFormLabel,
   CInputGroup,
   CButtonGroup,
@@ -33,6 +32,9 @@ import {
   CDropdownMenu,
   CDropdownItem,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import EmployeeDashboard from './EmployeeDashboard'
 import {
   cilPeople,
@@ -327,8 +329,13 @@ const HRMSDashboard = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '400px' }}>
-        <CSpinner size="lg" />
+      <div className="hrms-dashboard" style={{ paddingTop: '20px' }}>
+        <CContainer fluid>
+          <div className="dashboard-toolbar__switcher mb-3">
+            <SwitchingHeader />
+          </div>
+          <AppContentSkeleton ariaLabel="Loading HRMS dashboard" cards={4} rows={5} />
+        </CContainer>
       </div>
     )
   }
@@ -354,27 +361,31 @@ const HRMSDashboard = () => {
               </p>
             </CCol>
             <CCol xs="auto">
-              <div className="d-flex align-items-center gap-2">
-                <CButtonGroup>
-                  <CButton
-                    color={activeTab === 'overview' ? 'primary' : 'outline-primary'}
-                    onClick={() => setActiveTab('overview')}
-                  >
-                    <CIcon icon={cilSpeedometer} className="me-1" />
-                    Overview
-                  </CButton>
-                  {isAdminOrHR && (
-                    <>
+              <div className="d-flex align-items-center gap-2 hrms-dashboard-tab-switcher">
+                <div className="switching-header-bar">
+                  <div className="switching-header-bar__group" role="group" aria-label="HRMS dashboard tabs">
+                    <CButton
+                      onClick={() => setActiveTab('overview')}
+                      className={`switching-header-bar__button ${
+                        activeTab === 'overview' ? 'is-active' : ''
+                      }`}
+                    >
+                      <CIcon icon={cilSpeedometer} className="me-1" />
+                      Overview
+                    </CButton>
+                    {isAdminOrHR && (
                       <CButton
-                        color={activeTab === 'staff' ? 'primary' : 'outline-primary'}
                         onClick={() => setActiveTab('staff')}
+                        className={`switching-header-bar__button ${
+                          activeTab === 'staff' ? 'is-active' : ''
+                        }`}
                       >
                         <CIcon icon={cilPeople} className="me-1" />
                         Staff
                       </CButton>
-                    </>
-                  )}
-                </CButtonGroup>
+                    )}
+                  </div>
+                </div>
               </div>
             </CCol>
           </CRow>
@@ -552,25 +563,25 @@ const HRMSDashboard = () => {
                   </CCol>
                   <CCol md={4}>
                     <CFormLabel>Filter by Role</CFormLabel>
-                    <CFormSelect value={filterRole} onChange={(e) => setFilterRole(e.target.value)}>
+                    <AppFormSelect value={filterRole} onChange={(e) => setFilterRole(e.target.value)}>
                       <option value="">All Roles</option>
                       {uniqueRoles.map((role) => (
                         <option key={role} value={role}>
                           {role}
                         </option>
                       ))}
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   <CCol md={4}>
                     <CFormLabel>Filter by Status</CFormLabel>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filterStatus}
                       onChange={(e) => setFilterStatus(e.target.value)}
                     >
                       <option value="">All Status</option>
                       <option value="active">Active</option>
                       <option value="inactive">Inactive</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                 </CRow>
               </CCardBody>

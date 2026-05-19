@@ -1,5 +1,7 @@
 import React from 'react'
-import { CFormInput, CFormLabel, CFormSelect, CCol, CRow } from '@coreui/react'
+import { CFormInput, CFormLabel, CCol, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import PropTypes from 'prop-types'
 import { REPORT_PERIODS, REPORT_PERIOD_LABELS } from '../../../constants/musterRollConstants'
 
@@ -57,7 +59,7 @@ const DateRangePicker = ({
       <CRow className="g-3">
         <CCol md={3}>
           <CFormLabel>Report Period</CFormLabel>
-          <CFormSelect
+          <AppFormSelect
             value={period}
             onChange={handlePeriodChange}
             disabled={disabled}
@@ -67,7 +69,7 @@ const DateRangePicker = ({
                 {label}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
         </CCol>
         
         <CCol md={4}>

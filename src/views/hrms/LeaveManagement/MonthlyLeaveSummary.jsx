@@ -17,8 +17,9 @@ import {
   CModalTitle,
   CModalBody,
   CModalFooter,
-  CFormSelect,
-} from '@coreui/react'
+  } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { toast } from 'react-toastify'
 import BasicProvider from 'src/constants/BasicProvider'
 
@@ -107,7 +108,7 @@ const monthRef = useRef(null)
               setPage(1)
             }}
           />
-          <CFormSelect
+          <AppFormSelect
             value={leaveType}
             onChange={(e) => {
               setLeaveType(e.target.value)
@@ -117,7 +118,7 @@ const monthRef = useRef(null)
             <option value="">All Types</option>
             <option value="CL">CL</option>
             <option value="UL">UL</option>
-          </CFormSelect>
+          </AppFormSelect>
         </div>
       </CCardHeader>
 

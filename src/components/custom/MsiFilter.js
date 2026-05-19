@@ -5,9 +5,10 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import moment from 'moment'
 
 import { useEffect, useState } from 'react'
@@ -791,7 +792,7 @@ const MsiFilter = ({
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'flex-start',
-                        backgroundColor: state.isFocused ? '#e6f7ff' : '#fff',
+                        backgroundColor: state.isFocused ? '#eaf5f2' : '#fff',
                         color: '#000',
                         cursor: 'pointer',
                         padding: '10px',
@@ -942,7 +943,7 @@ const MsiFilter = ({
 
             <CCol xs={12} lg={4} className="px-2 pe-0 pe-lg-2 ps-0">
               <CFormLabel>By Visit Done Type</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 name="visit_type_by_fe"
                 value={initialvalue?.visit_type_by_fe || ''}
                 onChange={(e) => {
@@ -955,7 +956,7 @@ const MsiFilter = ({
                 <option value={''}>All</option>
                 <option value={'offline'}>offline</option>
                 <option value={'online'}>online</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
 
             <CCol xs={12} lg={2} className="mt-4 d-flex align-items-center">
@@ -997,7 +998,7 @@ const MsiFilter = ({
                 <div className="">
                   <CFormLabel>Only Done </CFormLabel>
 
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     name="location_type"
                     value={initialvalue.done_status}
@@ -1028,7 +1029,7 @@ const MsiFilter = ({
                         {isAC && <option value="hold">Holded</option>}
                       </>
                     )}
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             )}

@@ -6,7 +6,6 @@ import {
   CRow,
   CCol,
   CFormInput,
-  CFormSelect,
   CModal,
   CModalHeader,
   CModalTitle,
@@ -14,6 +13,8 @@ import {
   CModalBody,
   CModalFooter,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { Calendar, PlusCircle, Send, Edit, Trash2, Eye } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -424,14 +425,14 @@ export default function HolidayCalendar() {
             value={form.reason}
             onChange={(e) => setForm({ ...form, reason: e.target.value })}
           />
-          <CFormSelect
+          <AppFormSelect
             value={form.type}
             onChange={(e) => setForm({ ...form, type: e.target.value })}
             className="mb-3"
           >
             <option>Full Day</option>
             <option>Half Day</option>
-          </CFormSelect>
+          </AppFormSelect>
           <CButton color="primary" onClick={handleAddHoliday}>
             {editHolidayId ? 'Update' : 'Add'} Holiday
           </CButton>

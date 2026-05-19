@@ -13,10 +13,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CInputGroup,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useEffectFormData } from 'src/helpers/formHelpers'
@@ -363,7 +364,7 @@ const calculation = () => {
                   <CCol md={2}>
                     <div>
                       <CFormLabel>Calc.</CFormLabel>
-                      <CFormSelect
+                      <AppFormSelect
                         value={field.calc}
                         onChange={(e) => handleFieldChange(index, 'calc', e.target.value)}
                       >
@@ -373,7 +374,7 @@ const calculation = () => {
                         <option value="*">✖️</option>
                         <option value="/">➗</option>
                         <option value="%">°/•</option>
-                      </CFormSelect>
+                      </AppFormSelect>
                     </div>
                   </CCol>
 

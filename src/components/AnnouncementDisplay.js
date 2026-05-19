@@ -6,7 +6,6 @@ import {
   CCol,
   CRow,
   CAlert,
-  CSpinner,
   CBadge,
   CButton,
   CCollapse
@@ -14,6 +13,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilChevronBottom, cilChevronTop } from '@coreui/icons'
 import BasicProvider from 'src/constants/BasicProvider'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import 'src/assets/css/announcements.css'
 
 const AnnouncementDisplay = ({ showAll = false, limit = 3 }) => {
@@ -73,9 +73,8 @@ const AnnouncementDisplay = ({ showAll = false, limit = 3 }) => {
   if (loading) {
     return (
       <CCard>
-        <CCardBody className="text-center">
-          <CSpinner />
-          <p className="mt-2">Loading announcements...</p>
+        <CCardBody>
+          <AppContentSkeleton variant="list" rows={showAll ? 5 : 3} ariaLabel="Loading announcements" />
         </CCardBody>
       </CCard>
     )

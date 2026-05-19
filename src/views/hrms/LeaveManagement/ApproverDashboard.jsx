@@ -22,10 +22,11 @@ import {
   CModalFooter,
   CCol,
   CRow,
-  CFormSelect,
   CAlert,
   CProgress,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilCheck, cilX, cilMagnifyingGlass, cilFilter } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -241,7 +242,7 @@ const ApproverDashboard = () => {
               <CIcon icon={cilFilter} className="me-2" />
               Filters
             </CCardTitle>
-            <CFormSelect
+            <AppFormSelect
               style={{ width: '200px' }}
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
@@ -251,7 +252,7 @@ const ApproverDashboard = () => {
               <option value="partially_approved">Partially Approved</option>
               <option value="approved">Approved</option>
               <option value="rejected">Rejected</option>
-            </CFormSelect>
+            </AppFormSelect>
           </div>
         </CCardHeader>
       </CCard>

@@ -10,7 +10,6 @@ import {
   CTableBody,
   CTableDataCell,
   CButton,
-  CFormSelect,
   CFormInput,
   CBadge,
   CPagination,
@@ -24,6 +23,8 @@ import {
   CRow,
   CCol,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import './HRLeaveDashboard.css'
@@ -288,18 +289,18 @@ const PendinApprovelsLeave = () => {
       </CCardHeader>
       <CCardBody className={`filter-container ${showFilters ? 'expanded' : 'collapsed'}`}>
         <div className="filter-grid sticky-filters">
-          <CFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+          <AppFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="">All Status</option>
             <option value="Pending">Pending</option>
             <option value="Approved">Approved</option>
             <option value="Rejected">Rejected</option>
-          </CFormSelect>
+          </AppFormSelect>
 
-          <CFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+          <AppFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
             <option value="">All Types</option>
             <option value="CL">Casual Leave</option>
             <option value="UL">Unpaid Leave</option>
-          </CFormSelect>
+          </AppFormSelect>
 
           <CFormInput
             placeholder="Search employee..."

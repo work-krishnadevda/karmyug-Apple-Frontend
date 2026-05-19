@@ -24,7 +24,6 @@ import {
   CModalFooter,
   CForm,
   CFormInput,
-  CFormSelect,
   CFormLabel,
   CInputGroup,
   CButtonGroup,
@@ -33,6 +32,8 @@ import {
   CDropdownMenu,
   CDropdownItem,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import {
   cilPeople,
   cilClock,

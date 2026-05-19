@@ -1,5 +1,7 @@
-import { CButton, CForm, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CFormInput, CFormLabel, CFormSelect, CRow, CCol } from '@coreui/react'
+import { CButton, CForm, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CFormInput, CFormLabel, CRow, CCol } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import AsyncSelect from 'react-select/async'
 
@@ -178,7 +180,7 @@ const CategoriesModal = ({ visible,
                         <CRow>
                             <CCol>
                                 <CFormLabel className='mb-1'>Select Category type</CFormLabel>
-                                <CFormSelect name='category_type' options={[
+                                <AppFormSelect name='category_type' options={[
                                     'Select Category Type',
                                     { label: 'Parent Category', value: 'parent_category' },
                                     { label: 'Random Category', value: 'random_category' },
@@ -188,7 +190,7 @@ const CategoriesModal = ({ visible,
                             </CCol>
                             <CCol>
                                 <CFormLabel className='mb-1'>Select Category View</CFormLabel>
-                                <CFormSelect name='category_view' options={[
+                                <AppFormSelect name='category_view' options={[
                                     'Select Category View',
                                     { label: 'Grid View', value: 'grid_view' },
                                     { label: 'List View', value: 'list_view' },

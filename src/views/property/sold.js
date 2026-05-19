@@ -20,12 +20,13 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CRow,
   CCol,
   CInputGroup,
   CModalHeader,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider'
 import { cilPencil, cilTrash, cilCopy } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
@@ -1034,7 +1035,7 @@ const Sold = () => {
                               Property Type<span className="text-danger">*</span>
                             </CFormLabel>
                             <CInputGroup>
-                              <CFormSelect
+                              <AppFormSelect
                                 name="propertyType"
                                 value={openForSaleForm.propertyType}
                                 onChange={handleOpenForSaleChange}
@@ -1047,7 +1048,7 @@ const Sold = () => {
                                 <option value="industrial">Industrial</option>
                                 <option value="land">Land</option>
                                 <option value="other">Other</option>
-                              </CFormSelect>
+                              </AppFormSelect>
                             </CInputGroup>
                           </div>
                         </CCol>
@@ -1077,7 +1078,7 @@ const Sold = () => {
                             <CFormLabel>Structure</CFormLabel>
                             <CInputGroup className="mb-2">
                               {!isCustom ? (
-                                <CFormSelect
+                                <AppFormSelect
                                   size="sm"
                                   value={
                                     openForSaleForm.structure === '' && isCustom
@@ -1097,7 +1098,7 @@ const Sold = () => {
                                   <option value="Ground">Ground</option>
                                   <option value="Under Construction">Under Construction</option>
                                   <option value="Other">Other</option>
-                                </CFormSelect>
+                                </AppFormSelect>
                               ) : (
                                 <CFormInput
                                   size="sm"
@@ -1275,7 +1276,7 @@ const Sold = () => {
                           <div className="mb-3">
                             <CFormLabel>Rental Income</CFormLabel>
                             <CInputGroup>
-                              <CFormSelect
+                              <AppFormSelect
                                 name="isOnRentalIncome"
                                 value={openForSaleForm.isOnRentalIncome}
                                 onChange={handleOpenForSaleChange}
@@ -1283,7 +1284,7 @@ const Sold = () => {
                               >
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
-                              </CFormSelect>
+                              </AppFormSelect>
                             </CInputGroup>
                           </div>
                         </CCol>

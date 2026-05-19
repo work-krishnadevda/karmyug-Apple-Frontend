@@ -9,13 +9,14 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CHeader,
   CInputGroup,
   CRow,
   CSpinner,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import React, { useCallback, useEffect, useRef, useState } from 'react'

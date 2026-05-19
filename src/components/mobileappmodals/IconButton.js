@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CButton, CForm, CFormLabel, CFormSelect, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CCol, CRow, CFormInput } from '@coreui/react';
+import { CButton, CForm, CFormLabel, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CCol, CRow, CFormInput } from '@coreui/react';
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider';
 import { ImageHelper, variantImageHelper } from 'src/helpers/imageHelper';
 import ImagePreview from '../custom/ImagePreview';
@@ -298,12 +299,12 @@ const IconButtonModal = ({ visible,
                     </CCol>
                     <CCol lg={3}>
                         <CFormLabel className='mb-1'>Select Link Type</CFormLabel>
-                        <CFormSelect name={`link_type_${i}`} value={initialValues.columndata[i]?.link_type || ''} onChange={(event) => handleLinkTypeChange(i, event)}>
+                        <AppFormSelect name={`link_type_${i}`} value={initialValues.columndata[i]?.link_type || ''} onChange={(event) => handleLinkTypeChange(i, event)}>
                             <option value="">Select type</option>
                             <option value="category">Category</option>
                             <option value="product">Product</option>
                             <option value="mobile_app_page">Mobile App pages</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                     </CCol>
                     <CCol lg={3}>
                         <CFormLabel className='mb-1'>Select Link</CFormLabel>
@@ -395,7 +396,7 @@ const IconButtonModal = ({ visible,
                 <CModalBody>
                     <CForm>
                         <CFormLabel className='mb-1'>Select no of columns</CFormLabel>
-                        <CFormSelect name='no_of_columns' options={[
+                        <AppFormSelect name='no_of_columns' options={[
                             'Select no of columns',
                             { label: 'One', value: '1' },
                             { label: 'Two', value: '2' },

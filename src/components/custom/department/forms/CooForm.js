@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Select from 'react-select'
 import AsyncSelect from 'react-select/async'
 
 import {
@@ -13,18 +14,66 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CInputGroup,
   CRow,
   CSpinner,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import COO_Attechement from '../roles/coo/cooAttechement'
+
+const productTypeOptions = [
+  { label: 'Product Type', value: '' },
+  { label: 'HL', value: 'hl' },
+  { label: 'LAP', value: 'lap' },
+  { label: 'NPA', value: 'npa' },
+  { label: 'APF', value: 'apf' },
+  { label: 'Estimate', value: 'estimate' },
+  { label: 'OTHER', value: 'other' },
+]
+
+const themedSelectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    minHeight: 38,
+    borderColor: state.isFocused ? '#044f45' : '#ced4da',
+    boxShadow: state.isFocused ? '0 0 0 0.25rem rgba(4, 79, 69, 0.14)' : 'none',
+    '&:hover': {
+      borderColor: '#044f45',
+    },
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? '#066054' : state.isFocused ? '#eaf5f2' : '#ffffff',
+    color: state.isSelected ? '#ffffff' : '#16342f',
+    cursor: 'pointer',
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    color: '#495057',
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: '#16342f',
+  }),
+  indicatorSeparator: (provided) => ({
+    ...provided,
+    backgroundColor: '#d7dee4',
+  }),
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    color: state.isFocused ? '#044f45' : '#6c757d',
+    '&:hover': {
+      color: '#044f45',
+    },
+  }),
+}
 
 const CooForm = ({
   initialValues,
@@ -341,7 +390,7 @@ const CooForm = ({
         )
       case 'select':
         return (
-          <CFormSelect
+          <AppFormSelect
             name={fieldName}
             value={fieldValue}
             onChange={(e) => updateFieldValue(fieldName, e.target.value)}
@@ -351,7 +400,7 @@ const CooForm = ({
                 {option}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
         )
       default:
         return null
@@ -662,23 +711,26 @@ const CooForm = ({
                       <CFormLabel>
                         Product Type <span className="text-danger">*</span>
                       </CFormLabel>
-                      <CFormSelect
+                      <Select
                         aria-label="Product Type"
                         name="product_type"
-                        options={[
-                          'Product Type',
-                          { label: 'HL', value: 'hl' },
-                          { label: 'LAP', value: 'lap' },
-                          { label: 'NPA', value: 'npa' },
-                          { label: 'APF', value: 'apf' },
-                          { label: 'Estimate', value: 'estimate' },
-                          { label: 'OTHER', value: 'other' },
-                        ]}
+                        options={productTypeOptions}
                         value={
-                          initialValues?.product_type && initialValues?.product_type?.toLowerCase()
+                          productTypeOptions.find(
+                            (option) =>
+                              option.value ===
+                              (initialValues?.product_type
+                                ? initialValues.product_type.toLowerCase()
+                                : ''),
+                          ) || productTypeOptions[0]
                         }
-                        className="form-control"
-                        onChange={handleOnChange}
+                        styles={themedSelectStyles}
+                        onChange={(selectedOption) =>
+                          setInitialValues({
+                            ...initialValues,
+                            product_type: selectedOption?.value || '',
+                          })
+                        }
                       />
                     </div>
                   </CCol>
@@ -688,7 +740,7 @@ const CooForm = ({
                       <CFormLabel>
                         Case Type<span className="text-danger">*</span>
                       </CFormLabel>
-                      <CFormSelect
+                      <AppFormSelect
                         aria-label="Case Type"
                         name="case_type"
                         options={[

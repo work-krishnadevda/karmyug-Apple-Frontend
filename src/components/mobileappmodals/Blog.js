@@ -1,5 +1,7 @@
-import { CButton, CForm, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CFormInput, CFormLabel, CFormSelect, CRow, CCol } from '@coreui/react'
+import { CButton, CForm, CModal, CModalBody, CModalHeader, CModalTitle, CModalFooter, CFormInput, CFormLabel, CRow, CCol } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import AsyncSelect from 'react-select/async'
 
@@ -136,7 +138,7 @@ const BlogModal = ({ visible,
                         <CRow>
                             <CCol>
                                 <CFormLabel className='mb-1 '>Select Blog type</CFormLabel>
-                                <CFormSelect name='blog_type' options={[
+                                <AppFormSelect name='blog_type' options={[
                                     'Select Blog Type',
                                     { label: 'Specific Category', value: 'specific_category' },
                                     { label: 'Featured Blog', value: 'featured_blog' },

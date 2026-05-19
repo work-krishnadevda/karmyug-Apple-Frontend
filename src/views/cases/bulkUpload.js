@@ -203,8 +203,8 @@ const BulkUpload = () => {
               Upload File
               <p className="m-0">
                 <CButton
-                  color="warning"
-                  className="d-flex align-items-center justify-content-end"
+                  color="light"
+                  className="d-flex align-items-center justify-content-end bulk-upload-sample-btn"
                   onClick={() => generateExcel()}
                 >
                   <FontAwesomeIcon icon={faDownload} className="me-1" />

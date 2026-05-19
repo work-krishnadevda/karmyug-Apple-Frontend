@@ -14,10 +14,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import DataTable from 'src/components/custom/table/AppDataTable'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
@@ -253,7 +254,7 @@ export default function CreateTags() {
                       // }}
                     />
                   </div>
-                  <CFormSelect
+                  <AppFormSelect
                     className="mb-3"
                     name="type"
                     value={initialValues.type}

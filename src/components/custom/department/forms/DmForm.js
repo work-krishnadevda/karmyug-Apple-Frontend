@@ -11,12 +11,13 @@ import {
   CFormCheck,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CRow,
   CSpinner,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -217,7 +218,7 @@ const DmForm = ({
         )
       case 'select':
         return (
-          <CFormSelect
+          <AppFormSelect
             name={fieldName}
             value={fieldValue}
             onChange={(e) => updateFieldValue(fieldName, e.target.value)}
@@ -228,7 +229,7 @@ const DmForm = ({
                 {option}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
         )
       default:
         return null
@@ -801,7 +802,7 @@ const DmForm = ({
                               Submit Type <span className="text-danger ">*</span>
                             </CFormLabel>
 
-                            <CFormSelect
+                            <AppFormSelect
                               custom
                               name="submit_type"
                               className="mb-sm-0 mb-2"
@@ -817,7 +818,7 @@ const DmForm = ({
                               <option value="">Select Submit Type</option>
                               <option value="online">Online</option>
                               <option value="offline">Offline</option>
-                            </CFormSelect>
+                            </AppFormSelect>
                           </div>
                         </CCol>
 
@@ -876,7 +877,7 @@ const DmForm = ({
                                   display: 'flex',
                                   flexDirection: 'column',
                                   alignItems: 'flex-start',
-                                  backgroundColor: state.isFocused ? '#e6f7ff' : '#fff',
+                                  backgroundColor: state.isFocused ? '#eaf5f2' : '#fff',
                                   color: '#000',
                                   cursor: 'pointer',
                                   padding: '10px',
@@ -967,7 +968,7 @@ const DmForm = ({
                                 Submit Type <span className="text-danger ">*</span>
                               </CFormLabel>
 
-                              <CFormSelect
+                              <AppFormSelect
                                 custom
                                 name="submit_type"
                                 className="mb-sm-0 mb-2"
@@ -983,7 +984,7 @@ const DmForm = ({
                                 <option value="">Select Submit Type</option>
                                 <option value="online">Online</option>
                                 <option value="offline">Offline</option>
-                              </CFormSelect>
+                              </AppFormSelect>
                             </div>
                           </CCol>
 
@@ -1042,7 +1043,7 @@ const DmForm = ({
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'flex-start',
-                                    backgroundColor: state.isFocused ? '#e6f7ff' : '#fff',
+                                    backgroundColor: state.isFocused ? '#eaf5f2' : '#fff',
                                     color: '#000',
                                     cursor: 'pointer',
                                     padding: '10px',

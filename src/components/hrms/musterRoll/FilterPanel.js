@@ -1,5 +1,7 @@
 import React from 'react'
-import { CCard, CCardBody, CCardHeader, CFormInput, CFormLabel, CFormSelect, CButton, CCol, CRow } from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CFormInput, CFormLabel, CButton, CCol, CRow } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilFilter, cilX } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
@@ -72,7 +74,7 @@ const FilterPanel = ({
           
           <CCol md={3}>
             <CFormLabel>Department</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={department}
               onChange={(e) => handleInputChange('department', e.target.value)}
               disabled={disabled}
@@ -82,12 +84,12 @@ const FilterPanel = ({
                   {option.label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </CCol>
           
           <CCol md={3}>
             <CFormLabel>Employee Status</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={employeeStatus}
               onChange={(e) => handleInputChange('employeeStatus', e.target.value)}
               disabled={disabled}
@@ -97,12 +99,12 @@ const FilterPanel = ({
                   {option.label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </CCol>
           
           <CCol md={3}>
             <CFormLabel>Sort By</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={sortBy}
               onChange={(e) => handleInputChange('sortBy', e.target.value)}
               disabled={disabled}
@@ -112,21 +114,21 @@ const FilterPanel = ({
                   {label}
                 </option>
               ))}
-            </CFormSelect>
+            </AppFormSelect>
           </CCol>
         </CRow>
         
         <CRow className="mt-3">
           <CCol md={3}>
             <CFormLabel>Sort Order</CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={sortOrder}
               onChange={(e) => handleInputChange('sortOrder', e.target.value)}
               disabled={disabled}
             >
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
-            </CFormSelect>
+            </AppFormSelect>
           </CCol>
           
           <CCol md={9} className="d-flex align-items-end">

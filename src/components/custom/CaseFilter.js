@@ -373,7 +373,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'flex-start',
-                          backgroundColor: state.isFocused ? '#e6f7ff' : '#fff',
+                          backgroundColor: state.isFocused ? '#eaf5f2' : '#fff',
                           color: '#000',
                           cursor: 'pointer',
                           padding: '10px',

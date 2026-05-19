@@ -8,9 +8,10 @@ import {
   CButton,
   CFormCheck,
   CFormLabel,
-  CFormSelect,
   CAlert,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPencil, cilSave, cilX, cilClock } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
@@ -135,7 +136,7 @@ const AutoPunchoutSettings = ({
                     <CCol md={6}>
                       <div className="mb-3">
                         <CFormLabel className="fw-semibold">Inactivity Timeout</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData?.autoPunchout?.inactivityTimeoutMinutes || 30}
                           onChange={(e) =>
                             handleInputChange('autoPunchout', {
@@ -150,7 +151,7 @@ const AutoPunchoutSettings = ({
                               {option.label}
                             </option>
                           ))}
-                        </CFormSelect>
+                        </AppFormSelect>
                         <small className="text-muted d-block mt-1">
                           Time of inactivity before automatic punchout
                         </small>
@@ -159,7 +160,7 @@ const AutoPunchoutSettings = ({
                     <CCol md={6}>
                       <div className="mb-3">
                         <CFormLabel className="fw-semibold">Timezone</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData?.autoPunchout?.timezone || 'Asia/Kolkata'}
                           onChange={(e) =>
                             handleInputChange('autoPunchout', {
@@ -174,7 +175,7 @@ const AutoPunchoutSettings = ({
                               {option.label}
                             </option>
                           ))}
-                        </CFormSelect>
+                        </AppFormSelect>
                         <small className="text-muted d-block mt-1">
                           Timezone for inactivity tracking
                         </small>

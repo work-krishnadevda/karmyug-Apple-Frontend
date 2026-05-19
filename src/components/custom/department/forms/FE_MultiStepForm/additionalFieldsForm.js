@@ -8,9 +8,10 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
 
 import { cilChevronCircleDownAlt, cilChevronCircleUpAlt, cilPencil } from '@coreui/icons'
@@ -72,7 +73,7 @@ const AdditionalFieldsForm = ({
         )
       case 'select':
         return (
-          <CFormSelect
+          <AppFormSelect
             name={fieldName}
             value={fieldValue}
             onChange={(e) => updateFieldValue(fieldName, e.target.value)}
@@ -82,7 +83,7 @@ const AdditionalFieldsForm = ({
                 {option}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
         )
       default:
         return null

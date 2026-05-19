@@ -8,10 +8,11 @@ import {
   CModalFooter,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormFeedback,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import AsyncSelect from 'react-select/async'
 
@@ -184,7 +185,7 @@ const ProductModal = ({ visible, setVisible, setItems, items, CurrentWidget }) =
             <CFormLabel className="mb-1 mt-4">
               Select Category type<span className="text-danger">*</span>
             </CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               invalid={!!formErrors.category_type}
               name="category_type"
               options={[

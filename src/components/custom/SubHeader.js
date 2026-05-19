@@ -174,19 +174,19 @@ function SubHeader(props) {
             <CCol className="d-flex justify-content-end flex-column flex-sm-row align-items-center">
               {(isFromAdmin || isFirFinance) && (
                 <>
-                  <div className="text-end search_bar position-relative">
+                  <div className="text-end search_bar position-relative subheader-search-shell">
                     <CIcon icon={cilSearch} className="search_icon" />
                     <input
-                      className="search_bar_box"
+                      className="search_bar_box subheader-search-input"
                       placeholder="Search"
                       type="text"
                       value={search}
                       onChange={(event) => setSearch(event.target.value)}
                     />
                   </div>
-                  <div className="mx-2 mt-2 mt-lg-0">
+                  <div className="mx-2 mt-2 mt-lg-0 d-flex align-items-center gap-2 subheader-search-actions">
                     <CButton
-                      className="add_new"
+                      className="add_new subheader-search-btn"
                       onClick={() => {
                         setSearchCurrentPage(search)
                         handleFilter(search)
@@ -195,7 +195,7 @@ function SubHeader(props) {
                       Search
                     </CButton>
                     <CButton
-                      className="add_new ms-2"
+                      className="add_new subheader-reset-btn"
                       onClick={() => {
                         onReset()
                         setSearch('')

@@ -8,13 +8,14 @@ import {
   CForm,
   CFormLabel,
   CFormInput,
-  CFormSelect,
   CFormTextarea,
   CFormCheck,
   CButton,
   CAlert,
   CSpinner,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import {
   cilUser,
   cilEnvelopeClosed,
@@ -442,7 +443,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Gender *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.gender}
                   onChange={(e) => handleInputChange('gender', e.target.value)}
                   required
@@ -452,13 +453,13 @@ const ProfileSection = ({
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Marital Status</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.maritalStatus}
                   onChange={(e) => handleInputChange('maritalStatus', e.target.value)}
                   disabled={!isEditing}
@@ -468,7 +469,7 @@ const ProfileSection = ({
                   <option value="married">Married</option>
                   <option value="divorced">Divorced</option>
                   <option value="widowed">Widowed</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           </CRow>
@@ -599,7 +600,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Staff Type *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.staffType}
                   onChange={(e) => handleInputChange('staffType', e.target.value)}
                   required
@@ -610,13 +611,13 @@ const ProfileSection = ({
                   <option value="contract">Contract</option>
                   <option value="temporary">Temporary</option>
                   <option value="intern">Intern</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Department *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.department}
                   onChange={(e) => handleInputChange('department', e.target.value)}
                   required
@@ -625,7 +626,7 @@ const ProfileSection = ({
                   <option value="">Select Department</option>
                   <option value="technical">Technical</option>
                   <option value="management">Management</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           </CRow>
@@ -684,7 +685,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Employee Type *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.employeeType}
                   onChange={(e) => handleInputChange('employeeType', e.target.value)}
                   required
@@ -695,7 +696,7 @@ const ProfileSection = ({
                   <option value="contract">Contract</option>
                   <option value="temporary">Temporary</option>
                   <option value="intern">Intern</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           </CRow>
@@ -716,7 +717,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Status *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.status}
                   onChange={(e) => handleInputChange('status', e.target.value)}
                   required
@@ -726,7 +727,7 @@ const ProfileSection = ({
                   <option value="inactive">Inactive</option>
                   <option value="terminated">Terminated</option>
                   <option value="on-leave">On Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           </CRow>
@@ -814,7 +815,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">RA Branch *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
                   required
@@ -825,7 +826,7 @@ const ProfileSection = ({
                       {location.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
             <CCol md={6}>
@@ -846,7 +847,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Company *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.company}
                   onChange={(e) => handleInputChange('company', e.target.value)}
                   required
@@ -857,13 +858,13 @@ const ProfileSection = ({
                       {option.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Reporting Manager</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.reportingManager}
                   onChange={(e) => handleInputChange('reportingManager', e.target.value)}
                   disabled={!isEditing || isLoadingData}
@@ -873,7 +874,7 @@ const ProfileSection = ({
                       {manager.label} {manager.role ? `(${manager.role})` : ''}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
           </CRow>
@@ -881,7 +882,7 @@ const ProfileSection = ({
             <CCol md={6}>
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">Role *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.role}
                   onChange={(e) => handleInputChange('role', e.target.value)}
                   required
@@ -892,7 +893,7 @@ const ProfileSection = ({
                       {role.label}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </div>
             </CCol>
             <CCol md={6}>

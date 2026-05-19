@@ -2,7 +2,6 @@ import {
   CButton,
   CForm,
   CFormLabel,
-  CFormSelect,
   CModal,
   CModalBody,
   CModalHeader,
@@ -10,6 +9,8 @@ import {
   CModalFooter,
   CFormFeedback,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import BasicProvider from 'src/constants/BasicProvider'
 
@@ -93,7 +94,7 @@ const SliderModal = ({
         <CModalBody>
           <CForm>
             <CFormLabel className="mb-1">Select Slider<span className='text-danger'>*</span></CFormLabel>
-            <CFormSelect
+            <AppFormSelect
               value={selectedSlider ? selectedSlider._id : ''}
               options={[
                 { label: 'Select Slider', value: '' }, 

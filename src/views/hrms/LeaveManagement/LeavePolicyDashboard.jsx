@@ -19,13 +19,14 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CAlert,
   CSpinner,
   CBadge,
   CCol,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPlus, cilPencil, cilTrash, cilCheckCircle, cilCloudDownload } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { toast } from 'react-toastify'
@@ -850,7 +851,7 @@ const LeavePolicyDashboard = () => {
               </CCol>
               <CCol md={6}>
                 <CFormLabel>Financial Year Start Month</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.financialYearStartMonth}
                   onChange={(e) =>
                     setFormData({
@@ -864,7 +865,7 @@ const LeavePolicyDashboard = () => {
                       {new Date(2024, i).toLocaleString('default', { month: 'long' })}
                     </option>
                   ))}
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </CRow>
 
@@ -932,7 +933,7 @@ const LeavePolicyDashboard = () => {
             <CRow>
               <CCol md={6}>
                 <CFormLabel>Status</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={formData.isActive ? 'true' : 'false'}
                   onChange={(e) =>
                     setFormData({ ...formData, isActive: e.target.value === 'true' })
@@ -940,7 +941,7 @@ const LeavePolicyDashboard = () => {
                 >
                   <option value="false">Inactive</option>
                   <option value="true">Active</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
             </CRow>
           </CForm>

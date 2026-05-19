@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 import { useParams } from 'react-router-dom'
-import { CContainer, CAlert, CSpinner, CButton } from '@coreui/react'
+import { CContainer, CAlert, CButton } from '@coreui/react'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 import { cilCreditCard } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useEmployeeData } from './hooks/useEmployeeData'
@@ -701,15 +702,8 @@ const EmployeeProfile = () => {
 
   if (loading) {
     return (
-      <CContainer
-        fluid
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: '400px' }}
-      >
-        <div className="text-center">
-          <CSpinner />
-          <p className="mt-2">Loading employee profile...</p>
-        </div>
+      <CContainer fluid>
+        <AppContentSkeleton ariaLabel="Loading employee profile" cards={3} rows={4} />
       </CContainer>
     )
   }

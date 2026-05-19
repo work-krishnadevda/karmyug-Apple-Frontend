@@ -12,7 +12,6 @@ import {
   CButton,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CFormCheck,
   CInputGroup,
@@ -25,6 +24,8 @@ import {
   CModalBody,
   CModalFooter,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import {
   cilPlus,
   cilPencil,
@@ -1523,7 +1524,7 @@ const HRMSProfile = () => {
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Staff Type</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.employeeType || ''}
                           onChange={(e) =>
                             handleInputChange('profile', 'staffType', e.target.value)
@@ -1536,7 +1537,7 @@ const HRMSProfile = () => {
                           <option value="temporary">Temporary</option>
                           <option value="intern">Intern</option>
                           <option value="consultant">Consultant</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
                     <CRow className="mt-3">
@@ -1564,7 +1565,7 @@ const HRMSProfile = () => {
                       </CCol> */}
                       <CCol md={6}>
                         <CFormLabel>Department</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.profile?.department || ''}
                           onChange={(e) =>
                             handleInputChange('profile', 'department', e.target.value)
@@ -1574,7 +1575,7 @@ const HRMSProfile = () => {
                           <option value="">Select Department</option>
                           <option value="technical">Technical</option>
                           <option value="management">Management</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
                     <CRow className="mt-3">
@@ -1655,7 +1656,7 @@ const HRMSProfile = () => {
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Gender</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.personal?.gender || ''}
                           onChange={(e) => handleInputChange('personal', 'gender', e.target.value)}
                           // disabled={!editMode.general}
@@ -1665,7 +1666,7 @@ const HRMSProfile = () => {
                           <option value="male">Male</option>
                           <option value="female">Female</option>
                           <option value="other">Other</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -1681,7 +1682,7 @@ const HRMSProfile = () => {
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Marital Status</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.personal?.maritalStatus || ''}
                           onChange={(e) =>
                             handleInputChange('personal', 'maritalStatus', e.target.value)
@@ -1693,7 +1694,7 @@ const HRMSProfile = () => {
                           <option value="married">Married</option>
                           <option value="divorced">Divorced</option>
                           <option value="widowed">Widowed</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -1751,7 +1752,7 @@ const HRMSProfile = () => {
                     <CRow className="mt-3">
                       <CCol md={6}>
                         <CFormLabel>Physically Challenged</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.personal?.physicallyChallenged || ''}
                           onChange={(e) =>
                             handleInputChange('personal', 'physicallyChallenged', e.target.value)
@@ -1761,7 +1762,7 @@ const HRMSProfile = () => {
                           <option value="">Select Option</option>
                           <option value="yes">Yes</option>
                           <option value="no">No</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -2184,7 +2185,7 @@ const HRMSProfile = () => {
                     <CRow>
                       <CCol md={6}>
                         <CFormLabel>Department</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.department || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'department', e.target.value)
@@ -2197,7 +2198,7 @@ const HRMSProfile = () => {
                           <option value="finance">Finance</option>
                           <option value="marketing">Marketing</option>
                           <option value="operations">Operations</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Designation</CFormLabel>
@@ -2241,7 +2242,7 @@ const HRMSProfile = () => {
                       </CCol>
                       {/* <CCol md={6}>
                         <CFormLabel>Employee Type</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.employeeType || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'employeeType', e.target.value)
@@ -2253,7 +2254,7 @@ const HRMSProfile = () => {
                           <option value="part-time">Part Time</option>
                           <option value="contract">Contract</option>
                           <option value="intern">Intern</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol> */}
                     </CRow>
 
@@ -2261,7 +2262,7 @@ const HRMSProfile = () => {
                     <CRow className="mt-3">
                       <CCol md={6}>
                         <CFormLabel>Status</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.status || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'status', e.target.value)
@@ -2272,11 +2273,11 @@ const HRMSProfile = () => {
                           <option value="active">Active</option>
                           <option value="inactive">Inactive</option>
                           <option value="terminated">Terminated</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Company Name</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.companyName || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'companyName', e.target.value)
@@ -2288,7 +2289,7 @@ const HRMSProfile = () => {
                           <option value="GA">GA</option>
                           <option value="SS">SS</option>
                           <option value="VL">VL</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -2311,7 +2312,7 @@ const HRMSProfile = () => {
                     <CRow className="mt-3">
                       <CCol md={6}>
                         <CFormLabel>Work Type</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.workType || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'workType', e.target.value)
@@ -2323,11 +2324,11 @@ const HRMSProfile = () => {
                           <option value="part-time">Part Time</option>
                           <option value="contract">Contract</option>
                           <option value="intern">Intern</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Shift</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.shift || ''}
                           onChange={(e) => handleInputChange('employment', 'shift', e.target.value)}
                           disabled={!editMode.employment}
@@ -2337,7 +2338,7 @@ const HRMSProfile = () => {
                           <option value="night">Night</option>
                           <option value="evening">Evening</option>
                           <option value="rotating">Rotating</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -2368,7 +2369,7 @@ const HRMSProfile = () => {
                     <CRow className="mt-3">
                       <CCol md={6}>
                         <CFormLabel>RA Location</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData?.employment?.raLocation || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'raLocation', e.target.value)
@@ -2381,7 +2382,7 @@ const HRMSProfile = () => {
                               {location.name}
                             </option>
                           ))}
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -2399,7 +2400,7 @@ const HRMSProfile = () => {
                       </CCol>
                       <CCol md={6}>
                         <CFormLabel>Employee Type</CFormLabel>
-                        <CFormSelect
+                        <AppFormSelect
                           value={formData.employment?.employeeType || ''}
                           onChange={(e) =>
                             handleInputChange('employment', 'employeeType', e.target.value)
@@ -2412,7 +2413,7 @@ const HRMSProfile = () => {
                           <option value="temporary">Temporary</option>
                           <option value="intern">Intern</option>
                           <option value="consultant">Consultant</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CCol>
                     </CRow>
 
@@ -2848,8 +2849,8 @@ const HRMSProfile = () => {
         }
 
         .form-control:focus {
-          border-color: #2563eb;
-          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+          border-color: #044f45;
+          box-shadow: 0 0 0 4px rgba(4, 79, 69, 0.14);
           background: white;
         }
 
@@ -2860,13 +2861,13 @@ const HRMSProfile = () => {
         }
 
         .btn-outline-primary {
-          border-color: #2563eb;
-          color: #2563eb;
+          border-color: #044f45;
+          color: #044f45;
         }
 
         .btn-outline-primary:hover {
-          background-color: #2563eb;
-          border-color: #2563eb;
+          background-color: #044f45;
+          border-color: #044f45;
         }
 
         .alert {

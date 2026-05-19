@@ -9,7 +9,6 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CRow,
   CCol,
   CImage,
@@ -22,6 +21,8 @@ import {
   CModalFooter,
   CSpinner,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import CIcon from '@coreui/icons-react'
@@ -315,18 +316,18 @@ const PublishOfferPage = () => {
 
               <CCol md={5}>
                 <CFormLabel>Priority *</CFormLabel>
-                <CFormSelect value={priority} onChange={(e) => setPriority(e.target.value)}>
+                <AppFormSelect value={priority} onChange={(e) => setPriority(e.target.value)}>
                   <option value="high">High Priority (Show First)</option>
                   <option value="normal">Normal Priority</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
 
               <CCol md={4}>
                 <CFormLabel>Status</CFormLabel>
-                <CFormSelect value={status} onChange={(e) => setStatus(e.target.value)}>
+                <AppFormSelect value={status} onChange={(e) => setStatus(e.target.value)}>
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
-                </CFormSelect>
+                </AppFormSelect>
               </CCol>
 
               <CCol md={12}>

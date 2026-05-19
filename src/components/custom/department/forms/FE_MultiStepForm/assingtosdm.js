@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
+import AppFormSelect from 'src/components/form/AppFormSelect'
 
-const { CFormSelect, CForm, CRow, CCol, CFormLabel, CButton } = require('@coreui/react')
+const { CForm, CRow, CCol, CFormLabel, CButton } = require('@coreui/react')
 
 const AssignSdm = ({ currentStep, setCurrentStep, initialValues, setInitialValues }) => {
   const totalSteps = 8
@@ -20,7 +21,7 @@ const AssignSdm = ({ currentStep, setCurrentStep, initialValues, setInitialValue
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Assign to SDM :-</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="person_meet_at_site_relation"
                 value=""
@@ -39,7 +40,7 @@ const AssignSdm = ({ currentStep, setCurrentStep, initialValues, setInitialValue
                 <option value="uncle">Uncle</option>
                 <option value="aunt">Aunt</option>
                 <option value="cousin">Cousin</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 

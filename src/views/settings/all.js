@@ -21,7 +21,6 @@ import {
     CForm,
     CFormLabel,
     CRow,
-    CFormSelect,
     CInputGroup,
     CFormTextarea,
     CTable,
@@ -30,6 +29,8 @@ import {
     CTableHeaderCell,
     CCardFooter,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { number } from 'prop-types'
 import { useEffect, useRef, useState } from 'react'

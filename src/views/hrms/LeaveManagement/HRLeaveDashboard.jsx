@@ -10,7 +10,6 @@ import {
   CTableBody,
   CTableDataCell,
   CButton,
-  CFormSelect,
   CFormInput,
   CBadge,
   CSpinner,
@@ -23,6 +22,8 @@ import {
   CCol,
   CFormTextarea,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
 import './HRLeaveDashboard.css'
@@ -593,20 +594,20 @@ const HRLeaveDashboard = () => {
       </CCardHeader>
       <CCardBody className={`filter-container ${showFilters ? 'expanded' : 'collapsed'}`}>
         <div className="filter-grid sticky-filters">
-          <CFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+          <AppFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="">All Status</option>
             <option value="Pending">Pending</option>
             <option value="Approved">Approved</option>
             <option value="Rejected">Rejected</option>
-          </CFormSelect>
+          </AppFormSelect>
 
-          <CFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+          <AppFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
             <option value="">All Types</option>
             <option value="CL">Casual Leave</option>
             <option value="UL">Unpaid Leave</option>
             <option value="Emergency">Emergency Leave</option>
             <option value="Penalty">Penalty Leave</option>
-          </CFormSelect>
+          </AppFormSelect>
 
           <CFormInput
             placeholder="Search employee..."
@@ -614,14 +615,14 @@ const HRLeaveDashboard = () => {
             onChange={(e) => setSearchFilter(e.target.value)}
           />
 
-          <CFormSelect value={raBranchFilter} onChange={(e) => setRaBranchFilter(e.target.value)}>
+          <AppFormSelect value={raBranchFilter} onChange={(e) => setRaBranchFilter(e.target.value)}>
             <option value="">All RA Branch</option>
             {raBranchOptions.map((branch) => (
               <option key={branch} value={branch}>
                 {branch}
               </option>
             ))}
-          </CFormSelect>
+          </AppFormSelect>
  
           <div onClick={() => fromRef.current.showPicker()}>
             <CFormInput
@@ -1279,13 +1280,13 @@ const HRLeaveDashboard = () => {
           <CRow className="mb-3">
             <CCol>
               <label className="form-label">Leave Type *</label>
-              <CFormSelect value={editLeaveType} onChange={(e) => setEditLeaveType(e.target.value)}>
+              <AppFormSelect value={editLeaveType} onChange={(e) => setEditLeaveType(e.target.value)}>
                 <option value="">Select Leave Type</option>
                 <option value="CL">Casual Leave (CL)</option>
                 <option value="UL">Unpaid Leave (UL)</option>
                 <option value="Penalty">Penalty Leave</option>
                 <option value="Emergency">Emergency Leave</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
           </CRow>
 

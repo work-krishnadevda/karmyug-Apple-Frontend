@@ -23,7 +23,6 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CInputGroup,
   CNav,
@@ -33,6 +32,8 @@ import {
   CTabPane,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useEffectFormData } from 'src/helpers/formHelpers'
@@ -206,13 +207,13 @@ const Details = () => {
                             <div className="mb-3">
                               <CFormLabel>Field Type</CFormLabel>
 
-                              <CFormSelect
+                              <AppFormSelect
                                 value={field.type}
                                 onChange={(e) => handleChange(index, 'type', e.target.value)}
                               >
                                 <option value="text">Text</option>
                                 <option value="select">Select</option>
-                              </CFormSelect>
+                              </AppFormSelect>
                             </div>
                           </CCol>
 
@@ -298,20 +299,20 @@ const Details = () => {
                       <CCol md={2}>
                         <div className="mb-3">
                           <CFormLabel>Field Type</CFormLabel>
-                          <CFormSelect
+                          <AppFormSelect
                             value={field.type}
                             onChange={(e) => handleFieldChange(index, 'type', e.target.value)}
                           >
                             <option value="">Select Type</option>
                             <option value="text">Text</option>
                             <option value="select">Select</option>
-                          </CFormSelect>
+                          </AppFormSelect>
                         </div>
                       </CCol>
                       <CCol md={2}>
                         <div className="mb-3">
                           <CFormLabel>Select Role</CFormLabel>
-                          <CFormSelect
+                          <AppFormSelect
                             value={field.role}
                             onChange={(e) => handleFieldChange(index, 'role', e.target.value)}
                           >
@@ -319,7 +320,7 @@ const Details = () => {
                             <option value="COO">COO</option>
                             <option value="FE">FE</option>
                             <option value="DM">DM</option>
-                          </CFormSelect>
+                          </AppFormSelect>
                         </div>
                       </CCol>
                       {field.type === 'select' && (

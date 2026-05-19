@@ -9,11 +9,12 @@ import {
   CTableHeaderCell,
   CTableBody,
   CTableDataCell,
-  CFormSelect,
   CFormInput,
   CButton,
   CSpinner,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import BasicProvider from 'src/constants/BasicProvider'
 import { toast } from 'react-toastify'
 import { CSVLink } from 'react-csv'
@@ -73,17 +74,17 @@ const MonthlyLeaveReport = () => {
             value={month}
             onChange={(e) => setMonth(e.target.value)}
           />
-          <CFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+          <AppFormSelect value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="">All Status</option>
             <option value="Pending">Pending</option>
             <option value="Approved">Approved</option>
             <option value="Rejected">Rejected</option>
-          </CFormSelect>
-          <CFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+          </AppFormSelect>
+          <AppFormSelect value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
             <option value="">All Types</option>
             <option value="CL">Casual Leave</option>
             <option value="UL">Unpaid Leave</option>
-          </CFormSelect>
+          </AppFormSelect>
           <CFormInput
             placeholder="Search employee..."
             value={searchFilter}

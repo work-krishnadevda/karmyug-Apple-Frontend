@@ -8,7 +8,6 @@ import {
   CTableDataCell,
   CBadge,
   CButton,
-  CSpinner,
   CCard,
   CCardBody,
   CCardHeader,
@@ -16,6 +15,7 @@ import {
 import { cilArrowThickTop, cilArrowThickBottom, cilInfo } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
+import AppContentSkeleton from 'src/components/custom/AppContentSkeleton'
 
 const MusterRollTable = ({
   data = [],
@@ -411,9 +411,8 @@ const MusterRollTable = ({
   if (loading) {
     return (
       <CCard className={className}>
-        <CCardBody className="text-center py-5">
-          <CSpinner size="lg" />
-          <div className="mt-3">Loading attendance data...</div>
+        <CCardBody>
+          <AppContentSkeleton ariaLabel="Loading attendance data" rows={6} cards={2} />
         </CCardBody>
       </CCard>
     )

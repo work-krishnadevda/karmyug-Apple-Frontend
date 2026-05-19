@@ -19,11 +19,12 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CInputGroup,
   CRow,
 } from '@coreui/react'
 
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import Cookies from 'js-cookie'
 import AsyncSelect from 'react-select/async'
 

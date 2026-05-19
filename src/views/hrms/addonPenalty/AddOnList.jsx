@@ -4,7 +4,6 @@ import {
   CCardBody,
   CCardHeader,
   CFormInput,
-  CFormSelect,
   CTable,
   CTableHead,
   CTableRow,
@@ -19,6 +18,8 @@ import {
   CBadge ,
   CModalTitle,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
 import { cilSearch, cilZoom, cilPencil, cilTrash, cilCloudDownload } from '@coreui/icons'
 import BasicProvider from 'src/constants/BasicProvider'

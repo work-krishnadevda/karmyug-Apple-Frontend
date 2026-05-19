@@ -9,9 +9,10 @@
 //   CCardText,
 //   CSpinner,
 //   CBadge,
-//   CFormSelect,
-//   CCollapse,
+//   //   CCollapse,
 // } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 // import CIcon from '@coreui/icons-react'
 // import { cilCalendar } from '@coreui/icons'
 // import { useDispatch } from 'react-redux'
@@ -93,7 +94,7 @@
 //       <CRow className="mb-4">
 //         <CCol md={3}>
 //           <label className="form-label fw-semibold">Month</label>
-//           <CFormSelect
+//           <AppFormSelect
 //             value={filters.month}
 //             onChange={(e) => setFilters({ ...filters, month: parseInt(e.target.value) })}
 //           >
@@ -102,11 +103,11 @@
 //                 {new Date(0, i).toLocaleString('en', { month: 'long' })}
 //               </option>
 //             ))}
-//           </CFormSelect>
+//           </AppFormSelect>
 //         </CCol>
 //         <CCol md={3}>
 //           <label className="form-label fw-semibold">Year</label>
-//           <CFormSelect
+//           <AppFormSelect
 //             value={filters.year}
 //             onChange={(e) => setFilters({ ...filters, year: parseInt(e.target.value) })}
 //           >
@@ -118,7 +119,7 @@
 //                 </option>
 //               )
 //             })}
-//           </CFormSelect>
+//           </AppFormSelect>
 //         </CCol>
 //         <CCol md={3} className="d-flex align-items-end">
 //           <CButton
@@ -205,7 +206,6 @@ import {
   CBadge,
   CSpinner,
   CFormInput,
-  CFormSelect,
   CPagination,
   CPaginationItem,
   CCard,
@@ -589,7 +589,7 @@ const Attendance = () => {
                 <CRow>
                   <CCol md={3}>
                     <label className="form-label fw-semibold">Month</label>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filters.month}
                       onChange={(e) => setFilters({ ...filters, month: parseInt(e.target.value) })}
                     >
@@ -605,11 +605,11 @@ const Attendance = () => {
                       <option value={10}>October</option>
                       <option value={11}>November</option>
                       <option value={12}>December</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   <CCol md={3}>
                     <label className="form-label fw-semibold">Year</label>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filters.year}
                       onChange={(e) => setFilters({ ...filters, year: parseInt(e.target.value) })}
                     >
@@ -621,7 +621,7 @@ const Attendance = () => {
                           </option>
                         )
                       })}
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   <CCol md={3} className="d-flex align-items-end">
                     <CButton
@@ -928,7 +928,7 @@ const Attendance = () => {
               {/* Attendance Status */}
               <div className="mb-3">
                 <CFormLabel className="fw-semibold">New Attendance Status *</CFormLabel>
-                <CFormSelect
+                <AppFormSelect
                   value={editForm.status}
                   onChange={(e) => handleEditFormChange('status', e.target.value)}
                   required
@@ -944,7 +944,7 @@ const Attendance = () => {
                   <option value="weekly_off_present">Weekly Off Present</option>
                   <option value="weekly_off_half">Weekly Off Half Day</option>
                   <option value="Emergency">Emergency Leave</option>
-                </CFormSelect>
+                </AppFormSelect>
               </div>
 
               {/* Time Details */}

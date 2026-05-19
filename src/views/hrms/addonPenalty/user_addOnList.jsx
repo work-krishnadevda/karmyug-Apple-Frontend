@@ -6,7 +6,6 @@ import {
   CCardBody,
   CCardHeader,
   CFormInput,
-  CFormSelect,
   CTable,
   CTableHead,
   CTableRow,
@@ -21,6 +20,8 @@ import {
   CModalFooter,
   CModalTitle,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
 import { cilSearch, cilZoom } from '@coreui/icons'
 import BasicProvider from 'src/constants/BasicProvider'

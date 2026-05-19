@@ -4,10 +4,11 @@ import {
   CForm,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
   CRow,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -272,7 +273,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Community Dominated</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="community_dominated"
                 value={initialValues.community_dominated}
@@ -282,7 +283,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                 <option>Select Type</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 
@@ -320,7 +321,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                 autoComplete="off"
               />
 
-              {/* <CFormSelect
+              {/* <AppFormSelect
                 custom
                 type="number"
                 name="age_of_property"
@@ -332,7 +333,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                     {num + 1}
                   </option>
                 ))}
-              </CFormSelect> */}
+              </AppFormSelect> */}
             </div>
           </CCol>
 
@@ -366,7 +367,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Development of Area</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="development_of_area"
                 value={initialValues.development_of_area}
@@ -386,14 +387,14 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                 <option value="80%">80%</option>
                 <option value="90%">90%</option>
                 <option value="100%">100%</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>Habitation</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="habitation"
                 value={initialValues.habitation}
@@ -413,14 +414,14 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                 <option value="80%">80%</option>
                 <option value="90%">90%</option>
                 <option value="100%">100%</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 
           <CCol md={4}>
             <div className="py-2">
               <CFormLabel>If Property Mortgaged</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 custom
                 name="property_mortaged"
                 value={initialValues.property_mortaged}
@@ -429,7 +430,7 @@ const DevelopmentAndScope = ({ currentStep, setCurrentStep, initialValues, setIn
                 <option>Select If Property Mortgaged</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
-              </CFormSelect>
+              </AppFormSelect>
             </div>
           </CCol>
 

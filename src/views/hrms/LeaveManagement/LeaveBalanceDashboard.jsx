@@ -8,7 +8,6 @@ import {
   CCol,
   CButton,
   CSpinner,
-  CFormSelect,
   CFormInput,
   CModal,
   CModalHeader,
@@ -25,6 +24,8 @@ import {
   CTableBody,
   CTableDataCell,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import CIcon from '@coreui/icons-react'
 import { cilPlus } from '@coreui/icons'
 import { toast } from 'react-toastify'
@@ -340,29 +341,29 @@ const LeaveBalanceDashboard = () => {
           <CRow>
             <CCol md={4}>
               <CFormLabel>Leave Type</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 value={adjustForm.leaveType}
                 onChange={(e) => setAdjustForm({ ...adjustForm, leaveType: e.target.value })}
               >
                 <option value="CL">Casual Leave</option>
                 <option value="UL">Unpaid Leave</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
 
             <CCol md={4}>
               <CFormLabel>Transaction</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 value={adjustForm.transactionType}
                 onChange={(e) => setAdjustForm({ ...adjustForm, transactionType: e.target.value })}
               >
                 <option value="credit">Credit (+)</option>
                 <option value="debit">Debit (-)</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol>
 
             {/* <CCol md={4}>
               <CFormLabel>Days</CFormLabel>
-              <CFormSelect
+              <AppFormSelect
                 value={adjustForm.days}
                 onChange={(e) => setAdjustForm({ ...adjustForm, days: e.target.value })}
               >
@@ -381,12 +382,12 @@ const LeaveBalanceDashboard = () => {
                 <option value="52">52</option>
                 <option value="56">56</option>
                 <option value="60">60</option>
-              </CFormSelect>
+              </AppFormSelect>
             </CCol> */}
 
             <CCol md={4}>
   <CFormLabel>Days</CFormLabel>
-  <CFormSelect
+  <AppFormSelect
     value={adjustForm.days}
     onChange={(e) => setAdjustForm({ ...adjustForm, days: e.target.value })}
   >
@@ -395,7 +396,7 @@ const LeaveBalanceDashboard = () => {
         {day}
       </option>
     ))}
-  </CFormSelect>
+  </AppFormSelect>
 </CCol>
 
           </CRow>

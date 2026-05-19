@@ -11,8 +11,9 @@ import {
   CCol,
   CRow,
   CFormText,
-  CFormSelect,
-} from '@coreui/react'
+  } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import AsyncSelect from 'react-select/async'
 import BasicProvider from 'src/constants/BasicProvider'
 import { useDispatch, useSelector } from 'react-redux'
@@ -381,7 +382,7 @@ const MapData = (props) => {
                   <CFormLabel>
                     Case Type<span className="text-danger">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     aria-label="Case Type"
                     name="case_type"
                     value={casedata?.case_type || 'Case Type'}
@@ -393,7 +394,7 @@ const MapData = (props) => {
                     </option>
                     <option value="fresh">Fresh</option>
                     <option value="subsequent">Subsequent</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             </CRow>
@@ -403,7 +404,7 @@ const MapData = (props) => {
                   <CFormLabel>
                     Type of Propery<span className="text-danger ">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     name="current_use_property"
                     value={casedata.current_use_property || 'Select current use of property'}
@@ -419,7 +420,7 @@ const MapData = (props) => {
                     <option value="plot/open land">Plot/Open Land</option>
                     <option value="under construction">Under Construction</option>
                     <option value="other">Other</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
               {casedata?.current_use_property === 'other' && (
@@ -457,7 +458,7 @@ const MapData = (props) => {
                   <CFormLabel>
                     OGL<span className="text-danger ">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     name="ogl"
                     value={casedata.ogl || 'Select ogl'}
@@ -466,7 +467,7 @@ const MapData = (props) => {
                     <option value="Select ogl">Select ogl</option>
                     <option value="outer">Outer</option>
                     <option value="local">Local</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
               <CCol md={4}>
@@ -489,7 +490,7 @@ const MapData = (props) => {
                   <CFormLabel>
                     Disbursed Status<span className="text-danger ">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     name="case_review"
                     value={casedata?.case_review || 'Select case_reivew'}
@@ -498,7 +499,7 @@ const MapData = (props) => {
                     <option value="none">None</option>
                     <option value="negative">Negative</option>
                     <option value="positive">Positive</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
 
@@ -507,7 +508,7 @@ const MapData = (props) => {
                   <CFormLabel>
                     Draft Quality Rating<span className="text-danger ">*</span>
                   </CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     custom
                     name="case_rating"
                     value={casedata?.case_rating || 'Select rating'}
@@ -521,7 +522,7 @@ const MapData = (props) => {
                     <option value="C Grade">C Grade</option>
                     <option value="D Grade">D Grade</option>
                     <option value="waste">Waste</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
               </CCol>
             </CRow>

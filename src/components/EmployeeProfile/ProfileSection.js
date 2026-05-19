@@ -9,9 +9,10 @@ import {
   CButton,
   CFormInput,
   CFormLabel,
-  CFormSelect,
   CFormTextarea,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { cilPencil, cilSave, cilX, cilUser } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import AsyncSelect from 'react-select/async'
@@ -397,7 +398,7 @@ useEffect(() => {
 
                 <CCol md={6}>
                   <CFormLabel>Status</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={formData?.employment?.status || ''}
                     onChange={(e) => {
                       const newStatus = e.target.value
@@ -423,7 +424,7 @@ useEffect(() => {
                     <option value="">Select Status</option>
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                   {formData?.employment?.status === 'inactive' &&
                     formData?.employment?.inactiveAt && (
                       <div className="small text-muted mt-1">
@@ -463,7 +464,7 @@ useEffect(() => {
                 </CCol>
                 <CCol md={6}>
                   <CFormLabel>Gender</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     value={formData?.personal?.gender || ''}
                     onChange={(e) => {
                       // Update personal gender and preserve ALL roles in profile
@@ -477,7 +478,7 @@ useEffect(() => {
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </CCol>
               </CRow>
               <CRow>
@@ -542,7 +543,7 @@ useEffect(() => {
                 {(hasRABM || hasSDM) && (
                   <CCol md={6}>
                     <CFormLabel>RA Branch</CFormLabel>
-                    <CFormSelect
+                    <AppFormSelect
                       disabled={!editMode.profile}
                       value={
                         Array.isArray(formData?.profile?.raBranch)
@@ -557,7 +558,7 @@ useEffect(() => {
                           {l.label}
                         </option>
                       ))}
-                    </CFormSelect>
+                    </AppFormSelect>
                     {hasSDM && (
                       <small className="text-muted">Required for SDM role</small>
                     )}

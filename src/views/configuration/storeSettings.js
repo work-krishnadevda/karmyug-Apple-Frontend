@@ -8,8 +8,9 @@ import {
   CForm,
   CFormLabel,
   CRow,
-  CFormSelect,
-} from '@coreui/react'
+  } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import BasicProvider from 'src/constants/BasicProvider'
@@ -221,12 +222,12 @@ export default function all() {
                 {/* Dropdown Section */}
                 <div className="my-2">
                   <CFormLabel>Select Country</CFormLabel>
-                  <CFormSelect name="country" onChange={CountryhandleChange}>
+                  <AppFormSelect name="country" onChange={CountryhandleChange}>
                     <option value="India">India</option>
                     <option value="United_States">United States</option>
                     <option value="Japan">Japan</option>
                     <option value="Rassia">Rassia</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
 
                 {error && <div className="text-danger">{error}</div>}
@@ -247,14 +248,14 @@ export default function all() {
                 {/* Dropdown Section */}
                 <div className="my-2">
                   <CFormLabel>Select</CFormLabel>
-                  <CFormSelect
+                  <AppFormSelect
                     name="country"
                     onChange={handleChange}
                     value={searchByAiInitailValues.search ? 'true' : 'false'} // Set value based on boolean
                   >
                     <option value="true">Enable</option>
                     <option value="false">Disable</option>
-                  </CFormSelect>
+                  </AppFormSelect>
                 </div>
 
                 {/* {error && <div className="text-danger">{error}</div>} */}

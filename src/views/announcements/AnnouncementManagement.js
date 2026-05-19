@@ -13,7 +13,6 @@ import {
   CModalFooter,
   CForm,
   CFormInput,
-  CFormSelect,
   CAlert,
   CSpinner,
   CBadge,
@@ -23,6 +22,8 @@ import {
   CListGroup,
   CListGroupItem,
 } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faStar, faArrowUp, faCheck, faListCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -1146,14 +1147,14 @@ const AnnouncementManagement = () => {
 
                   {/* Status Filter */}
                   <CCol md={2}>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filterPriority}
                       onChange={(e) => setFilterPriority(e.target.value)}
                     >
                       <option value="all">All</option>
                       <option value="published">Published</option>
                       <option value="draft">Scheduled</option>
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
 
                   {/* Date Range Filter - aligned in same line as other filters */}
@@ -1181,7 +1182,7 @@ const AnnouncementManagement = () => {
                     </div>
                   </CCol>
                   <CCol md={2}>
-                    <CFormSelect
+                    <AppFormSelect
                       value={filterBranch}
                       onChange={(e) => setFilterBranch(e.target.value)}
                     >
@@ -1191,19 +1192,19 @@ const AnnouncementManagement = () => {
                           {branch.label}
                         </option>
                       ))}
-                    </CFormSelect>
+                    </AppFormSelect>
                   </CCol>
                   {/* Role Filter - Admin & HR only: Admin, HR, SFO, LCTO, COO, BM, AC */}
                   {isAdminOrHROnly && (
                     <CCol md={2}>
-                      <CFormSelect value={filterRole} onChange={(e) => setFilterRole(e.target.value)}>
+                      <AppFormSelect value={filterRole} onChange={(e) => setFilterRole(e.target.value)}>
                         <option value="">All Roles (Creator)</option>
                         {creatorFilterRoleOptions.map((r) => (
                           <option key={r.value} value={r.value}>
                             {r.label}
                           </option>
                         ))}
-                      </CFormSelect>
+                      </AppFormSelect>
                     </CCol>
                   )}
                   {/* Branch Filter */}
@@ -1363,7 +1364,7 @@ const AnnouncementManagement = () => {
                           <div className="d-flex align-items-center gap-2">
                               {/* Priority select - Show for regular users and HR/SFO/LCTO/COO/BM */}
                               {(!isAdminOrHR || canSeePrioritySection) && (
-                                <CFormSelect
+                                <AppFormSelect
                                   size="sm"
                                   value={userPriorities[a._id] || 'none'}
                                   onChange={(e) => {
@@ -1380,7 +1381,7 @@ const AnnouncementManagement = () => {
                                   <option value="starred">Star Msg</option>
                                   <option value="high">My Leave</option>
                                   <option value="todo">To-Do</option>
-                                </CFormSelect>
+                                </AppFormSelect>
                               )}
                             <CButton
                               size="sm"
@@ -1545,7 +1546,7 @@ const AnnouncementManagement = () => {
                                 )}
                                 {/* Priority select - Show for Admin/HR and other authorized roles */}
                                 {isAdminOrHR && (
-                                  <CFormSelect
+                                  <AppFormSelect
                                     size="sm"
                                     value={userPriorities[a._id] || 'none'}
                                     onChange={(e) => {
@@ -1563,7 +1564,7 @@ const AnnouncementManagement = () => {
                                     <option value="starred">Star Msg</option>
                                     <option value="high">My Leave</option>
                                     <option value="todo">To-Do</option>
-                                  </CFormSelect>
+                                  </AppFormSelect>
                                 )}
                                 <CButton
                                   size="sm"

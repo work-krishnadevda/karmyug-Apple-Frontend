@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { CModal, CModalHeader, CModalBody, CModalFooter } from '@coreui/react'
+
+import AppFormSelect from 'src/components/form/AppFormSelect'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -8,7 +10,6 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CButton,
   CRow,
   CCol,
@@ -339,7 +340,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                     <div className="mb-3">
                       <CFormLabel>Property Type</CFormLabel>
                       <CInputGroup>
-                        <CFormSelect
+                        <AppFormSelect
                           name="propertyType"
                           value={formData.propertyType}
                           onChange={handleChange}
@@ -351,7 +352,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                           <option value="industrial">Industrial</option>
                           <option value="land">Land</option>
                           <option value="other">Other</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CInputGroup>
                     </div>
                   </CCol>
@@ -380,7 +381,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                       <CFormLabel>Structure</CFormLabel>
                       <CInputGroup className="mb-2">
                         {!isCustom ? (
-                          <CFormSelect
+                          <AppFormSelect
                             size="sm"
                             value={
                               formData.structure === '' && isCustom ? 'Other' : formData.structure
@@ -398,7 +399,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                             <option value="Ground">Ground</option>
                             <option value="Under Construction">Under Construction</option>
                             <option value="Other">Other</option>
-                          </CFormSelect>
+                          </AppFormSelect>
                         ) : (
                           <CFormInput
                             size="sm"
@@ -545,7 +546,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                     <div className="mb-3">
                       <CFormLabel>Rental Income</CFormLabel>
                       <CInputGroup>
-                        <CFormSelect
+                        <AppFormSelect
                           name="isOnRentalIncome"
                           value={formData.isOnRentalIncome}
                           onChange={handleChange}
@@ -553,7 +554,7 @@ const SoldForm = ({ onSubmit, initialData, isSubmitting: parentSubmitting = fals
                         >
                           <option value="no">No</option>
                           <option value="yes">Yes</option>
-                        </CFormSelect>
+                        </AppFormSelect>
                       </CInputGroup>
                     </div>
                   </CCol>
