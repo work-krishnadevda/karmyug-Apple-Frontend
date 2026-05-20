@@ -30,7 +30,7 @@ const AppSidebar = ({ navItems }) => {
         {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
         <h4 className="mb-0 flex gap-2">
-          <CImage src={logo} width={55} height={58} style={{paddingRight:"5px"}}></CImage>
+          {/* <CImage src={logo} width={55} height={58} style={{paddingRight:"5px"}}></CImage> */}
         
           {/* <CImage src={logo} width={'100%'}></CImage> */}
           <span className="yellow mt-3 pl-2 text-red-800">Karmyug Tech</span>
