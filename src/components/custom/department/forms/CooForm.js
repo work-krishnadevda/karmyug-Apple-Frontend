@@ -449,7 +449,7 @@ const CooForm = ({
                   <CCol md={3}>
                     <div className="">
                       <CFormLabel>
-                        Date Of Initiation By Real Apple<span className="text-danger">*</span>
+                        Date Of Initiation By ValuXpert<span className="text-danger">*</span>
                       </CFormLabel>
                       <DatePicker
                         // id="publishDate"

@@ -257,7 +257,7 @@ export const CelebrationCard = ({
 
           {/* Company Name */}
           <div className="work-anniversary-company">
-            Real Apple Group
+            ValuXpert Group
           </div>
         </div>
       )
@@ -361,7 +361,7 @@ export const CelebrationCard = ({
 
           {/* Company Name - bottom */}
           <div className="marriage-anniversary-company">
-            <span className="real-apple-text">Real Apple</span>{' '}
+            <span className="real-apple-text">ValuXpert</span>{' '}
             <span className="group-text">Group</span>
           </div>
         </div>
@@ -451,7 +451,7 @@ export const CelebrationCard = ({
             {type === 'work-anniversary' && yearsCompleted > 0 && (
               <div className="birthday-date">
                 🏆 {yearsCompleted} Year
-                {yearsCompleted > 1 ? 's' : ''} with Real Apple
+                {yearsCompleted > 1 ? 's' : ''} with ValueXpert Group
               </div>
             )}
 
@@ -478,7 +478,7 @@ export const CelebrationCard = ({
 
             <p className="birthday-message">{getMessage()}</p>
 
-            <h2 className="birthday-name"> Real Apple Group</h2>
+            <h2 className="birthday-name"> ValuXpert Group</h2>
           </div>
         </div>
       </div>

@@ -70,7 +70,6 @@ const Login = () => {
     }
   }, [isNotLoggin, timeoutId])
 
-
   useEffect(() => {
     if (isBlock) {
       setBlockError(isBlock)
@@ -89,12 +88,24 @@ const Login = () => {
         setBlockTimeOut(null)
       }
     }
-
   }, [isBlock, blockTimeOut])
 
-
   return (
-    <div className="min-vh-100 d-flex flex-row align-items-center " style={{ background: "url('login-bg-image.jpg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover', }}>
+    <div
+      className="min-vh-100 d-flex flex-row align-items-center "
+  style={{
+  backgroundImage: `
+    linear-gradient(
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.35)
+    ),
+    url('/login-bg-image.png')
+  `,
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}}
+    >
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md={5}>
@@ -106,21 +117,24 @@ const Login = () => {
                       email: '',
                       password: '',
                     }}
-
                     validationSchema={validationSchema}
                     onSubmit={async (values, { setSubmitting, isSubmitting }) => {
                       AuthHelpers.login(values, navigate, dispatch).finally(() => {
                         setSubmitting(false)
                       })
-                    }}>
+                    }}
+                  >
                     {({ isSubmitting }) => (
                       <Form className="admin-login-page">
                         <div className="text-center">
-                          <div className='login-logo'>
-                            <img src={logo} alt="logo" width={60} />
-                            <span className="login-logo-text">Karmyug</span>
+                          <div className="login-logo">
+                            <img src="/logo.png" alt="logo" width={100} />
+                            <span className="login-logo-text">ValuXpert</span>
                           </div>
-                          <p className="text-medium-emphasis mb-3" style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
+                          <p
+                            className="text-medium-emphasis mb-3"
+                            style={{ fontSize: '1.1rem', fontWeight: 'bold' }}
+                          >
                             Welcome Back! <span role="img" aria-label="key"></span>Please Sign In
                           </p>
                         </div>
@@ -133,7 +147,6 @@ const Login = () => {
                             Email
                           </CFormLabel>
                           <CInputGroup>
-
                             <Field
                               type="text"
                               name="email"
@@ -152,7 +165,7 @@ const Login = () => {
                           <CFormLabel htmlFor="exampleInputEmail1" className="label-text">
                             Password
                           </CFormLabel>
-                          <CInputGroup className='from_pass'>
+                          <CInputGroup className="from_pass">
                             <Field
                               type={showPassword ? 'text' : 'password'}
                               name="password"
@@ -164,11 +177,8 @@ const Login = () => {
                               onClick={togglePasswordVisibility}
                               className="cursor-pointer"
                             >
-                              <FontAwesomeIcon
-                                icon={showPassword ? faEyeSlash : faEye}
-                              />
+                              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                             </CInputGroupText>
-
                           </CInputGroup>
                           <ErrorMessage
                             name="password"
@@ -187,7 +197,6 @@ const Login = () => {
                               )}
                             </CButton>
                           </CCol>
-
                         </CRow>
                       </Form>
                     )}

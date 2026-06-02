@@ -364,7 +364,7 @@ const SalarySlipGenerator = () => {
             <div class="company-address">${address}</div>
             ${contactNumber ? `<div class="company-contact">Contact Number: 9993889983, 9109138040</div>` : ''}
             <div class="salary-period">${salaryPeriod}</div>
-            <div class="venture-text">A Venture of Real Apple Group</div>
+            <div class="venture-text">A Venture of ValuXpert Group</div>
           </div>
 
           <!-- Employee and Bank Details -->

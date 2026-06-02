@@ -5,7 +5,7 @@ const AppFooter = () => {
   return (
     <CFooter>
       <div>
-        <span className="ms-1">&copy; 2026 All rights reserved by The Vocalearn Educorp.</span>
+        <span className="ms-1">&copy; 2026 All rights reserved by Karmyug Pvt Ltd</span>
       </div>
       {/* <div className="ms-auto">
         <span className="me-1">Powered by</span>

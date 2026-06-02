@@ -122,7 +122,7 @@ const LogoutModal = ({ visible, onYes, onNo, userData }) => {
         {/* Real Apple Logo */}
         <div className="mb-4 d-flex justify-content-center align-items-center">
           <h3 style={{ fontWeight: '700', margin: 0 }}>
-            <span style={{ color: '#dc3545' }}>Real Apple</span>{' '}
+            <span style={{ color: '#dc3545' }}>ValuXpert</span>{' '}
             <span style={{ color: '#28a745' }}>Group</span>
           </h3>
         </div>

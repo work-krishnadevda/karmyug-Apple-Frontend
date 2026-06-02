@@ -169,7 +169,7 @@ const PMRReport = () => {
         : 'AI'
 
       ws.mergeCells(`A1:${lastColLetter}1`)
-      ws.getCell('A1').value = 'Real Apple Group'
+      ws.getCell('A1').value = 'ValuXpert Group'
       ws.getCell('A1').font = { size: 16, bold: true }
       ws.getCell('A1').alignment = { horizontal: 'center' }
 

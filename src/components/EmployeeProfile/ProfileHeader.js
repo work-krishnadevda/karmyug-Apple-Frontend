@@ -759,7 +759,7 @@ const ProfileHeader = ({
 
   // Get company name from employee data
   const getCompanyName = () => {
-    return employeeDatas?.employment?.companyName || employeeDatas?.companyName || 'Real Apple Consultancy House'
+    return employeeDatas?.employment?.companyName || employeeDatas?.companyName || 'ValueXpert Solutions Pvt Ltd'
   }
 
   return (

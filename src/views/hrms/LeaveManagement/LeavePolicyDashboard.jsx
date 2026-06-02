@@ -425,7 +425,7 @@ const LeavePolicyDashboard = () => {
       }
 
       const wb = new ExcelJS.Workbook()
-      wb.creator = 'Real Apple HRMS'
+      wb.creator = 'ValueXpert HRMS'
       wb.created = new Date()
       const ws = wb.addWorksheet('Leave Summary Report', {
         properties: { defaultRowHeight: 18 },
