@@ -31,7 +31,7 @@ const AppSidebar = ({ navItems }) => {
         {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
         <h4 className="mb-0 flex gap-2">
           <CImage
-            src="/sidebarlogo.png"
+            src="/sidebarLogo.png"
             width={68}
             height={50}
             style={{ paddingRight: '2px' }}
