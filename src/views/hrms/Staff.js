@@ -50,6 +50,30 @@ import * as XLSX from 'xlsx-js-style'
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
 
+const filterSelectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    minHeight: 42,
+    borderColor: state.isFocused ? '#3b82f6' : '#d1d5db',
+    borderRadius: 6,
+    boxShadow: state.isFocused
+      ? '0 0 0 3px rgba(59, 130, 246, 0.1)'
+      : '0 1px 2px rgba(0, 0, 0, 0.05)',
+    '&:hover': {
+      borderColor: state.isFocused ? '#3b82f6' : '#d1d5db',
+    },
+  }),
+  valueContainer: (provided) => ({
+    ...provided,
+    minHeight: 40,
+    padding: '2px 12px',
+  }),
+  indicatorsContainer: (provided) => ({
+    ...provided,
+    minHeight: 40,
+  }),
+}
+
 const Staff = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -676,16 +700,15 @@ const Staff = () => {
     try {
       const response = await new BasicProvider('roles?page=1&count=100').getRequest()
       const roleOptions = response.data.data.map((role) => ({
-        value: role._id,
+        value: role.name || role.display_name,
         label: role.display_name,
         slug: role.name,
       }))
-      setRoles([{ value: '', label: 'Select Role' }, ...roleOptions])
+      setRoles(roleOptions)
     } catch (error) {
       console.error('Error fetching roles:', error)
       // Fallback to static roles if API fails
       setRoles([
-        { value: '', label: 'Select Role' },
         { value: 'admin', label: 'Admin' },
         { value: 'manager', label: 'Manager' },
         { value: 'employee', label: 'Employee' },
@@ -710,7 +733,7 @@ const Staff = () => {
   const fetchAllDynamicData = async () => {
     setIsLoadingData(true)
     try {
-      await Promise.all([fetchManagers(), fetchCompaniesData()])
+      await Promise.all([fetchManagers(), fetchRoles(), fetchCompaniesData()])
     } catch (error) {
       console.error('Error fetching dynamic data:', error)
     } finally {
@@ -1421,15 +1444,15 @@ const handleDeleteEmployee = async () => {
             </CCardHeader>
 
             <CCardBody className="filter-body">
-              <CRow className="g-3">
+              <CRow className="g-3 align-items-start">
                 {/* Search Filter */}
-                <CCol md={4}>
+                <CCol md={4} className="staff-filter-col">
                   <CFormLabel className="fw-semibold text-dark mb-2">Search Staff</CFormLabel>
                   <CFormInput
                     placeholder="Search by name, email, or phone..."
                     value={searchTerm}
                     onChange={(e) => handleSearchInput(e.target.value)}
-                    className="form-control-modern"
+                    className="form-control-modern staff-filter-control"
                   />
                   {searchTerm && (
                     <CButton
@@ -1445,19 +1468,20 @@ const handleDeleteEmployee = async () => {
                 </CCol>
 
                 {/* Role Filter */}
-                <CCol md={4}>
+                <CCol md={4} className="staff-filter-col">
                   <CFormLabel className="fw-semibold text-dark mb-2">Filter by Role</CFormLabel>
                   <AppFormSelect
                     value={filterRole}
                     onChange={(e) => setFilterRole(e.target.value)}
                     onClick={handleRoleDropdownClick}
-                    className="form-control-modern select-dropdown"
+                    className="staff-filter-select"
+                    styles={filterSelectStyles}
                     disabled={isLoadingData}
                   >
                     <option value="">All Roles</option>
                     {roles.length > 0 ? (
                       roles.map((role) => (
-                        <option key={role.value} value={role.label}>
+                        <option key={role.value} value={role.value}>
                           {role.label}
                         </option>
                       ))
@@ -1470,12 +1494,13 @@ const handleDeleteEmployee = async () => {
                 </CCol>
 
                 {/* Status Filter */}
-                <CCol md={4}>
+                <CCol md={4} className="staff-filter-col">
                   <CFormLabel className="fw-semibold text-dark mb-2">Filter by Status</CFormLabel>
                   <AppFormSelect
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
-                    className="form-control-modern select-dropdown"
+                    className="staff-filter-select"
+                    styles={filterSelectStyles}
                   >
                     <option value="">All Status</option>
                     <option value="active">Active</option>
@@ -1909,6 +1934,19 @@ const handleDeleteEmployee = async () => {
           transition: all 0.2s ease;
           background: white;
           box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .staff-filter-col {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .staff-filter-control {
+          min-height: 42px;
+        }
+
+        .staff-filter-select {
+          width: 100%;
         }
 
         .form-control-modern:focus {

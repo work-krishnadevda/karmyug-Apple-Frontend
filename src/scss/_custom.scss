@@ -2378,6 +2378,10 @@ div[class*='-menu'] div[class*='-option'][aria-selected='true'] {
   color: #fff !important;
 }
 
+.add_new.assign-dm-button {
+  color: #000 !important;
+}
+
 .text-capitalize {
   color: white;
 }
@@ -3893,6 +3897,12 @@ form textarea:focus {
 
 .modal-backdrop {
   z-index: 9999 !important;
+}
+
+// react-select dropdown menus must render above modal + backdrop
+.app-form-select__menu-portal,
+div[class*='-menu-portal'] {
+  z-index: 11000 !important;
 }
 
 /* Specific z-index for punch-in modal to ensure it's always on top */
@@ -5872,6 +5882,21 @@ select option:checked {
 
     .form-check-input {
       margin-right: 10px !important;
+      width: 1.15em;
+      height: 1.15em;
+      flex-shrink: 0;
+      border: 2px solid #066054;
+      cursor: pointer;
+
+      &:checked {
+        background-color: #066054;
+        border-color: #066054;
+      }
+
+      &:focus {
+        border-color: #066054;
+        box-shadow: 0 0 0 0.25rem rgba(6, 96, 84, 0.2);
+      }
     }
   }
 }

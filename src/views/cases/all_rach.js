@@ -47,6 +47,17 @@ const validationRules = {
   // },
 }
 
+const assignSelectStyles = {
+  menuPortal: (provided) => ({
+    ...provided,
+    zIndex: 11000,
+  }),
+  menu: (provided) => ({
+    ...provided,
+    zIndex: 11000,
+  }),
+}
+
 export default function SdmAllRACH() {
   const navigate = useNavigate()
   const [rowPerPage, setRowPerPage] = useState(20)
@@ -725,6 +736,9 @@ export default function SdmAllRACH() {
                       }
                       getOptionLabel={(option) => option.label}
                       getOptionValue={(option) => option.value}
+                      menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+                      menuPosition="fixed"
+                      styles={assignSelectStyles}
                       onChange={(selected) =>
                         setInitialValues({ ...initialValues, dm: selected.value })
                       }
@@ -760,7 +774,7 @@ export default function SdmAllRACH() {
                     <div>
                       <span className="selected_row">{selectedRow?.length} selected</span>
 
-                      <CButton className="add_new" onClick={sendToDM}>
+                      <CButton className="add_new assign-dm-button" onClick={sendToDM}>
                         Assign
                       </CButton>
                     </div>

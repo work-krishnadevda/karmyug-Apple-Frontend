@@ -114,6 +114,8 @@ const CooForm = ({
 
   const [fileIds, setFileIds] = useState([])
 
+  const isAssignedToEngineer = (value) => value === '1' || value === 1 || value === true
+
   useEffect(() => {
     if (process.env.REACT_APP_COO == loggedinUserRole.name) {
       setAllButtonNavigation('0')
@@ -749,7 +751,7 @@ const CooForm = ({
                           { label: 'Subsequent', value: 'subsequent' },
                         ]}
                         value={initialValues?.case_type && initialValues?.case_type?.toLowerCase()}
-                        className="form-control"
+                        // className="form-control"
                         onChange={handleOnChange}
                       />
                     </div>
@@ -936,27 +938,28 @@ const CooForm = ({
                   <CRow>
                     <hr />
                     <CCol md={6}>
-                      <CFormCheck
-                        type="checkbox"
-                        label={'Assign to Engineer!'}
-                        disabled={showCaseData?.status !== 'pending for accept' && isEditMode}
-                        name="to_engineer"
-                        className="credit ps-0 pe-3 py-3 mt-3 justify-content-lg-end justify-content-start"
-                        checked={initialValues.to_engineer === '1'}
-                        onChange={() => {
-                          setInitialValues({
-                            ...initialValues,
-                            to_engineer: initialValues.to_engineer === '1' ? '0' : '1',
-                            group: '',
-                            engineers: [],
-                          })
-                        }}
-                        defaultChecked
-                      />
+                      <div className="mt-3">
+                        <CFormCheck
+                          type="checkbox"
+                          label={'Assign to Engineer!'}
+                          disabled={showCaseData?.status !== 'pending for accept' && isEditMode}
+                          name="to_engineer"
+                          className="credit ps-0"
+                          checked={isAssignedToEngineer(initialValues.to_engineer)}
+                          onChange={() => {
+                            setInitialValues((prev) => ({
+                              ...prev,
+                              to_engineer: isAssignedToEngineer(prev.to_engineer) ? '0' : '1',
+                              group: '',
+                              engineers: [],
+                            }))
+                          }}
+                        />
+                      </div>
                     </CCol>
 
                     <CCol md={6}>
-                      {initialValues.to_engineer === '1' ? (
+                      {isAssignedToEngineer(initialValues.to_engineer) ? (
                         <div className="mb-3">
                           <CFormLabel>
                             Engineers List <span className="text-danger">*</span>

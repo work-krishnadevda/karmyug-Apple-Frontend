@@ -742,7 +742,11 @@ const commonUpdate = () => {
           concern_resolution: data.concern_resolution.message,
           ra_branch: data.ra_branch,
           finance_name: data.finance_name,
-          group: data.group._id,
+          group: data.group?._id ?? '',
+          to_engineer:
+            data.to_engineer === '1' || data.to_engineer === 1 || data.to_engineer === true
+              ? '1'
+              : '0',
           engineers: engineersId,
           dm_fields: data.dm_fields,
           exteriors: exteriorsId,

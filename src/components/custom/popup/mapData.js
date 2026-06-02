@@ -19,6 +19,19 @@ import BasicProvider from 'src/constants/BasicProvider'
 import { useDispatch, useSelector } from 'react-redux'
 import { customSuccessMSG, setAlertTimeout } from 'src/helpers/alertHelper'
 
+const selectMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
+
+const modalSelectStyles = {
+  menuPortal: (provided) => ({
+    ...provided,
+    zIndex: 11000,
+  }),
+  menu: (provided) => ({
+    ...provided,
+    zIndex: 11000,
+  }),
+}
+
 const MapData = (props) => {
   const {
     visible,
@@ -323,6 +336,7 @@ const MapData = (props) => {
                 </CFormLabel>
                 <AsyncSelect
                   name="ra_branch"
+                  classNamePrefix="map-data-select"
                   loadOptions={(inputValue, callback) => loadOptionsRaBranch(inputValue, callback)}
                   defaultOptions={defaultOptionsRaBranch}
                   value={
@@ -334,6 +348,9 @@ const MapData = (props) => {
                   }
                   getOptionLabel={(option) => option.label}
                   getOptionValue={(option) => option.value}
+                  menuPortalTarget={selectMenuPortalTarget}
+                  menuPosition="fixed"
+                  styles={modalSelectStyles}
                   onChange={(selected) => {
                     if (!selected) {
                       setCaseData((prevState) => ({
@@ -386,7 +403,9 @@ const MapData = (props) => {
                     aria-label="Case Type"
                     name="case_type"
                     value={casedata?.case_type || 'Case Type'}
-                    className="form-control"
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={modalSelectStyles}
                     onChange={handleOnChange}
                   >
                     <option value="Case Type" disabled>
@@ -408,6 +427,9 @@ const MapData = (props) => {
                     custom
                     name="current_use_property"
                     value={casedata.current_use_property || 'Select current use of property'}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={modalSelectStyles}
                     onChange={handleOnChange}
                   >
                     <option value="Select current use of property">
@@ -462,6 +484,9 @@ const MapData = (props) => {
                     custom
                     name="ogl"
                     value={casedata.ogl || 'Select ogl'}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={modalSelectStyles}
                     onChange={handleOnChange}
                   >
                     <option value="Select ogl">Select ogl</option>
@@ -494,6 +519,9 @@ const MapData = (props) => {
                     custom
                     name="case_review"
                     value={casedata?.case_review || 'Select case_reivew'}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={modalSelectStyles}
                     onChange={handleOnChange}
                   >
                     <option value="none">None</option>
@@ -512,6 +540,9 @@ const MapData = (props) => {
                     custom
                     name="case_rating"
                     value={casedata?.case_rating || 'Select rating'}
+                    menuPortalTarget={selectMenuPortalTarget}
+                    menuPosition="fixed"
+                    styles={modalSelectStyles}
                     onChange={handleOnChange}
                     disabled={loggedinUserRole.name === process.env.REACT_APP_DM}
                   >

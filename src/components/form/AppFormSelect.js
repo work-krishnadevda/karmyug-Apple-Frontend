@@ -45,7 +45,7 @@ const baseStyles = {
   }),
   menuPortal: (provided) => ({
     ...provided,
-    zIndex: 9999,
+    zIndex: 11000,
   }),
 }
 
@@ -102,7 +102,9 @@ const AppFormSelect = forwardRef(
       invalid = false,
       'aria-label': ariaLabel,
       menuPortalTarget,
+      menuPosition,
       styles,
+      custom: _custom,
       ...rest
     },
     ref,
@@ -128,7 +130,26 @@ const AppFormSelect = forwardRef(
     const placeholderOption =
       normalizedOptions.find((option) => option.value === '') || null
 
-    const mergedStyles = styles ? { ...baseStyles, ...styles } : baseStyles
+    const mergedStyles = useMemo(() => {
+      if (!styles) {
+        return baseStyles
+      }
+
+      const merged = { ...baseStyles }
+
+      Object.keys(styles).forEach((key) => {
+        const baseFn = baseStyles[key]
+        const overrideFn = styles[key]
+
+        merged[key] = (provided, state) => ({
+          ...(typeof baseFn === 'function' ? baseFn(provided, state) : provided),
+          ...(typeof overrideFn === 'function' ? overrideFn(provided, state) : {}),
+        })
+      })
+
+      return merged
+    }, [styles])
+
     const resolvedMenuPortalTarget = menuPortalTarget ?? defaultMenuPortalTarget
 
     return (
@@ -158,7 +179,8 @@ const AppFormSelect = forwardRef(
           className={`app-form-select ${invalid ? 'is-invalid' : ''} ${className}`.trim()}
           classNamePrefix="app-form-select"
           menuPortalTarget={resolvedMenuPortalTarget}
-          menuPosition={resolvedMenuPortalTarget ? 'fixed' : 'absolute'}
+          menuPosition={menuPosition || (resolvedMenuPortalTarget ? 'fixed' : 'absolute')}
+          menuShouldScrollIntoView={false}
           styles={mergedStyles}
           aria-label={ariaLabel}
           {...rest}

@@ -668,7 +668,11 @@ export default function CreateUser() {
           ...data,
           concern_resolution: data.concern_resolution.message,
           finance_name: data.finance_name,
-          group: data.group._id,
+          group: data.group?._id ?? '',
+          to_engineer:
+            data.to_engineer === '1' || data.to_engineer === 1 || data.to_engineer === true
+              ? '1'
+              : '0',
           engineers: engineersId,
           exteriors: exteriorsId,
           positive_point: positivePoinsId,
