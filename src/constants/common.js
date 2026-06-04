@@ -6,9 +6,15 @@ import BasicProvider from './BasicProvider'
 import { Document, Page, Text, View, StyleSheet, Font, pdf } from '@react-pdf/renderer'
 import moment from 'moment'
 
+const normalizeRoleName = (roleName) => {
+  const normalized = roleName?.toLowerCase()
+  return normalized === 'tenant_admin' ? 'admin' : normalized
+}
+
 export const checkRole = (roleName, admin) => {
   if (admin && admin.role) {
-    return admin?.role?.some((role) => role.name === roleName)
+    const targetRole = normalizeRoleName(roleName)
+    return admin?.role?.some((role) => normalizeRoleName(role.name) === targetRole)
   }
   return false
 }
@@ -18,12 +24,11 @@ export function hasAccess(userRole, roles, showForAll = false) {
   if (showForAll || (roles && roles.length === 0)) {
     return true
   }
-  
+
   if (Array.isArray(userRole) && roles) {
     return userRole.some((userRoleItem) => {
-      return roles.some((role) => {
-        return userRoleItem?.name?.toLowerCase() === role?.toLowerCase()
-      })
+      const userRoleName = normalizeRoleName(userRoleItem?.name)
+      return roles.some((role) => userRoleName === normalizeRoleName(role))
     })
   }
   return false
