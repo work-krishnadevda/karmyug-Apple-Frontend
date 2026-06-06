@@ -53,12 +53,16 @@ const Login = () => {
 
   useEffect(() => {
     if (isNotLoggin) {
-      setcustomError('This credentials do not match our records!')
+      setcustomError(
+        isNotLoggin === 'notLogin'
+          ? 'This credentials do not match our records!'
+          : isNotLoggin,
+      )
       if (!timeoutId) {
         const newTimeoutId = setTimeout(() => {
           setcustomError(null)
-          dispatch({ type: 'set', isNotLoggin: 'notLogin' })
-        }, 2000)
+          dispatch({ type: 'set', isNotLoggin: '' })
+        }, 8000)
         setTimeoutId(newTimeoutId)
       }
     }
@@ -77,7 +81,7 @@ const Login = () => {
         const newTimeoutId = setTimeout(() => {
           setBlockError(null)
           dispatch({ type: 'set', isBlock: '' })
-        }, 2000)
+        }, 8000)
         setBlockTimeOut(newTimeoutId)
       }
     }

@@ -5,12 +5,13 @@ import AuthHelpers from 'src/helpers/authHelper'
 axios.interceptors.response.use(
   (response) => {
     const data = response?.data;
+    const isLoginRequest = response?.config?.url?.includes('/api/auth/admin/login')
 
     // Auto logout ONLY if backend explicitly sends inactive account message
     // NOTE: We don't check user.status fields here because those could be for OTHER users
     // (e.g., when admin views staff list, each staff has a status field)
     // We only check explicit error messages that indicate the CURRENT user is inactive
-    if (
+    if (!isLoginRequest && (
       data?.statusCode === 401 ||
       data?.error === "Unauthorized" ||
       data?.message === "Your account is inactive" ||
@@ -18,7 +19,7 @@ axios.interceptors.response.use(
        data?.message.toLowerCase().includes("inactive") && 
        (data?.message.toLowerCase().includes("your account") || 
         data?.message.toLowerCase().includes("account is")))
-    ) {
+    )) {
       Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_auth`, {
         path: "",
         domain: process.env.REACT_APP_URL,
@@ -36,7 +37,9 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => { 
-    if (error?.response?.status === 401) { 
+    const isLoginRequest = error?.config?.url?.includes('/api/auth/admin/login')
+
+    if (error?.response?.status === 401 && !isLoginRequest) { 
 
       Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_auth`, {
         path: "",
@@ -196,7 +199,10 @@ class BasicProvider {
         domain: process.env.REACT_APP_URL,
       })
       if (this.dispatch) {
-        this.dispatch({ type: 'set', isNotLoggin: error.response.data.error })
+        this.dispatch({
+          type: 'set',
+          isNotLoggin: error.response.data.message || error.response.data.error,
+        })
       }
     }
 
