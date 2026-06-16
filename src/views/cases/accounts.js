@@ -91,6 +91,8 @@ export default function Account() {
 
   const [selectAll, setSelectAll] = useState(false)
 
+  const isAcknowledged = (value) => value === '1' || value === 1 || value === true
+
   const updatePageQueryParam = (paramName, page) => {
     if (isUpdateQueryParams) {
       const searchParams = new URLSearchParams(location.search)
@@ -205,13 +207,11 @@ export default function Account() {
   }
 
   let handleAcknowled = async (id, value, event) => {
-    // Prevent default behavior and stop propagation
     if (event) {
-      event.preventDefault()
       event.stopPropagation()
     }
 
-    const newValue = value === '1' ? '0' : '1'
+    const newValue = isAcknowledged(value) ? '0' : '1'
 
     // Save current data for rollback in case of error
     const currentData = data || []
@@ -231,7 +231,7 @@ export default function Account() {
         (item) => item.status === 'submitted to bank',
       )
       if (submittedCases.length > 0) {
-        const allChecked = submittedCases.every((item) => item.acknowledged === '1')
+        const allChecked = submittedCases.every((item) => isAcknowledged(item.acknowledged))
         setSelectAll(allChecked)
       }
     }
@@ -300,9 +300,7 @@ export default function Account() {
         (item) => item.status === 'submitted to bank',
       )
       if (submittedToBankCases.length > 0) {
-        const allChecked = submittedToBankCases.every(
-          (item) => item.acknowledged === '1',
-        )
+        const allChecked = submittedToBankCases.every((item) => isAcknowledged(item.acknowledged))
         setSelectAll(allChecked)
       } else {
         setSelectAll(false)
@@ -439,7 +437,6 @@ export default function Account() {
             type="checkbox"
             checked={selectAll}
             onChange={(e) => {
-              e.preventDefault()
               e.stopPropagation()
               handleSelectAll(e.target.checked)
             }}
@@ -526,43 +523,24 @@ export default function Account() {
           )}
 
           {row.status === 'submitted to bank' && (
-            <div 
-              className="mx-2" 
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-              }}
-              onMouseDown={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-              }}
-            >
-              <CFormCheck
+            <div className="mx-2" onClick={(e) => e.stopPropagation()}>
+              <input
                 type="checkbox"
-                className="credit ps-0"
+                className="account-ack-checkbox"
                 name={`ack-${row._id}`}
                 id={`ack-${row._id}`}
                 style={{
                   width: '18px',
                   height: '18px',
-                  borderStyle: 'dashed',
-                  borderWidth: '1px',
-                  borderColor: 'red',
+                  cursor: 'pointer',
+                  accentColor: '#0abb87',
                 }}
-                checked={row?.acknowledged && row?.acknowledged === '1'}
+                checked={isAcknowledged(row?.acknowledged)}
                 onChange={(e) => {
-                  e.preventDefault()
                   e.stopPropagation()
                   handleAcknowled(row._id, row.acknowledged, e)
                 }}
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                }}
-                onMouseDown={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                }}
+                onClick={(e) => e.stopPropagation()}
               />
             </div>
           )}

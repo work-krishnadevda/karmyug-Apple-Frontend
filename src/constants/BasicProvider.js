@@ -2,6 +2,46 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import AuthHelpers from 'src/helpers/authHelper'
 
+const SUBSCRIPTION_EXPIRED_CODE = 'SUBSCRIPTION_EXPIRED'
+const SUBSCRIPTION_EXPIRED_MESSAGE =
+  'Your subscription has expired. Please contact your Super Admin to renew your plan.'
+
+function getCookieOptions() {
+  const options = { path: '' }
+  const domain = process.env.REACT_APP_URL
+  if (domain && !domain.includes('localhost')) {
+    options.domain = domain
+  }
+  return options
+}
+
+function clearAuthCookies() {
+  const scopedOptions = getCookieOptions()
+  Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_auth`, scopedOptions)
+  Cookies.remove('primery_user_id', scopedOptions)
+  Cookies.remove('current_user_role', scopedOptions)
+  Cookies.remove(`${process.env.REACT_APP_COOKIE_PREFIX}_auth`, { path: '' })
+  Cookies.remove('primery_user_id', { path: '' })
+  Cookies.remove('current_user_role', { path: '' })
+}
+
+function handleSubscriptionExpired(payload = {}) {
+  if (window.__subscriptionExpiredHandling) return
+  window.__subscriptionExpiredHandling = true
+
+  const currentRole = Cookies.get('current_user_role')
+  const adminRole = process.env.REACT_APP_ADMIN || 'admin'
+  const hrRole = process.env.REACT_APP_HR || 'hr'
+  const shouldShowPopup = [adminRole, hrRole].includes(currentRole)
+
+  if (shouldShowPopup) {
+    window.alert(payload.message || SUBSCRIPTION_EXPIRED_MESSAGE)
+  }
+
+  clearAuthCookies()
+  window.location.href = '/login'
+}
+
 axios.interceptors.response.use(
   (response) => {
     const data = response?.data;
@@ -38,6 +78,15 @@ axios.interceptors.response.use(
   },
   (error) => { 
     const isLoginRequest = error?.config?.url?.includes('/api/auth/admin/login')
+    const errorData = error?.response?.data || {}
+
+    if (
+      errorData?.code === SUBSCRIPTION_EXPIRED_CODE ||
+      errorData?.statusCode === 402
+    ) {
+      handleSubscriptionExpired(errorData)
+      return Promise.reject(error)
+    }
 
     if (error?.response?.status === 401 && !isLoginRequest) { 
 
@@ -187,6 +236,14 @@ class BasicProvider {
   handleException(error) {
     if (process.env.REACT_APP_DEBUG) {
       console.error(error.response?.data || error)
+    }
+
+    if (
+      error.response?.data?.code === SUBSCRIPTION_EXPIRED_CODE ||
+      error.response?.data?.statusCode == 402
+    ) {
+      handleSubscriptionExpired(error.response.data)
+      throw error.response.data
     }
 
     if (error.response?.data?.statusCode == 401) {
