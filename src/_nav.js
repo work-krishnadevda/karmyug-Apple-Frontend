@@ -419,26 +419,26 @@ let _nav = [
 
   {
     component: CNavGroup,
-    name: 'RA Branch',
+    name: 'MA Branch',
     to: '',
     meta: { role: [ADMIN] },
     icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'All RA Branch',
+        name: 'All MA Branch',
         to: '/rabranch/all',
         meta: { role: [ADMIN] },
       },
       {
         component: CNavItem,
-        name: 'Create RA Branch',
+        name: 'Create MA Branch',
         to: '/rabranch/create',
         meta: { role: [ADMIN] },
       },
       {
         component: CNavItem,
-        name: 'Trash RA Branch',
+        name: 'Trash MA Branch',
         to: '/rabranch/trash',
         meta: { role: [ADMIN] },
       },

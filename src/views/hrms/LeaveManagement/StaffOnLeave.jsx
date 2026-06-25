@@ -82,7 +82,7 @@ const HRLeaveDashboard = () => {
         })
         setRaBranchMap(map)
       } catch (err) {
-        console.error('Error fetching RA Branch list', err)
+        console.error('Error fetching MA Branch list', err)
       }
     }
     fetchRaBranches()

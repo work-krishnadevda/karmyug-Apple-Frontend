@@ -223,7 +223,7 @@ Initiate To - ${caseValue?.engineers?.length > 0
                 </CTableRow>
                 <CTableRow>
                   <CTableHeaderCell scope="row" className="font-small-size">
-                    RA Branch :
+                    MA Branch :
                   </CTableHeaderCell>
                   <CTableDataCell className="font-small-size-data">
                     {caseValue && caseValue?.ra_branch?.name ? caseValue?.ra_branch?.name : '-'}

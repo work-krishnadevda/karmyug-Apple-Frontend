@@ -131,7 +131,7 @@ const create = () => {
                     <CRow className="form-input-block">
                         <CCol md={8}>
                             <CCard>
-                                <CCardHeader>RA Branch Details</CCardHeader>
+                                <CCardHeader>MA Branch Details</CCardHeader>
                                 <CCardBody>
                                     <CRow>
                                         <CCol md={6}>

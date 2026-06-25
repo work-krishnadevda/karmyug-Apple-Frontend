@@ -332,7 +332,7 @@ const MapData = (props) => {
             <CRow>
               <CCol md={3}>
                 <CFormLabel>
-                  Ra branch <span className="text-danger">*</span>
+                  MA Branch <span className="text-danger">*</span>
                 </CFormLabel>
                 <AsyncSelect
                   name="ra_branch"

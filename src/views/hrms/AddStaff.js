@@ -2675,7 +2675,7 @@ const AddStaff = () => {
                           </option>
                         ))}
                       </AppFormSelect>
-                      <small className="text-muted">Select RA Branch for Branch Manager role</small>
+                      <small className="text-muted">Select MA Branch for Branch Manager role</small>
                       {showValidationErrors && validationErrors.ra_branch && (
                         <div className="invalid-feedback d-block">{validationErrors.ra_branch}</div>
                       )}

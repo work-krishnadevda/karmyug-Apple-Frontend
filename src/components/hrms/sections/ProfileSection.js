@@ -814,7 +814,7 @@ const ProfileSection = ({
           <CRow>
             <CCol md={6}>
               <div className="mb-3">
-                <CFormLabel className="fw-semibold">RA Branch *</CFormLabel>
+                <CFormLabel className="fw-semibold">MA Branch *</CFormLabel>
                 <AppFormSelect
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}

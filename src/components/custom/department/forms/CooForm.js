@@ -760,7 +760,7 @@ const CooForm = ({
                   <CCol md={4}>
                     <div className="mb-3">
                       <CFormLabel>
-                        RA Branch <span className="text-danger">*</span>
+                        MA Branch <span className="text-danger">*</span>
                       </CFormLabel>
 
                       {/* {console.log(initialValues)} */}

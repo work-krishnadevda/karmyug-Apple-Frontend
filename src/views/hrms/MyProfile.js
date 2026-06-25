@@ -2720,10 +2720,10 @@ const MyProfile = () => {
                     </CRow>
                     {/* RA Location, RA Branch, and Group Information */}
                     <CRow className="mt-3">
-                      {/* Show RA Branch if user has "RA Branch BM", "BM", or "SDM" role */}
+                      {/* Show MA Branch if user has "MA Branch BM", "BM", or "SDM" role */}
                       {(hasBM || hasSDM) && (
                         <CCol md={6}>
-                          <CFormLabel>RA Branch</CFormLabel>
+                          <CFormLabel>MA Branch</CFormLabel>
                           <AppFormSelect
                             value={
                               Array.isArray(formData?.profile?.raBranch)

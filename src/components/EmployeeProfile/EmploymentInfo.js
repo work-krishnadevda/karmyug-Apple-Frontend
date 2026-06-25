@@ -906,11 +906,11 @@ const EmploymentInfo = ({
               </CCol>
             </CRow>
 
-            {/* SDM Role Fields: RA Branch and Group */}
+            {/* SDM Role Fields: MA Branch and Group */}
             {isSDM && (
               <CRow className="mt-3">
                 <CCol md={6}>
-                  <CFormLabel>RA Branch</CFormLabel>
+                  <CFormLabel>MA Branch</CFormLabel>
                   <AppFormSelect
                     value={
                       Array.isArray(formData?.profile?.raBranch)
@@ -923,7 +923,7 @@ const EmploymentInfo = ({
                     }}
                     disabled={!editMode.employment}
                   >
-                    <option value="">Select RA Branch</option>
+                    <option value="">Select MA Branch</option>
                     {locations.map((location) => (
                       <option key={location.value} value={location.value}>
                         {location.label}
