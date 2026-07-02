@@ -178,7 +178,7 @@ const PendingPunches = () => {
                 <CTableHeaderCell>Email</CTableHeaderCell>
                 <CTableHeaderCell>Mobile</CTableHeaderCell>
                 <CTableHeaderCell>Designation</CTableHeaderCell>
-                <CTableHeaderCell>RA Location</CTableHeaderCell>
+                <CTableHeaderCell>MA Location</CTableHeaderCell>
                 <CTableHeaderCell>Status</CTableHeaderCell>
               </CTableRow>
             </CTableHead>

@@ -704,7 +704,7 @@ const Create = () => {
                   <CRow>
                     <CCol md={6}>
                       <div>
-                        <CFormLabel>Empanelled with RA/GA/LLP/SST</CFormLabel>
+                        <CFormLabel>Empanelled with Madhukar Associates</CFormLabel>
                         <AppFormSelect
                           name="empannelled_with"
                           value={initialValues?.empannelled_with || ''}

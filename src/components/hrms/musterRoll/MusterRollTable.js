@@ -33,7 +33,7 @@ const MusterRollTable = ({
     // { key: 'employeeId', label: 'Employee ID', sortable: true, width: '120px' },
     { key: 'name', label: 'Name', sortable: true, width: '180px' },
     { key: 'designation', label: 'Designation', sortable: true, width: '120px' },
-    { key: 'raLocation', label: 'RA Location', sortable: true, width: '120px' },
+    { key: 'raLocation', label: 'MA Location', sortable: true, width: '120px' },
     { key: 'status', label: 'Status', sortable: true, width: '100px' },
     { key: 'Day Status', label: 'Day Status', sortable: true, width: '150px' },
     { key: 'punchIn', label: 'Punch In', sortable: true, width: '90px' },

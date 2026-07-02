@@ -401,7 +401,7 @@ const LeavePolicyDashboard = () => {
         'S/N',
         'Staff Name',
         'Company Name',
-        'RA Location',
+        'MA Location',
         'Designation',
         'Status',
         'Metric',

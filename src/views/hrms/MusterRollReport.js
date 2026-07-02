@@ -269,7 +269,7 @@ const MusterRollReport = () => {
                 </CCol>
 
                 <CCol md={3}>
-                  <CFormLabel>RA Location</CFormLabel>
+                  <CFormLabel>MA Location</CFormLabel>
                   <AppFormSelect
                     value={filters.raLocation}
                     onChange={(e) => setFilters(prev => ({ ...prev, raLocation: e.target.value }))}

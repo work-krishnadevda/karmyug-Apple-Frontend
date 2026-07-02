@@ -2314,7 +2314,7 @@ const AddStaff = () => {
               <CRow>
                 <CCol md={6}>
                   <div className="mb-3">
-                    <CFormLabel className="fw-semibold">RA Location *</CFormLabel>
+                    <CFormLabel className="fw-semibold">MA Location *</CFormLabel>
 
                     <AppFormSelect
                       name="location"

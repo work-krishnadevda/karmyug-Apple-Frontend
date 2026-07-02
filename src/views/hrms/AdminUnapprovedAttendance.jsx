@@ -827,7 +827,7 @@ const AdminUnapprovedAttendance = () => {
                 />
               </CCol>
               <CCol md={4}>
-                <CFormLabel>RA Location Filter</CFormLabel>
+                <CFormLabel>MA Location Filter</CFormLabel>
                 <AppFormSelect value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
                   {locations.map((loc) => (
                     <option key={loc.value} value={loc.value}>
@@ -967,7 +967,7 @@ const AdminUnapprovedAttendance = () => {
                   <CTableHeaderCell>Status</CTableHeaderCell>
                   <CTableHeaderCell>Today Done</CTableHeaderCell>
 
-                  <CTableHeaderCell>RA Location</CTableHeaderCell>
+                  <CTableHeaderCell>MA Location</CTableHeaderCell>
 
                   <CTableHeaderCell
                     style={{ cursor: 'pointer' }}

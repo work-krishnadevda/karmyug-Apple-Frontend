@@ -37,6 +37,7 @@ import {
   cilInfo,
   cilFile,
   cilTrash,
+  cilSpreadsheet,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import DataTable from 'src/components/custom/table/AppDataTable'
@@ -109,7 +110,8 @@ const Staff = () => {
   const [selectedFields, setSelectedFields] = useState([])
   const [filterActive, setFilterActive] = useState(false)
   const [filterInactive, setFilterInactive] = useState(false)
-  
+  const [isExporting, setIsExporting] = useState(false)
+
   // Delete Employee States
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [employeeToDelete, setEmployeeToDelete] = useState(null)
@@ -527,19 +529,22 @@ const Staff = () => {
     setFilteredData(sorted)
   }
 
-  const downloadExcel = async () => {
-    if (selectedFields.length === 0) {
+  const downloadExcel = async (dataOverride, fieldsOverride) => {
+    const fieldsToExport = fieldsOverride || selectedFields
+    const sourceData = dataOverride || dataForExcel
+
+    if (fieldsToExport.length === 0) {
       toast.error('Please select at least one field')
       return
     }
 
-    if (!dataForExcel || dataForExcel.length === 0) {
+    if (!sourceData || sourceData.length === 0) {
       toast.info('No staff data to download')
       return
     }
 
     // ------------ FILTER LOGIC (Active / Inactive) ----------------
-    let finalData = [...dataForExcel]
+    let finalData = [...sourceData]
 
     // If "Active Only" checkbox selected
     if (filterActive) {
@@ -558,7 +563,7 @@ const Staff = () => {
     }
 
     // Sort selected fields based on ALL_FIELDS order to ensure name comes first
-    const actualFields = selectedFields.sort((a, b) => {
+    const actualFields = [...fieldsToExport].sort((a, b) => {
       const indexA = ALL_FIELDS.findIndex((f) => f.key === a)
       const indexB = ALL_FIELDS.findIndex((f) => f.key === b)
       // If field not found, put it at the end
@@ -660,6 +665,33 @@ const Staff = () => {
     const buffer = await workbook.xlsx.writeBuffer()
     saveAs(new Blob([buffer]), 'Staff_List.xlsx')
     setExcelModal(false)
+  }
+
+  const fetchStaffForExport = async () => {
+    const response = await new BasicProvider(`admins?page=1&count=1000`).getRequest()
+    const allData = response?.data?.data || []
+    setdataForExcel(allData)
+    return allData
+  }
+
+  const handleOpenExportModal = async () => {
+    setIsExporting(true)
+    try {
+      const allData = await fetchStaffForExport()
+      if (!allData.length) {
+        toast.info('No staff data to export')
+        return
+      }
+      setSelectedFields(ALL_FIELDS.map((field) => field.key))
+      setFilterActive(false)
+      setFilterInactive(false)
+      setExcelModal(true)
+    } catch (error) {
+      console.error('Error loading staff data for export:', error)
+      toast.error('Failed to load staff data for export')
+    } finally {
+      setIsExporting(false)
+    }
   }
 
   const fetchManagers = async () => {
@@ -1380,15 +1412,23 @@ const handleDeleteEmployee = async () => {
     selectedFields.length === selectableFields.length &&
     selectableFields.every((f) => selectedFields.includes(f.key))
 
-  const toggleSelectAll = () => {
-    if (isAllSelected) {
-      setSelectedFields([])
-    } else {
-      setSelectedFields(selectableFields.map((f) => f.key))
-    }
-    // Ensure inactive filter remains false when selecting all
+  const toggleExportField = useCallback((fieldKey) => {
+    setSelectedFields((prev) =>
+      prev.includes(fieldKey)
+        ? prev.filter((key) => key !== fieldKey)
+        : [...prev, fieldKey],
+    )
+  }, [])
+
+  const toggleSelectAll = useCallback(() => {
+    setSelectedFields((prev) => {
+      const allKeys = ALL_FIELDS.map((field) => field.key)
+      const hasAllSelected =
+        allKeys.length > 0 && allKeys.every((key) => prev.includes(key))
+      return hasAllSelected ? [] : allKeys
+    })
     setFilterInactive(false)
-  }
+  }, [ALL_FIELDS])
 
   return (
     <div className="staff-dashboard">
@@ -1412,6 +1452,22 @@ const handleDeleteEmployee = async () => {
               >
                 <CIcon icon={cilPlus} className="me-1" />
                 Add Staff
+              </CButton>
+            )}
+
+            {(isHR || isADMIN) && (
+              <CButton
+                color="success"
+                className="px-3 py-2 rounded-pill d-flex align-items-center"
+                onClick={handleOpenExportModal}
+                disabled={isExporting}
+              >
+                {isExporting ? (
+                  <CSpinner size="sm" className="me-1" />
+                ) : (
+                  <CIcon icon={cilSpreadsheet} className="me-1" />
+                )}
+                Export Excel
               </CButton>
             )}
 
@@ -1587,80 +1643,60 @@ const handleDeleteEmployee = async () => {
         onClose={() => setExcelModal(false)}
         size="lg"
         alignment="center"
+        className="staff-export-modal"
       >
         <CModalHeader className="border-bottom">
-          <CModalTitle className="fw-bold">Download Staff</CModalTitle>
+          <CModalTitle className="fw-bold">Export Staff to Excel</CModalTitle>
         </CModalHeader>
 
         <CModalBody>
           <p className="text-muted mb-3">
-            Select the fields you want to include in the Excel file.
+            Choose which fields to include in the Excel file. Use <strong>Select All Fields</strong> for
+            a full export, or pick only the columns you need.
           </p>
 
           {/* Status Filters - Separate Checkboxes */}
           <div className="mb-3 p-3 bg-light rounded">
             <label className="fw-semibold mb-2 d-block">Filter by Status:</label>
             <div className="d-flex gap-4">
-              <div className="form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="filterActive"
-                  checked={filterActive}
-                  onChange={(e) => {
-                    setFilterActive(e.target.checked)
-                    // If Active is checked, uncheck Inactive
-                    if (e.target.checked) {
-                      setFilterInactive(false)
-                    }
-                  }}
-                />
-                <label htmlFor="filterActive" className="form-check-label" style={{ cursor: 'pointer' }}>
-                  Active Only
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id="filterInactive"
-                  checked={filterInactive}
-                  onChange={(e) => {
-                    setFilterInactive(e.target.checked)
-                    // If Inactive is checked, uncheck Active
-                    if (e.target.checked) {
-                      setFilterActive(false)
-                    }
-                  }}
-                />
-                <label htmlFor="filterInactive" className="form-check-label" style={{ cursor: 'pointer' }}>
-                  Inactive Only
-                </label>
-              </div>
+              <CFormCheck
+                id="staff-export-filter-active"
+                label="Active Only"
+                checked={filterActive}
+                onChange={(e) => {
+                  const checked = e.target.checked
+                  setFilterActive(checked)
+                  if (checked) setFilterInactive(false)
+                }}
+              />
+              <CFormCheck
+                id="staff-export-filter-inactive"
+                label="Inactive Only"
+                checked={filterInactive}
+                onChange={(e) => {
+                  const checked = e.target.checked
+                  setFilterInactive(checked)
+                  if (checked) setFilterActive(false)
+                }}
+              />
             </div>
           </div>
 
           <hr />
 
-          {/* Select All */}
-          <div className="mb-3 d-flex align-items-center">
-            <input
-              type="checkbox"
-              className="form-check-input me-2"
-              checked={isAllSelected}
-              onChange={toggleSelectAll}
-              id="selectAll"
-            />
-            <label htmlFor="selectAll" className="fw-semibold">
-              Select All Fields
-            </label>
-          </div>
+          <CFormCheck
+            id="staff-export-select-all"
+            label="Select All Fields"
+            className="mb-3 fw-semibold"
+            checked={isAllSelected}
+            onChange={toggleSelectAll}
+          />
 
           <hr />
 
           {/* Field List */}
           <div
-            className="row"
+            className="row staff-export-field-list"
             style={{
               maxHeight: '300px',
               overflowY: 'auto',
@@ -1668,28 +1704,12 @@ const handleDeleteEmployee = async () => {
           >
             {ALL_FIELDS.map((field) => (
               <div className="col-6 col-md-4 mb-2" key={field.key}>
-                <div className="form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id={field.key}
-                    checked={selectedFields.includes(field.key)}
-                    onChange={() => {
-                      if (selectedFields.includes(field.key)) {
-                        setSelectedFields(selectedFields.filter((f) => f !== field.key))
-                      } else {
-                        setSelectedFields([...selectedFields, field.key])
-                      }
-                    }}
-                  />
-                  <label
-                    htmlFor={field.key}
-                    className="form-check-label"
-                    style={{ cursor: 'pointer' }}
-                  >
-                    {field.label}
-                  </label>
-                </div>
+                <CFormCheck
+                  id={`staff-export-field-${field.key}`}
+                  label={field.label}
+                  checked={selectedFields.includes(field.key)}
+                  onChange={() => toggleExportField(field.key)}
+                />
               </div>
             ))}
           </div>
@@ -1704,7 +1724,14 @@ const handleDeleteEmployee = async () => {
             <CButton color="secondary" variant="outline" onClick={() => setExcelModal(false)}>
               Cancel
             </CButton>
-            <CButton color="primary" onClick={downloadExcel}>
+            <CButton
+              color="primary"
+              onClick={async () => {
+                await downloadExcel()
+                toast.success('Staff list exported successfully')
+              }}
+              disabled={selectedFields.length === 0 || isExporting}
+            >
               Download Excel
             </CButton>
           </div>

@@ -1646,7 +1646,7 @@ const AnnouncementManagement = () => {
               )}
               {viewModal.ra_location && viewModal.ra_location.length > 0 && (
                 <p className="mb-0">
-                  <strong>RA Location:</strong>{' '}
+                  <strong>MA Location:</strong>{' '}
                   {viewModal.ra_location
                     .map((locId) =>
                       locations.find((l) => l.value === locId || l.value === String(locId))?.label
@@ -2270,7 +2270,7 @@ const AnnouncementManagement = () => {
                     )}
                     {formData.ra_location?.length > 0 && (
                       <li>
-                        <strong>RA Locations:</strong>{' '}
+                        <strong>MA Locations:</strong>{' '}
                         {formData.ra_location
                           .map((locId) => {
                             const loc = locations.find((l) => l.value === locId)

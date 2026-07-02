@@ -674,7 +674,7 @@ const EmploymentInfo = ({
                 </AppFormSelect>
               </CCol> */}
               <CCol md={6}>
-                <CFormLabel>RA Location</CFormLabel>
+                <CFormLabel>MA Location</CFormLabel>
                 <AppFormSelect
                   value={
                     formData?.employment?.raLocation?.value ||
@@ -701,7 +701,7 @@ const EmploymentInfo = ({
                   }}
                   disabled={!editMode.employment}
                 >
-                  <option value="">Select RA Location</option>
+                  <option value="">Select MA Location</option>
                   {locations.map((location) => (
                     <option key={location.value} value={location.value}>
                       {location.label}

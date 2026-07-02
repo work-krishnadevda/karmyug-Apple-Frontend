@@ -206,7 +206,7 @@ const PMRReport = () => {
         'S.No',
         'Name of the FE/DM/RC/LCTO',
         'Role',
-        'RA Location',
+        'MA Location',
         'Punch-in time',
         '1st Closer',
         ...dayHeaders.slice(1),

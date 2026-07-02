@@ -175,7 +175,7 @@ const BankInfo = ({
                         : 'N/A'}
                     </p>
                     <p className="mb-0">
-                      <strong>RA Location:</strong> {bankData.raLocation || 'N/A'}
+                      <strong>MA Location:</strong> {bankData.raLocation || 'N/A'}
                     </p>
                     <p className="mb-1">
                       <strong>Bank:</strong> {bankData.bankName || 'N/A'}

@@ -1008,7 +1008,7 @@ const exportAttendanceMusterRoll = async (data, monthArg, yearArg) => {
 
     const workbook = new ExcelJS.Workbook()
 
-    const staticHeaders = ['S/N', 'Staff Name', 'Company Name', 'RA Location', 'Designation', 'Status', 'Days']
+    const staticHeaders = ['S/N', 'Staff Name', 'Company Name', 'MA Location', 'Designation', 'Status', 'Days']
     const summaryHeadersBase = [
       'Late Days',
       'Total Working Hrs',
@@ -1516,7 +1516,7 @@ const exportSalarySheet = async (data, monthArg, yearArg) => {
     const activeSummaryRows = []
     const inactiveSummaryRows = []
 
-    const staticHeaders = ['S/N', 'Staff Name', 'Company Name', 'RA Location', 'Designation', 'Status', 'Days']
+    const staticHeaders = ['S/N', 'Staff Name', 'Company Name', 'MA Location', 'Designation', 'Status', 'Days']
     const summaryHeadersBase = [
       'Late Days',
       'Total Working Hrs',

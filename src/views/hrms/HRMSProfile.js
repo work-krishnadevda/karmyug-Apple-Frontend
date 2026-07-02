@@ -2365,7 +2365,7 @@ const HRMSProfile = () => {
                     </CRow>
                     <CRow className="mt-3">
                       <CCol md={6}>
-                        <CFormLabel>RA Location</CFormLabel>
+                        <CFormLabel>MA Location</CFormLabel>
                         <AppFormSelect
                           value={formData?.employment?.raLocation || ''}
                           onChange={(e) =>
@@ -2373,7 +2373,7 @@ const HRMSProfile = () => {
                           }
                           disabled={!editMode?.employment}
                         >
-                          <option value="">Select RA Location</option>
+                          <option value="">Select MA Location</option>
                           {locations.map((location) => (
                             <option key={location.id} value={location.name}>
                               {location.name}

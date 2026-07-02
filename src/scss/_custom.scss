@@ -8820,3 +8820,28 @@ div#cell-5-undefined input {
     min-width: 100%;
   }
 }
+
+.staff-export-modal {
+  .form-check-input {
+    width: 1.1em;
+    height: 1.1em;
+    margin-top: 0.15em;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .form-check-input:checked {
+    background-color: #066054;
+    border-color: #066054;
+  }
+
+  .form-check-label {
+    cursor: pointer;
+    margin-left: 0.45rem;
+  }
+
+  .staff-export-field-list .form-check {
+    min-height: 1.75rem;
+    align-items: flex-start;
+  }
+}

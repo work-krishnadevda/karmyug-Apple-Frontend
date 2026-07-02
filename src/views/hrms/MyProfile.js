@@ -2781,7 +2781,7 @@ const MyProfile = () => {
                     </CRow>
                     <CRow className="mt-3">
                       <CCol md={6}>
-                        <CFormLabel>RA Location</CFormLabel>
+                        <CFormLabel>MA Location</CFormLabel>
                         <AppFormSelect
                           value={resolvedRaLocationValue}
                           onChange={(e) =>
@@ -2789,7 +2789,7 @@ const MyProfile = () => {
                           }
                           disabled={!editMode.employment}
                         >
-                          <option value="">Select RA Location</option>
+                          <option value="">Select MA Location</option>
                           {locations.map((location) => (
                             <option key={location.value} value={location.value}>
                               {location.label}
