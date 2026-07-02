@@ -1281,7 +1281,7 @@ const MsiFilter = ({
                 <div className="">
                   <CFormCheck
                     type="checkbox"
-                    label={'RA Branch'}
+                    label={'MA Branch'}
                     className="credit ps-0 checkbox-margin"
                     name="ra_branch"
                     checked={selected.ra_branch}

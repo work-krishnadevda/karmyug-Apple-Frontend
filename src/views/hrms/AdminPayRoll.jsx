@@ -1888,7 +1888,7 @@ const exportSalarySheet = async (data, monthArg, yearArg) => {
       'IFSC Code',
       'Bank Name',
       'Sub Location',
-      'RA Branch',
+      'MA Branch',
       `${salaryMonthLabel} Revised Basic Salary`,
       'Incentive',
       'Room \nRent (HRA)',
@@ -2149,7 +2149,7 @@ const exportSalarySheet = async (data, monthArg, yearArg) => {
       const table1Headers = [
         'S.N.',
         'Compnay',
-        'RA BRANCH',
+        'MA BRANCH',
         'Staff Name',
         'Email',
         'Status',
@@ -2313,7 +2313,7 @@ const exportSalarySheet = async (data, monthArg, yearArg) => {
       const table2Headers = [
         'S.N.',
         'Compnay',
-        'RA BRANCH',
+        'MA BRANCH',
         'Staff Name',
         'Email',
         'Status',

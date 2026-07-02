@@ -13,17 +13,17 @@ import { ImageHelper } from 'src/helpers/imageHelper'
 
 var subHeaderItems = [
     {
-        name: 'All RA Baranch',
+        name: 'All MA Baranch',
         link: '/rabranch/all',
         icon: cilSpreadsheet,
     },
     {
-        name: 'Create RA Branch',
+        name: 'Create MA Branch',
         link: '/rabranch/create',
         icon: cilPencil,
     },
     {
-        name: 'Trash RA Branch',
+        name: 'Trash MA Branch',
         link: '/rabranch/trash',
         icon: cilTrash,
     },

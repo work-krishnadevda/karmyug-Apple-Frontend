@@ -66,7 +66,7 @@ export const MessageShow = (props) => {
   📞Contact No 2  - ${caseValue && caseValue?.contact_number_2 ? caseValue?.contact_number_2 : '-'}
   📞Contact No 3  - ${caseValue && caseValue?.contact_number_3 ? caseValue?.contact_number_3 : '-'}
   Visit Address- ${caseValue && caseValue?.address ? caseValue?.address : '-'}
-  🍎RA Branch- ${caseValue && caseValue?.ra_branch?.name ? caseValue?.ra_branch?.name : '-'}
+  🍎MA Branch- ${caseValue && caseValue?.ra_branch?.name ? caseValue?.ra_branch?.name : '-'}
  
 Lat & Long  - ${caseValue && caseValue?.latitude ? caseValue?.latitude : '-'}${caseValue && caseValue?.longitude ? caseValue?.longitude : '-'}
 Initiate To - ${caseValue?.engineers?.length > 0

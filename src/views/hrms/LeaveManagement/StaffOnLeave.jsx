@@ -221,7 +221,7 @@ const HRLeaveDashboard = () => {
           />
 
           <AppFormSelect value={raBranchFilter} onChange={(e) => setRaBranchFilter(e.target.value)}>
-            <option value="">All RA Branch</option>
+            <option value="">All MA Branch</option>
             {raBranchOptions.map((branch) => (
               <option key={branch} value={branch}>
                 {branch}
@@ -257,7 +257,7 @@ const HRLeaveDashboard = () => {
               <CTableHead>
                 <CTableRow>
                   <CTableHeaderCell>Employee</CTableHeaderCell>
-                  <CTableHeaderCell>RA Branch</CTableHeaderCell>
+                  <CTableHeaderCell>MA Branch</CTableHeaderCell>
                   <CTableHeaderCell>Days</CTableHeaderCell>
                   <CTableHeaderCell>Date of leaves</CTableHeaderCell>
                   <CTableHeaderCell>Dates</CTableHeaderCell>

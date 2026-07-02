@@ -2735,7 +2735,7 @@ const MyProfile = () => {
                             }
                             disabled={true}
                           >
-                            <option value="">Select RA Branch</option>
+                            <option value="">Select MA Branch</option>
                             {locations.map((location) => (
                               <option key={location.value} value={location.value}>
                                 {location.label}

@@ -173,13 +173,13 @@ const Staff = () => {
   // ================= RA =================
   {
     key: 'ra_branch',
-    label: 'RA Branch',
+    label: 'MA Branch',
     getValue: (i) =>
       i?.ra_branch?.length ? i.ra_branch.map(b => b.name).join(', ') : 'N/A',
   },
   {
     key: 'ra_location',
-    label: 'RA Location',
+    label: 'MA Location',
     getValue: (i) => {
       const raLoc = i?.profile?.ra_location
       if (!raLoc) return 'N/A'

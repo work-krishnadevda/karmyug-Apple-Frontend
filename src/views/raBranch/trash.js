@@ -17,17 +17,17 @@ import noImage from 'src/assets/images/noImage.png'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 var subHeaderItems = [
     {
-        name: 'All RA Branch',
+        name: 'All MA Branch',
         link: '/rabranch/all',
         icon: cilSpreadsheet,
     },
     {
-        name: 'Create RA Branch',
+        name: 'Create MA Branch',
         link: '/rabranch/create',
         icon: cilPencil,
     },
     {
-        name: 'Trash RA Branch',
+        name: 'Trash MA Branch',
         link: '/rabranch/trash',
         icon: cilTrash,
     },

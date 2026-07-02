@@ -297,7 +297,7 @@ const CaseFilter = ({ rowPerPage, filterData, setFilterData, onFilter, onReset }
             </CCol>
 
             <CCol xs={12} lg={4} className="mb-2 ps-0  pe-0 ps-md-2">
-              <CFormLabel>RA Branch</CFormLabel>
+              <CFormLabel>MA Branch</CFormLabel>
               <AsyncSelect
                 name="ra_branch"
                 className="mb-2 mb-lg-0"

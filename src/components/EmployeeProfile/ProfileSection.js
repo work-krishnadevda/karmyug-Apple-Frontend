@@ -538,11 +538,11 @@ useEffect(() => {
                 </CCol>
               </CRow>
 
-              {/* RA Location, RA Branch, and Group Information */}
+              {/* RA Location, MA Branch, and Group Information */}
               <CRow className="mt-3">
                 {(hasRABM || hasSDM) && (
                   <CCol md={6}>
-                    <CFormLabel>RA Branch</CFormLabel>
+                    <CFormLabel>MA Branch</CFormLabel>
                     <AppFormSelect
                       disabled={!editMode.profile}
                       value={
@@ -552,7 +552,7 @@ useEffect(() => {
                       }
                       onChange={handleRaBranchChange}
                     >
-                      <option value="">Select RA Branch</option>
+                      <option value="">Select MA Branch</option>
                       {locations.map((l) => (
                         <option key={l.value} value={l.value}>
                           {l.label}
