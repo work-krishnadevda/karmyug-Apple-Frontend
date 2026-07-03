@@ -29,6 +29,7 @@ import { handleSelectedRowChange, setSelectedRowForModule } from 'src/helpers/pa
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 
 import moment from 'moment'
+import { resolveRoleSlugFromDisplayName } from 'src/constants/roleSlugMap'
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash } from '@coreui/icons'
 
@@ -72,6 +73,7 @@ export default function CreateUnit() {
 
   const [initialValues, setInitialValues] = useState({
     display_name: '',
+    name: '',
     description: '',
     color: '#008FFF',
     permission: [],
@@ -97,10 +99,11 @@ export default function CreateUnit() {
       let response = await new BasicProvider(`roles/show/${id}`, dispatch).getRequest()
       const permissionIds = response.data.permission.map((permission) => permission._id)
       setSelectedPermissions(permissionIds)
+      const suggestedSlug = resolveRoleSlugFromDisplayName(response.data.display_name)
       setInitialValues({
         display_name: response.data.display_name,
         description: response.data.description,
-        name: response.data.name,
+        name: suggestedSlug || response.data.name,
         color: response.data.color,
         permission: permissionIds,
       })
@@ -216,7 +219,14 @@ export default function CreateUnit() {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
-    setInitialValues({ ...initialValues, [name]: value })
+    const updated = { ...initialValues, [name]: value }
+    if (name === 'display_name') {
+      const suggestedSlug = resolveRoleSlugFromDisplayName(value)
+      if (suggestedSlug) {
+        updated.name = suggestedSlug
+      }
+    }
+    setInitialValues(updated)
   }
 
 
@@ -329,6 +339,22 @@ export default function CreateUnit() {
                       placeholder="Display Name"
                       value={initialValues.display_name ?? ''}
                     />
+                  </div>
+
+                  <div className="my-3">
+                    <CFormLabel className="my-1">
+                      Role slug (name)<span className="text-danger">*</span>
+                    </CFormLabel>
+                    <CFormInput
+                      type="text"
+                      name="name"
+                      onChange={handleOnChange}
+                      placeholder="e.g. chief-operating-officercoo"
+                      value={initialValues.name ?? ''}
+                    />
+                    <small className="text-muted">
+                      Sidebar menus match this slug — auto-filled from display name when known.
+                    </small>
                   </div>
 
                   <div className="my-3">

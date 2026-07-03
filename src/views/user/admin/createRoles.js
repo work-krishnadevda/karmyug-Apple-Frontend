@@ -34,6 +34,7 @@ import handleSubmitHelper from 'src/helpers/submitHelper'
 import { useEffectFormData } from 'src/helpers/formHelpers'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import moment from 'moment'
+import { resolveRoleSlugFromDisplayName } from 'src/constants/roleSlugMap'
 
 const validationRules = {
   display_name: {
@@ -74,6 +75,7 @@ export default function CreateUnit() {
 
   const [initialValues, setInitialValues] = useState({
     display_name: '',
+    name: '',
     description: '',
     color: '#008FFF',
     permission_ids: []
@@ -193,6 +195,7 @@ export default function CreateUnit() {
         response = await new BasicProvider(`roles/create`, dispatch).postRequest(initialValues)
         setInitialValues({
           display_name: '',
+          name: '',
           type: '',
           color: '#008FFF',
           description: '',
@@ -302,7 +305,14 @@ export default function CreateUnit() {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
-    setInitialValues({ ...initialValues, [name]: value })
+    const updated = { ...initialValues, [name]: value }
+    if (name === 'display_name') {
+      const suggestedSlug = resolveRoleSlugFromDisplayName(value)
+      if (suggestedSlug) {
+        updated.name = suggestedSlug
+      }
+    }
+    setInitialValues(updated)
   }
 
   return (
@@ -327,6 +337,22 @@ export default function CreateUnit() {
                       placeholder="Display Name"
                       value={initialValues.display_name ?? ''}
                     />
+                  </div>
+
+                  <div className="my-3">
+                    <CFormLabel className="my-1">
+                      Role slug (name)<span className="text-danger">*</span>
+                    </CFormLabel>
+                    <CFormInput
+                      type="text"
+                      name="name"
+                      onChange={handleOnChange}
+                      placeholder="e.g. chief-operating-officercoo"
+                      value={initialValues.name ?? ''}
+                    />
+                    <small className="text-muted">
+                      Sidebar menus match this slug — auto-filled from display name when known.
+                    </small>
                   </div>
 
 
