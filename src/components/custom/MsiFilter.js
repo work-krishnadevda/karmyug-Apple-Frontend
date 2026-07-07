@@ -586,7 +586,7 @@ const MsiFilter = ({
           case 'finance_name':
             return 'Finance Name'
           case 'ra_branch':
-            return 'RA Branch'
+            return 'MA Branch'
           case 'applicant_name':
             return 'Applicant Name'
           case 'los_number':
@@ -716,7 +716,7 @@ const MsiFilter = ({
             </CCol>
 
             <CCol xs={12} lg={4} className="px-2 pe-0 pe-lg-2 ps-0">
-              <CFormLabel>RA Branch</CFormLabel>
+              <CFormLabel>MA Branch</CFormLabel>
               <AsyncSelect
                 name="ra_branch"
                 classNamePrefix="case-filter-select"

@@ -136,7 +136,10 @@ const AdminUnapprovedAttendance = () => {
 
         //  Filter data before displaying in table
         const filteredData = (response.data || []).filter(
-          (att) => !excludedStatuses.includes(att.status),
+          (att) =>
+            !excludedStatuses.includes(att.status) &&
+            att.user?.name &&
+            att.user?._id,
         )
 
         //  Update state with filtered data only

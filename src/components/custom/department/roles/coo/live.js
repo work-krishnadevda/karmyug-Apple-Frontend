@@ -177,7 +177,7 @@ export default function LiveCases() {
       width: '15%',
     },
     {
-      name: 'RA Branch',
+      name: 'MA Branch',
       selector: (row) => (
         <div className="data_table_colum">
           <div className="">{row && row?.ra_branch?.name ? row?.ra_branch?.name : '-'}</div>

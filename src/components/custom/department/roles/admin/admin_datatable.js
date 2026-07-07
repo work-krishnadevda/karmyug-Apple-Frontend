@@ -447,7 +447,7 @@ export default function AdminDataTable() {
       width: '170px',
     },
     {
-      name: 'RA Branch',
+      name: 'MA Branch',
       selector: (row) => (
         <div className="data_table_colum">
           <div>{row && row?.ra_branch?.name ? row?.ra_branch?.name : '-'}</div>

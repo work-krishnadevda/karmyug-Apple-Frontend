@@ -451,7 +451,7 @@ export default function Genrate_MSI() {
           case 'finance_name.name':
             return 'Finance Name'
           case 'ra_branch':
-            return 'RA Branch'
+            return 'MA Branch'
           case 'applicant_name':
             return 'Applicant Name'
           case 'los_number':

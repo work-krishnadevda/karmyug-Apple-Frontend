@@ -32,7 +32,7 @@ const CreateCase = () => {
 
   const [defaultOptions, setDefaultOptions] = useState([
     { label: 'Applicant Name', value: 'Applicant_name' },
-    { label: 'RA Branch', value: 'ra_branch' },
+    { label: 'MA Branch', value: 'ra_branch' },
   ])
 
   const handleDrag = (e, data, id) => {

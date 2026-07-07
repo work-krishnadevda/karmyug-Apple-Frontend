@@ -606,13 +606,13 @@ const EmploymentInfo = ({
             {/* RA Location, RA Branch, and Group Information */}
             <CRow className="mt-3">
               {/* <CCol md={4}>
-                <CFormLabel>RA Branch</CFormLabel>
+                <CFormLabel>MA Branch</CFormLabel>
                 <AppFormSelect
                   value={formData?.employment?.raBranch || ''}
                   onChange={(e) => handleInputChange('employment', 'raBranch', e.target.value)}
                   disabled={!editMode.employment || isLoadingData}
                 >
-                  <option value="">Select RA Branch</option>
+                  <option value="">Select MA Branch</option>
                   {locations.map((location) => (
                     <option key={location.value} value={location.value}>
                       {location.label}

@@ -228,7 +228,7 @@ export default function RA_Pending_Tie_Up() {
         },
 
         {
-            name: 'RA Branch',
+            name: 'MA Branch',
             selector: (row) => (
                 <div className="data_table_colum">
                     {row && row?.ra_branch?.name ? row?.ra_branch?.name : '-'}

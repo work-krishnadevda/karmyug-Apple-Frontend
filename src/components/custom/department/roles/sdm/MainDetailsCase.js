@@ -133,7 +133,7 @@ const MainDetailsCase = ({ showCaseData, handleShowSubmit }) => {
                     <h6>{showCaseData?.case_type ?? ' - '}</h6>
                   </CCol>
                   <CCol md={3}>
-                    <span style={{ fontSize: '13px', color: 'rgb(115 180 60)' }}>RA Branch</span>
+                    <span style={{ fontSize: '13px', color: 'rgb(115 180 60)' }}>MA Branch</span>
                     {/* <h6> {showCaseData.type_of_property ?? '-'}</h6> */}
                     <h6>{showCaseData?.ra_branch?.name ?? ' - '}</h6>
                   </CCol>
