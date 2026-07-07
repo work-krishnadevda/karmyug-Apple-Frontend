@@ -713,7 +713,7 @@ export default function SdmAllRACH() {
 
   return (
     <>
-      <SingleSubHeader moduleName={'All Cases (RACH)'} />
+      <SingleSubHeader moduleName={'All Cases (MA)'} />
 
       <CContainer fluid>
         <>
