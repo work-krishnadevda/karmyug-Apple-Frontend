@@ -64,7 +64,7 @@ const MonthlyReport = () => {
 
                 // Add letterhead rows
                 worksheet.mergeCells('A1:AH1')
-                worksheet.getCell('A1').value = 'Real Apple Consultancy House'
+                worksheet.getCell('A1').value = 'Madhukar Associates'
                 worksheet.getCell('A1').font = { size: 16, bold: true }
                 worksheet.getCell('A1').alignment = { horizontal: 'center' }
 

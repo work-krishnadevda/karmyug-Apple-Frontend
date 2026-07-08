@@ -720,12 +720,8 @@ const MyProfile = () => {
       console.error('Error fetching companies:', error)
       // Fallback to static data if API fails
       const fallbackCompanies = [
-        { value: '', label: 'Select Company' },
-        { value: 'REAL APPLE ADVISORY SERVICE', label: 'REAL APPLE ADVISORY SERVICE', id: 'RA' },
-        { value: 'GAURAV AIRAN', label: 'GAURAV AIRAN', id: 'GA' },
-        { value: 'SHREE SHYAM TECHNOCRATS', label: 'SHREE SHYAM TECHNOCRATS', id: 'SS' },
-        { value: 'THE VOCALEARN EDUCORP', label: 'THE VOCALEARN EDUCORP', id: 'VL' },
-        { value: 'REAL APPLE CONSULTANCY HOUSE', label: 'REAL APPLE CONSULTANCY HOUSE', id: 'RAC' },
+        { value: '', label: 'Select Company' }, 
+        { value: 'MA', label: 'Madhukar Associates', id: 'MA' },
       ]
       setCompanies(fallbackCompanies)
     }

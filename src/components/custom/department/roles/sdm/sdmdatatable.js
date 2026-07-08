@@ -939,6 +939,9 @@ export default function SdmDataTable() {
                 <AsyncSelect
                   name="dm"
                   placeholder="Select DM"
+                  menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+                  menuPosition="fixed"
+                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
                   loadOptions={(inputValue, callback) => loadOptionsForDM(inputValue, callback)}
                   defaultOptions={defaultOptionDM}
                   value={
@@ -985,6 +988,9 @@ export default function SdmDataTable() {
                   name="engineers"
                   placeholder="Select Engineers"
                   isMulti
+                  menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+                  menuPosition="fixed"
+                  styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
                   loadOptions={(inputValue, callback) => loadOptionsForFE(inputValue, callback)}
                   defaultOptions={defaultOptionFE}
                   value={defaultOptionFE.filter((option) =>

@@ -202,7 +202,7 @@ const EmployeeProfile = () => {
         { value: 'GAURAV AIRAN', label: 'GAURAV AIRAN', id: 'GA' },
         { value: 'SHREE SHYAM TECHNOCRATS', label: 'SHREE SHYAM TECHNOCRATS', id: 'SS' },
         { value: 'THE VOCALEARN EDUCORP', label: 'THE VOCALEARN EDUCORP', id: 'VL' },
-        { value: 'REAL APPLE CONSULTANCY HOUSE', label: 'REAL APPLE CONSULTANCY HOUSE', id: 'RAC' },
+        { value: 'Madhukar Associates', label: 'Madhukar Associates', id: 'MA' },
       ]
       setCompanies(fallbackCompanies)
     }
@@ -379,12 +379,8 @@ const EmployeeProfile = () => {
       }
 
       // Use the same company list as AddStaff.js
-      const companyOptions = [
-        { value: 'RA', label: 'REAL APPLE ADVISORY SERVICE' },
-        { value: 'GA', label: 'GAURAV AIRAN' },
-        { value: 'SS', label: 'SHREE SHYAM TECHNOCRATS' },
-        { value: 'VL', label: 'THE VOCALEARN EDUCORP' },
-        { value: 'RAC', label: 'REAL APPLE CONSULTANCY HOUSE' },
+      const companyOptions = [ 
+        { value: 'MA', label: 'Madhukar Associates' },
       ]
 
       // Filter companies based on search input

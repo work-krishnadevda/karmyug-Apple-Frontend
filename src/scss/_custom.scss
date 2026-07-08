@@ -2217,6 +2217,8 @@ div[class*='-menu'] div[class*='-option'][aria-selected='true'] {
   --app-btn-primary-hover: linear-gradient(135deg, #087362 0%, #055248 100%);
   --app-btn-primary-border: #055a4f;
   --app-btn-primary-shadow: 0 10px 22px rgba(4, 75, 66, 0.16);
+  --app-header-btn-primary-bg: linear-gradient(135deg, #066054 0%, #044b42 100%);
+  --app-header-btn-primary-hover: linear-gradient(135deg, #087362 0%, #055248 100%);
   --app-btn-neutral-bg: #ffffff;
   --app-btn-neutral-text: #044b42;
   --app-btn-neutral-border: rgba(4, 75, 66, 0.16);
@@ -2924,8 +2926,8 @@ div[class*='-menu'] div[class*='-option'][aria-selected='true'] {
 }
 
 .form-check-input:checked {
-  background-color: var(--secondaryColor);
-  border-color: var(--secondaryColor);
+  background-color: #066054;
+  border-color: #066054;
 }
 
 //Radio buttons Code for Shop and User

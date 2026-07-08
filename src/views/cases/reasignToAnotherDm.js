@@ -665,6 +665,9 @@ export default function ReAssignToAnotherDM() {
                   <AsyncSelect
                     name="dm"
                     placeholder="Select DM"
+                    menuPortalTarget={typeof document !== 'undefined' ? document.body : null}
+                    menuPosition="fixed"
+                    styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
                     loadOptions={(inputValue, callback) => loadOptionsForDM(inputValue, callback)}
                     defaultOptions={defaultOptionDM}
                     value={
