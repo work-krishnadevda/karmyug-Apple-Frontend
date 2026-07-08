@@ -36,7 +36,7 @@ const SALAgreementLetterGenerator = () => {
   }
   const generatePrintBasedPDF = useCallback(
     (employeeData, refNumber, currentDate, employeePosition) => {
-      const companyName = employeeData.companyName || 'Real Apple Consultancy House'
+      const companyName = employeeData.companyName || 'Madhukar Associates'
       const { headerLogo, Steps } = getCompanyAssets(companyName)
       const shortCompanyName = employeeData.shortCompanyName || 'Real Apple’s'
       const location = employeeData.location || 'Ratlam'
@@ -110,7 +110,7 @@ const SALAgreementLetterGenerator = () => {
 
           <div class="header">
     
-            <img src=${headerLogo} alt="Real Apple Consultancy House" style="max-width: 100%; margin: 0;" />
+            <img src=${headerLogo} alt="Madhukar Associates" style="max-width: 100%; margin: 0;" />
           </div>
 
           <div class="letter-details">
@@ -887,7 +887,7 @@ const SALAgreementLetterGenerator = () => {
         const employeePosition =
           defaultRoleOptions?.find((r) => String(r.value) === String(roleId))?.label || 'Employee'
 
-        const companyName = data.employment?.companyName || 'Real Apple Consultancy House'
+        const companyName = data.employment?.companyName || 'Madhukar Associates'
         const shortCompanyName =
           companyName
             .split(' ')

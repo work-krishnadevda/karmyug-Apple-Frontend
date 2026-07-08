@@ -56,7 +56,7 @@ const SalarySlipGenerator = () => {
 
   const generatePrintBasedPDF = useCallback(
     async (employeeData, payrollData, month, year, windowIndex = 0, companyAddress = '', notePurpose = 'both') => {
-      const companyName = employeeData.companyName || 'Real Apple Consultancy House'
+      const companyName = employeeData.companyName || 'Madhukar Associates'
       const { headerLogo } = getCompanyAssets(companyName)
       const location = employeeData.location || 'Ratlam'
       // Use provided company address or fallback to default
@@ -590,7 +590,7 @@ const SalarySlipGenerator = () => {
           data.designation ||
           'Employee'
 
-        const companyName = data.employment?.companyName || 'Real Apple Consultancy House'
+        const companyName = data.employment?.companyName || 'Madhukar Associates'
         const location = data.employment?.location || 'Ratlam'
         const address = data.employment?.address || 'MJR-06, Ratanpuri, 80Ft Road, Ratlam (M.P)'
         const contactNumber = data.profile?.phone || data.general?.phone || data.phone || ''

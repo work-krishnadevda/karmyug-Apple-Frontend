@@ -257,7 +257,7 @@ export const CelebrationCard = ({
 
           {/* Company Name */}
           <div className="work-anniversary-company">
-            ValuXpert Group
+            Madhukar Associates Group
           </div>
         </div>
       )

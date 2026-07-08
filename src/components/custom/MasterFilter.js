@@ -3,7 +3,15 @@ import { useCombobox } from 'downshift';
 import { CHeaderNav } from '@coreui/react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 import BasicProvider from 'src/constants/BasicProvider';
+
+const formatInitiateDate = (item) => {
+    const date = item?.date_initiation_bank || item?.date_initiation_RA;
+    if (!date) return '';
+    const formatted = moment(date);
+    return formatted.isValid() ? formatted.format('DD MMM YYYY') : '';
+};
 
 const MasterFilter = ({ userData }) => {
     const navigate = useNavigate();
@@ -44,6 +52,7 @@ const MasterFilter = ({ userData }) => {
                 name: item?.applicant_name || 'Unknown',
                 value: item?.applicant_name || 'Unknown',
                 financeName: item?.finance_name?.name || (typeof item?.finance_name === 'string' ? item.finance_name : '') || '',
+                initiateDate: formatInitiateDate(item),
                 url: `/case/${item?._id}/show-case-details/by/${roleName}`,
             }));
 
@@ -180,8 +189,12 @@ const MasterFilter = ({ userData }) => {
                             }}
                         >
                             <div>{item.name}</div>
-                            {item.financeName ? (
-                                <div style={{ fontSize: '12px', color: '#6c757d', marginTop: '2px' }}>{item.financeName}</div>
+                            {(item.financeName || item.initiateDate) ? (
+                                <div style={{ fontSize: '12px', color: '#6c757d', marginTop: '2px' }}>
+                                    {item.financeName}
+                                    {item.financeName && item.initiateDate ? ' · ' : ''}
+                                    {item.initiateDate ? `Initiate: ${item.initiateDate}` : ''}
+                                </div>
                             ) : null}
                         </li>
                     ))}
