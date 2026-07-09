@@ -73,6 +73,22 @@ export default function Logs() {
                     }
 
                     if (Array.isArray(value)) {
+                        const namedItems = value
+                            .map((arrayItem) =>
+                                typeof arrayItem === 'object' && arrayItem?.name
+                                    ? arrayItem.name
+                                    : null,
+                            )
+                            .filter(Boolean);
+
+                        if (namedItems.length > 0) {
+                            return (
+                                <div key={index} className="vertical-timeline-element-subtitle">
+                                    <strong>{key} : </strong> {namedItems.join(', ')}
+                                </div>
+                            );
+                        }
+
                         return (
                             <div key={index} className="array-object">
                                 <strong>{key} : </strong>
