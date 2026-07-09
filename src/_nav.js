@@ -343,7 +343,7 @@ let _nav = [
         name: 'Re-Assign to FE',
         to: '/case/re-assign/fe',
         meta: {
-          role: [FE,COO,ADMIN, LCTO, CTO],
+          role: [FE,COO,ADMIN, LCTO, CTO,COO,RA],
         },
       },
       {
