@@ -36,9 +36,6 @@ const ProfileSection = ({
   defaultGroupOptions = [],
   getFieldError,
 }) => {
-  let FE = 'Field Engineer (FE)'
-  let role = formData?.profile?.role
-  let RA = 'RA Branch BM'
   // Initialize with empty arrays - will be populated by useEffect
   const [roleState, setRoleState] = useState([])
   const [groupState, setGroupState] = useState([])
@@ -48,7 +45,7 @@ const ProfileSection = ({
   const isUserSelectingRef = useRef(false)
   // Ref to store current roles synchronously (for immediate value prop updates)
   const roleStateRef = useRef([])
-const hasUserEditedRolesRef = useRef(false)
+  const hasUserEditedRolesRef = useRef(false)
 
   // State for inactive confirmation modal
   const [showInactiveConfirm, setShowInactiveConfirm] = useState(false)
@@ -71,24 +68,38 @@ const hasUserEditedRolesRef = useRef(false)
   const mergedRoleOptions = mergedRoleIds
     .map((id) => defaultRoleOptions.find((o) => o.value === id))
     .filter(Boolean)
- 
 
-  const roleLabels = mergedRoleIds
-    .map((id) => defaultRoleOptions.find((o) => o.value === id)?.label)
+  // Prefer current UI selection (roleState) so Group/MA Branch show immediately on role change
+  const activeRoleIds = roleState.length > 0 ? roleState : mergedRoleIds
+
+  const normalizeLabel = (label) =>
+    String(label || '')
+      .toLowerCase()
+      .replace(/[()]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+  const activeRoles = activeRoleIds
+    .map((id) => defaultRoleOptions.find((o) => o.value === id))
     .filter(Boolean)
 
-  // Check role slugs/names for SDM
-  const roleSlugs = mergedRoleIds
-    .map((id) => {
-      const role = defaultRoleOptions.find((o) => o.value === id)
-      return role?.slug || role?.name || ''
+  const activeRoleSlugs = activeRoles.map((r) => r.slug || r.name || '').filter(Boolean)
+  const activeRoleLabels = activeRoles.map((r) => r.label || '').filter(Boolean)
+
+  const hasFE =
+    activeRoleSlugs.includes(process.env.REACT_APP_FE) ||
+    activeRoleLabels.some((label) => normalizeLabel(label).includes('field engineer'))
+
+  const hasRABM =
+    activeRoleSlugs.includes(process.env.REACT_APP_RA) ||
+    activeRoleLabels.some((label) => {
+      const n = normalizeLabel(label)
+      return n.includes('ra branch') || n.includes('ma branch') || n.includes('branch bm')
     })
-    .filter(Boolean)
 
-  const hasFE = roleLabels.includes('Field Engineer (FE)')
-  const hasRABM = roleLabels.includes('RA Branch BM')
-  const hasSDM = roleSlugs.includes(process.env.REACT_APP_SDM) || 
-                 roleLabels.some(label => label && label.toLowerCase().includes('sdm'))
+  const hasSDM =
+    activeRoleSlugs.includes(process.env.REACT_APP_SDM) ||
+    activeRoleLabels.some((label) => normalizeLabel(label).includes('sdm'))
  
   useEffect(() => {
     roleStateRef.current = roleState
@@ -387,6 +398,26 @@ useEffect(() => {
                       setRoleState(finalRoles)
 
                       handleInputChange('profile', 'role', finalRoles)
+
+                      // Clear conditional fields when FE/RA/SDM removed
+                      const selectedSlugs = selectedArray
+                        .map((o) => o?.slug || o?.name || '')
+                        .filter(Boolean)
+                      const keepGroup =
+                        selectedSlugs.includes(process.env.REACT_APP_FE) ||
+                        selectedSlugs.includes(process.env.REACT_APP_SDM)
+                      const keepRaBranch =
+                        selectedSlugs.includes(process.env.REACT_APP_RA) ||
+                        selectedSlugs.includes(process.env.REACT_APP_SDM)
+
+                      if (!keepGroup) {
+                        setGroupState([])
+                        handleInputChange('profile', 'group', [])
+                      }
+                      if (!keepRaBranch) {
+                        setRaBranchState([])
+                        handleInputChange('profile', 'raBranch', [])
+                      }
 
                       // Reset the ref after formData updates (prevents useEffect from overwriting)
                       setTimeout(() => {
