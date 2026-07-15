@@ -7,7 +7,6 @@ import {
   CContainer,
   CForm,
   CFormInput,
-  CFormLabel,
   CModal,
   CModalBody,
   CModalFooter,
@@ -19,7 +18,6 @@ import { useDispatch } from 'react-redux'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import { useNavigate } from 'react-router-dom'
 import ExcelJS from 'exceljs'
-import { Workbook } from 'exceljs'
 import { saveAs } from 'file-saver'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
@@ -34,6 +32,7 @@ const BulkUpload = () => {
 
   const [file, setFile] = useState(null)
   const [error, setError] = useState('')
+  const [uploadResult, setUploadResult] = useState(null)
 
   const [isLoading, setIsloading] = useState(false)
   const [popVisible, setPopVisible] = useState(false)
@@ -49,19 +48,16 @@ const BulkUpload = () => {
     }
   }
 
-
   useEffect(() => {
     if (popVisible) {
+      const delay = uploadResult?.failure_count > 0 ? 12000 : 3000
       const timer = setTimeout(() => {
-        setPopVisible(false);
+        setPopVisible(false)
+      }, delay)
 
-      }, 3000);
-
-
-
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer)
     }
-  }, [popVisible]);
+  }, [popVisible, uploadResult])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -74,35 +70,44 @@ const BulkUpload = () => {
         formData.append('isBulkUpload', true)
 
         let response = await new BasicProvider(`cases/create`, dispatch).postRequest(formData)
+        const result = response?.data
 
-        if (response?.data?.message) {
-          setIsloading(false)
+        if (result?.message) {
+          setUploadResult(result)
           setPopVisible(true)
-          setFile(null);
-          fileInputRef.current.value = '';
+          if (result?.failure_count > 0) {
+            dispatch({
+              type: 'set',
+              validations: [
+                result.message,
+                ...(result.failures || []).map(
+                  (f) =>
+                    `Row ${f.row}: ${f.error}${f.finance_name ? ` (${f.finance_name})` : ''}`,
+                ),
+              ],
+            })
+          } else {
+            customSuccessMSG(dispatch, result.message)
+          }
+          setFile(null)
+          if (fileInputRef.current) fileInputRef.current.value = ''
         }
       } catch (error) {
         console.error('Error during submission:', error)
-        setIsloading(false)
-        setFile(null);
-        fileInputRef.current.value = '';
+        setUploadResult(null)
+        setFile(null)
+        if (fileInputRef.current) fileInputRef.current.value = ''
         dispatch({ type: 'set', validations: [error.data] })
       } finally {
         setIsloading(false)
-        setIsloading(false)
-        setFile(null);
-        fileInputRef.current.value = '';
-
       }
     } else {
       setError('Please upload a file before submitting')
       setIsloading(false)
-      setIsloading(false)
-      setFile(null);
-      fileInputRef.current.value = '';
+      setFile(null)
+      if (fileInputRef.current) fileInputRef.current.value = ''
     }
   }
-
 
   const generateExcel = async (data) => {
     try {
@@ -192,7 +197,6 @@ const BulkUpload = () => {
     }
   }
 
-
   return (
     <>
       <SingleSubHeader moduleName={'Bulk Upload Cases'} />
@@ -229,7 +233,7 @@ const BulkUpload = () => {
                 </CCol>
 
                 <CCol md={4} className="d-flex justify-content-end align-items-center">
-                  <CButton type="submit" disabled={isLoading} style={{backgroundColor:"#045248"}}>
+                  <CButton type="submit" disabled={isLoading} style={{ backgroundColor: '#045248' }}>
                     {isLoading ? (
                       <>
                         <CSpinner size="sm" className="me-2" />
@@ -252,8 +256,22 @@ const BulkUpload = () => {
           className="delete_item_box"
         >
           <CModalBody className="text-center mt-4">
-            <div className="logo_check m-auto mb-5">✓</div>
-            <h1 className="h4">Uploaded Successfully</h1>
+            <div className="logo_check m-auto mb-5">
+              {uploadResult?.failure_count > 0 ? '!' : '✓'}
+            </div>
+            <h1 className="h4">
+              {uploadResult?.failure_count > 0 ? 'Partially Uploaded' : 'Uploaded Successfully'}
+            </h1>
+            {uploadResult?.message && <p className="mb-2">{uploadResult.message}</p>}
+            {uploadResult?.failure_count > 0 && (
+              <div className="text-start px-3 mt-3" style={{ maxHeight: 220, overflowY: 'auto' }}>
+                {(uploadResult.failures || []).map((f) => (
+                  <p key={f.row} className="mb-1 text-danger small">
+                    Row {f.row}: {f.error}
+                  </p>
+                ))}
+              </div>
+            )}
           </CModalBody>
           <CModalFooter className="model_footer justify-content-center mb-3 pt-0"></CModalFooter>
         </CModal>
