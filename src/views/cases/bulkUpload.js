@@ -22,7 +22,7 @@ import { saveAs } from 'file-saver'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import BasicProvider from 'src/constants/BasicProvider'
-import { customSuccessMSG } from 'src/helpers/alertHelper'
+import { toast } from 'react-toastify'
 
 const BulkUpload = () => {
   const fileInputRef = useRef()
@@ -37,6 +37,19 @@ const BulkUpload = () => {
   const [isLoading, setIsloading] = useState(false)
   const [popVisible, setPopVisible] = useState(false)
 
+  const clearAlertState = () => {
+    // Purani success/error toasts + Redux alert state hatao — warna
+    // AlertHelper pehle wali success toast ke saath nayi error toast mix kar deta hai
+    toast.dismiss()
+    dispatch({
+      type: 'set',
+      validations: [],
+      successMessage: null,
+      catcherror: null,
+      isSuccessful: false,
+    })
+  }
+
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0]
     if (selectedFile && selectedFile.name.endsWith('.xlsx')) {
@@ -48,12 +61,12 @@ const BulkUpload = () => {
     }
   }
 
+  // Modal manually close — auto-close mat karo jab failures hon (user error padhe)
   useEffect(() => {
-    if (popVisible) {
-      const delay = uploadResult?.failure_count > 0 ? 12000 : 3000
+    if (popVisible && !(uploadResult?.failure_count > 0)) {
       const timer = setTimeout(() => {
         setPopVisible(false)
-      }, delay)
+      }, 3000)
 
       return () => clearTimeout(timer)
     }
@@ -64,40 +77,43 @@ const BulkUpload = () => {
     if (file) {
       try {
         setIsloading(true)
+        clearAlertState()
+        setUploadResult(null)
+        setPopVisible(false)
 
         const formData = new FormData()
         formData.append('featured_image', file)
         formData.append('isBulkUpload', true)
 
         let response = await new BasicProvider(`cases/create`, dispatch).postRequest(formData)
+        // BasicProvider: { status, data } → result = inner payload
         const result = response?.data
 
         if (result?.message) {
+          // Sirf modal dikhao — Redux validations/successMessage mat bhejo
+          // (warna AlertHelper alag toast + modal = double/conflicting msgs)
           setUploadResult(result)
           setPopVisible(true)
-          if (result?.failure_count > 0) {
-            dispatch({
-              type: 'set',
-              validations: [
-                result.message,
-                ...(result.failures || []).map(
-                  (f) =>
-                    `Row ${f.row}: ${f.error}${f.finance_name ? ` (${f.finance_name})` : ''}`,
-                ),
-              ],
-            })
-          } else {
-            customSuccessMSG(dispatch, result.message)
-          }
           setFile(null)
           if (fileInputRef.current) fileInputRef.current.value = ''
         }
       } catch (error) {
         console.error('Error during submission:', error)
-        setUploadResult(null)
+        // Controller: { status: 'error', data: error.message }
+        const errorMsg =
+          (typeof error?.data === 'string' && error.data) ||
+          error?.message ||
+          'Bulk upload failed'
+
+        setUploadResult({
+          message: errorMsg,
+          success_count: 0,
+          failure_count: 1,
+          failures: [{ row: '-', error: errorMsg }],
+        })
+        setPopVisible(true)
         setFile(null)
         if (fileInputRef.current) fileInputRef.current.value = ''
-        dispatch({ type: 'set', validations: [error.data] })
       } finally {
         setIsloading(false)
       }
@@ -260,14 +276,19 @@ const BulkUpload = () => {
               {uploadResult?.failure_count > 0 ? '!' : '✓'}
             </div>
             <h1 className="h4">
-              {uploadResult?.failure_count > 0 ? 'Partially Uploaded' : 'Uploaded Successfully'}
+              {uploadResult?.success_count > 0 && uploadResult?.failure_count > 0
+                ? 'Partially Uploaded'
+                : uploadResult?.failure_count > 0
+                  ? 'Upload Failed'
+                  : 'Uploaded Successfully'}
             </h1>
             {uploadResult?.message && <p className="mb-2">{uploadResult.message}</p>}
             {uploadResult?.failure_count > 0 && (
               <div className="text-start px-3 mt-3" style={{ maxHeight: 220, overflowY: 'auto' }}>
-                {(uploadResult.failures || []).map((f) => (
-                  <p key={f.row} className="mb-1 text-danger small">
-                    Row {f.row}: {f.error}
+                {(uploadResult.failures || []).map((f, idx) => (
+                  <p key={`${f.row}-${idx}`} className="mb-1 text-danger small">
+                    {f.row !== '-' ? `Row ${f.row}: ` : ''}
+                    {f.error}
                   </p>
                 ))}
               </div>
