@@ -32,6 +32,7 @@ import handleSubmitHelper from 'src/helpers/submitHelper'
 import { customSuccessMSG } from 'src/helpers/alertHelper'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {
   dm: {
@@ -193,6 +194,7 @@ export default function SDM_Pending() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Visit Done Before',
       cell: (row) => (

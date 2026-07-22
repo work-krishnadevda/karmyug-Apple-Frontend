@@ -25,6 +25,7 @@ import Unhold_Reason from 'src/components/custom/popup/unhold_region'
 import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { downloadFinalReportZip } from 'src/constants/common'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function DM_DataTable() {
   const navigate = useNavigate()
@@ -244,6 +245,7 @@ export default function DM_DataTable() {
       width: '120px',
 
     },
+    assignedFeColumn,
     {
       name: 'Visit Done By',
       selector: (row) => (

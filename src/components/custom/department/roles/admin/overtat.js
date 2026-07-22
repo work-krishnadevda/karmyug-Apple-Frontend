@@ -33,6 +33,7 @@ import UnHold from 'src/components/custom/popup/unhold'
 import View_FE_Note from 'src/components/custom/popup/view_fe_note'
 import { statusValue } from 'src/constants/variables'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 
@@ -209,6 +210,7 @@ export default function AdminOverTAT() {
                 </div>
             ),
         },
+        assignedFeColumn,
         {
             name: 'Group/FE',
             cell: (row) => (

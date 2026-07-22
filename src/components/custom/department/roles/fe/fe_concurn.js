@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import View_Reason from 'src/components/custom/popup/View_Reason'
 import AddNote from 'src/components/custom/popup/addNote'
 import ConcurnResolutio from 'src/components/custom/popup/concern_resolution'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 var subHeaderItems = [
     {
@@ -195,6 +196,7 @@ export default function FE_Concurn() {
 
 
 
+        assignedFeColumn,
         {
             name: 'Finance Name',
             selector: (row) => (

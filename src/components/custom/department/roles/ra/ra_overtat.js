@@ -24,6 +24,7 @@ import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessag
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import Hold from 'src/components/custom/popup/hold'
 import UnHold from 'src/components/custom/popup/unhold'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 var subHeaderItems = [
   {
@@ -242,7 +243,8 @@ export default function RAOverTAT() {
       ),
     },
 
-    // {
+    assignedFeColumn,
+// {
     //   name: 'Contact Number',
     //   selector: (row) => (
     //     <div className="data_table_colum">

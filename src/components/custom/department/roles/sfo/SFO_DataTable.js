@@ -27,6 +27,7 @@ import UnHold from 'src/components/custom/popup/unhold'
 import Hold from 'src/components/custom/popup/hold'
 import { toast } from 'react-toastify'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function SFO_DataTable() {
   const navigate = useNavigate()
@@ -281,6 +282,7 @@ export default function SFO_DataTable() {
       width: '120px',
 
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => {

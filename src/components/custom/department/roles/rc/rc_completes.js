@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faEye } from '@fortawesome/free-solid-svg-icons'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const URL = process.env.REACT_APP_NODE_URL
 
@@ -230,6 +231,7 @@ export default function RC_Completes() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'CEO',
       selector: (row) => (

@@ -28,6 +28,7 @@ import { faEye } from '@fortawesome/free-regular-svg-icons'
 import { faBan, faFlag } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function Initiated() {
@@ -232,6 +233,7 @@ export default function Initiated() {
 
         },
 
+        assignedFeColumn,
         {
             name: 'Group/FE',
             selector: (row) => {

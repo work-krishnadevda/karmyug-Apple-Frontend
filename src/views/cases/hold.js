@@ -32,6 +32,7 @@ import UnHold from 'src/components/custom/popup/unhold'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 var subHeaderItems = [
   {
@@ -224,6 +225,7 @@ export default function HoldCases() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => (

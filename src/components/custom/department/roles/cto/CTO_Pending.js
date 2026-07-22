@@ -19,6 +19,7 @@ import HelperFunction from 'src/helpers/HelperFunctions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function CTO_Pending() {
@@ -209,6 +210,7 @@ export default function CTO_Pending() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'CEO',
       selector: (row) => (

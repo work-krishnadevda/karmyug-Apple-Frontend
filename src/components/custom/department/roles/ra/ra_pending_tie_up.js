@@ -22,6 +22,7 @@ import View_Reason from 'src/components/custom/popup/View_Reason'
 import AddNote from 'src/components/custom/popup/addNote'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function RA_Pending_Tie_Up() {
     const navigate = useNavigate()
@@ -236,7 +237,8 @@ export default function RA_Pending_Tie_Up() {
             ),
         },
 
-        // {
+        assignedFeColumn,
+// {
         //   name: 'CEO',
         //   selector: (row) => (
         //     <div className="data_table_colum">{row && row?.admin?.name ? row?.admin?.name : '-'}</div>

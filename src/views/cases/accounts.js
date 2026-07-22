@@ -38,6 +38,7 @@ import CIcon from '@coreui/icons-react'
 import { cilCloudDownload } from '@coreui/icons'
 import CaseFilter from 'src/components/custom/CaseFilter'
 import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function Account() {
   const navigate = useNavigate()
@@ -363,6 +364,7 @@ export default function Account() {
       ),
       width: '120px',
     },
+    assignedFeColumn,
     {
       name: 'Product Type',
       selector: (row) => (

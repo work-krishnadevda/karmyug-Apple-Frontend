@@ -29,6 +29,7 @@ import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { downloadFinalReportZip } from 'src/constants/common'
 import { toast } from 'react-toastify'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function RC_DATATABLE() {
   const navigate = useNavigate()
@@ -276,6 +277,7 @@ export default function RC_DATATABLE() {
       width: '120px',
 
     },
+    assignedFeColumn,
     {
       name: 'Visit Done By',
       selector: (row) => (

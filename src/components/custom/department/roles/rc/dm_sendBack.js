@@ -23,6 +23,7 @@ import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import handleSubmitHelper from 'src/helpers/submitHelper'
 import { customSuccessMSG } from 'src/helpers/alertHelper'
 import { SendBackConformModal } from 'src/helpers/sendBackConform'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {}
 
@@ -213,6 +214,7 @@ export default function Dm_SendBack() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'CEO',
       selector: (row) => (

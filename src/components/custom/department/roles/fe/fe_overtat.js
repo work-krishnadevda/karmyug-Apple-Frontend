@@ -23,6 +23,7 @@ import AddNote from 'src/components/custom/popup/addNote'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 var subHeaderItems = [
   {
@@ -207,6 +208,7 @@ export default function FeOverTAT() {
     },
 
 
+    assignedFeColumn,
     {
       name: 'Finance Name',
       selector: (row) => (

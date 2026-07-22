@@ -34,6 +34,7 @@ import { statusValue } from 'src/constants/variables'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import { faBan } from '@fortawesome/free-solid-svg-icons'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function CooOverTAT() {
@@ -206,6 +207,7 @@ export default function CooOverTAT() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       cell: (row) => (

@@ -29,6 +29,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons'
 import Hold from 'src/components/custom/popup/hold'
 import View_Reason from 'src/components/custom/popup/View_Reason'
 import UnHold from 'src/components/custom/popup/unhold'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function LiveCases() {
@@ -185,6 +186,7 @@ export default function LiveCases() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => (

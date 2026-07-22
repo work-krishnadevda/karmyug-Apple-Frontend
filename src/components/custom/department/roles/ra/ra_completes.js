@@ -22,6 +22,7 @@ import View_Reason from 'src/components/custom/popup/View_Reason'
 import AddNote from 'src/components/custom/popup/addNote'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function RA_Completes() {
   const navigate = useNavigate()
@@ -251,6 +252,7 @@ export default function RA_Completes() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Created',
       cell: (row) => (

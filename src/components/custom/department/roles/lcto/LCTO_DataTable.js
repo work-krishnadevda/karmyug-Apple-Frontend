@@ -27,6 +27,7 @@ import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { downloadFinalReportZip } from 'src/constants/common'
 import { toast } from 'react-toastify'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function LCTO_DataTable() {
   const navigate = useNavigate()
@@ -268,6 +269,7 @@ export default function LCTO_DataTable() {
 
     },
 
+    assignedFeColumn,
     {
       name: 'Visit Done By',
       selector: (row) => (

@@ -38,6 +38,7 @@ import View_FE_Note from 'src/components/custom/popup/view_fe_note'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {
   // dm: {
@@ -214,6 +215,7 @@ export default function SdmDataTable() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Visit By',
       selector: (row) => (

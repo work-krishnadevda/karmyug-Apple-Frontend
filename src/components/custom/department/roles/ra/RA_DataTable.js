@@ -27,6 +27,7 @@ import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { downloadFinalReportZip } from 'src/constants/common'
 import { toast } from 'react-toastify'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function RA_DataTable() {
   const navigate = useNavigate()
@@ -271,6 +272,7 @@ export default function RA_DataTable() {
       width: '120px',
 
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => {

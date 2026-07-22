@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import View_Reason from 'src/components/custom/popup/View_Reason'
 import AddNote from 'src/components/custom/popup/addNote'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function RA_Pending_VISIT() {
   const navigate = useNavigate()
@@ -258,6 +259,7 @@ export default function RA_Pending_VISIT() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Created',
       cell: (row) => (

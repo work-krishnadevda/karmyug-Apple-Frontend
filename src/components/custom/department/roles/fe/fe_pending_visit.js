@@ -22,6 +22,7 @@ import View_Reason from 'src/components/custom/popup/View_Reason'
 import AddNote from 'src/components/custom/popup/addNote'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import OfflineVisitDone from 'src/components/custom/popup/offlineVisitDone'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function FE_Pending_VISIT() {
   const navigate = useNavigate()
@@ -245,6 +246,7 @@ export default function FE_Pending_VISIT() {
       ),
       width: '120px',
     },
+    assignedFeColumn,
     {
       name: 'Created',
       cell: (row) => (

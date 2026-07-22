@@ -34,6 +34,7 @@ import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessag
 import Unhold_Reason from 'src/components/custom/popup/unhold_region'
 import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
 import { param } from 'jquery'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 var subHeaderItems = [
   {
@@ -222,6 +223,7 @@ export default function LiveCases() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => (

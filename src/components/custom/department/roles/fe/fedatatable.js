@@ -40,6 +40,7 @@ import { fa42Group } from '@fortawesome/free-brands-svg-icons'
 import { faHandshakeSlash } from '@fortawesome/free-solid-svg-icons'
 import ConcernReason from 'src/components/custom/popup/concern_reason'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function FeDataTable() {
   const navigate = useNavigate()
@@ -287,6 +288,7 @@ export default function FeDataTable() {
       ),
       width: '170px',
     },
+    assignedFeColumn,
     {
       name: 'MA Branch',
       selector: (row) => (

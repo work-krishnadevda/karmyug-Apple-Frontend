@@ -36,6 +36,7 @@ import CustomTooltip from 'src/components/custom/CustomTooltip'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import { MessageShow } from 'src/components/custom/popup/viewMessageModel'
 import ConfirmAccept from 'src/components/custom/popup/confirmAccept'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function FE_PendingCase() {
@@ -231,6 +232,7 @@ export default function FE_PendingCase() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => (

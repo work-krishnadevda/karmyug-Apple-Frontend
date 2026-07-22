@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faEye } from '@fortawesome/free-solid-svg-icons'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 // export default function RC_DataTable() {
 export default function RC_OVERTAT() {
@@ -197,6 +198,7 @@ export default function RC_OVERTAT() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'CEO',
       selector: (row) => (

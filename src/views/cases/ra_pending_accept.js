@@ -38,6 +38,7 @@ import { MessageShow } from 'src/components/custom/popup/viewMessageModel'
 import ConfirmAccept from 'src/components/custom/popup/confirmAccept'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 
 export default function RA_PendingCase() {
@@ -229,6 +230,7 @@ export default function RA_PendingCase() {
       ),
     },
 
+    assignedFeColumn,
     {
       name: 'City Or Village Name',
       selector: (row) => (

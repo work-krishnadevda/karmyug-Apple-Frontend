@@ -37,6 +37,7 @@ import { faEye, faMessage, faRefresh } from '@fortawesome/free-solid-svg-icons'
 import View_FE_Note from 'src/components/custom/popup/view_fe_note'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {
   // dm: {
@@ -219,6 +220,7 @@ export default function ReAssignToAnotherDM() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Visit By',
       selector: (row) => (

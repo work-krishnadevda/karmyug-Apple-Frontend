@@ -33,6 +33,7 @@ import { customSuccessMSG } from 'src/helpers/alertHelper'
 
 import AsyncSelect from 'react-select/async'
 import handleSubmitHelper from 'src/helpers/submitHelper'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {}
 
@@ -212,6 +213,7 @@ export default function DM_Completes() {
         <div className="data_table_colum">{row && row?.rc?.name ? row.rc.name : '-'}</div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Status',
       selector: (row) => (

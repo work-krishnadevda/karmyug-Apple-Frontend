@@ -22,6 +22,7 @@ import { checkRole } from 'src/constants/common'
 
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
+import { getAssignedFeDisplay } from 'src/helpers/caseDisplayHelpers'
 
 const selectMenuPortalTarget = typeof document !== 'undefined' ? document.body : null
 const selectMenuStyles = {
@@ -88,6 +89,7 @@ const MsiFilter = ({
     location: false,
     cin_number: false,
     accepted_by: false,
+    assigned_fe: false,
     admin: false,
     dm: false,
     rc: false,
@@ -442,6 +444,7 @@ const MsiFilter = ({
       'address',
       'contact_number',
       'accepted_by',
+      'assigned_fe',
       'dm',
       'rc',
       'lcto',
@@ -493,6 +496,8 @@ const MsiFilter = ({
             formattedItem[key] = item[key]?.name ? item[key]?.name : '-'
           } else if (key === 'accepted_by') {
             formattedItem[key] = item['accepted_by']?.name ? item['accepted_by']?.name : '-'
+          } else if (key === 'assigned_fe') {
+            formattedItem[key] = getAssignedFeDisplay(item)
           } else if (['dm', 'rc', 'lcto', 'cto'].includes(key)) {
             formattedItem[key] = item[key]?.name ? item[key]?.name : '-'
           } else if (key === 'date_of_case_submited_to_bank') {
@@ -597,6 +602,8 @@ const MsiFilter = ({
             return 'Visit Address'
           case 'accepted_by':
             return 'Visit By'
+          case 'assigned_fe':
+            return 'Assigned FE'
           case 'lat_log':
             return 'Lat / Long'
           case 'property_type':
@@ -1167,6 +1174,18 @@ const MsiFilter = ({
                 <div className="">
                   <CFormCheck
                     type="checkbox"
+                    label={'Assigned FE'}
+                    className="ps-0 checkbox-margin"
+                    name="assigned_fe"
+                    checked={selected.assigned_fe}
+                    onChange={handleCheckboxChange}
+                  />
+                </div>
+              </div>
+              <div style={{ width: '20%' }}>
+                <div className="">
+                  <CFormCheck
+                    type="checkbox"
                     label={'DM'}
                     className="credit ps-0 checkbox-margin"
                     name="dm"
@@ -1554,6 +1573,7 @@ const MsiFilter = ({
                       location: false,
                       cin_number: false,
                       accepted_by: false,
+                      assigned_fe: false,
                       admin: false,
                       dm: false,
                       rc: false,

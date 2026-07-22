@@ -23,6 +23,7 @@ import Hold_Reason from 'src/components/custom/popup/hold_reason'
 import Unhold_Reason from 'src/components/custom/popup/unhold_region'
 import UnHold from 'src/components/custom/popup/unhold'
 import { faCreativeCommonsBy } from '@fortawesome/free-brands-svg-icons'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function SFO_Concurn() {
     const navigate = useNavigate()
@@ -226,6 +227,7 @@ export default function SFO_Concurn() {
                 </div>
             ),
         },
+        assignedFeColumn,
         {
             name: 'Created',
             cell: (row) => (

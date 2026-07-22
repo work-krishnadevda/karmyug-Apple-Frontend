@@ -33,6 +33,7 @@ import handleSubmitHelper from 'src/helpers/submitHelper'
 import { customSuccessMSG } from 'src/helpers/alertHelper'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import SingleSubHeader from 'src/components/custom/SingleSubHeader'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {
   dm: {
@@ -198,6 +199,7 @@ export default function SDM_Completes() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Assigned To',
       selector: (row) => (

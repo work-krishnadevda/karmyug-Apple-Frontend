@@ -40,6 +40,7 @@ import SingleSubHeader from 'src/components/custom/SingleSubHeader'
 import SelfAssign from 'src/components/custom/popup/selfAssign'
 import { MessageShow } from 'src/components/custom/popup/viewMessageModel'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 const validationRules = {
   // dm: {
@@ -258,6 +259,7 @@ export default function SdmAllRACH() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Visit By',
       selector: (row) => (

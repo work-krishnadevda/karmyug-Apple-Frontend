@@ -22,6 +22,7 @@ import View_FE_Note from 'src/components/custom/popup/view_fe_note'
 import UnHold from 'src/components/custom/popup/unhold'
 import Hold from 'src/components/custom/popup/hold'
 import Hold_Reason from 'src/components/custom/popup/hold_reason'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function DMOverTAT() {
   const navigate = useNavigate()
@@ -176,6 +177,7 @@ export default function DMOverTAT() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Status',
       selector: (row) => (

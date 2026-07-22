@@ -23,6 +23,7 @@ import { saveAs } from 'file-saver'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import { CommonMessageShowModel } from 'src/components/custom/popup/commonMessageModel'
 import CaseSectionCard from 'src/components/custom/table/CaseSectionCard'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function Genrate_MSI() {
   const navigate = useNavigate()
@@ -290,6 +291,7 @@ export default function Genrate_MSI() {
       ),
     },
 
+    assignedFeColumn,
     {
       name: 'Visit Done By',
       selector: (row) => (

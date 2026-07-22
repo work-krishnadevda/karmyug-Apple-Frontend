@@ -17,6 +17,7 @@ import BasicProvider from 'src/constants/BasicProvider'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 
 import noImage from 'src/assets/images/noImage.png'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 const URL = process.env.REACT_APP_NODE_URL
 
 
@@ -183,7 +184,8 @@ export default function Pages() {
       selector: (row) => <div className="data_table_colum">{row && row?.ra_branch?.name ? row?.ra_branch?.name : '-'}</div>,
     },
 
-    // {
+    assignedFeColumn,
+// {
     //   name: 'Status',
     //   selector: (row) => (
     //     <div

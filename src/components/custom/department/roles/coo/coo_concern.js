@@ -30,6 +30,7 @@ import View_Reason from 'src/components/custom/popup/View_Reason'
 import UnHold from 'src/components/custom/popup/unhold'
 import View_FE_Note from 'src/components/custom/popup/view_fe_note'
 import { statusValue } from 'src/constants/variables'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function CooConcernDataTable() {
   const navigate = useNavigate()
@@ -189,6 +190,7 @@ export default function CooConcernDataTable() {
         </div>
       ),
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => (

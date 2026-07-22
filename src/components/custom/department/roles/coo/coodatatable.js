@@ -50,6 +50,7 @@ import { CopyConformModal } from 'src/helpers/copyConformModalHelper'
 import { toast } from 'react-toastify'
 import AppActionDropdown from 'src/components/custom/table/AppActionDropdown'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 
 export default function CooDataTable() {
   const navigate = useNavigate()
@@ -435,6 +436,7 @@ export default function CooDataTable() {
       ),
       width: '120px',
     },
+    assignedFeColumn,
     {
       name: 'Group/FE',
       selector: (row) => {

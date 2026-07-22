@@ -33,6 +33,7 @@ import { toast } from 'react-toastify'
 import { CopyConformModal } from 'src/helpers/copyConformModalHelper'
 import AppActionDropdown from 'src/components/custom/table/AppActionDropdown'
 import AppTableSkeleton from 'src/components/custom/table/AppTableSkeleton'
+import { assignedFeColumn } from 'src/helpers/caseDisplayHelpers'
 export default function AdminDataTable() {
   const navigate = useNavigate()
   const [rowPerPage, setRowPerPage] = useState(null)
@@ -456,6 +457,7 @@ export default function AdminDataTable() {
       ),
       width: '120px',
     },
+    assignedFeColumn,
     {
       name: 'Visit Done By',
       selector: (row) => (
