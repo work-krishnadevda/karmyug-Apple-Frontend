@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
 import SwitchingHeader from 'src/components/SwitchingHeader'
 import { useLocation } from 'react-router-dom'
@@ -7,6 +7,7 @@ import useLeaveApprovalCheck from 'src/hooks/useLeaveApprovalCheck'
 import AutoPunchOutWarning from 'src/constants/AutoPunchOutWarning'
 import OfferPopupManager from 'src/components/offers/OfferPopupManager'
 import CelebrationPopupManager from 'src/components/celebration/CelebrationPopupManager'
+import { initPushNotifications } from 'src/helpers/pushNotifications'
 
 const DefaultLayout = () => {
   const location = useLocation()
@@ -14,6 +15,12 @@ const DefaultLayout = () => {
   useUserStatusCheck(30000, true)
  
   useLeaveApprovalCheck(30000, true)
+
+  useEffect(() => {
+    initPushNotifications().catch((error) => {
+      console.warn('Push notification init failed:', error?.message || error)
+    })
+  }, [])
 
   return (
     <div>

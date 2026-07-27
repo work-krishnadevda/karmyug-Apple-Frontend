@@ -59,6 +59,7 @@
     "downshift": "^9.0.8",
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
+    "firebase": "^12.16.0",
     "formik": "^2.4.5",
     "framer-motion": "^12.23.13",
     "google-map-react": "^2.2.1",
