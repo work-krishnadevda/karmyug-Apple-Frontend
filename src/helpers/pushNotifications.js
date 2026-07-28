@@ -14,7 +14,8 @@ import {
 } from 'src/config/firebase';
 
 let messagingInstance = null;
-let initializedForUser = null;
+let tokenRegisteredForUser = null;
+let onMessageRegistered = false;
 
 async function fetchFirebaseConfigFromApi() {
   try {
@@ -40,32 +41,47 @@ async function resolveFirebaseConfig() {
 }
 
 function showForegroundNotification(payload) {
-  if (!payload?.notification) return;
-  const title = payload.notification.title || 'ValuXpert';
-  const body = payload.notification.body || '';
-  if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-    const notification = new Notification(title, {
-      body,
-      icon: '/logo.png',
-      data: payload.data || {},
-      tag: payload.data?.case_id || 'valuxpert-case',
-    });
-    notification.onclick = () => {
-      window.focus();
-      const caseId = payload?.data?.case_id;
-      if (caseId) {
-        window.location.hash = `#/case/${caseId}/show`;
-      } else {
-        window.location.hash = '#/case/mypendingcase';
-      }
-      notification.close();
-    };
+  const notification = payload?.notification || {};
+  const data = payload?.data || {};
+  const title = notification.title || data.title || 'ValuXpert';
+  const body = notification.body || data.body || '';
+
+  if (typeof Notification === 'undefined' || Notification.permission !== 'granted') {
+    console.warn('[Push] Notification permission not granted');
+    return;
   }
+
+  const popup = new Notification(title, {
+    body,
+    icon: '/logo.png',
+    data: data || {},
+    tag: data?.case_id || 'valuxpert-case',
+  });
+
+  popup.onclick = () => {
+    window.focus();
+    const caseId = data?.case_id;
+    if (caseId) {
+      window.location.hash = `#/case/${caseId}/show`;
+    } else {
+      window.location.hash = '#/case/mypendingcase';
+    }
+    popup.close();
+  };
+}
+
+function ensureOnMessageHandler(messaging) {
+  if (onMessageRegistered) return;
+  onMessage(messaging, (payload) => {
+    showForegroundNotification(payload);
+  });
+  onMessageRegistered = true;
 }
 
 export async function initPushNotifications() {
   const role = Cookies.get('current_user_role');
   const feRole = process.env.REACT_APP_FE || 'field-engineer-fe';
+
   if (role !== feRole) return;
 
   if (!(await isSupported())) {
@@ -74,7 +90,7 @@ export async function initPushNotifications() {
   }
 
   const userId = Cookies.get('primery_user_id');
-  if (!userId || initializedForUser === userId) return;
+  if (!userId) return;
 
   const firebaseConfig = await resolveFirebaseConfig();
   if (!firebaseConfig?.apiKey || !firebaseConfig?.vapidKey) {
@@ -92,14 +108,13 @@ export async function initPushNotifications() {
   const app =
     getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
 
-  const apiBase = process.env.REACT_APP_NODE_URL || '';
-  const registration = await navigator.serviceWorker.register(
-    `/firebase-messaging-sw.js?api=${encodeURIComponent(apiBase)}`,
-  );
-
+  const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
   await navigator.serviceWorker.ready;
 
   messagingInstance = getMessaging(app);
+  ensureOnMessageHandler(messagingInstance);
+
+  if (tokenRegisteredForUser === userId) return;
 
   const token = await getToken(messagingInstance, {
     vapidKey: firebaseConfig.vapidKey,
@@ -114,14 +129,11 @@ export async function initPushNotifications() {
     device_info: navigator.userAgent,
   });
 
-  onMessage(messagingInstance, (payload) => {
-    showForegroundNotification(payload);
-  });
-
-  initializedForUser = userId;
+  tokenRegisteredForUser = userId;
 }
 
 export async function unregisterPushNotifications() {
-  initializedForUser = null;
+  tokenRegisteredForUser = null;
   messagingInstance = null;
+  onMessageRegistered = false;
 }
