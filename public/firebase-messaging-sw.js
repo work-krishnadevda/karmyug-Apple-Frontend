@@ -18,13 +18,18 @@ messaging.onBackgroundMessage((payload) => {
   const title = notification.title || data.title || 'ValuXpert';
   const body = notification.body || data.body || '';
 
-  return self.registration.showNotification(title, {
+  const options = {
     body,
     icon: '/logo.png',
     badge: '/logo.png',
     data,
     tag: data.case_id || 'valuxpert-case',
-  });
+    requireInteraction: true,
+    vibrate: [200, 100, 200],
+    renotify: true,
+  };
+
+  return self.registration.showNotification(title, options);
 });
 
 self.addEventListener('notificationclick', (event) => {
