@@ -94,6 +94,25 @@ body,
   font-family: 'DM Sans', sans-serif !important;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 body,
 button,
 input,

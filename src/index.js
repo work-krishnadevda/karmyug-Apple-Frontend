@@ -7,6 +7,13 @@ import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store'
 
+function hideAppSplash() {
+  const splash = document.getElementById('app-splash')
+  if (!splash) return
+  splash.classList.add('app-splash--hide')
+  window.setTimeout(() => splash.remove(), 250)
+}
+
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <StrictMode>
@@ -14,6 +21,8 @@ createRoot(document.getElementById('root')).render(
     </StrictMode>
   </Provider>,
 )
+
+hideAppSplash()
 
   // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

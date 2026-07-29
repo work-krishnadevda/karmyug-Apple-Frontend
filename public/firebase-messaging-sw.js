@@ -24,9 +24,7 @@ messaging.onBackgroundMessage((payload) => {
     badge: '/logo.png',
     data,
     tag: data.case_id || 'valuxpert-case',
-    requireInteraction: true,
     vibrate: [200, 100, 200],
-    renotify: true,
   };
 
   return self.registration.showNotification(title, options);
