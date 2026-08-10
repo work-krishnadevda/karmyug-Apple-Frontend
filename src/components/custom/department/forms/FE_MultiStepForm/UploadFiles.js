@@ -26,7 +26,7 @@ import fileupload from '../../../../../assets/images/uploadIcon.png'
 import { customSuccessMSG, setAlertTimeout } from 'src/helpers/alertHelper'
 import CustomTooltip from 'src/components/custom/CustomTooltip'
 import CIcon from '@coreui/icons-react'
-import { cilCloudDownload, cilTrash } from '@coreui/icons'
+import { cilCheckAlt, cilCloudDownload, cilTrash, cilX } from '@coreui/icons'
 import {
   compressImage,
   FE_COMPRESS_TARGET_MB,
@@ -246,10 +246,31 @@ const UploadFiles = ({
       uploadInProgressRef.current = true
       lastUploadRef.current = { signature, timestamp: now }
 
+      setIsLoadingSpinner(true)
+      setUploadProgress({
+        totalCount: dedupedFiles.length,
+        uploaded: 0,
+        status: 'Preparing photos…',
+        file: '',
+        files: dedupedFiles.map((file, index) => ({
+          id: `${file.name}::${file.size}::${file.lastModified}::${index}`,
+          name: file.name,
+          status: 'pending',
+        })),
+      })
+
       // Compress images that are larger than 1MB (same as shared feCompressImage helper)
       const processedFiles = await Promise.all(
-        dedupedFiles.map(async (file) => {
+        dedupedFiles.map(async (file, index) => {
           if (file.type.startsWith('image/') && file.size > FE_COMPRESS_THRESHOLD_BYTES) {
+            setUploadProgress((prev) => ({
+              ...prev,
+              status: 'Compressing…',
+              file: file.name,
+              files: (prev.files || []).map((item, i) =>
+                i === index ? { ...item, status: 'compressing' } : item,
+              ),
+            }))
             return await compressImage(file, FE_COMPRESS_TARGET_MB)
           }
           return file
@@ -259,6 +280,8 @@ const UploadFiles = ({
       await handleSubmit(processedFiles)
     } catch (error) {
       console.error('Error handling files:', error)
+      setIsLoadingSpinner(false)
+      setUploadProgress({})
     } finally {
       uploadInProgressRef.current = false
     }
@@ -318,8 +341,8 @@ const UploadFiles = ({
     socket.on('upload-progress', (data) => {
       setUploadProgress((prev) => ({
         ...prev,
-        file: data.file,
-        status: data.status,
+        file: data.file || prev.file,
+        status: data.status || prev.status,
       }))
     })
 
@@ -356,10 +379,45 @@ const UploadFiles = ({
     setErrors('')
   }
 
+  const updateFileStatus = (index, status) => {
+    setUploadProgress((prev) => {
+      const files = Array.isArray(prev.files) ? [...prev.files] : []
+      if (!files[index]) return prev
+      files[index] = { ...files[index], status }
+      const uploaded = files.filter((item) => item.status === 'done').length
+      return {
+        ...prev,
+        files,
+        uploaded,
+        totalCount: files.length || prev.totalCount || 0,
+      }
+    })
+  }
+
   const handleSubmit = async (fileData) => {
     try {
       if (fileData.length > 0) {
-        setUploadProgress({ totalCount: fileData.length, uploaded: 0 })
+        setIsLoadingSpinner(true)
+        setUploadProgress((prev) => ({
+          totalCount: fileData.length,
+          uploaded: 0,
+          status: 'Uploading…',
+          file: fileData[0]?.name || '',
+          files:
+            Array.isArray(prev.files) && prev.files.length === fileData.length
+              ? prev.files.map((item) =>
+                  item.status === 'done' || item.status === 'error'
+                    ? item
+                    : { ...item, status: 'pending' },
+                )
+              : fileData.map((file, index) => ({
+                  id: `${file.name}::${file.size}::${file.lastModified}::${index}`,
+                  name: file.name,
+                  status: 'pending',
+                })),
+        }))
+
+        let successCount = 0
 
         for (let i = 0; i < fileData.length; i++) {
           const file = fileData[i]
@@ -369,6 +427,8 @@ const UploadFiles = ({
 
           if (recentlyUploadedRef.current.has(fileSig) || globalLocks.has(globalKey)) {
             console.warn('Skipping duplicate file upload:', file.name)
+            updateFileStatus(i, 'done')
+            successCount += 1
             continue
           }
 
@@ -379,7 +439,13 @@ const UploadFiles = ({
             globalLocks.delete(globalKey)
           }, RECENT_UPLOAD_TTL_MS)
 
-          setIsLoadingSpinner(true)
+          updateFileStatus(i, 'uploading')
+          setUploadProgress((prev) => ({
+            ...prev,
+            status: 'Uploading…',
+            file: file.name,
+          }))
+
           const formData = new FormData()
           formData.append('featured_image', file)
           formData.append('case', id)
@@ -391,25 +457,31 @@ const UploadFiles = ({
           ).postRequest(formData)
 
           if (response.status === 'success') {
-            setUploadProgress((prevProgress) => ({
-              ...prevProgress,
-              uploaded: prevProgress.uploaded + 1,
-            }))
-            setIsLoadingSpinner(false)
+            updateFileStatus(i, 'done')
+            successCount += 1
             fetchData(currentPage, rowPerPage, searchcurrentPage, search, count)
+          } else {
+            updateFileStatus(i, 'error')
           }
         }
 
-        customSuccessMSG(dispatch, 'All files uploaded successfully!')
-        setIsLoadingSpinner(false)
+        if (successCount > 0) {
+          customSuccessMSG(
+            dispatch,
+            successCount === fileData.length
+              ? 'All files uploaded successfully!'
+              : `${successCount}/${fileData.length} photos uploaded successfully!`,
+          )
+        }
+
+        // Keep final tick list visible briefly so FE can see completed count
+        await new Promise((resolve) => setTimeout(resolve, 900))
       }
     } catch (error) {
-      setIsLoadingSpinner(false)
-
       console.error('Error uploading files:', error)
     } finally {
       setIsLoadingSpinner(false)
-      setUploadProgress(0)
+      setUploadProgress({})
     }
   }
 
@@ -799,38 +871,37 @@ const UploadFiles = ({
       <CRow>
         {isLoadingSpinner ? (
           <div className="spinner_outerbox">
-            {uploadProgress.file && uploadProgress.status ? (
+            {Array.isArray(uploadProgress.files) && uploadProgress.files.length > 0 ? (
               <div
-                className="text-center mt-2 bg-light p-3"
+                className="fe-upload-progress-card bg-light p-3"
                 style={{
-                  width: '350px',
-                  borderRadius: '10px',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                  width: 'min(420px, 92vw)',
+                  maxHeight: '80vh',
+                  overflow: 'hidden',
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.18)',
                   border: '1px solid #ddd',
                 }}
               >
                 <p
-                  className={`${uploadProgress.status.startsWith('Compressing')
-                    ? 'text-warning'
-                    : uploadProgress.status.startsWith('Uploading')
-                      ? 'text-success'
-                      : 'text-muted'
-                    }`}
-                  style={{ fontSize: '18px', fontWeight: 'bold' }}
+                  className="mb-1"
+                  style={{ fontSize: '18px', fontWeight: 700, color: '#1f2937' }}
                 >
-                  {uploadProgress.status}
+                  {uploadProgress.status || 'Uploading photos…'}
                 </p>
-
-                <p style={{ fontSize: '16px', color: '#333', marginBottom: '10px' }}>
-                  File: <strong>{uploadProgress.file}</strong>
+                <p style={{ fontSize: '15px', color: '#374151', marginBottom: '12px' }}>
+                  <strong>
+                    {uploadProgress.uploaded || 0}/{uploadProgress.totalCount || 0}
+                  </strong>{' '}
+                  photos uploaded
                 </p>
 
                 <div
                   className="progress mb-3"
                   style={{
-                    height: '20px',
-                    backgroundColor: '#f0f0f0',
-                    borderRadius: '5px',
+                    height: '12px',
+                    backgroundColor: '#e5e7eb',
+                    borderRadius: '999px',
                     overflow: 'hidden',
                   }}
                 >
@@ -838,18 +909,94 @@ const UploadFiles = ({
                     className="progress-bar progress-bar-striped progress-bar-animated"
                     role="progressbar"
                     style={{
-                      width: `${(uploadProgress.uploaded / uploadProgress.totalCount) * 100}%`,
+                      width: `${
+                        uploadProgress.totalCount
+                          ? ((uploadProgress.uploaded || 0) / uploadProgress.totalCount) * 100
+                          : 0
+                      }%`,
                       backgroundColor: '#28a745',
                     }}
-                    aria-valuenow={uploadProgress.uploaded}
+                    aria-valuenow={uploadProgress.uploaded || 0}
                     aria-valuemin="0"
-                    aria-valuemax={uploadProgress.totalCount}
+                    aria-valuemax={uploadProgress.totalCount || 0}
                   />
                 </div>
 
-                <p style={{ fontSize: '14px', color: '#555' }}>
-                  {uploadProgress.uploaded}/{uploadProgress.totalCount} files uploaded
-                </p>
+                {uploadProgress.file ? (
+                  <p style={{ fontSize: '13px', color: '#6b7280', marginBottom: '10px' }}>
+                    Current: <strong>{uploadProgress.file}</strong>
+                  </p>
+                ) : null}
+
+                <div
+                  style={{
+                    maxHeight: '42vh',
+                    overflowY: 'auto',
+                    borderTop: '1px solid #e5e7eb',
+                    paddingTop: '8px',
+                  }}
+                >
+                  {uploadProgress.files.map((item) => {
+                    const isDone = item.status === 'done'
+                    const isUploading =
+                      item.status === 'uploading' || item.status === 'compressing'
+                    const isError = item.status === 'error'
+
+                    return (
+                      <div
+                        key={item.id}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '8px 4px',
+                          borderBottom: '1px solid #f3f4f6',
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '22px',
+                            height: '22px',
+                            borderRadius: '50%',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0,
+                            backgroundColor: isDone
+                              ? '#28a745'
+                              : isError
+                                ? '#dc3545'
+                                : isUploading
+                                  ? '#0d6efd'
+                                  : '#d1d5db',
+                            color: '#fff',
+                          }}
+                        >
+                          {isDone ? (
+                            <CIcon icon={cilCheckAlt} size="sm" />
+                          ) : isError ? (
+                            <CIcon icon={cilX} size="sm" />
+                          ) : isUploading ? (
+                            <CSpinner size="sm" style={{ width: '12px', height: '12px' }} />
+                          ) : (
+                            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fff' }} />
+                          )}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: '13px',
+                            color: isDone ? '#166534' : isError ? '#991b1b' : '#374151',
+                            wordBreak: 'break-word',
+                            flex: 1,
+                          }}
+                          title={item.name}
+                        >
+                          {item.name}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             ) : (
               <div className="text-center">
