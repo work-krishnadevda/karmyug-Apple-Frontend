@@ -418,6 +418,11 @@ const AppHeaderDropdown = ({
     if (userData?.featured_image) return `${URL}/${userData.featured_image}`
     return noImage
   }
+
+  const switchableRoles = (Array.isArray(mutualAdmins) ? mutualAdmins : []).filter(
+    (admin) => admin?.role?.[0]?.display_name || admin?.role?.[0]?.name,
+  )
+
   return (
     <>
       <CDropdown variant="nav-item">
@@ -436,34 +441,34 @@ const AppHeaderDropdown = ({
           )}
         </CDropdownToggle>
         <CDropdownMenu className="pt-0 app-header-profile-menu" placement="bottom-end">
-          {primeryAdmin && primeryAdmin?.role && primeryAdmin?.role?.length > 0 && (
+          {primeryAdmin && primeryAdmin?.role?.[0] && (
             <CDropdownItem
               onClick={() => handleSwitchRole(primeryAdmin)}
               href="#"
               className="mt-2 dropdown-item-with-dot"
               disabled={isLoading}
             >
-              {isLoading ? 'Switching...' : primeryAdmin?.role[0]['display_name']}
-              {userData?.role[0]?.name === primeryAdmin?.role[0]?.name && (
+              {isLoading ? 'Switching...' : primeryAdmin?.role?.[0]?.display_name || primeryAdmin?.role?.[0]?.name}
+              {userData?.role?.[0]?.name === primeryAdmin?.role?.[0]?.name && (
                 <span className="dot"></span>
               )}
             </CDropdownItem>
           )}
-          {mutualAdmins && mutualAdmins?.length > 0 && (
+          {switchableRoles.length > 0 && (
             <>
               <CDropdownHeader className="bg-light fw-semibold py-2">
                 Switchable Roles
               </CDropdownHeader>
-              {mutualAdmins?.map((role, index) => (
+              {switchableRoles.map((role, index) => (
                 <CDropdownItem
                   onClick={() => handleSwitchRole(role)}
-                  key={index}
+                  key={role?._id || index}
                   href="#"
                   className="mt-2 dropdown-item-with-dot"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Switching...' : role?.role[0]?.display_name}
-                  {userData?.role[0]?.name === role?.role[0]?.name && <span className="dot"></span>}
+                  {isLoading ? 'Switching...' : role?.role?.[0]?.display_name || role?.role?.[0]?.name}
+                  {userData?.role?.[0]?.name === role?.role?.[0]?.name && <span className="dot"></span>}
                 </CDropdownItem>
               ))}
             </>

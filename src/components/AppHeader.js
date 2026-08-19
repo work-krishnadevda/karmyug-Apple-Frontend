@@ -57,11 +57,21 @@ const AppHeader = ({ employeeDatas, formData }) => {
   const token = Cookies.get(`${process.env.REACT_APP_COOKIE_PREFIX}_auth`)
   const id = Cookies.get(`primery_user_id`)
   const employeeId = id
-  var decoded = jwtDecode(token)
+  let decoded = {}
+  try {
+    decoded = token ? jwtDecode(token) : {}
+  } catch (error) {
+    decoded = {}
+  }
+  const roleName =
+    loggedinUserRole?.name ||
+    decoded?.role?.[0]?.name ||
+    ''
 
   useEffect(() => {
+    if (!decoded?._id && !decoded?.id) return
     dispatch({ type: 'setUserData', userData: decoded })
-    dispatch({ type: 'setUserRole', userRole: decoded?.role[0] })
+    dispatch({ type: 'setUserRole', userRole: decoded?.role?.[0] })
   }, [])
 
   const sidebarShow = useSelector((state) => state.sidebarShow)
@@ -234,8 +244,10 @@ const AppHeader = ({ employeeDatas, formData }) => {
       setPrimeryAdmin(adminData)
 
       let response3 = await new BasicProvider(`admins/get-mutual`, dispatch).postRequest({ id: id })
-      console.log('mutual admins response:', response3.data)
-      setMutualAdmins(response3?.data)
+      const mutualList = Array.isArray(response3?.data) ? response3.data : []
+      setMutualAdmins(
+        mutualList.filter((admin) => admin?.role?.[0]?.display_name || admin?.role?.[0]?.name),
+      )
     } catch (error) {}
   }
 
@@ -419,8 +431,8 @@ const AppHeader = ({ employeeDatas, formData }) => {
           </CHeaderToggler>
 
           <div className="d-flex align-items-center">
-            {decoded.role[0].name !== process.env.REACT_APP_FE &&
-              decoded.role[0].name !== process.env.REACT_APP_BROKER && (
+            {roleName !== process.env.REACT_APP_FE &&
+              roleName !== process.env.REACT_APP_BROKER && (
                 <MaterFilter userData={userData} />
               )}
 
@@ -429,23 +441,23 @@ const AppHeader = ({ employeeDatas, formData }) => {
             </CHeaderBrand>
           </div>
 
-          {decoded.role[0].name === process.env.REACT_APP_COO && (
+          {roleName === process.env.REACT_APP_COO && (
             <CButton className="add_new w-lg-10 mx-2" onClick={() => navigate(`/case/create`)}>
               Create Case
             </CButton>
           )}
 
-          {(decoded.role[0].name === process.env.REACT_APP_ADMIN ||
-            decoded.role[0].name === process.env.REACT_APP_COO ||
-            decoded.role[0].name === process.env.REACT_APP_RA ||
-            decoded.role[0].name === process.env.REACT_APP_SFO ||
-            decoded.role[0].name === process.env.REACT_APP_RC ||
-            decoded.role[0].name === process.env.REACT_APP_LCTO ||
-            decoded.role[0].name === process.env.REACT_APP_CTO ||
-            decoded.role[0].name === RC ||
-            decoded.role[0].name === LCTO ||
-            decoded.role[0].name === CTO ||
-            decoded.role[0].name === SFO) && (
+          {(roleName === process.env.REACT_APP_ADMIN ||
+            roleName === process.env.REACT_APP_COO ||
+            roleName === process.env.REACT_APP_RA ||
+            roleName === process.env.REACT_APP_SFO ||
+            roleName === process.env.REACT_APP_RC ||
+            roleName === process.env.REACT_APP_LCTO ||
+            roleName === process.env.REACT_APP_CTO ||
+            roleName === RC ||
+            roleName === LCTO ||
+            roleName === CTO ||
+            roleName === SFO) && (
             <CButton
               onClick={() => navigate('/case/all/concern')}
               className="header-btns mx-2 position-relative"
@@ -459,7 +471,7 @@ const AppHeader = ({ employeeDatas, formData }) => {
             </CButton>
           )}
 
-          {decoded.role[0].name === process.env.REACT_APP_FE && (
+          {roleName === process.env.REACT_APP_FE && (
             <CButton
               onClick={() => navigate('/case/all/concern')}
               className="header-btns"
@@ -473,12 +485,12 @@ const AppHeader = ({ employeeDatas, formData }) => {
             </CButton>
           )}
 
-          {(decoded.role[0].name == SDM ||
-            decoded.role[0].name == DM ||
-            decoded.role[0].name == RC ||
-            decoded.role[0].name == LCTO ||
-            decoded.role[0].name == ADMIN ||
-            decoded.role[0].name == CTO) && (
+          {(roleName == SDM ||
+            roleName == DM ||
+            roleName == RC ||
+            roleName == LCTO ||
+            roleName == ADMIN ||
+            roleName == CTO) && (
             <CButton
               onClick={() => setVisibleQuickLinkModel(!visibleQuickLinkModel)}
               className="header-btns"
